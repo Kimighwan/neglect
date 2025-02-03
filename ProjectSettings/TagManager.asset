@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Stair
+    uniqueID: 2641482749
+    locked: 0
+  - name: Floor
+    uniqueID: 1260877739
+    locked: 0
+  - name: Furniture
+    uniqueID: 1972977847
+    locked: 0
