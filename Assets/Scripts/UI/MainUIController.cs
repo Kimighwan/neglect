@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MainUIController : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
+        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, true, false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -1,13 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartSceneButton : MonoBehaviour
 {
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene(1);
+        Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, true, () =>
+        {
+            SceneManager.LoadScene(1);
+        });
+
     }
 
     public void OnClickQuitButton()
