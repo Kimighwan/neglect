@@ -131,4 +131,41 @@ public class UIManager : SingletonBehaviour<UIManager>
         var encyclopediaUI = new BaseUIData();
         UIManager.Instance.OpenUI<EncyclopediaUI>(encyclopediaUI);
     }
+
+    // 파견 창 관련해서 부드럽게 올라오게 하는 부분 
+    public GameObject requestUpBtn; // 파견 Up버튼
+    public GameObject requestDownBtn; // 파견 Down버튼
+    public void UpRequest(GameObject obj) {
+        Vector2 targetPos = new Vector2(0f, 0f);
+        RectTransform panel = obj.GetComponent<RectTransform>();
+        requestUpBtn.SetActive(false);
+        requestDownBtn.SetActive(true);
+        StartCoroutine(AnimateUI(panel, targetPos, 0.5f));
+        
+    }
+    public void DownRequest(GameObject obj) {
+        Vector2 targetPos = new Vector2(0f, -230f);
+        RectTransform panel = obj.GetComponent<RectTransform>();
+        requestUpBtn.SetActive(true);
+        requestDownBtn.SetActive(false);
+        StartCoroutine(AnimateUI(panel, targetPos, 0.5f));
+    }
+
+    IEnumerator AnimateUI(RectTransform panel, Vector2 newPos, float time)
+    {
+        float elapsedTime = 0f;
+        Vector2 startPos = panel.anchoredPosition;
+
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / time;
+            t = t * t * (3f - 2f * t); // SmootherStep (부드러운 감속 효과)
+            panel.anchoredPosition = Vector2.Lerp(startPos, newPos, t);
+            yield return null;
+        }
+        // 애니메이션이 끝난 후, 정확한 최종값 설정
+        panel.anchoredPosition = newPos;
+    }
+    // 파견 창 관련해서 부드럽게 올라오게 하는 부분 
 }

@@ -3344,10 +3344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UICanvasTrs: {fileID: 1028127990}
   ClosedUITrs: {fileID: 2054220090}
-  encyclopedia: {fileID: 0}
-  blackImage: {fileID: 0}
-  UICanvasTrs: {fileID: 0}
-  OpenUITrs: {fileID: 0}
   requestUpBtn: {fileID: 1551689699}
   requestDownBtn: {fileID: 94487764}
 --- !u!1 &1038294315
@@ -4375,7 +4371,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1028127991}
-        m_TargetAssemblyTypeName: MainUIController, Assembly-CSharp
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: UpRequest
         m_Mode: 2
         m_Arguments:
