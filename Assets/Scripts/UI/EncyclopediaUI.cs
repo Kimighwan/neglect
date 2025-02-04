@@ -10,4 +10,16 @@ public class EncyclopediaUI : BaseUI
 
 
     }
+
+    public void OnClickMonsterBtn()
+    {
+        var mosterUI = new BaseUIData();
+        UIManager.Instance.OpenUI<MonsterUI>(mosterUI);
+    }
+
+    public void OnClickSystemBtn()
+    {
+        var systemUI = new BaseUIData();
+        UIManager.Instance.OpenUI<SystemUI>(systemUI);
+    }
 }
