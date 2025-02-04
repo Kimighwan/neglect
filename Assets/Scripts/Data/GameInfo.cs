@@ -19,6 +19,9 @@ public class GameInfo : MonoBehaviour
     // 시간 정보
     private float timer;
     public float Timer { get { return timer; } set { timer = value; } }
+    // 개방된 객실 개수
+    private int rooms;
+    public int Rooms { get { return rooms; } set { rooms = value; } }
 
     private void Awake() {
         gameInfo = this;
@@ -27,12 +30,14 @@ public class GameInfo : MonoBehaviour
         gold = 10;
         day = 1;
         timer = 8.0f;
+        rooms = 100;
     }
     public void UpdateGameInfo() {
         timer += Time.deltaTime * gameSpeed;
         if (timer >= 24f) {
             timer %= 24f;
             day += 1;
+            gold += 5 * rooms;
         }
     }
 }

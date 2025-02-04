@@ -21,6 +21,6 @@ public class GameManager : MonoBehaviour
         GameInfo.gameInfo.gameSpeed = 1f;
     }
     public void QuickGame() {
-        GameInfo.gameInfo.gameSpeed = 4f;
+        GameInfo.gameInfo.gameSpeed = 5f;
     }
 }
