@@ -26,14 +26,12 @@ public class TextHandler : MonoBehaviour
 
     private void UpdateGoldText() {
         int g = GameInfo.gameInfo.Gold;
-        string s = "";
-        if (g > 999) {
-            if (g > 999999) s += ((g / 1000000).ToString() + ',');
-            s += ((g / 1000).ToString() + ',');
-        }
-        s += (g % 1000).ToString();
+        string s = g.ToString("N0");
+        s += $" +{GameInfo.gameInfo.Rooms * 5}";
         goldText.text = s;
     }
+    
+    // 시간 정보 자동 변환환
     private void UpdateTimeText() {
         float t = GameInfo.gameInfo.Timer;
         string s = "";
