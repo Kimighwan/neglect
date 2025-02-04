@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SystemUI : MonoBehaviour
+public class SystemUI : BaseUI
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void SetInfo(BaseUIData uiData)
     {
-        
+        base.SetInfo(uiData);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickAllUICloseBtn()
     {
-        
+        UIManager.Instance.CloseAllOpenUI();
+    }
+
+    public void OnClickMonsterBtn()
+    {
+        var mosterUI = new BaseUIData();
+        CloseUI();
+        UIManager.Instance.OpenUI<MonsterUI>(mosterUI);
     }
 }
