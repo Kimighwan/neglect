@@ -2807,9 +2807,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StartSceneButton, Assembly-CSharp
-        m_MethodName: OnClickStartButton
+      - m_Target: {fileID: 1028127991}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OnClickEncyclopediaBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2975,13 +2975,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1028127986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b807c15149195434b8dce82b90dc587d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6241235b7acdc724db260341df4dcaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  encyclopedia: {fileID: 0}
-  blackImage: {fileID: 0}
-  UICanvasTrs: {fileID: 0}
-  OpenUITrs: {fileID: 0}
+  UICanvasTrs: {fileID: 1028127990}
+  ClosedUITrs: {fileID: 2054220090}
 --- !u!1 &1038294315
 GameObject:
   m_ObjectHideFlags: 0
@@ -4820,7 +4818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2054220090}
   m_Layer: 5
-  m_Name: OpenUI
+  m_Name: ClosedUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
