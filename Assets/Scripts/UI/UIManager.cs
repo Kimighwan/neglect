@@ -49,7 +49,6 @@ public class UIManager : SingletonBehaviour<UIManager>
         return ui;
     }
 
-
     public void OpenUI<T>(BaseUIData uiData)
     {
         System.Type uiType = typeof(T);
@@ -126,11 +125,22 @@ public class UIManager : SingletonBehaviour<UIManager>
         }
     }
 
+    #region OnClickEvent
     public void OnClickEncyclopediaBtn()
     {
         var encyclopediaUI = new BaseUIData();
         UIManager.Instance.OpenUI<EncyclopediaUI>(encyclopediaUI);
     }
+
+    public void OnClickAdventureTable()
+    {
+        var adventureSelectUI = new BaseUIData();
+        UIManager.Instance.OpenUI<AdventurerSelectUI>(adventureSelectUI);
+    }
+
+    #endregion
+
+    #region 파견창
 
     // 파견 창 관련해서 부드럽게 올라오게 하는 부분 
     public GameObject requestUpBtn; // 파견 Up버튼
@@ -168,4 +178,6 @@ public class UIManager : SingletonBehaviour<UIManager>
         panel.anchoredPosition = newPos;
     }
     // 파견 창 관련해서 부드럽게 올라오게 하는 부분 
+
+    #endregion
 }
