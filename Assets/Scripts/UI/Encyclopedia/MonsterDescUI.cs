@@ -44,4 +44,12 @@ public class MonsterDescUI : MonsterUI
         txtStrength.text = "강점 : " + monsterStrength;
         txtDesc.text = monsterDesc;
     }
+
+    public void BackBtn()
+    {
+        UIManager.Instance.CloseUI(this);
+
+        var monsterUI = new BaseUIData();
+        UIManager.Instance.OpenUI<MonsterUI>(monsterUI);
+    }
 }

@@ -28,4 +28,12 @@ public class SystemDescUI : SystemUI
     {
         txtDesc.text = monsterDesc;
     }
+
+    public void BackBtn()
+    {
+        UIManager.Instance.CloseUI(this);
+
+        var systemUI = new BaseUIData();
+        UIManager.Instance.OpenUI<SystemUI>(systemUI);
+    }
 }

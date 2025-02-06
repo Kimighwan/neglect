@@ -66,7 +66,7 @@ public class UIManager : SingletonBehaviour<UIManager>
             return;
         }
 
-        var siblingIndex = UICanvasTrs.childCount - 2;
+        var siblingIndex = UICanvasTrs.childCount - 1;
         ui.Init(UICanvasTrs);
         ui.transform.SetSiblingIndex(siblingIndex);
         ui.gameObject.SetActive(true);
@@ -126,6 +126,7 @@ public class UIManager : SingletonBehaviour<UIManager>
     }
 
     #region OnClickEvent
+
     public void OnClickEncyclopediaBtn()
     {
         var encyclopediaUI = new BaseUIData();
@@ -134,8 +135,8 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     public void OnClickAdventureTable()
     {
-        var adventureSelectUI = new BaseUIData();
-        UIManager.Instance.OpenUI<AdventurerSelectUI>(adventureSelectUI);
+        var adventureUI = new BaseUIData();
+        UIManager.Instance.OpenUI<AdventurerUI>(adventureUI);
     }
 
     #endregion

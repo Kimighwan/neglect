@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine;
 
 public class DataTableManager : SingletonBehaviour<DataTableManager>
 {
@@ -16,6 +16,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
         LoadMonsterDescDataTable();
         LoadSystemDescDataTable();
+        LoadAdventureDataTable();
     }
 
     #region Monster_Desc
@@ -81,6 +82,40 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     }
 
     #endregion
+
+    #region Adventure
+
+    private const string ADVENTURE_DATA_TABLE = "adventureTest";
+    private List<AdventureData> AdventureDataTable = new List<AdventureData>();
+
+    private void LoadAdventureDataTable()
+    {
+        var parsedDataTable = CSVReader.Read($"{DATA_PATH}/{ADVENTURE_DATA_TABLE}");
+
+        foreach (var data in parsedDataTable)
+        {
+            var adventureData = new AdventureData
+            {
+                adventureId = Convert.ToInt32(data["c_id"]),
+                adventureName = data["name"].ToString(),
+                adventurePosition = data["position"].ToString(),
+                adventureClass = data["class"].ToString(),
+                adventureType = data["type"].ToString(),
+                adventureTier = data["tier"].ToString(),
+            };
+
+            AdventureDataTable.Add(adventureData);
+        }
+    }
+
+    public AdventureData GetAdventureData(int adventureId)
+    {
+        return AdventureDataTable.Where(item => item.adventureId == adventureId).FirstOrDefault();
+        // 시스템 ID에 맞는 정보들을 반환
+        // 만약 데이터가 존재 하지 않는다면 null 반환
+    }
+
+    #endregion
 }
 
 public class MonsterDescData : BaseUIData
@@ -97,4 +132,14 @@ public class SystemDescData : BaseUIData
 {
     public int systemId;
     public string systemDesc;
+}
+
+public class AdventureData : BaseUIData
+{
+    public int adventureId;
+    public string adventureName;
+    public string adventurePosition;
+    public string adventureClass;
+    public string adventureType;
+    public string adventureTier;
 }

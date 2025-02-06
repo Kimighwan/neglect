@@ -1,0 +1,2 @@
+c_id,name,position,class,type,tier
+1,음...,전위,공격,물리,브론즈
