@@ -20,4 +20,11 @@ public class SystemUI : BaseUI
         CloseUI();
         UIManager.Instance.OpenUI<MonsterUI>(mosterUI);
     }
+
+    public void OnClickSystemDescBtn(int id)
+    {
+        DataTableManager.Instance.systemDescId = id;
+        var systemDescUI = new BaseUIData();
+        UIManager.Instance.OpenUI<SystemDescUI>(systemDescUI);
+    }
 }
