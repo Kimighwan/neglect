@@ -15,11 +15,13 @@ public class EncyclopediaUI : BaseUI
     {
         var mosterUI = new BaseUIData();
         UIManager.Instance.OpenUI<MonsterUI>(mosterUI);
+        UIManager.Instance.CloseUI(this);
     }
 
     public void OnClickSystemBtn()
     {
         var systemUI = new BaseUIData();
         UIManager.Instance.OpenUI<SystemUI>(systemUI);
+        UIManager.Instance.CloseUI(this);
     }
 }

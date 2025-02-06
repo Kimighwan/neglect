@@ -25,6 +25,15 @@ public class SystemUI : BaseUI
     {
         DataTableManager.Instance.systemDescId = id;
         var systemDescUI = new BaseUIData();
+        UIManager.Instance.CloseUI(this);
         UIManager.Instance.OpenUI<SystemDescUI>(systemDescUI);
+    }
+
+    public void BackBtn()
+    {
+        UIManager.Instance.CloseUI(this);
+
+        var encyclopediaUI = new BaseUIData();
+        UIManager.Instance.OpenUI<EncyclopediaUI>(encyclopediaUI);
     }
 }

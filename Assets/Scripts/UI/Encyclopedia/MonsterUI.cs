@@ -25,6 +25,15 @@ public class MonsterUI : BaseUI
     {
         DataTableManager.Instance.monsterDescId = id;
         var monsterDescUI = new BaseUIData();
+        UIManager.Instance.CloseUI(this);
         UIManager.Instance.OpenUI<MonsterDescUI>(monsterDescUI);
+    }
+
+    public void BackBtn()
+    {
+        UIManager.Instance.CloseUI(this);
+
+        var encyclopediaUI = new BaseUIData();
+        UIManager.Instance.OpenUI<EncyclopediaUI>(encyclopediaUI);
     }
 }
