@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseUIData
@@ -60,7 +58,7 @@ public class BaseUI : MonoBehaviour
 
     public virtual void OnClickCloseButton()
     {
-        AudioManager.Instance.PlaySFX(SFX.ui_button_click);
+        //AudioManager.Instance.PlaySFX(SFX.ui_button_click);
         CloseUI();
     }
 }
