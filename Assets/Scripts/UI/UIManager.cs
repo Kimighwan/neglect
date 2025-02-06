@@ -126,6 +126,7 @@ public class UIManager : SingletonBehaviour<UIManager>
     }
 
     #region OnClickEvent
+
     public void OnClickEncyclopediaBtn()
     {
         var encyclopediaUI = new BaseUIData();
@@ -134,8 +135,8 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     public void OnClickAdventureTable()
     {
-        var adventureSelectUI = new BaseUIData();
-        UIManager.Instance.OpenUI<AdventurerSelectUI>(adventureSelectUI);
+        var adventureUI = new BaseUIData();
+        UIManager.Instance.OpenUI<AdventurerUI>(adventureUI);
     }
 
     #endregion
