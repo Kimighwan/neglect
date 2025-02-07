@@ -7,14 +7,14 @@ public class MonsterDescUI : MonsterUI
 {
     public MonsterDescData monsterDescData;
 
-    private string monsterClass;
-    private string monsterArea;
+    private string monsterName;
+    private string monsterTier;
     private string monsterWeekness;
     private string monsterStrength;
     private string monsterDesc;
 
-    public TextMeshProUGUI txtClass;
-    public TextMeshProUGUI txtArea;
+    public TextMeshProUGUI txtName;
+    public TextMeshProUGUI txtTier;
     public TextMeshProUGUI txtWeekness;
     public TextMeshProUGUI txtStrength;
     public TextMeshProUGUI txtDesc;
@@ -25,12 +25,18 @@ public class MonsterDescUI : MonsterUI
         InitData();
     }
 
+    private void OnEnable()
+    {
+        GetMonsterDescData();
+        InitData();
+    }
+
     private void GetMonsterDescData()
     {
         monsterDescData = DataTableManager.Instance.GetMonsterDescData(DataTableManager.Instance.monsterDescId);
 
-        this.monsterClass = monsterDescData.monsterClass;
-        this.monsterArea = monsterDescData.monsterArea;
+        this.monsterName = monsterDescData.monsterName;
+        this.monsterTier = monsterDescData.monsterTier;
         this.monsterWeekness = monsterDescData.monsterWeekness;
         this.monsterStrength = monsterDescData.monsterStrength;
         this.monsterDesc = monsterDescData.monsterDesc;
@@ -38,8 +44,8 @@ public class MonsterDescUI : MonsterUI
 
     private void InitData()
     {
-        txtClass.text = monsterClass + " 등급";
-        txtArea.text = "서식지 : " + monsterArea;
+        txtName.text = monsterName;
+        txtTier.text = monsterTier + " 등급";
         txtWeekness.text = "약점 : " + monsterWeekness;
         txtStrength.text = "강점 : " + monsterStrength;
         txtDesc.text = monsterDesc;

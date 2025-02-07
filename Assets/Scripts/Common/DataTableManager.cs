@@ -21,7 +21,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     #region Monster_Desc
 
-    private const string MONSTER_DATA_TABLE = "Test3";
+    private const string MONSTER_DATA_TABLE = "dm_list";
     private List<MonsterDescData> MonsterDescDataTable = new List<MonsterDescData>();
 
     private void LoadMonsterDescDataTable()
@@ -32,12 +32,12 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         {
             var monsterDescData = new MonsterDescData
             {
-                monsterId = Convert.ToInt32(data["monster_id"]),
-                monsterClass = data["class"].ToString(),
-                monsterArea = data["area"].ToString(),
-                monsterWeekness = data["weekness"].ToString(),
-                monsterStrength = data["strength"].ToString(),
-                monsterDesc = data["desc"].ToString(),
+                monsterId = Convert.ToInt32(data["dm_id"]),
+                monsterName = data["name"].ToString(),
+                monsterTier = data["tier"].ToString(),
+                monsterWeekness = data["weak"].ToString(),
+                monsterStrength = data["strong"].ToString(),
+                monsterDesc = data["script1"].ToString(),
             };
 
             MonsterDescDataTable.Add(monsterDescData);
@@ -121,8 +121,8 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 public class MonsterDescData : BaseUIData
 {
     public int monsterId;
-    public string monsterClass;
-    public string monsterArea;
+    public string monsterName;
+    public string monsterTier;
     public string monsterWeekness;
     public string monsterStrength;
     public string monsterDesc;
