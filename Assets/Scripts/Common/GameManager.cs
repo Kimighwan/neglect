@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!pause) {
+        if (!pause || ScriptManager.scriptManager.IsTyping()) {
             GameInfo.gameInfo.UpdateGameInfo();
             TextHandler.textHandler.UpdateTexts();
         }
