@@ -8,6 +8,11 @@ public class AdventurerUI : BaseUI
 {
     private List<GameObject> uiListPool = new List<GameObject>();
 
+    private void Awake()
+    {
+        SetAdventureList();
+    }
+
     public override void Init(Transform anchor)
     {
         base.Init(anchor);
@@ -16,8 +21,6 @@ public class AdventurerUI : BaseUI
 
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
-
-        SetAdventureList();
     }
 
     private void SetAdventureList() // 모험가 리스트 생성
