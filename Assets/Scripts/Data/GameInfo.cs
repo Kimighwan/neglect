@@ -33,7 +33,7 @@ public class GameInfo : MonoBehaviour
         gold = 10;
         day = 1;
         timer = 8.0f;
-        rooms = 100;
+        rooms = 1;
         level = 1;
     }
     public void UpdateGameInfo() {
@@ -41,7 +41,7 @@ public class GameInfo : MonoBehaviour
         if (timer >= 24f) {
             timer %= 24f;
             day += 1;
-            gold += 5 * rooms;
+            gold += 100 * rooms;
         }
     }
 }
