@@ -13,6 +13,7 @@ public class GameInfo : MonoBehaviour
     // 골드 정보
     private int gold;
     public int Gold { get { return gold; } set { gold = value; } }
+    public int plusGold;
     // 몇 일차인지
     private int day;
     public int Day { get { return day; } set { day = value; } }
@@ -22,6 +23,7 @@ public class GameInfo : MonoBehaviour
     // 개방된 객실 개수
     private int rooms;
     public int Rooms { get { return rooms; } set { rooms = value; } }
+    // 길드 레벨
     private int level;
     public int Level { get { return level; } set { level = value; } }
 
@@ -34,13 +36,17 @@ public class GameInfo : MonoBehaviour
         timer = 8.0f;
         rooms = 1;
         level = 1;
+        plusGold = rooms * 100;
     }
     public void UpdateGameInfo() {
         timer += Time.deltaTime * gameSpeed;
         if (timer >= 24f) {
             timer %= 24f;
             day += 1;
-            gold += 100 * rooms;
+            gold += plusGold;
         }
+    }
+    public void AddRoom() {
+        plusGold = ++rooms * 100;
     }
 }

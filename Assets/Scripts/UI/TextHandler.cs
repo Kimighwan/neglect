@@ -14,6 +14,9 @@ public class TextHandler : MonoBehaviour
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI timeText;
+    public TextMeshProUGUI plusGoldText;
+    public TextMeshProUGUI levelText;
+
     private void Awake() {
         textHandler = this;
     }
@@ -22,16 +25,17 @@ public class TextHandler : MonoBehaviour
         UpdateGoldText();
         dayText.text = $"Day {GameInfo.gameInfo.Day.ToString()}";
         UpdateTimeText();
+        levelText.text = $"Level {GameInfo.gameInfo.Level.ToString()}";
     }
 
     private void UpdateGoldText() {
         int g = GameInfo.gameInfo.Gold;
         string s = g.ToString("N0");
-        s += $" +{GameInfo.gameInfo.Rooms * 5}";
         goldText.text = s;
+        plusGoldText.text = $"+{GameInfo.gameInfo.plusGold.ToString()}";
     }
     
-    // 시간 정보 자동 변환환
+    // 시간 정보 자동 변환
     private void UpdateTimeText() {
         float t = GameInfo.gameInfo.Timer;
         string s = "";
@@ -47,9 +51,9 @@ public class TextHandler : MonoBehaviour
         timeText.text = s;
     }
 
-    public void OnClickLevelUp(GameObject room) {
+    public void OnClickLevelUp(GameObject roomList) {
         if (GameInfo.gameInfo.Gold > 200) {
-            room.GetComponent<Room>().ActiveRoom();
+            roomList.GetComponent<Room>().ActiveRoom();
         }
     }
 }
