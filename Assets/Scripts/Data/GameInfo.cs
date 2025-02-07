@@ -2,7 +2,7 @@ using UnityEngine;
 
 /*
 게임 진행에 필요한 모든 정보(데이터 베이스 제외)를 사용하려는 목적
-날짜 정보 / 골드 정보 / 시간 정보
+날짜 정보 / 골드 정보 / 시간 정보 / 레벨 정보
 */
 
 public class GameInfo : MonoBehaviour
@@ -22,6 +22,9 @@ public class GameInfo : MonoBehaviour
     // 개방된 객실 개수
     private int rooms;
     public int Rooms { get { return rooms; } set { rooms = value; } }
+    // 길드 레벨
+    private int level;
+    public int Level { get { return level; } set { level = value; } }
 
     private void Awake() {
         gameInfo = this;
@@ -31,6 +34,7 @@ public class GameInfo : MonoBehaviour
         day = 1;
         timer = 8.0f;
         rooms = 100;
+        level = 1;
     }
     public void UpdateGameInfo() {
         timer += Time.deltaTime * gameSpeed;
