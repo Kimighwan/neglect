@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
-using UnityEngine.UI;
 
 public class ScriptManager : MonoBehaviour
 {
@@ -22,8 +21,7 @@ public class ScriptManager : MonoBehaviour
         scriptManager = this;
         TextAsset textAsset = Resources.Load<TextAsset>("TextScripts/TestScript");
         lines = textAsset.text.Split('\n'); // 줄 단위로 나누기
-        background.SetActive(true);
-        ShowNextDialogue(); // 첫 번째 대사 출력
+        IntroScriptMode();
     }
 
     void Update()
@@ -45,7 +43,16 @@ public class ScriptManager : MonoBehaviour
         }
     }
 
-    public void ShowNextDialogue()
+    public void IntroScriptMode() {
+        background.SetActive(true);
+        panel.SetActive(true);
+        ShowNextDialogue(); // 첫 번째 대사 출력
+    }
+    public bool IsTyping() {
+        return isTyping;
+    }
+
+    private void ShowNextDialogue()
     {
         if (currentLine < lines.Length)
         {
@@ -76,9 +83,5 @@ public class ScriptManager : MonoBehaviour
         }
 
         isTyping = false;
-    }
-
-    public bool IsTyping() {
-        return isTyping;
     }
 }

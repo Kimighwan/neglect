@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 /*
 모든 UI관련된 텍스트를 관리하기 위해 만든 스크립트
@@ -11,9 +10,11 @@ using UnityEngine.UI;
 public class TextHandler : MonoBehaviour
 {
     public static TextHandler textHandler;
-    public TextMeshProUGUI goldText;
+    public TextMeshProUGUI levelText;
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI timeText;
+    public TextMeshProUGUI goldText;
+    public TextMeshProUGUI plusGold;
     private void Awake() {
         textHandler = this;
     }
@@ -22,13 +23,14 @@ public class TextHandler : MonoBehaviour
         UpdateGoldText();
         dayText.text = $"Day {GameInfo.gameInfo.Day.ToString()}";
         UpdateTimeText();
+        levelText.text = $"Level {GameInfo.gameInfo.Level.ToString()}";
     }
 
     private void UpdateGoldText() {
         int g = GameInfo.gameInfo.Gold;
         string s = g.ToString("N0");
-        s += $" +{GameInfo.gameInfo.Rooms * 5}";
         goldText.text = s;
+        plusGold.text = $"+{GameInfo.gameInfo.Rooms * 5}";
     }
     
     // 시간 정보 자동 변환환
