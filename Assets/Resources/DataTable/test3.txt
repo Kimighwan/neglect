@@ -1,2 +1,0 @@
-monster_id,class,area,weekness,strength,desc
-1,브론즈,숲,모든 무기류에 약함,없음,대충 설명
