@@ -85,7 +85,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     #region Adventure
 
-    private const string ADVENTURE_DATA_TABLE = "adventureTest";
+    private const string ADVENTURE_DATA_TABLE = "char_list";
     private List<AdventureData> AdventureDataTable = new List<AdventureData>();
 
     private void LoadAdventureDataTable()
@@ -96,12 +96,12 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         {
             var adventureData = new AdventureData
             {
-                adventureId = Convert.ToInt32(data["c_id"]),
+                adventureId = Convert.ToInt32(data["char_id"]),
                 adventureName = data["name"].ToString(),
+                adventureTier = data["tier"].ToString(),
                 adventurePosition = data["position"].ToString(),
                 adventureClass = data["class"].ToString(),
                 adventureType = data["type"].ToString(),
-                adventureTier = data["tier"].ToString(),
             };
 
             AdventureDataTable.Add(adventureData);

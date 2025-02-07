@@ -1,8 +1,10 @@
 
+using System;
+using System.Data;
 using TMPro;
 using UnityEngine;
 
-public class RandomAdventureSelectUI : BaseUI
+public class RandomAdventureSelectUI : MonoBehaviour
 {
     private AdventureData adventureData;
 
@@ -12,23 +14,25 @@ public class RandomAdventureSelectUI : BaseUI
     private string adventureType;        // 타입
     private string adventureTier;        // 테두리 표현
 
-    public TextMeshProUGUI name;
+
+    public TextMeshProUGUI c_name;
     public TextMeshProUGUI position;
     public TextMeshProUGUI m_class;
     public TextMeshProUGUI type;
 
     private Transform pos;
 
-    public override void Init(Transform anchor)
+    private void Awake()
     {
-        base.Init(anchor);
-
         var rectTransform = GetComponent<RectTransform>();
 
         pos = GameObject.FindGameObjectWithTag("SelectGroup").transform;
 
         this.transform.SetParent(pos);
         rectTransform.sizeDelta = new Vector2(311.3f, 515.6f);
+
+        GetAdventureData();
+        InitData();
     }
 
     public void OnClickSelected()
@@ -39,20 +43,29 @@ public class RandomAdventureSelectUI : BaseUI
 
     private void GetAdventureData()
     {
-        adventureData = DataTableManager.Instance.GetAdventureData(1);
+        adventureData = DataTableManager.Instance.GetAdventureData(RandomIndexMake());
 
-        adventureName = adventureData.adventureName;
-        adventurePosition = adventureData.adventurePosition;
-        adventureClass = adventureData.adventureClass;
-        adventureType = adventureData.adventureType;
-        adventureTier = adventureData.adventureTier;
+        this.adventureName = adventureData.adventureName;
+        this.adventurePosition = adventureData.adventurePosition;
+        this.adventureClass = adventureData.adventureClass;
+        this.adventureType = adventureData.adventureType;
+        this.adventureTier = adventureData.adventureTier;
     }
 
     private void InitData()
     {
-        name.text = adventureName;
+        c_name.text = "이름 : " + adventureName;
         position.text = adventurePosition;
         type.text = adventureType;
         m_class.text = adventureClass;
+    }
+
+    private int RandomIndexMake()
+    {
+        int randomId;
+        UnityEngine.Random.InitState((int)(DateTime.Now.Ticks));
+        randomId = UnityEngine.Random.Range(1, 91);
+
+        return randomId;
     }
 }

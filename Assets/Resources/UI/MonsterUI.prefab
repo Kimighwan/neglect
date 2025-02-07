@@ -3314,7 +3314,7 @@ GameObject:
   - component: {fileID: 8964549766810668720}
   - component: {fileID: 7467491155910522683}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: GoblinBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
