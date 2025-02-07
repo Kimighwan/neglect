@@ -17,19 +17,19 @@ public class SystemDescUI : SystemUI
         InitData();
     }
 
-    private void GetSystemDescData()
+    private void GetSystemDescData()    // 데이터 가져오기
     {
         systemDescData = DataTableManager.Instance.GetSystemDescData(DataTableManager.Instance.systemDescId);
 
         this.monsterDesc = systemDescData.systemDesc;
     }
 
-    private void InitData()
+    private void InitData() // 가져온 데이터로 초기화
     {
         txtDesc.text = monsterDesc;
     }
 
-    public void BackBtn()
+    public void BackBtn()   // 뒤로가기 버튼
     {
         UIManager.Instance.CloseUI(this);
 
