@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : SingletonBehaviour<UIManager>
 {
+    public static UIManager uIManager;
     public Transform UICanvasTrs; // 컨버스 위치
     public Transform ClosedUITrs; // 비활성 UI 저장소 위치
 
@@ -15,6 +15,7 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     void Start()
     {
+        uIManager = this;
         Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, true, false);
     }
 

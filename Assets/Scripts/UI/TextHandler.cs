@@ -48,4 +48,10 @@ public class TextHandler : MonoBehaviour
         }
         timeText.text = s;
     }
+
+    public void OnClickLevelUp(GameObject room) {
+        if (GameInfo.gameInfo.Gold > 200) {
+            room.GetComponent<Room>().ActiveRoom();
+        }
+    }
 }
