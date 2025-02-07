@@ -3728,6 +3728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 1329940512}
+  panel: {fileID: 0}
   dialogueText: {fileID: 1676123407}
   typingSpeed: 0.05
 --- !u!1 &1166671635
