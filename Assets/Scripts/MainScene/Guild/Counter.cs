@@ -1,9 +1,11 @@
 using UnityEngine.EventSystems;
 
-public class Desk : MouseDrag
+public class Counter : MouseDrag
 {
     public override void OnPointerDown(PointerEventData eventData)
     {
-        UIManager.Instance.OnClickAdventureTable();
+        UIManager.Instance.OnClickCounter();
     }
+
+    
 }
