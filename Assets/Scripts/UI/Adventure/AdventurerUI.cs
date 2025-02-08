@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 
 public class AdventurerUI : BaseUI
 {
-    private List<GameObject> uiListPool = new List<GameObject>();
+    private List<GameObject> uiListPool = new List<GameObject>();   // 모험가 카드 3장 Pool
 
     private void Awake()
     {

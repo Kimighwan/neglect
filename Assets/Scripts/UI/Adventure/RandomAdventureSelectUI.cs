@@ -1,11 +1,19 @@
 
 using System;
 using System.Data;
+using System.Reflection;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class RandomAdventureSelectUI : MonoBehaviour
 {
+    public TextMeshProUGUI c_name;
+    public TextMeshProUGUI position;
+    public TextMeshProUGUI m_class;
+    public TextMeshProUGUI type;
+
+
     private AdventureData adventureData;
 
     private int adventureId;
@@ -15,13 +23,8 @@ public class RandomAdventureSelectUI : MonoBehaviour
     private string adventureType;        // 타입
     private string adventureTier;        // 테두리 표현
 
-
-    public TextMeshProUGUI c_name;
-    public TextMeshProUGUI position;
-    public TextMeshProUGUI m_class;
-    public TextMeshProUGUI type;
-
     private Transform pos;
+
 
     private void Awake()
     {
@@ -74,9 +77,9 @@ public class RandomAdventureSelectUI : MonoBehaviour
     private int RandomIndexMake()   // 무작위 숫자   // 좀 안 좋은 랜덤 숫자인 듯...
     {
         int randomId;
-        UnityEngine.Random.InitState((int)(DateTime.Now.Ticks));
+        //UnityEngine.Random.InitState((int)(Time.deltaTime * 100f));
         randomId = UnityEngine.Random.Range(1, 91);
-
+        
         return randomId;
     }
 
