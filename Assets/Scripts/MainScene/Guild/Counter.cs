@@ -6,6 +6,4 @@ public class Counter : MouseDrag
     {
         UIManager.Instance.OnClickCounter();
     }
-
-    
 }

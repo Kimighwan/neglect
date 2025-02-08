@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3004045290015226511}
   - component: {fileID: 8541146446806143486}
   m_Layer: 5
-  m_Name: New
+  m_Name: RequestButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -879,7 +879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7309779900552977215}
   m_Layer: 5
-  m_Name: AdventureGroup
+  m_Name: AdventureListGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1065,7 +1065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3649065997153504503}
   m_Layer: 5
-  m_Name: NewGroup
+  m_Name: NewQuestGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1451,7 +1451,7 @@ GameObject:
   - component: {fileID: 3433178847731526355}
   - component: {fileID: 3856044094649927427}
   m_Layer: 5
-  m_Name: New
+  m_Name: AdventureListButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1558,7 +1558,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3433178847731526355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6379871623911290844}
+        m_TargetAssemblyTypeName: ReceptionUI, Assembly-CSharp
+        m_MethodName: OnClickAdventrueListBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7341108805190673064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,7 +1584,7 @@ GameObject:
   - component: {fileID: 8003036280605172069}
   - component: {fileID: 8596182925415240034}
   m_Layer: 5
-  m_Name: New
+  m_Name: NewQuestButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1940,7 +1952,7 @@ GameObject:
   - component: {fileID: 7002804995874952833}
   - component: {fileID: 7148451386166268425}
   m_Layer: 5
-  m_Name: Group
+  m_Name: SelectGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
