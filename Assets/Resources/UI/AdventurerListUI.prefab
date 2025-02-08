@@ -857,6 +857,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiAnim: {fileID: 0}
+  adventureInformationPos: {fileID: 2090116634704449026}
+  fontAsset: {fileID: 11400000, guid: 7f89fb0e94682094c90b6982d0d0c59e, type: 2}
 --- !u!1 &8191544764653507536
 GameObject:
   m_ObjectHideFlags: 0
