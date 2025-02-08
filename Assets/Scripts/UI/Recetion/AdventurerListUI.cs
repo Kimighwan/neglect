@@ -20,6 +20,8 @@ public class AdventurerListUI : BaseUI
     private string imageName2;
     private string imageName3;
 
+    private List<int> instancedAdventure = new List<int>();
+
     public override void Init(Transform anchor)
     {
         base.Init(anchor);
@@ -44,12 +46,10 @@ public class AdventurerListUI : BaseUI
 
     private void CheckMyAdventure()
     {
-        PlayerPrefs.SetString("AdventureId", "1,2");
-
         string idList = PlayerPrefs.GetString("AdventureId");    // 저장된 모험가 ID 불러오기
         string[] idListOfstring = idList.Split(',');
 
-        
+        if (idList == "") return;
 
         for(int index = 0; index < idListOfstring.Length; index++)
         {
@@ -59,7 +59,12 @@ public class AdventurerListUI : BaseUI
 
     private void GetAdventure(int id)
     {
+        if (instancedAdventure.Contains(id))
+            return;
+
         AdventureData adventureData = DataTableManager.Instance.GetAdventureData(id);
+
+        instancedAdventure.Add(id);
 
         adventureName = adventureData.adventureName;
         adventurePosition = adventureData.adventurePosition;

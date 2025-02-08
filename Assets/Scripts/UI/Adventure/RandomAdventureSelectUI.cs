@@ -44,14 +44,20 @@ public class RandomAdventureSelectUI : MonoBehaviour
         if (CheckHaveAdventureID(adventureId))  // 선택된 모험가가 이미 있음
             return;
 
-
-        // 영입
-        // 골드 차감
+        string pre = PlayerPrefs.GetString("AdventureId");  // 저장된 모험가 ID 불러오기
 
         // 영입된 모험가 저장하기
-        string preId = PlayerPrefs.GetString("AdventureId");    // 저장된 모험가 ID 불러오기
-        preId += "," + adventureId.ToString();                  // 현재 영입한 모험가 ID 추가
-        PlayerPrefs.SetString("AdventureId", preId);            // 추가된 모험가 ID 저장
+        if (pre == "")
+        {
+            PlayerPrefs.SetString("AdventureId", adventureId.ToString());
+        }
+        else
+        {
+            PlayerPrefs.SetString("AdventureId", pre + "," + adventureId.ToString());
+        }
+        
+        // 골드 차감
+
     }
 
     private void GetAdventureData()
@@ -88,7 +94,9 @@ public class RandomAdventureSelectUI : MonoBehaviour
         string adventureIdOfString = PlayerPrefs.GetString("AdventureId");  // 현재 모험가 ID 가져오기
         string[] adventureIdOfInt = adventureIdOfString.Split(',');         // 구분자 모험가 ID 분리
 
-        for(int index = 0; index < adventureIdOfInt.Length; index++)        // 모든 모험가 ID 순회
+        if (adventureIdOfString == "") return false;
+
+        for (int index = 0; index < adventureIdOfInt.Length; index++)        // 모든 모험가 ID 순회
         {
             if(adventureId == Convert.ToInt32(adventureIdOfInt[index]))     // 매개변수와 같은 모험가 ID 검색
             {
