@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class UIManager : SingletonBehaviour<UIManager>
 {
-    public static UIManager uIManager;
     public Transform UICanvasTrs; // 컨버스 위치
     public Transform ClosedUITrs; // 비활성 UI 저장소 위치
 
@@ -15,7 +14,6 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     void Start()
     {
-        uIManager = this;
         Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, true, false);
     }
 
@@ -140,6 +138,12 @@ public class UIManager : SingletonBehaviour<UIManager>
         UIManager.Instance.OpenUI<AdventurerUI>(adventureUI);
     }
 
+    public void OnClickCounter()
+    {
+        var receptionUI = new BaseUIData();
+        UIManager.Instance.OpenUI<ReceptionUI>(receptionUI);
+    }
+
     #endregion
 
     #region 파견창
@@ -182,4 +186,11 @@ public class UIManager : SingletonBehaviour<UIManager>
     // 파견 창 관련해서 부드럽게 올라오게 하는 부분 
 
     #endregion
+
+    #region Adventure
+
+
+
+    #endregion
+
 }
