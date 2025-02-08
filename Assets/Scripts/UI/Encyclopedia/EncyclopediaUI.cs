@@ -7,8 +7,6 @@ public class EncyclopediaUI : BaseUI
     public override void SetInfo(BaseUIData uiData)
     {
         base.SetInfo(uiData);
-
-
     }
 
     public void OnClickMonsterBtn()
