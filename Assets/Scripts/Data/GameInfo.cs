@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -26,6 +27,7 @@ public class GameInfo : MonoBehaviour
     // 길드 레벨
     private int level;
     public int Level { get { return level; } set { level = value; } }
+    private List<int> neededGold = new List<int> { 200, 500, 1500, 5000 };
 
     private void Awake() {
         gameInfo = this;
@@ -46,7 +48,28 @@ public class GameInfo : MonoBehaviour
             gold += plusGold;
         }
     }
-    public void AddRoom() {
-        plusGold = ++rooms * 100;
+    public bool ChangeGold(int g) {
+        if (gold + g > 0) {
+            gold += g;
+            return true;
+        }
+        return false;
+    }
+    // 레벨 업 버튼 누름
+    public void OnClickLevelUp(GameObject roomList) {
+        if (level < 5) {
+            if (level == 1 && ChangeGold(-neededGold[0])) {}
+            else if (level == 2 && ChangeGold(-neededGold[1])) {}
+            else if (level == 3 && ChangeGold(-neededGold[2])) {}
+            else if (level == 4 && ChangeGold(-neededGold[3])) {}
+            else return;
+            roomList.GetComponent<Room>().ActiveRoom();
+            GameInfo.gameInfo.Level++;
+            plusGold = rooms * 100;
+        }
+    }
+    public int GetNeededGold() {
+        if (level == 5) return 0;
+        return neededGold[level - 1];
     }
 }

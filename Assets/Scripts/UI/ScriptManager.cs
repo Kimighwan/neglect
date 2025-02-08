@@ -13,6 +13,7 @@ public class ScriptManager : MonoBehaviour
     public TextMeshProUGUI speakerText;
     public float typingSpeed = 0.05f; // 글자 출력 속도 조절 (낮을수록 빠름)
     
+    public bool isScriptMode;
     private string[] lines;     // 대사 저장 배열
     private string s;
     private int currentLine = 0;
@@ -25,6 +26,7 @@ public class ScriptManager : MonoBehaviour
         TextAsset textAsset = Resources.Load<TextAsset>("TextScripts/IntroScript");
         lines = textAsset.text.Split('\n'); // 줄 단위로 나누기
         background.SetActive(true);
+        isScriptMode = true;
         ShowNextDialogue(); // 첫 번째 대사 출력
     }
 
@@ -72,6 +74,7 @@ public class ScriptManager : MonoBehaviour
             dialogueText.text = ""; // 모든 대사가 끝나면 빈 문자열 표시
             background.SetActive(false);
             panel.SetActive(false);
+            isScriptMode = false;
         }
     }
 

@@ -13,10 +13,19 @@ public class Room : MonoBehaviour
     }
     public void ActiveRoom() {
         if (!room4) {
-            if (room1 && !room2) rooms[1].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
-            if (room2 && !room3) rooms[2].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
-            if (room3 && !room4) rooms[3].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
-            GameInfo.gameInfo.AddRoom();
+            if (room1 && !room2) {
+                room2 = true;
+                rooms[1].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            }
+            else if (room2 && !room3) {
+                room3 = true;
+                rooms[2].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            }
+            else if (room3 && !room4) {
+                room4 = true;
+                rooms[3].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            }
+            GameInfo.gameInfo.Rooms++;
         }
     }
 }
