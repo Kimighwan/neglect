@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /*
 게임 진행에 필요한 모든 정보(데이터 베이스 제외)를 사용하려는 목적
-날짜 정보 / 골드 정보 / 시간 정보
+날짜 정보 / 골드 정보 / 시간 정보 / 레벨 정보
 */
 
 public class GameInfo : MonoBehaviour
@@ -26,6 +27,12 @@ public class GameInfo : MonoBehaviour
     // 길드 레벨
     private int level;
     public int Level { get { return level; } set { level = value; } }
+    private List<int> neededGold = new List<int> { 200, 500, 1500, 5000 };
+    // 개방된 파견창 개수
+    public Request request;
+    private int requests;
+    public int Requests { get { return requests; } set { requests = value; } }
+
 
     private void Awake() {
         gameInfo = this;
@@ -36,6 +43,7 @@ public class GameInfo : MonoBehaviour
         timer = 8.0f;
         rooms = 1;
         level = 1;
+        requests = 2;
         plusGold = rooms * 100;
     }
     public void UpdateGameInfo() {
@@ -46,7 +54,29 @@ public class GameInfo : MonoBehaviour
             gold += plusGold;
         }
     }
-    public void AddRoom() {
-        plusGold = ++rooms * 100;
+    public bool ChangeGold(int g) {
+        if (gold + g > 0) {
+            gold += g;
+            return true;
+        }
+        return false;
+    }
+    // 레벨 업 버튼 누름
+    public void OnClickLevelUp(GameObject roomList) {
+        if (level < 5) {
+            if (level == 1 && ChangeGold(-neededGold[0])) {}
+            else if (level == 2 && ChangeGold(-neededGold[1])) {}
+            else if (level == 3 && ChangeGold(-neededGold[2])) {}
+            else if (level == 4 && ChangeGold(-neededGold[3])) {}
+            else return;
+            roomList.GetComponent<Room>().ActiveRoom();
+            request.ActiveRequest();
+            GameInfo.gameInfo.Level++;
+            plusGold = rooms * 100;
+        }
+    }
+    public int GetNeededGold() {
+        if (level == 5) return 0;
+        return neededGold[level - 1];
     }
 }

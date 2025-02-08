@@ -16,6 +16,7 @@ public class TextHandler : MonoBehaviour
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI plusGoldText;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI neededGoldText;
 
     private void Awake() {
         textHandler = this;
@@ -25,7 +26,7 @@ public class TextHandler : MonoBehaviour
         UpdateGoldText();
         dayText.text = $"Day {GameInfo.gameInfo.Day.ToString()}";
         UpdateTimeText();
-        levelText.text = $"Level {GameInfo.gameInfo.Level.ToString()}";
+        UpdateLevelText();
     }
 
     private void UpdateGoldText() {
@@ -51,9 +52,12 @@ public class TextHandler : MonoBehaviour
         timeText.text = s;
     }
 
-    public void OnClickLevelUp(GameObject roomList) {
-        if (GameInfo.gameInfo.Gold > 200) {
-            roomList.GetComponent<Room>().ActiveRoom();
+    private void UpdateLevelText() {
+        levelText.text = $"Level {GameInfo.gameInfo.Level.ToString()}";
+        int g = GameInfo.gameInfo.GetNeededGold();
+        if (g != 0) {
+            neededGoldText.text = $"필요한 골드 {g}";
         }
+        else neededGoldText.text = "Max Level";
     }
 }
