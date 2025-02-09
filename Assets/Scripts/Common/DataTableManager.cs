@@ -141,6 +141,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 questMonster = data["object"].ToString(),
                 questReward = Convert.ToInt32(data["reward"]),
                 questTime = Convert.ToInt32(data["day"]),
+                //questMonsterDescId = Convert.ToInt32(data["object_id "]),
             };
 
             QuestDataTable.Add(questData);
@@ -191,6 +192,7 @@ public class QuestData : BaseUIData
     public int questId;
     public int questTime;
     public int questReward;
+    public int questMonsterDescId;
 
     public string questName;
     public string questLevel;
