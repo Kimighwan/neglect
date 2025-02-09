@@ -479,6 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiAnim: {fileID: 0}
+  pos: {fileID: 5919233102653508618}
 --- !u!1 &6231500261305046227
 GameObject:
   m_ObjectHideFlags: 0

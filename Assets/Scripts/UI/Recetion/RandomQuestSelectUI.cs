@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class RandomQuestSelectUI : MonoBehaviour
 {
-    public TextMeshProUGUI name;
+    public TextMeshProUGUI m_name;
     public TextMeshProUGUI level;
     public TextMeshProUGUI time;
     public TextMeshProUGUI reward;
@@ -17,6 +17,7 @@ public class RandomQuestSelectUI : MonoBehaviour
     private int questId;
     private int questTime;
     private int questReward;
+    private int questMonsterDescId;
 
     private string questName;
     private string questLevel;
@@ -39,9 +40,9 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     public void OnClickSelected()
     {
-        string pre = PlayerPrefs.GetString("QuestId");  // 저장된 모험가 ID 불러오기
+        string pre = PlayerPrefs.GetString("QuestId");  // 저장된 quest ID 불러오기
 
-        // 영입된 모험가 저장하기
+        // 선택한 quest ID 저장
         if (pre == "")
         {
             PlayerPrefs.SetString("QuestId", questId.ToString());
@@ -64,11 +65,12 @@ public class RandomQuestSelectUI : MonoBehaviour
         this.questLevel = questData.questLevel;
         this.questTime = questData.questTime;
         this.questReward = questData.questReward;
+        this.questMonsterDescId = questData.questMonsterDescId;
     }
 
     private void InitData()
     {
-        name.text = questName;
+        m_name.text = questName;
         level.text = questLevel;
         time.text = questTime.ToString();
         reward.text = questReward.ToString();
@@ -81,5 +83,18 @@ public class RandomQuestSelectUI : MonoBehaviour
         randomId = UnityEngine.Random.Range(130001, 130029);
 
         return randomId;
+    }
+
+    private void SetMonsterDescID()
+    {
+        DataTableManager.Instance.monsterDescId = questMonsterDescId;
+    }
+
+    public void OnClickDetailBtn()  // 의뢰 세부사항 UI 열기
+    {
+        SetMonsterDescID();
+
+        var questDetailUI = new BaseUIData();
+        UIManager.Instance.OpenUI<QuestDetailUI>(questDetailUI);
     }
 }
