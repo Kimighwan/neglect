@@ -18,6 +18,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         LoadMonsterDescDataTable();
         LoadSystemDescDataTable();
         LoadAdventureDataTable();
+        LoadQuestDataTable();
     }
 
     #region Monster_Desc
@@ -120,6 +121,40 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     }
 
     #endregion
+
+    #region Quest
+
+    private const string Quest_DATA_TABLE = "quest_list";
+    private List<QuestData> QuestDataTable = new List<QuestData>();
+
+    private void LoadQuestDataTable()
+    {
+        var parsedDataTable = CSVReader.Read($"{DATA_PATH}/{Quest_DATA_TABLE}");
+
+        foreach (var data in parsedDataTable)
+        {
+            var questData = new QuestData
+            {
+                questId = Convert.ToInt32(data["quest_id"]),
+                questName = data["name"].ToString(),
+                questLevel = data["tier"].ToString(),
+                questMonster = data["object"].ToString(),
+                questReward = Convert.ToInt32(data["reward"]),
+                questTime = Convert.ToInt32(data["day"]),
+            };
+
+            QuestDataTable.Add(questData);
+        }
+    }
+
+    public QuestData GetQuestData(int questId)
+    {
+        return QuestDataTable.Where(item => item.questId == questId).FirstOrDefault();
+        // 시스템 ID에 맞는 정보들을 반환
+        // 만약 데이터가 존재 하지 않는다면 null 반환
+    }
+
+    #endregion
 }
 
 public class MonsterDescData : BaseUIData
@@ -149,4 +184,15 @@ public class AdventureData : BaseUIData
     public string adventureClass;
     public string adventureType;
     public string adventureTier;
+}
+
+public class QuestData : BaseUIData
+{
+    public int questId;
+    public int questTime;
+    public int questReward;
+
+    public string questName;
+    public string questLevel;
+    public string questMonster;
 }

@@ -25,4 +25,11 @@ public class ReceptionUI : BaseUI
         UIManager.Instance.OpenUI<QuestListUI>(questListUI);
         UIManager.Instance.CloseUI(this);
     }
+
+    public void OnClickNewQuestListBtn()
+    {
+        var questListUI = new BaseUIData();
+        UIManager.Instance.OpenUI<TodayQuestUI>(questListUI);
+        UIManager.Instance.CloseUI(this);
+    }
 }

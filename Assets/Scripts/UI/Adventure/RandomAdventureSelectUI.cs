@@ -15,18 +15,18 @@ public class RandomAdventureSelectUI : MonoBehaviour
     private int adventureId;
     private string adventureName;
     private string adventurePosition;
-    private string adventureClass;     // 계열
-    private string adventureType;        // 타입
-    private string adventureTier;        // 테두리 표현
+    private string adventureClass;      // 계열
+    private string adventureType;       // 타입
+    private string adventureTier;       // 테두리 표현
 
-    private Transform pos;
+    private Transform pos;              // 모험가 종이 위치
 
 
     private void Awake()
     {
         var rectTransform = GetComponent<RectTransform>();
 
-        pos = GameObject.FindGameObjectWithTag("SelectGroup").transform;
+        pos = GameObject.FindGameObjectWithTag("AdventureSelectGroup").transform;
 
         this.transform.SetParent(pos);
         rectTransform.sizeDelta = new Vector2(311.3f, 515.6f);
@@ -79,8 +79,8 @@ public class RandomAdventureSelectUI : MonoBehaviour
     private int RandomIndexMake()   // 무작위 숫자   // 좀 안 좋은 랜덤 숫자인 듯...
     {
         int randomId;
-        //UnityEngine.Random.InitState((int)(Time.deltaTime * 100f));
-        randomId = UnityEngine.Random.Range(1, 91);
+
+        randomId = UnityEngine.Random.Range(120001, 120091);
         
         return randomId;
     }

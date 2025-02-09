@@ -121,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6181286317318949008}
+      - m_Target: {fileID: 3261295266244395698}
         m_TargetAssemblyTypeName: BaseUI, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: CloseUI
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 2841134277943075803}
   m_Layer: 5
   m_Name: SelectGroup
-  m_TagString: SelectGroup
+  m_TagString: QeustSelectGroup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

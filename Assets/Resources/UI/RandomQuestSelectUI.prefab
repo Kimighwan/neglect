@@ -209,7 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7557447326721812932}
-  - component: {fileID: 2311683875375619429}
+  - component: {fileID: 3125377267253506779}
   m_Layer: 5
   m_Name: RandomQuestSelectUI
   m_TagString: Untagged
@@ -239,7 +239,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 311.3, y: 515.6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2311683875375619429
+--- !u!114 &3125377267253506779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,13 +248,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3287351319075038933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cc543e53c5d6b148939a562d6d0f3ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c4fe747887dd434e93d676190b263c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_name: {fileID: 5125739386979949883}
-  position: {fileID: 4718816195145528371}
-  m_class: {fileID: 3307475050303192431}
-  type: {fileID: 2441204350292977336}
+  name: {fileID: 5125739386979949883}
+  level: {fileID: 4718816195145528371}
+  time: {fileID: 3307475050303192431}
+  reward: {fileID: 2441204350292977336}
 --- !u!1 &3483959067812906653
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,8 +853,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2311683875375619429}
-        m_TargetAssemblyTypeName: RandomAdventureSelectUI, Assembly-CSharp
+      - m_Target: {fileID: 3125377267253506779}
+        m_TargetAssemblyTypeName: RandomQuestSelectUI, Assembly-CSharp
         m_MethodName: OnClickSelected
         m_Mode: 1
         m_Arguments:
