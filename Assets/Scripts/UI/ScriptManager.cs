@@ -8,6 +8,7 @@ public class ScriptManager : MonoBehaviour
     public GameObject background;
     //public Image bgImage;
     public GameObject panel;
+    public GameObject skipBtn;
     public TextMeshProUGUI dialogueText;  // UI에 연결할 Text 오브젝트
     public TextMeshProUGUI speakerText;
     public float typingSpeed = 0.05f; // 글자 출력 속도 조절 (낮을수록 빠름)
@@ -25,6 +26,8 @@ public class ScriptManager : MonoBehaviour
         TextAsset textAsset = Resources.Load<TextAsset>("TextScripts/IntroScript");
         lines = textAsset.text.Split('\n'); // 줄 단위로 나누기
         background.SetActive(true);
+        panel.SetActive(true);
+        skipBtn.SetActive(true);
         isScriptMode = true;
         ShowNextDialogue(); // 첫 번째 대사 출력
     }
@@ -73,6 +76,7 @@ public class ScriptManager : MonoBehaviour
             dialogueText.text = ""; // 모든 대사가 끝나면 빈 문자열 표시
             background.SetActive(false);
             panel.SetActive(false);
+            skipBtn.SetActive(false);
             isScriptMode = false;
         }
     }
@@ -93,5 +97,10 @@ public class ScriptManager : MonoBehaviour
 
     public bool IsTyping() {
         return isTyping;
+    }
+
+    public void OnClickSkip() {
+        currentLine = lines.Length;
+        ShowNextDialogue();
     }
 }
