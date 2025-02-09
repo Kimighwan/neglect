@@ -10,7 +10,7 @@ public class SystemDescUI : SystemUI
 
     public TextMeshProUGUI txtDesc;
 
-    private void Awake()
+    private void OnEnable()
     {
         GetSystemDescData();
         InitData();

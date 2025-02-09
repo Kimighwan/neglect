@@ -49,7 +49,7 @@ public class QuestListUI : BaseUI
         var item = Instantiate(Resources.Load("UI/QuestSelectedUI") as GameObject);
         item.transform.SetParent(pos);
 
-        item.GetComponent<QuestSelectedUI>().questId = id;
+        item.GetComponent<QuestSelectedUI>().questId = 130001;
 
     }
 }
