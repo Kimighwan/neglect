@@ -25,7 +25,7 @@ public class QuestSelectedUI : MonoBehaviour
         rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
         rectTransform.sizeDelta = new Vector2(311f, 515f);
 
-        GetQuestData();
+        GetQuestData(); InitData();
     }
 
     private void GetQuestData()
@@ -37,6 +37,14 @@ public class QuestSelectedUI : MonoBehaviour
         questTime = data.questTime.ToString();
         questReward = data.questReward.ToString();
         questDescId = data.questMonsterDescId;
+    }
+
+    private void InitData()
+    {
+        m_name.text = questName;
+        level.text = questLevel;
+        time.text = questTime;
+        reward.text = questReward;
     }
 
     private void SetMonsterDescID()
