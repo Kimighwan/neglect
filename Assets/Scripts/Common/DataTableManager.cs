@@ -19,6 +19,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         LoadSystemDescDataTable();
         LoadAdventureDataTable();
         LoadQuestDataTable();
+        LoadScriptDataTable();
     }
 
     #region Monster_Desc
@@ -156,6 +157,36 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     }
 
     #endregion
+
+    #region Script
+
+    private const string Script_DATA_TABLE = "scr_list";
+    private List<ScriptData> ScriptDataTable = new List<ScriptData>();
+    private void LoadScriptDataTable()
+    {
+        var parsedDataTable = CSVReader.Read($"{DATA_PATH}/{Script_DATA_TABLE}");
+
+        foreach (var data in parsedDataTable)
+        {
+            var scriptData = new ScriptData
+            {
+                scriptId = Convert.ToInt32(data["scr_id"]),
+                scriptSpeaker = data["char"].ToString(),
+                scriptExp = data["exp"].ToString(),
+                scriptLine = data["script"].ToString(),
+            };
+
+            ScriptDataTable.Add(scriptData);
+        }
+    }
+    public ScriptData GetScriptData(int scriptId)
+    {
+        return ScriptDataTable.Where(item => item.scriptId == scriptId).FirstOrDefault();
+        // 시스템 ID에 맞는 정보들을 반환
+        // 만약 데이터가 존재 하지 않는다면 null 반환
+    }
+
+    #endregion
 }
 
 public class MonsterDescData : BaseUIData
@@ -197,4 +228,11 @@ public class QuestData : BaseUIData
     public string questName;
     public string questLevel;
     public string questMonster;
+}
+
+public class ScriptData : BaseUIData {
+    public int scriptId;
+    public string scriptSpeaker;
+    public string scriptExp;
+    public string scriptLine;
 }

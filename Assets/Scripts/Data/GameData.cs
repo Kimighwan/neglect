@@ -1,4 +1,4 @@
-
+// 나중에 게임 저장 용도로 사용하려고 합니다.
 [System.Serializable]
 public class GameData {
     public int gold;  // 보유 금화
