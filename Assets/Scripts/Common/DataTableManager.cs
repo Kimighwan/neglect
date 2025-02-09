@@ -69,6 +69,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
             var systemDescData = new SystemDescData
             {
                 systemId = Convert.ToInt32(data["ds_id"]),
+                systemName = data["name"].ToString(),
                 systemScript1 = data["script1"].ToString(),
                 systemScript2 = data["script2"].ToString(),
                 systemScript3 = data["script3"].ToString(),
@@ -171,6 +172,7 @@ public class MonsterDescData : BaseUIData
 public class SystemDescData : BaseUIData
 {
     public int systemId;
+    public string systemName;
     public string systemScript1;
     public string systemScript2;
     public string systemScript3;
