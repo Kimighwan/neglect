@@ -144,6 +144,11 @@ public class UIManager : SingletonBehaviour<UIManager>
         UIManager.Instance.OpenUI<ReceptionUI>(receptionUI);
     }
 
+    public void OnClickLevelUp() {
+        var levelUpUI = new BaseUIData();
+        UIManager.instance.OpenUI<LevelUpUI>(levelUpUI);
+    }
+
     #endregion
 
     #region 파견창

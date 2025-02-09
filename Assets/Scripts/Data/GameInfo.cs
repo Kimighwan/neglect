@@ -73,6 +73,7 @@ public class GameInfo : MonoBehaviour
             request.ActiveRequest();
             GameInfo.gameInfo.Level++;
             plusGold = rooms * 100;
+            UIManager.Instance.OnClickLevelUp();
         }
     }
     public int GetNeededGold() {
