@@ -1,10 +1,8 @@
 
-public class DetachSelectQuestUI : BaseUI
+public class DetachSelectAdventureUI : BaseUI
 {
     public void OnClickSelectedBtn()
     {
         UIManager.Instance.CloseUI(this);
     }
-
-
 }

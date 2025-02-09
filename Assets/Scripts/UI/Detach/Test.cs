@@ -9,4 +9,10 @@ public class Test : MonoBehaviour
         var detachQuestUI = new BaseUIData();
         UIManager.Instance.OpenUI<DetachSelectQuestUI>(detachQuestUI);
     }
+
+    public void OnClickAdventureTestBtn()
+    {
+        var detachAdventureUI = new BaseUIData();
+        UIManager.Instance.OpenUI<DetachSelectAdventureUI>(detachAdventureUI);
+    }
 }
