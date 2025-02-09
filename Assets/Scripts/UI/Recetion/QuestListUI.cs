@@ -50,6 +50,5 @@ public class QuestListUI : BaseUI
         item.transform.SetParent(pos);
 
         item.GetComponent<QuestSelectedUI>().questId = 130001;
-
     }
 }
