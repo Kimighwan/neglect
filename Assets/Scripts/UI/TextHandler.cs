@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 /*
 모든 UI관련된 텍스트를 관리하기 위해 만든 스크립트

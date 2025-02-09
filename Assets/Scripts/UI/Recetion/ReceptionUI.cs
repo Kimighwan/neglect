@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ReceptionUI : BaseUI
@@ -18,6 +16,20 @@ public class ReceptionUI : BaseUI
     {
         var adventurerListUI = new BaseUIData();
         UIManager.Instance.OpenUI<AdventurerListUI>(adventurerListUI);
+        UIManager.Instance.CloseUI(this);
+    }
+
+    public void OnClickQuestListBtn()
+    {
+        var questListUI = new BaseUIData();
+        UIManager.Instance.OpenUI<QuestListUI>(questListUI);
+        UIManager.Instance.CloseUI(this);
+    }
+
+    public void OnClickNewQuestListBtn()
+    {
+        var questListUI = new BaseUIData();
+        UIManager.Instance.OpenUI<TodayQuestUI>(questListUI);
         UIManager.Instance.CloseUI(this);
     }
 }

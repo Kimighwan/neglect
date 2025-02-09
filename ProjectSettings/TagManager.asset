@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - UIManager
-  - SelectGroup
+  - AdventureSelectGroup
+  - QeustSelectGroup
   layers:
   - Default
   - TransparentFX

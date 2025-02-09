@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AdventurerUI : BaseUI
+public class TodayQuestUI : BaseUI
 {
-    private List<GameObject> uiListPool = new List<GameObject>();   // 모험가 카드 3장 Pool
+    private List<GameObject> uiListPool = new List<GameObject>();   // 의뢰 종이 3장 Pool
 
     private void Awake()
     {
-        SetAdventureList();
+        SetQuestList();
     }
 
     public override void Init(Transform anchor)
@@ -20,20 +20,20 @@ public class AdventurerUI : BaseUI
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
     }
 
-    private void SetAdventureList() // 모험가 리스트 생성
+    private void SetQuestList() // 의뢰 리스트 생성
     {
         for (int index = 0; index < 3; index++)
         {
-            var ui = Instantiate(Resources.Load("UI/RandomAdventureSelectUI") as GameObject);
+            var ui = Instantiate(Resources.Load("UI/RandomQuestSelectUI") as GameObject);
             uiListPool.Add(ui);
         }
     }
 
     public void OnClickAwakeBtn()
     {
-        // 골드 지불하며 모험가 리스트 초기화
+        // 골드 지불하며 의뢰 리스트 초기화
         RemoveList();
-        SetAdventureList();
+        SetQuestList();
     }
 
     public void RemoveList()
@@ -44,5 +44,13 @@ public class AdventurerUI : BaseUI
         }
 
         uiListPool.Clear();
+    }
+
+    public void OnClickBackBtnOfTodatQuest()
+    {
+        UIManager.Instance.CloseUI(this);
+
+        var receptionUI = new BaseUIData();
+        UIManager.Instance.OpenUI<ReceptionUI>(receptionUI);
     }
 }
