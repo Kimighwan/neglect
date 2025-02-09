@@ -20,4 +20,11 @@ public class ReceptionUI : BaseUI
         UIManager.Instance.OpenUI<AdventurerListUI>(adventurerListUI);
         UIManager.Instance.CloseUI(this);
     }
+
+    public void OnClickQuestListBtn()
+    {
+        var questListUI = new BaseUIData();
+        UIManager.Instance.OpenUI<QuestListUI>(questListUI);
+        UIManager.Instance.CloseUI(this);
+    }
 }

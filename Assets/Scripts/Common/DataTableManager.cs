@@ -57,7 +57,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     #region System_Desc
 
-    private const string SYSTEM_DATA_TABLE = "SystemTest";
+    private const string SYSTEM_DATA_TABLE = "ds_list";
     private List<SystemDescData> SystemDescDataTable = new List<SystemDescData>();
 
     private void LoadSystemDescDataTable()
