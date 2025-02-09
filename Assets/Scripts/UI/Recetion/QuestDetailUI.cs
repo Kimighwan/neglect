@@ -19,4 +19,11 @@ public class QuestDetailUI : BaseUI
         var questListUI = new BaseUIData();
         UIManager.Instance.OpenUI<QuestListUI>(questListUI);
     }
+
+    public void OnClickMonsterDescBtn() // 몬스터 도감(설명) 열기
+    {
+        var monsterDescUI = new BaseUIData();
+        UIManager.Instance.CloseUI(this);
+        UIManager.Instance.OpenUI<MonsterDescUI>(monsterDescUI);
+    }
 }
