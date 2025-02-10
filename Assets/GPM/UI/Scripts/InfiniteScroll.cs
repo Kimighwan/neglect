@@ -24,6 +24,7 @@ namespace Gpm.Ui
         private void Awake()
         {
             Initialize();
+            layout.space = new Vector2(40f, 0f);
         }
 
         protected void Initialize()
