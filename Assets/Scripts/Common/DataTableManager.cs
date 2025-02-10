@@ -128,12 +128,12 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     #region Quest
 
-    private const string Quest_DATA_TABLE = "quest_list";
+    private const string QUEST_DATA_TABLE = "quest_list";
     private List<QuestData> QuestDataTable = new List<QuestData>();
 
     private void LoadQuestDataTable()
     {
-        var parsedDataTable = CSVReader.Read($"{DATA_PATH}/{Quest_DATA_TABLE}");
+        var parsedDataTable = CSVReader.Read($"{DATA_PATH}/{QUEST_DATA_TABLE}");
 
         foreach (var data in parsedDataTable)
         {
