@@ -1,3 +1,4 @@
+using Gpm.Ui;
 using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
@@ -191,7 +192,7 @@ public class AdventureData : BaseUIData
     public string adventureTier;
 }
 
-public class QuestData : BaseUIData
+public class QuestData : InfiniteScrollData //BaseUIData
 {
     public int questId;
     public int questTime;
