@@ -1,9 +1,12 @@
+using Gpm.Ui;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestListUI : BaseUI
 {
+    public InfiniteScroll infiniteScrollList; 
+
     private List<int> questId = new List<int>();
 
     public Transform pos;
@@ -18,10 +21,38 @@ public class QuestListUI : BaseUI
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
     }
 
+    public override void SetInfo(BaseUIData uiData)
+    {
+        base.SetInfo(uiData);
+
+        Pool.Instance.SetQuestListData();
+    }
     private void OnEnable()
     {
-        CheckMyQuest();
+
+        SetScroll();
+        // CheckMyQuest();
     }
+
+    private void SetScroll()
+    {
+        infiniteScrollList.Clear();
+
+        
+        foreach(var questData in Pool.Instance.userQuestList)
+        {
+            var slotData = new QuestData();
+
+            slotData.questId = questData.questId;
+            slotData.questName = questData.questName;
+            slotData.questLevel = questData.questLevel;
+            slotData.questReward = questData.questReward;
+            slotData.questTime = questData.questTime;
+
+            infiniteScrollList.InsertData(slotData);
+        }
+    }
+
 
     public void OnClickBackOfQuestList()
     {
