@@ -120,8 +120,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1416392637120897650}
-        m_TargetAssemblyTypeName: Slot, Assembly-CSharp
+      - m_Target: {fileID: 4737333382824628356}
+        m_TargetAssemblyTypeName: QuestListItemSlot, Assembly-CSharp
         m_MethodName: OnClickDetailBtn
         m_Mode: 1
         m_Arguments:
@@ -475,7 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 179134241051758375}
-  - component: {fileID: 1416392637120897650}
+  - component: {fileID: 4737333382824628356}
   m_Layer: 5
   m_Name: QuestSelectedUI
   m_TagString: Untagged
@@ -505,7 +505,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 311.30005, y: 515.6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1416392637120897650
+--- !u!114 &4737333382824628356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5420963554795831909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea6136fb93cf8fa429fac36bac8e69ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 999e8d9dde5c48a42aa6aef381420205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   autoApplySize: 1
