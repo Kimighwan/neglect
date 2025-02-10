@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class QuestSelectedUI : MonoBehaviour
 {
-    public int questId;
-
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI level;
     public TextMeshProUGUI time;
@@ -22,7 +20,6 @@ public class QuestSelectedUI : MonoBehaviour
     {
         var rectTransform = GetComponent<RectTransform>();
 
-        rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
         rectTransform.sizeDelta = new Vector2(311f, 515f);
 
         GetQuestData(); InitData();
@@ -30,7 +27,7 @@ public class QuestSelectedUI : MonoBehaviour
 
     private void GetQuestData()
     {
-        QuestData data = DataTableManager.Instance.GetQuestData(questId);
+        QuestData data = DataTableManager.Instance.GetQuestData(130001);
 
         questName = data.questName;
         questLevel = data.questLevel;
@@ -58,5 +55,10 @@ public class QuestSelectedUI : MonoBehaviour
 
         var questDetailUI = new BaseUIData();
         UIManager.Instance.OpenUI<QuestDetailUI>(questDetailUI);
+    }
+
+    private void OnDisable()
+    {
+        Destroy(gameObject);
     }
 }
