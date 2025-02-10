@@ -25,11 +25,11 @@ public class QuestListUI : BaseUI
     {
         base.SetInfo(uiData);
 
-        Pool.Instance.SetQuestListData();
+        
     }
     private void OnEnable()
     {
-
+        Pool.Instance.SetQuestListData();
         SetScroll();
         // CheckMyQuest();
     }

@@ -419,7 +419,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -60}
-  m_SizeDelta: {x: 1000, y: 700}
+  m_SizeDelta: {x: 1000, y: 588.76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4495484675098060180
 CanvasRenderer:
@@ -517,7 +517,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 1416392637120897650, guid: 3dba584edef0f404184d8bfdab248ab4, type: 3}
   dynamicItemSize: 0
   layout:
-    axis: 1
+    axis: 4
     padding: {x: 0, y: 0}
     space: {x: 0, y: 0}
     topToBotton: 1
