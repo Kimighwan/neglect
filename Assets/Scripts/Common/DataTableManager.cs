@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     public int monsterDescId;
     public int systemDescId;
+    public int questDetailId;
 
     public string page;
 
@@ -142,7 +144,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 questMonster = data["object"].ToString(),
                 questReward = Convert.ToInt32(data["reward"]),
                 questTime = Convert.ToInt32(data["day"]),
-                //questMonsterDescId = Convert.ToInt32(data["object_id "]),
+                questMonsterDescId = Convert.ToInt32(data["object_id"]),
             };
 
             QuestDataTable.Add(questData);

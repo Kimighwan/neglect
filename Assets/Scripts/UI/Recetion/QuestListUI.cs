@@ -16,7 +16,10 @@ public class QuestListUI : BaseUI
 
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
+    }
 
+    private void OnEnable()
+    {
         CheckMyQuest();
     }
 
@@ -49,7 +52,6 @@ public class QuestListUI : BaseUI
         var item = Instantiate(Resources.Load("UI/QuestSelectedUI") as GameObject);
         item.transform.SetParent(pos);
 
-        item.GetComponent<QuestSelectedUI>().questId = 130001;
-
+        //item.GetComponent<QuestSelectedUI>().questId = id;
     }
 }

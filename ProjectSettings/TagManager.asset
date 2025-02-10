@@ -7,7 +7,7 @@ TagManager:
   - UIManager
   - AdventureSelectGroup
   - QeustSelectGroup
-  - SelectGroup
+  - RandomQuestGroup
   layers:
   - Default
   - TransparentFX
