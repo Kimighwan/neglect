@@ -1,18 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
+using Gpm.Ui;
+using TMPro;
 using UnityEngine;
 
-public class DetachQuestSlotItem : MonoBehaviour
+public class DetachQuestSlotItem : InfiniteScrollItem
 {
-    // Start is called before the first frame update
-    void Start()
+    public TextMeshProUGUI txtName;
+    public TextMeshProUGUI txtLevel;
+    public TextMeshProUGUI txtTime;
+    public TextMeshProUGUI txtReward;
+
+    public GameObject checkImage;
+
+    private QuestData questData;
+
+    private int questid;
+    private int questMonsterDescId;
+
+    public override void UpdateData(InfiniteScrollData scrollData)
     {
-        
+        base.UpdateData(scrollData);
+
+        var rectTransform = GetComponent<RectTransform>();
+
+        rectTransform.sizeDelta = new Vector2(160f, 160f);
+
+        questData = scrollData as QuestData;
+
+        if (questData == null) return;
+
+        questid = questData.questId;
+        var questName = questData.questName;
+        var questLevel = questData.questLevel;
+        var questTime = questData.questTime;
+        var questReward = questData.questReward;
+        var questMonster = questData.questMonster;
+        questMonsterDescId = questData.questMonsterDescId;
+
+        txtName.text = questName;
+        txtLevel.text = questLevel;
+        txtTime.text = questTime.ToString();
+        txtReward.text = questReward.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickSelect()
     {
-        
+        checkImage.SetActive(true);
     }
 }
