@@ -549,7 +549,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2904332467002963140}
         m_TargetAssemblyTypeName: BaseUI, Assembly-CSharp
         m_MethodName: CloseUI
         m_Mode: 6
@@ -691,6 +691,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d020319cc0a8b54e91d2f2ab1203f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAnim: {fileID: 0}
+  infiniteScrollList: {fileID: 4240866152319331937}
+  pos: {fileID: 0}
 --- !u!1 &5196270282301889271
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +796,7 @@ GameObject:
   - component: {fileID: 9025460177279051154}
   - component: {fileID: 3186979303898270621}
   - component: {fileID: 6438967243266042459}
+  - component: {fileID: 4240866152319331937}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -889,6 +893,42 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4240866152319331937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5479648168859691076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10837ee7ec97f6d48b4db00e8ee75cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onChangeValue:
+    m_PersistentCalls:
+      m_Calls: []
+  onChangeActiveItem:
+    m_PersistentCalls:
+      m_Calls: []
+  onStartLine:
+    m_PersistentCalls:
+      m_Calls: []
+  onEndLine:
+    m_PersistentCalls:
+      m_Calls: []
+  needItemCount: 0
+  itemPrefab: {fileID: 1531898569897632181, guid: 38eaf5bf59b15d441b2a81fb296173a0, type: 3}
+  dynamicItemSize: 0
+  layout:
+    axis: 4
+    padding: {x: 0, y: 0}
+    space: {x: 0, y: 0}
+    topToBotton: 1
+    leftToRight: 1
+    values: []
+  padding: 0
+  space: 0
 --- !u!1 &6479998601676001957
 GameObject:
   m_ObjectHideFlags: 0
