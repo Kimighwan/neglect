@@ -2,25 +2,34 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public ScriptMode scriptMode;
+    public DialogMode dialogMode;
+    private GameInfo info;
     private bool pause = false;
+    private bool once = false;
     void Start()
     {
-        GameInfo.gameInfo.StartGameInfo();
+        info = GameInfo.gameInfo;
+        info.StartGameInfo();
     }
 
     void Update()
     {
-        if (!pause && !ScriptManager.scriptManager.isScriptMode) {
-            GameInfo.gameInfo.UpdateGameInfo();
+        if (!pause && !scriptMode.isScriptMode) {
+            info.UpdateGameInfo();
             TextHandler.textHandler.UpdateTexts();
+        }
+        if (info.Day == 2 && info.Timer > 8f && !once) {
+            dialogMode.PrepareDialogText(101811, 101816, true);
+            once = true;
         }
     }
 
     public void PauseGame() {
         pause = !pause;
-        GameInfo.gameInfo.gameSpeed = 1f;
+        info.gameSpeed = 1f;
     }
     public void QuickGame() {
-        GameInfo.gameInfo.gameSpeed = 5f;
+        info.gameSpeed = 5f;
     }
 }
