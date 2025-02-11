@@ -7,9 +7,9 @@ public class QuestListUI : BaseUI
 {
     public InfiniteScroll infiniteScrollList; 
 
-    private List<int> questId = new List<int>();
+    // private List<int> questId = new List<int>(); // 스크롤 쓰기 전 변수
 
-    public Transform pos;
+    public Transform pos;   // 리스트에 해당하는 각각의 아이템 부모위치
 
     public override void Init(Transform anchor)
     {
@@ -21,12 +21,6 @@ public class QuestListUI : BaseUI
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
     }
 
-    public override void SetInfo(BaseUIData uiData)
-    {
-        base.SetInfo(uiData);
-
-        
-    }
     private void OnEnable()
     {
         PoolManager.Instance.SetQuestListData();
@@ -64,6 +58,8 @@ public class QuestListUI : BaseUI
         UIManager.Instance.OpenUI<ReceptionUI>(receptionUI);
     }
 
+
+    // 스크롤 쓰기전 함수
     //private void CheckMyQuest() // 가지고 있는 의뢰 체크
     //{
     //    questId.Clear();

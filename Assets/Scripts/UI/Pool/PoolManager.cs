@@ -30,4 +30,22 @@ public class PoolManager : SingletonBehaviour<PoolManager>
             userQuestList.Add(data);
         }
     }
+
+    public void SetAdventureListData()
+    {
+        userAdventureList.Clear();
+
+        var adventureId = PlayerPrefs.GetString("AdventureId");
+        var adventureIds = adventureId.Split(',');
+
+        if (adventureId == "") return;
+
+        foreach(var item in adventureIds)
+        {
+            int adventureIdOfInt = Convert.ToInt32(item);
+            var data = DataTableManager.Instance.GetAdventureData(adventureIdOfInt);
+
+            userAdventureList.Add(data);
+        }
+    }
 }
