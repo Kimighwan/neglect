@@ -1,18 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using Gpm.Ui;
 using UnityEngine;
 
 public class DetachQuestListUI : BaseUI
 {
-    // Start is called before the first frame update
-    void Start()
+    public InfiniteScroll infiniteScrollList;
+
+    public override void Init(Transform anchor)
     {
-        
+        base.Init(anchor);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        PoolManager.Instance.SetQuestListData();
+        SetScroll();
+    }
+
+    private void SetScroll()
+    {
+        infiniteScrollList.Clear();
+
+        foreach (var questData in PoolManager.Instance.userQuestList)
+        {
+            var slotData = new QuestData();
+
+            slotData.questId = questData.questId;
+            slotData.questName = questData.questName;
+            slotData.questLevel = questData.questLevel;
+            slotData.questTime = questData.questTime;
+            slotData.questReward = questData.questReward;
+            slotData.questMonsterDescId = questData.questMonsterDescId;
+            slotData.questMonster = questData.questMonster;
+
+            infiniteScrollList.InsertData(slotData);
+        }
     }
 }

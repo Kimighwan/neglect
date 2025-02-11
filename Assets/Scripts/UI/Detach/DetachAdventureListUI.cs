@@ -1,13 +1,9 @@
 using Gpm.Ui;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DetachAdventureListUI : BaseUI
 {
     public InfiniteScroll infiniteScrollList;
-
-    public Transform pos;   // 리스트에 해당하는 각각의 아이템 부모위치
 
     public override void Init(Transform anchor)
     {
