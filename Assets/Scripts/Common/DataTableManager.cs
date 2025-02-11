@@ -182,7 +182,7 @@ public class SystemDescData : BaseUIData
     public string systemScript4;
 }
 
-public class AdventureData : BaseUIData
+public class AdventureData : InfiniteScrollData // BaseUIData
 {
     public int adventureId;
     public string adventureName;
