@@ -255,7 +255,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6879408481283750401}
         m_TargetAssemblyTypeName: DetachQuestSlotItem, Assembly-CSharp
-        m_MethodName: OnClickSelect
+        m_MethodName: OnClickQuestBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

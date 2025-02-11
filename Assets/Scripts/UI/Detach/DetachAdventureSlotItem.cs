@@ -1,4 +1,5 @@
 using Gpm.Ui;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -40,8 +41,22 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
         txtType.text = adventureType;
     }
 
-    public void OnClickSelect()
+    private void Update()
     {
-        checkImage.SetActive(true);
+        if (AdventureData.adventureSelectId.Contains(adventureid))
+            checkImage.SetActive(true);
+        else
+            checkImage.SetActive(false);
+    }
+
+
+    public void OnClickAdventureBtn()
+    {
+        if (AdventureData.adventureSelectId.Count == 4)
+        {
+            AdventureData.adventureSelectId.Dequeue();
+        }
+
+        AdventureData.adventureSelectId.Enqueue(adventureid);
     }
 }

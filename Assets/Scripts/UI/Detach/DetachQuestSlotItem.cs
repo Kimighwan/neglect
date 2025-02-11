@@ -51,7 +51,7 @@ public class DetachQuestSlotItem : InfiniteScrollItem
     }
 
 
-    public void OnClickSelect()
+    public void OnClickQuestBtn()
     {
         QuestData.questSelectedId = questid;
     }
