@@ -40,8 +40,8 @@ public class QuestDetailUI : BaseUI
     {
         UIManager.Instance.CloseUI(this);
 
-        var questListUI = new BaseUIData();
-        UIManager.Instance.OpenUI<QuestListUI>(questListUI);
+        var todayQuestUI = new BaseUIData();
+        UIManager.Instance.OpenUI<TodayQuestUI>(todayQuestUI);
     }
 
     public void OnClickMonsterDescBtn() // 몬스터 도감(설명) 열기
