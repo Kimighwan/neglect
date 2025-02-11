@@ -235,6 +235,7 @@ public class QuestData : InfiniteScrollData // BaseUIData
     public string questName;
     public string questLevel;
     public string questMonster;
+
     public static int questSelectedId;
 }
 

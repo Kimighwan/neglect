@@ -19,6 +19,9 @@ public class RandomQuestSelectUI : MonoBehaviour
     private int questReward;
     private int questMonsterDescId;
 
+    private int resultId;
+
+
     private string questName;
     private string questLevel;
 
@@ -78,11 +81,36 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     private int RandomIndexMake()   // 무작위 숫자
     {
-        int randomId;
+        int randomIdA = UnityEngine.Random.Range(131001, 131007);
+        int randomIdB = UnityEngine.Random.Range(132007, 132013);
+        int randomIdC = UnityEngine.Random.Range(133013, 133022);
+        int randomIdD = UnityEngine.Random.Range(134022, 134026);
+        int randomIdE = UnityEngine.Random.Range(135026, 135029);
 
-        randomId = UnityEngine.Random.Range(130001, 130029);
+        int i = UnityEngine.Random.Range(1, 6);
 
-        return randomId;
+        switch (i)
+        {
+            case 1:
+                resultId = randomIdA;
+                break;
+            case 2:
+                resultId = randomIdB;
+                break;
+            case 3:
+                resultId = randomIdC;
+                break;
+            case 4:
+                resultId = randomIdD;
+                break;
+            case 5:
+                resultId = randomIdE;
+                break;
+            default:
+                break;
+        }
+
+        return resultId;
     }
 
     //private void SetMonsterDescID()
