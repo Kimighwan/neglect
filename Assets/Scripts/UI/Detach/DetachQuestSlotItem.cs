@@ -42,8 +42,17 @@ public class DetachQuestSlotItem : InfiniteScrollItem
         txtReward.text = questReward.ToString();
     }
 
+    private void Update()
+    {
+        if (QuestData.questSelectedId == questid)
+            checkImage.SetActive(true);
+        else
+            checkImage.SetActive(false);
+    }
+
+
     public void OnClickSelect()
     {
-        checkImage.SetActive(true);
+        QuestData.questSelectedId = questid;
     }
 }

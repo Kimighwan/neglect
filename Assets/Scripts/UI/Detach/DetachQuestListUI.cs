@@ -1,4 +1,5 @@
 using Gpm.Ui;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DetachQuestListUI : BaseUI
