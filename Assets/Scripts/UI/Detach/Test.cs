@@ -7,12 +7,12 @@ public class Test : MonoBehaviour
     public void OnClickQuestTestBtn()
     {
         var detachQuestUI = new BaseUIData();
-        UIManager.Instance.OpenUI<DetachSelectQuestUI>(detachQuestUI);
+        UIManager.Instance.OpenUI<DetachQuestListUI>(detachQuestUI);
     }
 
     public void OnClickAdventureTestBtn()
     {
         var detachAdventureUI = new BaseUIData();
-        UIManager.Instance.OpenUI<DetachSelectAdventureUI>(detachAdventureUI);
+        UIManager.Instance.OpenUI<DetachAdventureListUI>(detachAdventureUI);
     }
 }

@@ -29,7 +29,7 @@ public class QuestListUI : BaseUI
     }
     private void OnEnable()
     {
-        QuestDataPool.Instance.SetQuestListData();
+        PoolManager.Instance.SetQuestListData();
         SetScroll();
         // CheckMyQuest();
     }
@@ -39,7 +39,7 @@ public class QuestListUI : BaseUI
         infiniteScrollList.Clear();
 
         
-        foreach(var questData in QuestDataPool.Instance.userQuestList)
+        foreach(var questData in PoolManager.Instance.userQuestList)
         {
             var slotData = new QuestData();
 
