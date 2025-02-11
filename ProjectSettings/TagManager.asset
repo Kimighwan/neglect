@@ -8,6 +8,7 @@ TagManager:
   - AdventureSelectGroup
   - QeustSelectGroup
   - RandomQuestGroup
+  - SelectGroup
   layers:
   - Default
   - TransparentFX
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Furniture
     uniqueID: 1972977847
+    locked: 0
+  - name: SpeakBubble
+    uniqueID: 2641527955
     locked: 0
