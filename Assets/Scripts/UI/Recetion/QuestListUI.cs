@@ -1,12 +1,15 @@
+using Gpm.Ui;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestListUI : BaseUI
 {
-    private List<int> questId = new List<int>();
+    public InfiniteScroll infiniteScrollList; 
 
-    public Transform pos;
+    // private List<int> questId = new List<int>(); // 스크롤 쓰기 전 변수
+
+    public Transform pos;   // 리스트에 해당하는 각각의 아이템 부모위치
 
     public override void Init(Transform anchor)
     {
@@ -16,11 +19,38 @@ public class QuestListUI : BaseUI
 
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
-
-        CheckMyQuest();
     }
 
-    public void OnClickBackOfQuestList()
+    private void OnEnable()
+    {
+        PoolManager.Instance.SetQuestListData();
+        SetScroll();
+        // CheckMyQuest();
+    }
+
+    private void SetScroll()
+    {
+        infiniteScrollList.Clear();
+
+        
+        foreach(var questData in PoolManager.Instance.userQuestList)
+        {
+            var slotData = new QuestData();
+
+            slotData.questId = questData.questId;
+            slotData.questName = questData.questName;
+            slotData.questLevel = questData.questLevel;
+            slotData.questReward = questData.questReward;
+            slotData.questTime = questData.questTime;
+            slotData.questMonster = questData.questMonster;
+            slotData.questMonsterDescId = questData.questMonsterDescId;
+
+            infiniteScrollList.InsertData(slotData);
+        }
+    }
+
+
+    public void OnClickBackOfQuestList()    // 뒤로가기
     {
         UIManager.Instance.CloseUI(this);
 
@@ -28,28 +58,29 @@ public class QuestListUI : BaseUI
         UIManager.Instance.OpenUI<ReceptionUI>(receptionUI);
     }
 
-    private void CheckMyQuest() // 가지고 있는 의뢰 체크
-    {
-        questId.Clear();
 
-        string myQuestOfString = PlayerPrefs.GetString("QuestId");
-        string[] myQuestOfstrings = myQuestOfString.Split(',');
+    // 스크롤 쓰기전 함수
+    //private void CheckMyQuest() // 가지고 있는 의뢰 체크
+    //{
+    //    questId.Clear();
 
-        if (myQuestOfString == "") return;
+    //    string myQuestOfString = PlayerPrefs.GetString("QuestId");
+    //    string[] myQuestOfstrings = myQuestOfString.Split(',');
 
-        foreach (string str in myQuestOfstrings)
-        {
-            questId.Add(Convert.ToInt32(str));
-            InstantiateQuestList(Convert.ToInt32(str));
-        }
-    }
+    //    if (myQuestOfString == "") return;
 
-    private void InstantiateQuestList(int id)   // 의뢰 UI 인스턴스화
-    {
-        var item = Instantiate(Resources.Load("UI/QuestSelectedUI") as GameObject);
-        item.transform.SetParent(pos);
+    //    foreach (string str in myQuestOfstrings)
+    //    {
+    //        questId.Add(Convert.ToInt32(str));
+    //        InstantiateQuestList(Convert.ToInt32(str));
+    //    }
+    //}
 
-        item.GetComponent<QuestSelectedUI>().questId = id;
+    //private void InstantiateQuestList(int id)   // 의뢰 UI 인스턴스화
+    //{
+    //    var item = Instantiate(Resources.Load("UI/QuestSelectedUI") as GameObject);
+    //    item.transform.SetParent(pos);
 
-    }
+    //    //item.GetComponent<QuestSelectedUI>().questId = id;
+    //}
 }

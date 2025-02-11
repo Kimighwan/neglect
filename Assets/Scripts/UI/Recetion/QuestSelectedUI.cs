@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class QuestSelectedUI : MonoBehaviour
 {
-    public int questId;
-
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI level;
     public TextMeshProUGUI time;
@@ -22,21 +20,28 @@ public class QuestSelectedUI : MonoBehaviour
     {
         var rectTransform = GetComponent<RectTransform>();
 
-        rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
         rectTransform.sizeDelta = new Vector2(311f, 515f);
 
-        GetQuestData();
+        GetQuestData(); InitData();
     }
 
     private void GetQuestData()
     {
-        QuestData data = DataTableManager.Instance.GetQuestData(questId);
+        QuestData data = DataTableManager.Instance.GetQuestData(130001);
 
         questName = data.questName;
         questLevel = data.questLevel;
         questTime = data.questTime.ToString();
         questReward = data.questReward.ToString();
         questDescId = data.questMonsterDescId;
+    }
+
+    private void InitData()
+    {
+        m_name.text = questName;
+        level.text = questLevel;
+        time.text = questTime;
+        reward.text = questReward;
     }
 
     private void SetMonsterDescID()
@@ -50,5 +55,10 @@ public class QuestSelectedUI : MonoBehaviour
 
         var questDetailUI = new BaseUIData();
         UIManager.Instance.OpenUI<QuestDetailUI>(questDetailUI);
+    }
+
+    private void OnDisable()
+    {
+        Destroy(gameObject);
     }
 }

@@ -1,3 +1,5 @@
+using Gpm.Ui;
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     public int monsterDescId;
     public int systemDescId;
+    public int questDetailId;
 
     public string page;
 
@@ -70,6 +73,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
             var systemDescData = new SystemDescData
             {
                 systemId = Convert.ToInt32(data["ds_id"]),
+                systemName = data["name"].ToString(),
                 systemScript1 = data["script1"].ToString(),
                 systemScript2 = data["script2"].ToString(),
                 systemScript3 = data["script3"].ToString(),
@@ -125,12 +129,12 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     #region Quest
 
-    private const string Quest_DATA_TABLE = "quest_list";
+    private const string QUEST_DATA_TABLE = "quest_list";
     private List<QuestData> QuestDataTable = new List<QuestData>();
 
     private void LoadQuestDataTable()
     {
-        var parsedDataTable = CSVReader.Read($"{DATA_PATH}/{Quest_DATA_TABLE}");
+        var parsedDataTable = CSVReader.Read($"{DATA_PATH}/{QUEST_DATA_TABLE}");
 
         foreach (var data in parsedDataTable)
         {
@@ -142,7 +146,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 questMonster = data["object"].ToString(),
                 questReward = Convert.ToInt32(data["reward"]),
                 questTime = Convert.ToInt32(data["day"]),
-                //questMonsterDescId = Convert.ToInt32(data["object_id "]),
+                questMonsterDescId = Convert.ToInt32(data["object_id"]),
             };
 
             QuestDataTable.Add(questData);
@@ -202,13 +206,14 @@ public class MonsterDescData : BaseUIData
 public class SystemDescData : BaseUIData
 {
     public int systemId;
+    public string systemName;
     public string systemScript1;
     public string systemScript2;
     public string systemScript3;
     public string systemScript4;
 }
 
-public class AdventureData : BaseUIData
+public class AdventureData : InfiniteScrollData // BaseUIData
 {
     public int adventureId;
     public string adventureName;
@@ -216,9 +221,11 @@ public class AdventureData : BaseUIData
     public string adventureClass;
     public string adventureType;
     public string adventureTier;
+
+    public static Queue<int> adventureSelectId = new Queue<int>();
 }
 
-public class QuestData : BaseUIData
+public class QuestData : InfiniteScrollData // BaseUIData
 {
     public int questId;
     public int questTime;
@@ -228,6 +235,7 @@ public class QuestData : BaseUIData
     public string questName;
     public string questLevel;
     public string questMonster;
+    public static int questSelectedId;
 }
 
 public class ScriptData : BaseUIData {

@@ -85,16 +85,23 @@ public class RandomQuestSelectUI : MonoBehaviour
         return randomId;
     }
 
-    private void SetMonsterDescID()
+    //private void SetMonsterDescID()
+    //{
+    //    DataTableManager.Instance.monsterDescId = questMonsterDescId;
+    //}
+
+    private void SetQuestDetailID()
     {
-        DataTableManager.Instance.monsterDescId = questMonsterDescId;
+        DataTableManager.Instance.questDetailId = questId;
     }
 
     public void OnClickDetailBtn()  // 의뢰 세부사항 UI 열기
     {
-        SetMonsterDescID();
+        DataTableManager.Instance.monsterDescId = questMonsterDescId;
+        SetQuestDetailID();
 
         var questDetailUI = new BaseUIData();
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<TodayQuestUI>());
         UIManager.Instance.OpenUI<QuestDetailUI>(questDetailUI);
     }
 }

@@ -1837,7 +1837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiAnim: {fileID: 0}
-  txtDesc: {fileID: 0}
+  txtDesc: {fileID: 3543367238021502139}
 --- !u!1 &9151951843758912978
 GameObject:
   m_ObjectHideFlags: 0
