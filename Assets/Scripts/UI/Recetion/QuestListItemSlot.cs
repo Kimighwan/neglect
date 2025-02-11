@@ -1,6 +1,4 @@
 using Gpm.Ui;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -46,6 +44,7 @@ public class QuestListItemSlot : InfiniteScrollItem
     {
         SetMonsterDescID();
 
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<QuestListUI>());
         var questDetailUI = new BaseUIData();
         UIManager.Instance.OpenUI<QuestDetailUI>(questDetailUI);
     }

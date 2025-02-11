@@ -48,13 +48,15 @@ public class QuestListUI : BaseUI
             slotData.questLevel = questData.questLevel;
             slotData.questReward = questData.questReward;
             slotData.questTime = questData.questTime;
+            slotData.questMonster = questData.questMonster;
+            slotData.questMonsterDescId = questData.questMonsterDescId;
 
             infiniteScrollList.InsertData(slotData);
         }
     }
 
 
-    public void OnClickBackOfQuestList()
+    public void OnClickBackOfQuestList()    // 뒤로가기
     {
         UIManager.Instance.CloseUI(this);
 
@@ -62,27 +64,27 @@ public class QuestListUI : BaseUI
         UIManager.Instance.OpenUI<ReceptionUI>(receptionUI);
     }
 
-    private void CheckMyQuest() // 가지고 있는 의뢰 체크
-    {
-        questId.Clear();
+    //private void CheckMyQuest() // 가지고 있는 의뢰 체크
+    //{
+    //    questId.Clear();
 
-        string myQuestOfString = PlayerPrefs.GetString("QuestId");
-        string[] myQuestOfstrings = myQuestOfString.Split(',');
+    //    string myQuestOfString = PlayerPrefs.GetString("QuestId");
+    //    string[] myQuestOfstrings = myQuestOfString.Split(',');
 
-        if (myQuestOfString == "") return;
+    //    if (myQuestOfString == "") return;
 
-        foreach (string str in myQuestOfstrings)
-        {
-            questId.Add(Convert.ToInt32(str));
-            InstantiateQuestList(Convert.ToInt32(str));
-        }
-    }
+    //    foreach (string str in myQuestOfstrings)
+    //    {
+    //        questId.Add(Convert.ToInt32(str));
+    //        InstantiateQuestList(Convert.ToInt32(str));
+    //    }
+    //}
 
-    private void InstantiateQuestList(int id)   // 의뢰 UI 인스턴스화
-    {
-        var item = Instantiate(Resources.Load("UI/QuestSelectedUI") as GameObject);
-        item.transform.SetParent(pos);
+    //private void InstantiateQuestList(int id)   // 의뢰 UI 인스턴스화
+    //{
+    //    var item = Instantiate(Resources.Load("UI/QuestSelectedUI") as GameObject);
+    //    item.transform.SetParent(pos);
 
-        //item.GetComponent<QuestSelectedUI>().questId = id;
-    }
+    //    //item.GetComponent<QuestSelectedUI>().questId = id;
+    //}
 }
