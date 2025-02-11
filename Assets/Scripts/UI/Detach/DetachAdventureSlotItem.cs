@@ -52,6 +52,12 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
 
     public void OnClickAdventureBtn()
     {
+        //if (AdventureData.adventureSelectId.Contains(adventureid))
+        //{
+        //    AdventureData.adventureSelectId.Dequeue(adventureid);
+        //    return;
+        //}
+
         if (AdventureData.adventureSelectId.Count == 4)
         {
             AdventureData.adventureSelectId.Dequeue();
