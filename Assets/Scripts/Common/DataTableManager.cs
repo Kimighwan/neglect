@@ -190,9 +190,11 @@ public class AdventureData : InfiniteScrollData // BaseUIData
     public string adventureClass;
     public string adventureType;
     public string adventureTier;
+
+    public static Queue<int> adventureSelectId = new Queue<int>();
 }
 
-public class QuestData : InfiniteScrollData //BaseUIData
+public class QuestData : InfiniteScrollData // BaseUIData
 {
     public int questId;
     public int questTime;
@@ -202,4 +204,6 @@ public class QuestData : InfiniteScrollData //BaseUIData
     public string questName;
     public string questLevel;
     public string questMonster;
+
+    public static int questSelectedId;
 }

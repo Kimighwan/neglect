@@ -589,7 +589,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1531898569897632181}
         m_TargetAssemblyTypeName: DetachAdventureSlotItem, Assembly-CSharp
-        m_MethodName: OnClickSelect
+        m_MethodName: OnClickAdventureBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
