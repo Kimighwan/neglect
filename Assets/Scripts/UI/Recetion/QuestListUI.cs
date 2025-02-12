@@ -22,8 +22,6 @@ public class QuestListUI : BaseUI
     public TextMeshProUGUI sortBtnText;
     public TextMeshProUGUI orderBtnText;
 
-    public Transform pos;   // 리스트에 해당하는 각각의 아이템 부모위치
-
 
     // private List<int> questId = new List<int>(); // 스크롤 쓰기 전 변수
     private QuestSortType questSortType = QuestSortType.Level;
