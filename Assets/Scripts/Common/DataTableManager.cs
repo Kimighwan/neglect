@@ -222,7 +222,7 @@ public class AdventureData : InfiniteScrollData // BaseUIData
     public string adventureType;
     public string adventureTier;
 
-    public static Queue<int> adventureSelectId = new Queue<int>();
+    public static List<int> adventureSelectId = new List<int>();
 }
 
 public class QuestData : InfiniteScrollData // BaseUIData

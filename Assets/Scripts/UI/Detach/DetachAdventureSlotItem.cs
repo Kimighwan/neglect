@@ -52,17 +52,25 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
 
     public void OnClickAdventureBtn()
     {
-        //if (AdventureData.adventureSelectId.Contains(adventureid))
-        //{
-        //    AdventureData.adventureSelectId.Dequeue(adventureid);
-        //    return;
-        //}
+        if (AdventureData.adventureSelectId.Contains(adventureid))
+        {
+            AdventureData.adventureSelectId.Remove(adventureid);
+            return;
+        }
 
         if (AdventureData.adventureSelectId.Count == 4)
         {
-            AdventureData.adventureSelectId.Dequeue();
+            AdventureData.adventureSelectId.RemoveAt(0);
         }
 
-        AdventureData.adventureSelectId.Enqueue(adventureid);
+        AdventureData.adventureSelectId.Add(adventureid);
+    }
+
+    public void OnClickSelectBtn()
+    {
+        if (QuestData.questSelectedId == 0)
+        {
+            return;
+        }
     }
 }
