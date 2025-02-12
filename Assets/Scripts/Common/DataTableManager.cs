@@ -112,6 +112,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 adventurePosition = data["position"].ToString(),
                 adventureClass = data["class"].ToString(),
                 adventureType = data["type"].ToString(),
+                randomId = Convert.ToInt32(data["random_id"]),
             };
 
             AdventureDataTable.Add(adventureData);
@@ -121,6 +122,13 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     public AdventureData GetAdventureData(int adventureId)
     {
         return AdventureDataTable.Where(item => item.adventureId == adventureId).FirstOrDefault();
+        // 시스템 ID에 맞는 정보들을 반환
+        // 만약 데이터가 존재 하지 않는다면 null 반환
+    }
+
+    public AdventureData GetRandomAdventureData(int randomId)
+    {
+        return AdventureDataTable.Where(item => item.randomId == randomId).FirstOrDefault();
         // 시스템 ID에 맞는 정보들을 반환
         // 만약 데이터가 존재 하지 않는다면 null 반환
     }
@@ -223,6 +231,8 @@ public class AdventureData : InfiniteScrollData // BaseUIData
     public string adventureTier;
 
     public static List<int> adventureSelectId = new List<int>();
+
+    public int randomId;
 }
 
 public class QuestData : InfiniteScrollData // BaseUIData

@@ -97,12 +97,14 @@ public class QuestListUI : BaseUI
                     // 내림차순
                     if(questOrderType == QuestOrderType.DOWN)
                     {
+                        orderBtnText.text = "DOWN";
                         compareResult = ((itemB.questId / 1000) % 10).CompareTo((itemA.questId / 1000) % 10);
                     }
 
                     // 오름차순
                     if (questOrderType == QuestOrderType.UP)
                     {
+                        orderBtnText.text = "UP";
                         compareResult = ((itemA.questId / 1000) % 10).CompareTo((itemB.questId / 1000) % 10);
                     }
 
@@ -145,11 +147,9 @@ public class QuestListUI : BaseUI
         {
             case QuestOrderType.DOWN:
                 questOrderType = QuestOrderType.UP;
-                orderBtnText.text = "UP";
                 break;
             case QuestOrderType.UP:
                 questOrderType = QuestOrderType.DOWN;
-                orderBtnText.text = "DOWN";
                 break;
             default:
                 break;

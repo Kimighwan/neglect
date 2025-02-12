@@ -58,7 +58,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
 
     private void GetAdventureData()
     {
-        adventureData = DataTableManager.Instance.GetAdventureData(RandomIndexMake());
+        adventureData = DataTableManager.Instance.GetRandomAdventureData(RandomIndexMake());
 
         adventureId = adventureData.adventureId;
         this.adventureName = adventureData.adventureName;
@@ -80,7 +80,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
     {
         int randomId;
 
-        randomId = UnityEngine.Random.Range(120001, 120091);
+        randomId = UnityEngine.Random.Range(1, 91);
         
         return randomId;
     }

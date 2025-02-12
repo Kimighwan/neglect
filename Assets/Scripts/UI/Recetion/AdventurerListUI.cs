@@ -229,6 +229,8 @@ public class AdventurerListUI : BaseUI
             default:
                 break;
         }
+
+        OrderTextUpdate();
     }
 
     // 정렬 버튼
@@ -273,6 +275,21 @@ public class AdventurerListUI : BaseUI
         }
 
         SortAdventure();
+    }
+
+    private void OrderTextUpdate()
+    {
+        switch (adventureOrderType)
+        {
+            case AdventureOrderType.DOWN:
+                orderBtnText.text = "DOWN";
+                break;
+            case AdventureOrderType.UP:
+                orderBtnText.text = "UP";
+                break;
+            default:
+                break;
+        }
     }
 
 

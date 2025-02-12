@@ -19,9 +19,9 @@ public class AdventureListSlotItem : InfiniteScrollItem
     {
         base.UpdateData(scrollData);
 
-        var rectTransform = GetComponent<RectTransform>();
+        //var rectTransform = GetComponent<RectTransform>();
 
-        rectTransform.sizeDelta = new Vector2(160f, 160f);
+        //rectTransform.sizeDelta = new Vector2(160f, 160f);
 
         adventureData = scrollData as AdventureData;
 
@@ -32,15 +32,16 @@ public class AdventureListSlotItem : InfiniteScrollItem
         var adventurePosition = adventureData.adventurePosition;
         var adventureType = adventureData.adventureType;
         var adventureTier = adventureData.adventureTier;
+        var adventureClass = adventureData.adventureClass;
 
         m_name.text = adventureName;
         position.text = adventurePosition;
         type.text = adventureType;
-        m_class.text = adventureType;
+        m_class.text = adventureClass;
     }
 
     public void OnClick()
     {
-
+        Debug.Log($"{adventureId}");
     }
 }
