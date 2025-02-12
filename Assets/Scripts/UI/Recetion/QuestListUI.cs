@@ -6,19 +6,26 @@ using UnityEngine;
 
 public enum QuestSortType
 {
-    Level_DOWN,
-    Level_UP,
+    Level,
+}
+
+public enum QuestOrderType
+{
+    DOWN,
+    UP,
 }
 
 public class QuestListUI : BaseUI
 {
     public InfiniteScroll infiniteScrollList;
+
     public TextMeshProUGUI sortBtnText;
-    public Transform pos;   // 리스트에 해당하는 각각의 아이템 부모위치
+    public TextMeshProUGUI orderBtnText;
 
 
     // private List<int> questId = new List<int>(); // 스크롤 쓰기 전 변수
-    private QuestSortType questSortType = QuestSortType.Level_DOWN;
+    private QuestSortType questSortType = QuestSortType.Level;
+    private QuestOrderType questOrderType = QuestOrderType.DOWN;
 
     public override void SetInfo(BaseUIData uiData)
     {
@@ -77,39 +84,27 @@ public class QuestListUI : BaseUI
     {
         switch (questSortType)
         {
-            case QuestSortType.Level_DOWN:
-                sortBtnText.text = "LEVEL_DWON";
+            case QuestSortType.Level:
+                sortBtnText.text = "LEVEL";
 
                 infiniteScrollList.SortDataList((a, b) =>
                 {
+                    int compareResult = 0;
+
                     var itemA = a.data as QuestData;
                     var itemB = b.data as QuestData;
 
-                    // 난이도 내림차순
-                    int compareResult = ((itemB.questId / 1000) % 10).CompareTo((itemA.questId / 1000) % 10);
-
-                    if(compareResult == 0)
+                    // 내림차순
+                    if(questOrderType == QuestOrderType.DOWN)
                     {
-                        var itemAId = itemA.questId;
-
-                        var itemBId = itemB.questId;
-
-                        compareResult = itemAId.CompareTo((itemBId));
+                        compareResult = ((itemB.questId / 1000) % 10).CompareTo((itemA.questId / 1000) % 10);
                     }
 
-                    return compareResult;
-                });
-                break;
-            case QuestSortType.Level_UP:
-                sortBtnText.text = "LEVEL_UP";
-
-                infiniteScrollList.SortDataList((a, b) =>
-                {
-                    var itemA = a.data as QuestData;
-                    var itemB = b.data as QuestData;
-
-                    // 난이도 내림차순
-                    int compareResult = ((itemA.questId / 1000) % 10).CompareTo((itemB.questId / 1000) % 10);
+                    // 오름차순
+                    if (questOrderType == QuestOrderType.UP)
+                    {
+                        compareResult = ((itemA.questId / 1000) % 10).CompareTo((itemB.questId / 1000) % 10);
+                    }
 
                     if (compareResult == 0)
                     {
@@ -117,7 +112,7 @@ public class QuestListUI : BaseUI
 
                         var itemBId = itemB.questId;
 
-                        compareResult = itemBId.CompareTo((itemAId));
+                        compareResult = itemAId.CompareTo((itemBId));
                     }
 
                     return compareResult;
@@ -133,13 +128,30 @@ public class QuestListUI : BaseUI
     {
         switch (questSortType)
         {
-            case QuestSortType.Level_UP:
-                questSortType = QuestSortType.Level_DOWN;
-                break;
-            case QuestSortType.Level_DOWN:
-                questSortType = QuestSortType.Level_UP;
+            case QuestSortType.Level:
+                questSortType = QuestSortType.Level;
                 break;
             default: 
+                break;
+        }
+
+        SortQuest();
+    }
+
+    // 순서 선택 버튼
+    public void OnClickOrderBtn()
+    {
+        switch (questOrderType)
+        {
+            case QuestOrderType.DOWN:
+                questOrderType = QuestOrderType.UP;
+                orderBtnText.text = "UP";
+                break;
+            case QuestOrderType.UP:
+                questOrderType = QuestOrderType.DOWN;
+                orderBtnText.text = "DOWN";
+                break;
+            default:
                 break;
         }
 
