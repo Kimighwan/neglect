@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -65,6 +66,16 @@ public class ScriptObjectData : MonoBehaviour
     public RectTransform malpungseon2RT;
     public RectTransform malpungseon3RT;
     public RectTransform malpungseon4RT;
+
+    private List<int> dialogStartId = new List<int>{ 101811, 101821, 101831, 101911, 101921, 101931 };
+    private List<int> dialogEndId = new List<int>{ 101816, 101827, 101835, 101915, 101927, 101938 };
+    private List<int> dialogStartDay = new List<int> {3, 5, 7, 9, 11, 13};
+    private List<float> dialogStartTime = new List<float> {9f, 8f, 10f, 10f, 8f, 9f};
+    public int GetDialogStartId(int i) { return dialogStartId[i]; }
+    public int GetDialogEndId(int i) { return dialogEndId[i]; }
+    public int GetDialogStartDay(int i) { return dialogStartDay[i]; }
+    public float GetDialogStartTime(int i) { return dialogStartTime[i]; }
+
     private void ActiveAllDialogObject() {
         malpungseon11.SetActive(true);
         malpungseon22.SetActive(true);
