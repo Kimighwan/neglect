@@ -17,9 +17,6 @@
 - **🐙 GitHub** 
 <br>
 
-<br>
-<br>
-
 ## Collaborators  
 
 | **Name** | **Role** | **Contact** |
