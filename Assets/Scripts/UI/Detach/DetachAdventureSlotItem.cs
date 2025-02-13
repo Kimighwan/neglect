@@ -50,7 +50,7 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
     }
 
 
-    public void OnClickAdventureBtn()
+    public void OnClickAdventureBtn()   // 모험가 클릭
     {
         if (AdventureData.adventureSelectId.Contains(adventureid))
         {
@@ -66,11 +66,4 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
         AdventureData.adventureSelectId.Add(adventureid);
     }
 
-    public void OnClickSelectBtn()
-    {
-        if (QuestData.questSelectedId == 0)
-        {
-            return;
-        }
-    }
 }

@@ -49,8 +49,6 @@ public class AdventurerListUI : BaseUI
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
 
-        // idListOfint = null;
-        //CheckMyAdventure();
     }
 
     private void OnEnable()
@@ -291,52 +289,4 @@ public class AdventurerListUI : BaseUI
                 break;
         }
     }
-
-
-
-
-    // 스크롤 쓰기전 함수
-    //private void CheckMyAdventure()
-    //{
-    //    string idList = PlayerPrefs.GetString("AdventureId");    // 저장된 모험가 ID 불러오기
-    //    string[] idListOfstring = idList.Split(',');
-
-    //    if (idList == "") return;
-
-    //    for(int index = 0; index < idListOfstring.Length; index++)
-    //    {
-    //        GetAdventure(Convert.ToInt32(idListOfstring[index]));
-    //    }
-    //}
-
-    //private void GetAdventure(int id)
-    //{
-    //    if (instancedAdventure.Contains(id))
-    //        return;
-
-    //    AdventureData adventureData = DataTableManager.Instance.GetAdventureData(id);
-
-    //    instancedAdventure.Add(id);
-
-    //    adventureName = adventureData.adventureName;
-    //    adventurePosition = adventureData.adventurePosition;
-    //    imageName2 = adventureData.adventureClass;
-    //    imageName3 = adventureData.adventureType;
-
-    //    InstantiateAdventureInformationUI(adventureName);
-    //}
-
-    //private void InstantiateAdventureInformationUI(string name)
-    //{
-    //    var item = Instantiate(Resources.Load("UI/AdventureInformationUI") as GameObject);
-
-    //    item.transform.SetParent(adventureInformationPos);
-
-    //    GameObject obj = new GameObject("Name");
-    //    obj.transform.SetParent(item.transform);
-
-    //    obj.AddComponent<TextMeshProUGUI>();
-    //    obj.GetComponent<TextMeshProUGUI>().text = name;
-    //    obj.GetComponent<TextMeshProUGUI>().font = fontAsset;
-    //}
 }

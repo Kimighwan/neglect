@@ -18,9 +18,9 @@ public class QuestSelectedUI : MonoBehaviour
 
     private void Awake()
     {
-        var rectTransform = GetComponent<RectTransform>();
+        //var rectTransform = GetComponent<RectTransform>();
 
-        rectTransform.sizeDelta = new Vector2(311f, 515f);
+        //rectTransform.sizeDelta = new Vector2(311f, 515f);
 
         GetQuestData(); InitData();
     }

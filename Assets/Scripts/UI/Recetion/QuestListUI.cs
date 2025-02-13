@@ -23,7 +23,6 @@ public class QuestListUI : BaseUI
     public TextMeshProUGUI orderBtnText;
 
 
-    // private List<int> questId = new List<int>(); // 스크롤 쓰기 전 변수
     private QuestSortType questSortType = QuestSortType.Level;
     private QuestOrderType questOrderType = QuestOrderType.DOWN;
 
@@ -42,13 +41,14 @@ public class QuestListUI : BaseUI
 
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
+
+        infiniteScrollList.layout.space = new Vector2(40f, 0f);
     }
 
     private void OnEnable()
     {
         PoolManager.Instance.SetQuestListData();
         SetScroll();
-        // CheckMyQuest();
     }
 
     public void OnClickBackOfQuestList()    // 뒤로가기
@@ -157,30 +157,4 @@ public class QuestListUI : BaseUI
 
         SortQuest();
     }
-
-
-    // 스크롤 쓰기전 함수
-    //private void CheckMyQuest() // 가지고 있는 의뢰 체크
-    //{
-    //    questId.Clear();
-
-    //    string myQuestOfString = PlayerPrefs.GetString("QuestId");
-    //    string[] myQuestOfstrings = myQuestOfString.Split(',');
-
-    //    if (myQuestOfString == "") return;
-
-    //    foreach (string str in myQuestOfstrings)
-    //    {
-    //        questId.Add(Convert.ToInt32(str));
-    //        InstantiateQuestList(Convert.ToInt32(str));
-    //    }
-    //}
-
-    //private void InstantiateQuestList(int id)   // 의뢰 UI 인스턴스화
-    //{
-    //    var item = Instantiate(Resources.Load("UI/QuestSelectedUI") as GameObject);
-    //    item.transform.SetParent(pos);
-
-    //    //item.GetComponent<QuestSelectedUI>().questId = id;
-    //}
 }
