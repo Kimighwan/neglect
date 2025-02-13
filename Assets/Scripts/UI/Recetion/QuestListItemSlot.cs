@@ -20,7 +20,7 @@ public class QuestListItemSlot : InfiniteScrollItem
 
         var rectTransform = GetComponent<RectTransform>();
 
-        rectTransform.sizeDelta = new Vector2(311f, 515f);
+        rectTransform.sizeDelta = new Vector2(360f, 515f);
 
         questData = scrollData as QuestData;
 

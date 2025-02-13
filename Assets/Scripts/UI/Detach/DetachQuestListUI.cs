@@ -22,6 +22,7 @@ public class DetachQuestListUI : BaseUI
         base.SetInfo(uiData);
 
         SortQuest();
+        infiniteScrollList.layout.space = new Vector2(10f, 10f);
     }
 
     private void OnEnable()
@@ -126,5 +127,15 @@ public class DetachQuestListUI : BaseUI
         }
 
         SortQuest();
+    }
+
+
+    public void OnClickSelectBtn()
+    {
+        // 의뢰 처리 하는 곳에서 questData를 넘겨준다
+        // 의뢰 처리 하는 곳에서 모험가도 받게 될 것인데
+        // 위 두 개의 정보를 가지고 의뢰 시스템이 작동한다
+        PoolManager.Instance.DeleteQuestData();
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachQuestListUI>());
     }
 }

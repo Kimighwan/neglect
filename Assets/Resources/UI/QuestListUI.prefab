@@ -951,7 +951,6 @@ MonoBehaviour:
   infiniteScrollList: {fileID: 16041834907389872}
   sortBtnText: {fileID: 6096565028524849429}
   orderBtnText: {fileID: 9088287429997215237}
-  pos: {fileID: 5919233102653508618}
 --- !u!1 &6231500261305046227
 GameObject:
   m_ObjectHideFlags: 0

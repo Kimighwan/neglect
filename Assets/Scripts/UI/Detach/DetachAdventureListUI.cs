@@ -18,6 +18,7 @@ public class DetachAdventureListUI : BaseUI
         base.SetInfo(uiData);
 
         SortAdventure();
+        infiniteScrollList.layout.space = new Vector2(10f, 10f);
     }
 
     private void OnEnable()
@@ -249,5 +250,15 @@ public class DetachAdventureListUI : BaseUI
             default:
                 break;
         }
+    }
+
+
+    public void OnClickSelectBtn()  // 선택 완료 버튼
+    {
+        // 의뢰 처리 하는 곳에서 adventureData를 넘겨준다
+        // 의뢰 처리 하는 곳에서 의뢰도 받게 될 것인데
+        // 위 두 개의 정보를 가지고 의뢰 시스템이 작동한다
+        PoolManager.Instance.DeleteAdventureData();
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachAdventureListUI>());
     }
 }

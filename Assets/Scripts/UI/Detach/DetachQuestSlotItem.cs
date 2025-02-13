@@ -51,7 +51,7 @@ public class DetachQuestSlotItem : InfiniteScrollItem
     }
 
 
-    public void OnClickQuestBtn()
+    public void OnClickQuestBtn()   // 퀘스트 클릭
     {
         if(QuestData.questSelectedId == questid)
         {
@@ -61,14 +61,6 @@ public class DetachQuestSlotItem : InfiniteScrollItem
         else
         {
             QuestData.questSelectedId = questid;
-        }
-    }
-
-    public void OnClickSelectBtn()
-    {
-        if(QuestData.questSelectedId == 0)
-        {
-            return;
         }
     }
 }

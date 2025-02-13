@@ -19,10 +19,6 @@ public class AdventureListSlotItem : InfiniteScrollItem
     {
         base.UpdateData(scrollData);
 
-        //var rectTransform = GetComponent<RectTransform>();
-
-        //rectTransform.sizeDelta = new Vector2(160f, 160f);
-
         adventureData = scrollData as AdventureData;
 
         if (adventureData == null) return;
