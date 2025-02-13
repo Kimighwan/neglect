@@ -32,6 +32,7 @@ public class GameInfo : MonoBehaviour
     public Request request;
     private int requests;
     public int Requests { get { return requests; } set { requests = value; } }
+    public bool malpungseonOnce = false;
 
 
     private void Awake() {
@@ -51,6 +52,7 @@ public class GameInfo : MonoBehaviour
         if (timer >= 24f) {
             timer %= 24f;
             day += 1;
+            malpungseonOnce = false;
             gold += plusGold;
         }
     }

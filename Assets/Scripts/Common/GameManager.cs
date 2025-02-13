@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager gameManager;
     public ScriptMode scriptMode;
     public DialogMode dialogMode;
     private GameInfo info;
     private bool pause = false;
-    private bool once = false;
+    void Awake()
+    {
+        gameManager = this;
+    }
     void Start()
     {
         info = GameInfo.gameInfo;
@@ -18,18 +22,20 @@ public class GameManager : MonoBehaviour
         if (!pause && !scriptMode.isScriptMode) {
             info.UpdateGameInfo();
             TextHandler.textHandler.UpdateTexts();
-        }
-        if (info.Day == 2 && info.Timer > 8f && !once) {
-            dialogMode.PrepareDialogText(101811, 101816, true);
-            once = true;
+            dialogMode.UpdateDialog();
         }
     }
 
     public void PauseGame() {
         pause = !pause;
         info.gameSpeed = 1f;
+        dialogMode.ChangeDialogSpeed(1f);
     }
     public void QuickGame() {
         info.gameSpeed = 5f;
+        dialogMode.ChangeDialogSpeed(5f);
+    }
+    public bool IsPaused() {
+        return pause;
     }
 }

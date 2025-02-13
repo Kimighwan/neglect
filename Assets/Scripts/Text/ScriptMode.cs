@@ -64,6 +64,7 @@ public class ScriptMode : MonoBehaviour
             }
             
             ScriptData scriptData = scriptList[currentLine];
+            if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp);
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
             currentLine++;
@@ -92,11 +93,19 @@ public class ScriptMode : MonoBehaviour
 
         isTyping = false;
     }
-
     
     public void OnClickSkip()
     {
         currentLine = scriptList.Count;
         ShowNextScript();
+    }
+
+    private void ShowCharWithExp(string c, string e) {
+        if (c == "안나") {
+            
+        }
+        else if (c == "본부직원") {
+            
+        }
     }
 }
