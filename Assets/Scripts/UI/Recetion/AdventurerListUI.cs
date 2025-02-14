@@ -290,4 +290,10 @@ public class AdventurerListUI : BaseUI
                 break;
         }
     }
+
+    public void OnClickCloseBtnOfAdventureListUI()
+    {
+        CloseUI(true);
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdventureExportUI>());
+    }
 }
