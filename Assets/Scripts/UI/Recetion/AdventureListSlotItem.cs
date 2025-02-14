@@ -40,4 +40,18 @@ public class AdventureListSlotItem : InfiniteScrollItem
     {
         Debug.Log($"{adventureId}");
     }
+
+    public void OpenExportBtnUI()
+    {
+        var adventureExportUI = new BaseUIData();
+        UIManager.Instance.OpenUI<AdventureExportUI>(adventureExportUI);
+
+        var ui = UIManager.Instance.GetActiveUI<AdventureExportUI>();
+
+        ui.gameObject.transform.SetParent(this.transform);
+
+        var rectTransform = ui.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
+        rectTransform.sizeDelta = new Vector2(110f, 110f);
+    }
 }
