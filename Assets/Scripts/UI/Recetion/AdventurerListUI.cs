@@ -49,6 +49,7 @@ public class AdventurerListUI : BaseUI
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
 
+        infiniteScrollList.layout.space = new Vector2(0f, 20f);
     }
 
     private void OnEnable()
