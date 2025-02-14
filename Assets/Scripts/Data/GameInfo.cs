@@ -42,7 +42,7 @@ public class GameInfo : MonoBehaviour
     public void StartGameInfo() {
         gold = 10;
         day = 1;
-        timer = 8.0f;
+        timer = 80.0f;
         rooms = 1;
         level = 1;
         requests = 2;
@@ -50,8 +50,8 @@ public class GameInfo : MonoBehaviour
     }
     public void UpdateGameInfo() {
         timer += Time.deltaTime * gameSpeed;
-        if (timer >= 24f) {
-            timer %= 24f;
+        if (timer >= 240f) {
+            timer %= 240f;
             day += 1;
             malpungseonOnce = false;
             gold += plusGold;

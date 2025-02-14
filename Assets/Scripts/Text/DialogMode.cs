@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class DialogMode : MonoBehaviour
 {
-    private float minTypingSpeed = 0.02f;
-    private float maxTypingSpeed = 0.08f;
-    private float holdTime = 0.5f;
-    public float changeMinTypingSpeed = 0.02f;
-    public float changeMaxTypingSpeed = 0.08f;
+    private float minTypingSpeed = 0.2f;
+    private float maxTypingSpeed = 0.8f;
+    private float holdTime = 1f;
+    public float changeMinTypingSpeed = 0.2f;
+    public float changeMaxTypingSpeed = 0.8f;
     public float changeHoldTime = 0.5f;
 
     private TextMeshProUGUI textA;
@@ -28,7 +28,7 @@ public class DialogMode : MonoBehaviour
 
     public void UpdateDialog() {
         if (!GameInfo.gameInfo.malpungseonOnce && GameInfo.gameInfo.Day == ScriptObjectData.data.GetDialogStartDay(dialogIndex)) {
-            if (GameInfo.gameInfo.Timer > ScriptObjectData.data.GetDialogStartTime(dialogIndex)) {
+            if ((GameInfo.gameInfo.Timer/10) > ScriptObjectData.data.GetDialogStartTime(dialogIndex)) {
                 bool b = (dialogIndex % 2 == 0) ? true : false; 
                 PrepareDialogText(ScriptObjectData.data.GetDialogStartId(dialogIndex), ScriptObjectData.data.GetDialogEndId(dialogIndex), b);
                 GameInfo.gameInfo.malpungseonOnce = true;

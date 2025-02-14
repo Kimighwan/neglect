@@ -40,13 +40,13 @@ public class TextHandler : MonoBehaviour
         float t = GameInfo.gameInfo.Timer;
         string s = "";
         int i = (int)Math.Truncate(t);
-        if (i < 12) {
-            i = (i == 0) ? 12 : (i % 12);
-            s = $"AM {i}";
+        if (i < 120) {
+            int j = (i >= 0 && i < 10) ? 12 : (i/10 % 12);
+            s = $"AM {j}";
         }
         else {
-            i = (i == 12) ? 12 : (i % 12);
-            s = $"PM {i}";
+            int j = (i >= 120 && i < 130) ? 12 : (i/10 % 12);
+            s = $"PM {j}";
         }
         timeText.text = s;
     }

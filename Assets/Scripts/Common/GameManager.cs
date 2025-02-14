@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
         dialogMode.ChangeDialogSpeed(1f);
     }
     public void QuickGame() {
-        info.gameSpeed = 5f;
-        dialogMode.ChangeDialogSpeed(5f);
+        info.gameSpeed = 50f;
+        dialogMode.ChangeDialogSpeed(10f);
     }
     public bool IsPaused() {
         return pause;
