@@ -11,9 +11,17 @@ public class AdventureListSlotItem : InfiniteScrollItem
     public TextMeshProUGUI type;
     public TextMeshProUGUI m_class;
 
+    public Transform positionPos;
+    public Transform classPos;
+    public Transform typePos;
+
+
     private AdventureData adventureData;
 
     private int adventureId;
+    private string adventurePosition;
+    private string adventureType;
+    private string adventureClass;
 
     public override void UpdateData(InfiniteScrollData scrollData)
     {
@@ -25,10 +33,10 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
         adventureId = adventureData.adventureId;
         var adventureName = adventureData.adventureName;
-        var adventurePosition = adventureData.adventurePosition;
-        var adventureType = adventureData.adventureType;
+        adventurePosition = adventureData.adventurePosition;
+        adventureType = adventureData.adventureType;
         var adventureTier = adventureData.adventureTier;
-        var adventureClass = adventureData.adventureClass;
+        adventureClass = adventureData.adventureClass;
 
         m_name.text = adventureName;
         position.text = adventurePosition;
@@ -53,5 +61,53 @@ public class AdventureListSlotItem : InfiniteScrollItem
         var rectTransform = ui.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
         rectTransform.sizeDelta = new Vector2(110f, 110f);
+    }
+
+    public void PositionMouseOnUI()
+    {
+        UIManager.Instance.advemtureDetailDescText = adventurePosition;
+        var advemtureDetailDescUI = new BaseUIData();
+        UIManager.Instance.OpenUI<AdvemtureDetailDescUI>(advemtureDetailDescUI);
+
+        var ui = UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>();
+        ui.transform.SetParent(positionPos);
+        ui.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(50f, 0f, 0f);
+    }
+
+    public void PositionMouseOffUI()
+    {
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>());
+    }
+
+    public void ClassMouseOnUI()
+    {
+        UIManager.Instance.advemtureDetailDescText = adventureClass;
+        var advemtureDetailDescUI = new BaseUIData();
+        UIManager.Instance.OpenUI<AdvemtureDetailDescUI>(advemtureDetailDescUI);
+
+        var ui = UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>();
+        ui.transform.SetParent(classPos);
+        ui.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(50f, 0f, 0f);
+    }
+
+    public void ClassMouseOffUI()
+    {
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>());
+    }
+
+    public void TypeMouseOnUI()
+    {
+        UIManager.Instance.advemtureDetailDescText = adventureType;
+        var advemtureDetailDescUI = new BaseUIData();
+        UIManager.Instance.OpenUI<AdvemtureDetailDescUI>(advemtureDetailDescUI);
+
+        var ui = UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>();
+        ui.transform.SetParent(typePos);
+        ui.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(50f, 0f, 0f);
+    }
+
+    public void TypeMouseOffUI()
+    {
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>());
     }
 }

@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 5706276088280589875}
   - component: {fileID: 7876226473506020651}
   - component: {fileID: 3079772465772118887}
+  - component: {fileID: 1358312891001328798}
   m_Layer: 5
   m_Name: Class
   m_TagString: Untagged
@@ -173,6 +174,51 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1358312891001328798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127962892977542110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5051945767755214704}
+          m_TargetAssemblyTypeName: AdventureListSlotItem, Assembly-CSharp
+          m_MethodName: ClassMouseOnUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5051945767755214704}
+          m_TargetAssemblyTypeName: AdventureListSlotItem, Assembly-CSharp
+          m_MethodName: ClassMouseOffUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3198508185249782147
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +571,7 @@ GameObject:
   - component: {fileID: 8399020808487190996}
   - component: {fileID: 7994776987038101654}
   - component: {fileID: 5537615623145494719}
+  - component: {fileID: 6607435548351498572}
   m_Layer: 5
   m_Name: Position
   m_TagString: Untagged
@@ -648,6 +695,51 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6607435548351498572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7871350122915095181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5051945767755214704}
+          m_TargetAssemblyTypeName: AdventureListSlotItem, Assembly-CSharp
+          m_MethodName: PositionMouseOnUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5051945767755214704}
+          m_TargetAssemblyTypeName: AdventureListSlotItem, Assembly-CSharp
+          m_MethodName: PositionMouseOffUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8565420607386773886
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,8 +770,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1843577088166552110}
-  - {fileID: 4712507079498898889}
   - {fileID: 987361781893039685}
+  - {fileID: 4712507079498898889}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -704,6 +796,9 @@ MonoBehaviour:
   position: {fileID: 5537615623145494719}
   type: {fileID: 199999249482035277}
   m_class: {fileID: 3079772465772118887}
+  positionPos: {fileID: 8399020808487190996}
+  classPos: {fileID: 5706276088280589875}
+  typePos: {fileID: 7194408553641659118}
 --- !u!1 &9108140064133163060
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,6 +810,7 @@ GameObject:
   - component: {fileID: 7194408553641659118}
   - component: {fileID: 761909057914939822}
   - component: {fileID: 199999249482035277}
+  - component: {fileID: 4662197511132167203}
   m_Layer: 5
   m_Name: Type
   m_TagString: Untagged
@@ -838,3 +934,48 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4662197511132167203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9108140064133163060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5051945767755214704}
+          m_TargetAssemblyTypeName: AdventureListSlotItem, Assembly-CSharp
+          m_MethodName: TypeMouseOnUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5051945767755214704}
+          m_TargetAssemblyTypeName: AdventureListSlotItem, Assembly-CSharp
+          m_MethodName: TypeMouseOffUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
