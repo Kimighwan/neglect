@@ -78,6 +78,8 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 systemScript2 = data["script2"].ToString(),
                 systemScript3 = data["script3"].ToString(),
                 systemScript4 = data["script4"].ToString(),
+                systemScript5 = data["script5"].ToString(),
+                endPage = Convert.ToInt32(data["count"]),
             };
 
             SystemDescDataTable.Add(systemDescData);
@@ -219,6 +221,8 @@ public class SystemDescData : BaseUIData
     public string systemScript2;
     public string systemScript3;
     public string systemScript4;
+    public string systemScript5;
+    public int endPage;
 }
 
 public class AdventureData : InfiniteScrollData // BaseUIData
