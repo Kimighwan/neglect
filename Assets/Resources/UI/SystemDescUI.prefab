@@ -636,7 +636,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 122413954869978684}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5190774287995995750}
+        m_TargetAssemblyTypeName: SystemDescUI, Assembly-CSharp
+        m_MethodName: BeforeBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3180985991160780843
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: X
+  m_text: '>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f89fb0e94682094c90b6982d0d0c59e, type: 2}
   m_sharedMaterial: {fileID: -5758724124051410455, guid: 7f89fb0e94682094c90b6982d0d0c59e, type: 2}
@@ -1238,7 +1250,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5190774287995995750}
         m_TargetAssemblyTypeName: SystemDescUI, Assembly-CSharp
-        m_MethodName: BackBtn
+        m_MethodName: BackBtnOfSystemDescUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1638,8 +1650,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5190774287995995750}
         m_TargetAssemblyTypeName: SystemDescUI, Assembly-CSharp
-        m_MethodName: OnClickNextPage
-        m_Mode: 3
+        m_MethodName: NextBtn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1713,7 +1725,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: X
+  m_text: <
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f89fb0e94682094c90b6982d0d0c59e, type: 2}
   m_sharedMaterial: {fileID: -5758724124051410455, guid: 7f89fb0e94682094c90b6982d0d0c59e, type: 2}
@@ -1838,6 +1850,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiAnim: {fileID: 0}
   txtDesc: {fileID: 3543367238021502139}
+  beforeObj: {fileID: 3156564016424567065}
+  nextObj: {fileID: 6448004859242084030}
 --- !u!1 &9151951843758912978
 GameObject:
   m_ObjectHideFlags: 0
