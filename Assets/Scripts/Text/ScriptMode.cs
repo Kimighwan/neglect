@@ -64,7 +64,7 @@ public class ScriptMode : MonoBehaviour
             }
             
             ScriptData scriptData = scriptList[currentLine];
-            if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp);
+            if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptPos);
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
             currentLine++;
@@ -76,6 +76,7 @@ public class ScriptMode : MonoBehaviour
             data.panel.SetActive(false);
             data.skipBtn.SetActive(false);
             scriptList.Clear();
+            this.GetComponent<ScriptImageHandler>().EndTheScripts();
             isScriptMode = false;
         }
     }
@@ -100,12 +101,15 @@ public class ScriptMode : MonoBehaviour
         ShowNextScript();
     }
 
-    private void ShowCharWithExp(string c, string e) {
-        if (c == "안나") {
-            
-        }
-        else if (c == "본부직원") {
-            
-        }
+    private void ShowCharWithExp(string c, string e, string p) {
+        int pos = 1;
+        if (p == "left") pos = 0;
+        else if (p == "middle") pos = 1;
+        else if (p == "right") pos = 2;
+
+        string charName = "";
+        if (c == "안나") charName = "Anna";
+        else if (c == "본부직원") {}
+        this.GetComponent<ScriptImageHandler>().SetCharacter(charName, e, pos);
     }
 }

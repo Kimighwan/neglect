@@ -186,6 +186,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
             {
                 scriptId = Convert.ToInt32(data["scr_id"]),
                 scriptSpeaker = data["char"].ToString(),
+                scriptPos = data["pos"].ToString(),
                 scriptExp = data["exp"].ToString(),
                 scriptLine = data["script"].ToString(),
             };
@@ -256,6 +257,7 @@ public class QuestData : InfiniteScrollData // BaseUIData
 public class ScriptData : BaseUIData {
     public int scriptId;
     public string scriptSpeaker;
+    public string scriptPos;
     public string scriptExp;
     public string scriptLine;
 }
