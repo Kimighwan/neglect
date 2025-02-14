@@ -9,6 +9,7 @@ using UnityEngine;
 public class GameInfo : MonoBehaviour
 {
     public static GameInfo gameInfo;
+    public GameObject roomList;
     // 게임 진행 속도 조절
     public float gameSpeed = 1f;
     // 골드 정보
@@ -63,20 +64,22 @@ public class GameInfo : MonoBehaviour
         }
         return false;
     }
-    // 레벨 업 버튼 누름
-    public void OnClickLevelUp(GameObject roomList) {
+
+    // 레벨 업 Yes 버튼 누름
+    public bool OnClickLevelUpYes() {
         if (level < 5) {
             if (level == 1 && ChangeGold(-neededGold[0])) {}
             else if (level == 2 && ChangeGold(-neededGold[1])) {}
             else if (level == 3 && ChangeGold(-neededGold[2])) {}
             else if (level == 4 && ChangeGold(-neededGold[3])) {}
-            else return;
+            else return false;
             roomList.GetComponent<Room>().ActiveRoom();
             request.ActiveRequest();
             GameInfo.gameInfo.Level++;
             plusGold = rooms * 100;
-            UIManager.Instance.OnClickLevelUp();
+            return true;
         }
+        return false;
     }
     public int GetNeededGold() {
         if (level == 5) return 0;

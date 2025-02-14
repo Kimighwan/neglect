@@ -167,7 +167,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         
     }
     public void DownRequest(GameObject obj) {
-        Vector2 targetPos = new Vector2(0f, -230f);
+        Vector2 targetPos = new Vector2(0f, -235f);
         RectTransform panel = obj.GetComponent<RectTransform>();
         requestUpBtn.SetActive(true);
         requestDownBtn.SetActive(false);
