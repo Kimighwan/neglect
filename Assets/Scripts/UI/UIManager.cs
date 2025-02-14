@@ -6,6 +6,8 @@ public class UIManager : SingletonBehaviour<UIManager>
 {
     public string advemtureDetailDescText;
 
+    public int exportAdventureId;
+
     public Transform UICanvasTrs; // 컨버스 위치
     public Transform ClosedUITrs; // 비활성 UI 저장소 위치
 

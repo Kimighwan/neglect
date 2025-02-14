@@ -24,6 +24,8 @@ public enum AdventureOrderType
 
 public class AdventurerListUI : BaseUI
 {
+    public static AdventurerListUI Instance;
+
     public InfiniteScroll infiniteScrollList;
 
     public TextMeshProUGUI sortBtnText;
@@ -32,6 +34,18 @@ public class AdventurerListUI : BaseUI
 
     private AdventureSortType adventureSortType = AdventureSortType.GRADE;
     private AdventureOrderType adventureOrderType = AdventureOrderType.DOWN;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public override void SetInfo(BaseUIData uiData)
     {
@@ -58,6 +72,13 @@ public class AdventurerListUI : BaseUI
         SetScroll();
     }
 
+    public void UpdateScrollItem()
+    {
+        PoolManager.Instance.SetAdventureListData();
+        SortAdventure();
+        SetScroll();
+        Debug.Log("스크롤 업데이트");
+    }
 
     public void OnClickBackBtnOfAdventureListUI()   // 뒤로가기
     {
@@ -294,6 +315,7 @@ public class AdventurerListUI : BaseUI
     public void OnClickCloseBtnOfAdventureListUI()
     {
         CloseUI(true);
-        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdventureExportUI>());
+        if(UIManager.Instance.GetActiveUI<AdventureExportUI>())
+            UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdventureExportUI>());
     }
 }

@@ -44,10 +44,12 @@ public class AdventureListSlotItem : InfiniteScrollItem
         m_class.text = adventureClass;
     }
 
+
     public void OnClick()
     {
         Debug.Log($"{adventureId}");
     }
+
 
     public void OpenExportBtnUI()
     {
@@ -61,7 +63,10 @@ public class AdventureListSlotItem : InfiniteScrollItem
         var rectTransform = ui.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
         rectTransform.sizeDelta = new Vector2(110f, 110f);
+
+        UIManager.Instance.exportAdventureId = adventureId;
     }
+
 
     public void PositionMouseOnUI()
     {
@@ -79,6 +84,7 @@ public class AdventureListSlotItem : InfiniteScrollItem
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>());
     }
 
+
     public void ClassMouseOnUI()
     {
         UIManager.Instance.advemtureDetailDescText = adventureClass;
@@ -90,10 +96,12 @@ public class AdventureListSlotItem : InfiniteScrollItem
         ui.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(50f, 0f, 0f);
     }
 
+
     public void ClassMouseOffUI()
     {
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>());
     }
+
 
     public void TypeMouseOnUI()
     {
@@ -105,6 +113,7 @@ public class AdventureListSlotItem : InfiniteScrollItem
         ui.transform.SetParent(typePos);
         ui.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(50f, 0f, 0f);
     }
+
 
     public void TypeMouseOffUI()
     {
