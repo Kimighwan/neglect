@@ -77,7 +77,6 @@ public class AdventurerListUI : BaseUI
         PoolManager.Instance.SetAdventureListData();
         SortAdventure();
         SetScroll();
-        Debug.Log("스크롤 업데이트");
     }
 
     public void OnClickBackBtnOfAdventureListUI()   // 뒤로가기

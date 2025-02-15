@@ -16,7 +16,6 @@ public class AdventureExportUI : BaseUI
     {
         UIManager.Instance.CloseUI(this);
 
-        Debug.Log("모험가 방출!!");
         // 제거하는 모험가에 따라 골드 얻기
         // AddGold()
 
