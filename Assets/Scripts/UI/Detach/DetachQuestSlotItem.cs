@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DetachQuestSlotItem : InfiniteScrollItem
 {
+    public QuestManager questManager;
+
     public TextMeshProUGUI txtName;
     public TextMeshProUGUI txtLevel;
     public TextMeshProUGUI txtTime;
@@ -56,11 +58,13 @@ public class DetachQuestSlotItem : InfiniteScrollItem
         if(QuestData.questSelectedId == questid)
         {
             QuestData.questSelectedId = 0;
+            questManager.questData = null;
             checkImage.SetActive(false);
         }
         else
         {
             QuestData.questSelectedId = questid;
+            questManager.questData = questData;
         }
     }
 }

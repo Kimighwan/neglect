@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DetachAdventureSlotItem : InfiniteScrollItem
 {
+    public QuestManager questManager;
+
     public TextMeshProUGUI txtName;
     public TextMeshProUGUI txtPosition;
     public TextMeshProUGUI txtClass;
@@ -55,15 +57,18 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
         if (AdventureData.adventureSelectId.Contains(adventureid))
         {
             AdventureData.adventureSelectId.Remove(adventureid);
+            questManager.adventureDatas.Remove(adventureData);
             return;
         }
 
         if (AdventureData.adventureSelectId.Count == 4)
         {
             AdventureData.adventureSelectId.RemoveAt(0);
+            questManager.adventureDatas.RemoveAt(0);
         }
 
         AdventureData.adventureSelectId.Add(adventureid);
+        questManager.adventureDatas.Add(adventureData);
     }
 
 }
