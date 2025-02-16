@@ -34,6 +34,14 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     private float weakRate;             // 약점 비율(마이너스 적용)
     private float strongRate;           // 강점 비율
 
+    private int frontCount = 0;         // 전위 수
+    private int midCount = 0;           // 중위 수
+    private int backCount = 0;          // 후위 수
+
+    private int A = 0;                  // 공격 수
+    private int B = 0;                  // 방어 수
+    private int C = 0;                  // 지원 수
+
     public void OnClickQusetStart(int index)
     {
         if (DoCheck(index)) return;
@@ -41,10 +49,10 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         SetQuest(index);
 
 
-        SetSameScore(index);         // 중복 비율
-        SetMixScore();          // 조합 비율
-        SetStrongAndWeak(index);     // 약점 & 강점 비율
-        SetTier(index);              // 등급 점수
+        SetSameScore(index);            // 중복 비율
+        SetMixScore(index);             // 조합 비율
+        SetStrongAndWeak(index);        // 약점 & 강점 비율
+        SetTier(index);                 // 등급 점수
     }
 
     private bool DoCheck(int index)
@@ -71,21 +79,8 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         monsterStrong = monsterData.monsterStrength.Substring(0, 2);
     }
 
-    private void SetMixScore()
-    {
-
-    }
-
     private void SetSameScore(int index)
     {
-        int frontCount = 0;
-        int midCount = 0;
-        int backCount = 0;
-
-        int A = 0;  // 공격
-        int B = 0;  // 방어
-        int C = 0;  // 지원
-
         foreach (var item in adventureDatas[index])
         {
             // 포지션
@@ -146,6 +141,17 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         {
             sameClassRate = 0.5f;
         }
+    }
+
+    private void SetMixScore(int index)
+    {
+        if (frontCount == 1 && backCount == 1) mixPositionRate = 0.1f;
+        if(frontCount == 1 && midCount == 1 && backCount == 1) mixPositionRate = 0.3f;
+        if (frontCount == 1 && midCount == 1 && backCount == 2) mixPositionRate = 0.5f;
+
+        if (A == 1 && B == 1) misClassRate = 0.1f;
+        if (A == 1 && B == 1 && C == 1) misClassRate = 0.3f;
+        if(A == 2 && B == 1 && C == 1) misClassRate = 0.5f;
     }
 
     private void SetStrongAndWeak(int index)
