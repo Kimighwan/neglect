@@ -6,14 +6,19 @@ using UnityEngine;
 using static UnityEditor.Progress;
 
 
-public class QuestManager : MonoBehaviour
+public class QuestManager : SingletonBehaviour<QuestManager>
 {
-    public List<AdventureData> adventureDatas = new List<AdventureData>(); // 모험가들
-    public QuestData questData;     // 의뢰
+    // 파견창 Index에 따른 모험가 리스트
+    public Dictionary<int, List<AdventureData>> adventureDatas = new Dictionary<int, List<AdventureData>>();
+    // 파견창 Index에 따른 QuestData
+    public Dictionary<int, QuestData> questData = new Dictionary<int, QuestData>();
+
+    public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 결과 저장
 
 
     private float leftTime;             // 의뢰 완성까지 남은 시간
 
+    private int targetScore;            // 목표 점수
     private int monsterId;              // 몬스터 Id
     private int monsterStrongSize;      // 몬스터 강점 퍼센트
     private int monsterWeakSize;        // 몬스터 약점 퍼센트
@@ -28,33 +33,49 @@ public class QuestManager : MonoBehaviour
     private float misClassRate;         // 클래스 조합 비율
     private float weakRate;             // 약점 비율(마이너스 적용)
     private float strongRate;           // 강점 비율
-    public void OnClickQusetStart()
+    private float dieRate;              // 전멸 확률
+    private float bigRate;              // 대성공 확률
+
+    private int frontCount = 0;         // 전위 수
+    private int midCount = 0;           // 중위 수
+    private int backCount = 0;          // 후위 수
+
+    private int A = 0;                  // 공격 수
+    private int B = 0;                  // 방어 수
+    private int C = 0;                  // 지원 수
+
+    public void OnClickQusetStart(int index)
     {
-        if (DoCheck()) return;
+        if (DoCheck(index)) return;
 
-        SetQuest();
+        SetQuest(index);
 
 
-        SetSameScore();         // 중복 비율
-        SetMixScore();          // 조합 비율
-        SetStrongAndWeak();     // 약점 & 강점 비율
-        SetTier();              // 등급 점수
+        SetSameScore(index);            // 중복 비율
+        SetMixScore(index);             // 조합 비율
+        SetStrongAndWeak(index);        // 약점 & 강점 비율
+        SetTier(index);                 // 등급 점수
     }
 
-    private bool DoCheck()
+    private bool DoCheck(int index)
     {
-        if (questData == null || adventureDatas.Count != 4)
+        if (questData[index] == null)
         {
-            Debug.Log("퀘스트 또는 모험가를 다시 선택 해주세요.");
+            Debug.Log("퀘스트를 다시 선택 해주세요.");
             return true ;
+        }
+        else if (adventureDatas[index].Count != 4)
+        {
+            Debug.Log("모험가를 다시 선택 해주세요.");
+            return true;
         }
 
         return false ;
     }
 
-    private void SetQuest()
+    private void SetQuest(int index)
     {
-        monsterId = questData.questMonsterDescId;    // 몬스터 ID 체크
+        monsterId = questData[index].questMonsterDescId;    // 몬스터 ID 체크
         
         var monsterData = DataTableManager.Instance.GetMonsterDescData(monsterId);
 
@@ -63,24 +84,32 @@ public class QuestManager : MonoBehaviour
 
         monsterStrongSize = Convert.ToInt32(Regex.Replace(monsterData.monsterStrength, @"\D", ""));
         monsterStrong = monsterData.monsterStrength.Substring(0, 2);
+
+        var questLevel = questData[index].questLevel;
+
+        switch (questLevel)
+        {
+            case "브론즈":
+                targetScore = 400;
+                break;
+            case "실버":
+                targetScore = 900;
+                break;
+            case "골드":
+                targetScore = 1400;
+                break;
+            case "플래티넘":
+                targetScore = 1900;
+                break;
+            case "다이아":
+                targetScore = 2400;
+                break;
+        }
     }
 
-    private void SetMixScore()
+    private void SetSameScore(int index)
     {
-
-    }
-
-    private void SetSameScore()
-    {
-        int frontCount = 0;
-        int midCount = 0;
-        int backCount = 0;
-
-        int A = 0;  // 공격
-        int B = 0;  // 방어
-        int C = 0;  // 지원
-
-        foreach (var item in adventureDatas)
+        foreach (var item in adventureDatas[index])
         {
             // 포지션
             if(item.adventurePosition == "전위")
@@ -142,9 +171,20 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    private void SetStrongAndWeak()
+    private void SetMixScore(int index)
     {
-        foreach (var item in adventureDatas)
+        if (frontCount == 1 && backCount == 1) mixPositionRate = 0.1f;
+        if(frontCount == 1 && midCount == 1 && backCount == 1) mixPositionRate = 0.3f;
+        if (frontCount == 1 && midCount == 1 && backCount == 2) mixPositionRate = 0.5f;
+
+        if (A == 1 && B == 1) misClassRate = 0.1f;
+        if (A == 1 && B == 1 && C == 1) misClassRate = 0.3f;
+        if(A == 2 && B == 1 && C == 1) misClassRate = 0.5f;
+    }
+
+    private void SetStrongAndWeak(int index)
+    {
+        foreach (var item in adventureDatas[index])
         {
             if (item.adventureType == monsterWeak)
             {
@@ -158,9 +198,9 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    private void SetTier()
+    private void SetTier(int index)
     {
-        foreach (var item in adventureDatas)
+        foreach (var item in adventureDatas[index])
         {
             string tier = item.adventureTier;
             switch (tier)   // 모험가 등급 점수
@@ -184,5 +224,45 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    
+    public void Calculation(int index)
+    {
+        float rate = samePositionRate + sameClassRate + mixPositionRate + misClassRate + strongRate - weakRate;
+        int addScore = (int)(tierScore * rate);
+
+        int sumScore = addScore + tierScore;
+
+        if(targetScore < sumScore)
+        {
+            int tmp = sumScore - targetScore;
+            bigRate = (tmp / 10) * 0.5f;
+        }
+        else if(targetScore > sumScore)
+        {
+            int tmp = targetScore - sumScore;
+            dieRate = (tmp / 10) * 0.1f;
+        }
+
+        float nomalRate = 100f - (bigRate + dieRate);
+
+        int randomValue = UnityEngine.Random.Range(1, 101);
+
+        float saveTmp = dieRate;
+
+        if (saveTmp > randomValue)
+        {
+            resultList[index] = -1;     // 전멸
+            return;
+        }
+        saveTmp += nomalRate;
+
+        if (saveTmp > randomValue)
+        {
+            resultList[index] = 0;      // 일반 성공
+            return;
+        }
+
+        resultList[index] = 1;          // 대성공
+    }
 }
 
