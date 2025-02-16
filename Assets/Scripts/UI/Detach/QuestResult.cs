@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,13 +9,21 @@ public class QuestResult : BaseUI
     public TextMeshProUGUI txt;
     public GameObject receiptBtn;
 
-    public Dictionary<int, int> list = new Dictionary<int, int>();  // 파견 Index에 따른 결과 저장
-
+    private int resultIndex;        // 파견창 인덱스
+    private int resul;              // 결과 / -1 : 전멸 / 0 : 일반 성공 / 1 : 대성공
 
     private void Start()
     {
         receiptBtn.SetActive(false);
         StartCoroutine(UpdateResultCo());
+    }
+
+    public override void SetInfo(BaseUIData uiData)
+    {
+        base.SetInfo(uiData);
+
+        var questResultIndex = uiData as QuestResultIndex;
+        resultIndex = questResultIndex.index;
     }
 
     public override void Init(Transform anchor)
@@ -23,6 +32,9 @@ public class QuestResult : BaseUI
 
         var rectTransform = GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(800f, 450f);
+
+        QuestManager.Instance.Calculation(resultIndex);
+        resul = QuestManager.Instance.resultList[resultIndex];
     }
 
     public void OnClickReceiptBtn()

@@ -13,12 +13,12 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     // 파견창 Index에 따른 QuestData
     public Dictionary<int, QuestData> questData = new Dictionary<int, QuestData>();
 
-    //public List<AdventureData> adventureDatas = new List<AdventureData>(); // 모험가들
-    //public QuestData questData;     // 의뢰
+    public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 결과 저장
 
 
     private float leftTime;             // 의뢰 완성까지 남은 시간
 
+    private int targetScore;            // 목표 점수
     private int monsterId;              // 몬스터 Id
     private int monsterStrongSize;      // 몬스터 강점 퍼센트
     private int monsterWeakSize;        // 몬스터 약점 퍼센트
@@ -33,6 +33,8 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     private float misClassRate;         // 클래스 조합 비율
     private float weakRate;             // 약점 비율(마이너스 적용)
     private float strongRate;           // 강점 비율
+    private float dieRate;              // 전멸 확률
+    private float bigRate;              // 대성공 확률
 
     private int frontCount = 0;         // 전위 수
     private int midCount = 0;           // 중위 수
@@ -77,6 +79,27 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         monsterStrongSize = Convert.ToInt32(Regex.Replace(monsterData.monsterStrength, @"\D", ""));
         monsterStrong = monsterData.monsterStrength.Substring(0, 2);
+
+        var questLevel = questData[index].questLevel;
+
+        switch (questLevel)
+        {
+            case "브론즈":
+                targetScore = 400;
+                break;
+            case "실버":
+                targetScore = 900;
+                break;
+            case "골드":
+                targetScore = 1400;
+                break;
+            case "플래티넘":
+                targetScore = 1900;
+                break;
+            case "다이아":
+                targetScore = 2400;
+                break;
+        }
     }
 
     private void SetSameScore(int index)
@@ -196,5 +219,38 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         }
     }
 
+    
+    public void Calculation(int index)
+    {
+        float rate = samePositionRate + sameClassRate + mixPositionRate + misClassRate + strongRate - weakRate;
+        int addScore = (int)(tierScore * rate);
+
+        int sumScore = addScore + tierScore;
+
+        if(targetScore < sumScore)
+        {
+            int tmp = sumScore - targetScore;
+            bigRate = (tmp / 10) * 0.5f;
+        }
+        else if(targetScore > sumScore)
+        {
+            int tmp = targetScore - sumScore;
+            dieRate = (tmp / 10) * 0.1f;
+        }
+
+        float nomalRate = 100f - (bigRate + dieRate);
+
+        int randomValue = UnityEngine.Random.Range(1, 101);
+
+        float saveTmp = dieRate;
+
+        if (saveTmp > randomValue) resultList[index] = - 1;   // 전멸
+
+        saveTmp += nomalRate;
+
+        if (saveTmp > randomValue) return 0;    // 일반 성공
+
+        return 1;                               // 대성공
+    }
 }
 

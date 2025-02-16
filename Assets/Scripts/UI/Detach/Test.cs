@@ -16,9 +16,9 @@ public class Test : MonoBehaviour
         UIManager.Instance.OpenUI<DetachAdventureListUI>(detachAdventureUI);
     }
 
-    public void OnClickQuestResultTestBtn()
+    public void OnClickQuestResultTestBtn(int index)
     {
-        var questResult = new BaseUIData();
+        var questResult = new QuestResultIndex(index);
         UIManager.Instance.OpenUI<QuestResult>(questResult);
     }
 }
@@ -38,6 +38,16 @@ public class QuestIndex : BaseUIData
     public int index;
 
     public QuestIndex(int i)
+    {
+        index = i;
+    }
+}
+
+public class QuestResultIndex : BaseUIData
+{
+    public int index;
+
+    public QuestResultIndex(int i)
     {
         index = i;
     }
