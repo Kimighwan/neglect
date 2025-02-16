@@ -10,7 +10,7 @@ public class QuestResult : BaseUI
     public GameObject receiptBtn;
 
     private int resultIndex;        // 파견창 인덱스
-    private int resul;              // 결과 / -1 : 전멸 / 0 : 일반 성공 / 1 : 대성공
+    private int result;              // 결과 / -1 : 전멸 / 0 : 일반 성공 / 1 : 대성공
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class QuestResult : BaseUI
         rectTransform.sizeDelta = new Vector2(800f, 450f);
 
         QuestManager.Instance.Calculation(resultIndex);
-        resul = QuestManager.Instance.resultList[resultIndex];
+        result = QuestManager.Instance.resultList[resultIndex];
     }
 
     public void OnClickReceiptBtn()
@@ -51,7 +51,20 @@ public class QuestResult : BaseUI
 
         yield return new WaitForSeconds(2f);
 
-        txt.text = "의뢰 성공";
-        receiptBtn.SetActive(true);
+        if(result == 0)
+        {
+            txt.text = "의뢰 성공";
+            receiptBtn.SetActive(true);
+        }
+        else if(result == 1)
+        {
+            txt.text = "의뢰 대성공!!!";
+            receiptBtn.SetActive(true);
+        }
+        else if(result == -1)
+        {
+            txt.text = "의뢰 실패...";
+            receiptBtn.SetActive(false);
+        }
     }
 }

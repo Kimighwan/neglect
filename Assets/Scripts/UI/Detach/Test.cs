@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
+    public GameObject image;
+    public GameObject btn;
     public void OnClickQuestTestBtn(int index)
     {
         var detachQuestUI = new QuestIndex(index);
@@ -25,6 +27,15 @@ public class Test : MonoBehaviour
     public void OnClickQuestStart(int index)
     {
         QuestManager.Instance.OnClickQusetStart(index);
+        image.SetActive(true);
+        StartCoroutine(testt());
+    }
+
+    private IEnumerator testt()
+    {
+        yield return new WaitForSeconds(1.5f);
+        image.SetActive(false);
+        btn.SetActive(true);
     }
 }
 
