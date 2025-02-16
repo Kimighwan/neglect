@@ -9,6 +9,7 @@ public class DetachAdventureListUI : BaseUI
     public TextMeshProUGUI sortBtnText;
     public TextMeshProUGUI orderBtnText;
 
+    public int adventureIndex;      // 파견에서 몇번째 파견창인지
 
     private AdventureSortType adventureSortType = AdventureSortType.GRADE;
     private AdventureOrderType adventureOrderType = AdventureOrderType.DOWN;
@@ -16,6 +17,9 @@ public class DetachAdventureListUI : BaseUI
     public override void SetInfo(BaseUIData uiData)
     {
         base.SetInfo(uiData);
+
+        var adventureIndexClass = uiData as AdventureIndexClass;
+        adventureIndex = adventureIndexClass.index;
 
         SortAdventure();
         infiniteScrollList.layout.space = new Vector2(10f, 10f);

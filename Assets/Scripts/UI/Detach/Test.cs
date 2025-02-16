@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    public void OnClickQuestTestBtn()
+    public void OnClickQuestTestBtn(int index)
     {
-        var detachQuestUI = new BaseUIData();
+        var detachQuestUI = new QuestIndex(index);
         UIManager.Instance.OpenUI<DetachQuestListUI>(detachQuestUI);
     }
 
-    public void OnClickAdventureTestBtn()
+    public void OnClickAdventureTestBtn(int index)
     {
-        var detachAdventureUI = new BaseUIData();
+        var detachAdventureUI = new AdventureIndexClass(index);
         UIManager.Instance.OpenUI<DetachAdventureListUI>(detachAdventureUI);
     }
 
@@ -20,5 +20,25 @@ public class Test : MonoBehaviour
     {
         var questResult = new BaseUIData();
         UIManager.Instance.OpenUI<QuestResult>(questResult);
+    }
+}
+
+public class AdventureIndexClass : BaseUIData
+{
+    public int index;
+
+    public AdventureIndexClass(int i)
+    {
+        index = i;
+    }
+}
+
+public class QuestIndex : BaseUIData
+{
+    public int index;
+
+    public QuestIndex(int i)
+    {
+        index = i;
     }
 }

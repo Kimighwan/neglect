@@ -12,14 +12,19 @@ public class DetachQuestListUI : BaseUI
     public TextMeshProUGUI sortBtnText;
     public TextMeshProUGUI orderBtnText;
 
+    public int qusetIndex;     // 파견에서 몇번째 파견창인지
 
     // private List<int> questId = new List<int>(); // 스크롤 쓰기 전 변수
     private QuestSortType questSortType = QuestSortType.Level;
     private QuestOrderType questOrderType = QuestOrderType.DOWN;
 
+
     public override void SetInfo(BaseUIData uiData)
     {
         base.SetInfo(uiData);
+
+        var questIndexClass = uiData as QuestIndex;
+        qusetIndex = questIndexClass.index;
 
         SortQuest();
         infiniteScrollList.layout.space = new Vector2(10f, 10f);

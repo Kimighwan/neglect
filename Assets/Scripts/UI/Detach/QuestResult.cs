@@ -8,6 +8,8 @@ public class QuestResult : BaseUI
     public TextMeshProUGUI txt;
     public GameObject receiptBtn;
 
+    public Dictionary<int, int> list = new Dictionary<int, int>();  // 파견 Index에 따른 결과 저장
+
 
     private void Start()
     {
