@@ -16,7 +16,7 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
     private AdventureData adventureData;
 
     private int adventureid;
-    private List<AdventureData> adList = new List<AdventureData>();
+    private static List<AdventureData> adList = new List<AdventureData>();
 
     public override void UpdateData(InfiniteScrollData scrollData)
     {
@@ -54,7 +54,7 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
 
     public void OnClickAdventureBtn()   // 모험가 클릭
     {
-        DetachAdventureListUI tmp = UIManager.Instance.GetActiveUI<DetachQuestListUI>() as DetachAdventureListUI;
+        DetachAdventureListUI tmp = UIManager.Instance.GetActiveUI<DetachAdventureListUI>() as DetachAdventureListUI;
 
         if (AdventureData.adventureSelectId.Contains(adventureid))
         {

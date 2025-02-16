@@ -21,6 +21,11 @@ public class Test : MonoBehaviour
         var questResult = new QuestResultIndex(index);
         UIManager.Instance.OpenUI<QuestResult>(questResult);
     }
+
+    public void OnClickQuestStart(int index)
+    {
+        QuestManager.Instance.OnClickQusetStart(index);
+    }
 }
 
 public class AdventureIndexClass : BaseUIData

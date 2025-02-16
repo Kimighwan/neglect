@@ -59,10 +59,15 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     private bool DoCheck(int index)
     {
-        if (questData[index] == null || adventureDatas[index].Count != 4)
+        if (questData[index] == null)
         {
-            Debug.Log("퀘스트 또는 모험가를 다시 선택 해주세요.");
+            Debug.Log("퀘스트를 다시 선택 해주세요.");
             return true ;
+        }
+        else if (adventureDatas[index].Count != 4)
+        {
+            Debug.Log("모험가를 다시 선택 해주세요.");
+            return true;
         }
 
         return false ;
@@ -244,13 +249,20 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         float saveTmp = dieRate;
 
-        if (saveTmp > randomValue) resultList[index] = - 1;   // 전멸
-
+        if (saveTmp > randomValue)
+        {
+            resultList[index] = -1;     // 전멸
+            return;
+        }
         saveTmp += nomalRate;
 
-        if (saveTmp > randomValue) return 0;    // 일반 성공
+        if (saveTmp > randomValue)
+        {
+            resultList[index] = 0;      // 일반 성공
+            return;
+        }
 
-        return 1;                               // 대성공
+        resultList[index] = 1;          // 대성공
     }
 }
 
