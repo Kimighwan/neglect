@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AdventurerUI : BaseUI
 {
+    public TextMeshProUGUI txt;
+
     private List<GameObject> uiListPool = new List<GameObject>();   // 모험가 카드 3장 Pool
 
     private void Awake()
@@ -18,6 +21,31 @@ public class AdventurerUI : BaseUI
 
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
+    }
+
+    private void Update()
+    {
+        if(GameInfo.gameInfo.Level == 1)
+        {
+            txt.text = "확률 : 79:20:1:0:0";
+        }
+        else if (GameInfo.gameInfo.Level == 2)
+        {
+            txt.text = "확률 : 44:40:15:1:0";
+        }
+        else if (GameInfo.gameInfo.Level == 3)
+        {
+            txt.text = "확률 : 19:40:30:10:1";
+        }
+        else if (GameInfo.gameInfo.Level == 4)
+        {
+            txt.text = "확률 : 0:20:50:25:5";
+        }
+        else
+        {
+            txt.text = "확률 : 0:0:50:40:10";
+        }
+
     }
 
     private void SetAdventureList() // 모험가 리스트 생성

@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TodayQuestUI : BaseUI
 {
+    public TextMeshProUGUI txt;
+
     private List<GameObject> uiListPool = new List<GameObject>();   // 의뢰 종이 3장 Pool
 
     private void Awake()
@@ -18,6 +21,30 @@ public class TodayQuestUI : BaseUI
 
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
+    }
+
+    private void Update()
+    {
+        if(GameInfo.gameInfo.Level == 1)
+        {
+            txt.text = "확률 : 80:20:0:0:0";
+        }
+        else if (GameInfo.gameInfo.Level == 2)
+        {
+            txt.text = "확률 : 45:40:15:0:0";
+        }
+        else if (GameInfo.gameInfo.Level == 3)
+        {
+            txt.text = "확률 : 20:45:30:5:0";
+        }
+        else if (GameInfo.gameInfo.Level == 4)
+        {
+            txt.text = "확률 : 0:35:50:10:5";
+        }
+        else
+        {
+            txt.text = "확률 : 0:10:60:25:5";
+        }
     }
 
     private void SetQuestList() // 의뢰 리스트 생성
