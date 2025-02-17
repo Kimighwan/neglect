@@ -27,7 +27,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     #region Monster_Desc
 
-    private const string MONSTER_DATA_TABLE = "dm_list";
+    private const string MONSTER_DATA_TABLE = "dm_list1";
     private List<MonsterDescData> MonsterDescDataTable = new List<MonsterDescData>();
 
     private void LoadMonsterDescDataTable()
@@ -44,6 +44,8 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 monsterWeekness = data["weak"].ToString(),
                 monsterStrength = data["strong"].ToString(),
                 monsterDesc = data["script1"].ToString(),
+                weakCount = Convert.ToInt32(data["weak_count"]),
+                strongCount = Convert.ToInt32(data["strong_count"]),
             };
 
             MonsterDescDataTable.Add(monsterDescData);
@@ -212,6 +214,8 @@ public class MonsterDescData : BaseUIData
     public string monsterWeekness;
     public string monsterStrength;
     public string monsterDesc;
+    public int weakCount;
+    public int strongCount;
 }
 
 public class SystemDescData : BaseUIData
