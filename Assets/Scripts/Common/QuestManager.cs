@@ -20,12 +20,14 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     private int targetScore;            // 목표 점수
     private int monsterId;              // 몬스터 Id
-    private int[] monsterStrongSize;    // 몬스터 강점 퍼센트
-    private int[] monsterWeakSize;      // 몬스터 약점 퍼센트
+    private int monsterStrongSize;    // 몬스터 강점 퍼센트
+    private int monsterWeakSize;      // 몬스터 약점 퍼센트
     private int tierScore;              // 모험가 등급 점수
+    private int weakCount;
+    private int strongCount;
 
-    private string[] monsterStrong;     // 몬스터 강점
-    private string[] monsterWeak;       // 몬스터 약점
+    private string monsterStrong;     // 몬스터 강점
+    private string monsterWeak;       // 몬스터 약점
 
     private float samePositionRate;     // 포지션 중복 비율
     private float sameClassRate;        // 클래스 중복 비율
@@ -77,28 +79,25 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     {
         monsterId = questData[index].questMonsterDescId;    // 몬스터 ID 체크
         
-        var monsterData = DataTableManager.Instance.GetMonsterDescData(monsterId);
+        var monsterData = DataTableManager.Instance.GetMonsterDescData(monsterId);  // 여기는 정상
 
-        var weaks = monsterData.monsterWeekness.Split(',');
-        var strongs = monsterData.monsterStrength.Split(',');
+        weakCount = monsterData.weakCount;
+        strongCount = monsterData.strongCount;
 
-        if(weaks[0] != "")
+        if(weakCount != 0)
         {
-            for(int i = 0; i <  weaks.Length; i++)
-            {
-                monsterWeakSize[i] = Convert.ToInt32(weaks[i].Substring(2, 1));
-                monsterWeak[i] = weaks[i].Substring(0, 2);
-            }
+            monsterWeakSize = Convert.ToInt32(monsterData.monsterWeekness.Substring(2, 1));
+            monsterWeak = monsterData.monsterWeekness.Substring(0, 2);
         }
 
-        if (strongs[0] != "")
+        if (strongCount != 0)
         {
-            for (int i = 0; i < strongs.Length; i++)
-            {
-                monsterStrongSize[i] = Convert.ToInt32(strongs[i].Substring(2, 1));
-                monsterStrong[i] = strongs[i].Substring(0, 2);
-            }
+            monsterStrongSize = Convert.ToInt32(monsterData.monsterStrength.Substring(2, 1));
+            monsterStrong = monsterData.monsterStrength.Substring(0, 2);
         }
+
+        //monsterStrongSize = Convert.ToInt32(monsterData.monsterStrength.Substring(2, 1));
+        //monsterStrong = monsterData.monsterStrength.Substring(0, 2);
 
         var questLevel = questData[index].questLevel;
 
@@ -201,21 +200,35 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     {
         foreach (var item in adventureDatas[index])
         {
-            for(int i = 0; i < monsterWeak.Length; i++)
+            if(weakCount != 0)
             {
-                if (item.adventureType == monsterWeak[i])
+                if (monsterWeak != "")
                 {
-                    weakRate += ((float)0.1 * monsterWeakSize[i]);
+                    if (item.adventureType == monsterWeak)
+                    {
+                        strongRate += ((float)0.1 * monsterWeakSize);
+                    }
                 }
             }
 
-            for (int i = 0; i < monsterStrong.Length; i++)
+            if (strongCount != 0)
             {
-                if (item.adventureType == monsterStrong[i])
+                if (monsterStrong != "")
                 {
-                    strongRate += ((float)0.1 * monsterStrongSize[i]);
+                    if (item.adventureType == monsterStrong)
+                    {
+                        strongRate += ((float)0.1 * monsterStrongSize);
+                    }
                 }
             }
+
+            //if(monsterStrong != "")
+            //{
+            //    if (item.adventureType == monsterStrong)
+            //    {
+            //        strongRate += ((float)0.1 * monsterStrongSize);
+            //    }
+            //}
         }
     }
 
