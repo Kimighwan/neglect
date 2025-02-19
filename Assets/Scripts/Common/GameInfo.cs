@@ -75,7 +75,7 @@ public class GameInfo : MonoBehaviour
             else return false;
             roomList.GetComponent<Room>().ActiveRoom();
             request.ActiveRequest();
-            GameInfo.gameInfo.Level++;
+            gameInfo.Level++;
             plusGold = rooms * 100;
             return true;
         }
@@ -84,5 +84,10 @@ public class GameInfo : MonoBehaviour
     public int GetNeededGold() {
         if (level == 5) return 0;
         return neededGold[level - 1];
+    }
+    public void EndToday() {
+        if (gameInfo)
+        GameManager.gameManager.PauseGame();
+
     }
 }
