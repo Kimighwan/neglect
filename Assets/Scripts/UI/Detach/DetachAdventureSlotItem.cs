@@ -1,4 +1,5 @@
 using Gpm.Ui;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
     private AdventureData adventureData;
 
     private int adventureid;
+    private static List<AdventureData> adList = new List<AdventureData>();
 
     public override void UpdateData(InfiniteScrollData scrollData)
     {
@@ -52,18 +54,31 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
 
     public void OnClickAdventureBtn()   // 모험가 클릭
     {
+        DetachAdventureListUI tmp = UIManager.Instance.GetActiveUI<DetachAdventureListUI>() as DetachAdventureListUI;
+
         if (AdventureData.adventureSelectId.Contains(adventureid))
         {
             AdventureData.adventureSelectId.Remove(adventureid);
+            adList.Remove(adventureData);                           // 선택한 모험가 삭제
+
+            QuestManager.Instance.adventureDatas.Remove(tmp.adventureIndex);    // 기존 파견 index에 맞는 리스트 삭제
+            QuestManager.Instance.adventureDatas.Add(tmp.adventureIndex, adList);   // 삭제된 모험가 리스트 다시 넣기
+
             return;
         }
 
-        if (AdventureData.adventureSelectId.Count == 4)
+        if (AdventureData.adventureSelectId.Count == 4) // 제일 마지막에 선택한 모험가 삭제
         {
             AdventureData.adventureSelectId.RemoveAt(0);
+            adList.RemoveAt(0);
         }
 
         AdventureData.adventureSelectId.Add(adventureid);
+
+        adList.Add(adventureData);
+
+        QuestManager.Instance.adventureDatas.Remove(tmp.adventureIndex);    // 기존 파견 index에 맞는 리스트 삭제
+        QuestManager.Instance.adventureDatas.Add(tmp.adventureIndex, adList);   // 삭제된 모험가 리스트 다시 넣기
     }
 
 }

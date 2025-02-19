@@ -1,6 +1,7 @@
 using Gpm.Ui;
 using TMPro;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class DetachQuestSlotItem : InfiniteScrollItem
 {
@@ -53,14 +54,18 @@ public class DetachQuestSlotItem : InfiniteScrollItem
 
     public void OnClickQuestBtn()   // 퀘스트 클릭
     {
-        if(QuestData.questSelectedId == questid)
+        DetachQuestListUI tmp = UIManager.Instance.GetActiveUI<DetachQuestListUI>() as DetachQuestListUI;
+
+        if (QuestData.questSelectedId == questid)
         {
             QuestData.questSelectedId = 0;
+            QuestManager.Instance.questData.Remove(tmp.qusetIndex);
             checkImage.SetActive(false);
         }
         else
         {
             QuestData.questSelectedId = questid;
+            QuestManager.Instance.questData.Add(tmp.qusetIndex, questData);
         }
     }
 }
