@@ -45,7 +45,7 @@ public class DialogMode : MonoBehaviour
 
     public void PrepareDialogText(int startId, int endId, bool isDeskL)
     {
-        AllocateObject(isDeskL);
+        AllocateObject();
         scriptQueue.Clear();
         for (int i = startId; i <= endId; i++)
         {
@@ -114,29 +114,16 @@ public class DialogMode : MonoBehaviour
         malpungseonB.SetActive(b);
     }
 
-    private void AllocateObject(bool isDeskL) {
+    private void AllocateObject() {
         ScriptObjectData data = ScriptObjectData.data;
-        if (isDeskL) {
-            textA = data.malpungseon1Text;
-            charTextA = data.speaker1Text;
-            uiMalpungseonA = data.malpungseon11;
-            malpungseonA = data.malpungseon1;
-    
-            textB = data.malpungseon2Text;
-            charTextB = data.speaker2Text;
-            uiMalpungseonB = data.malpungseon22;
-            malpungseonB = data.malpungseon2;
-        }
-        else {
-            textA = data.malpungseon3Text;
-            charTextA = data.speaker3Text;
-            uiMalpungseonA = data.malpungseon33;
-            malpungseonA = data.malpungseon3;
-    
-            textB = data.malpungseon4Text;
-            charTextB = data.speaker4Text;
-            uiMalpungseonB = data.malpungseon44;
-            malpungseonB = data.malpungseon4;
-        }
+        textA = data.malpungseon1Text;
+        charTextA = data.speaker1Text;
+        uiMalpungseonA = data.malpungseon11;
+        malpungseonA = data.malpungseon1;
+
+        textB = data.malpungseon2Text;
+        charTextB = data.speaker2Text;
+        uiMalpungseonB = data.malpungseon22;
+        malpungseonB = data.malpungseon2;
     }
 }
