@@ -22,7 +22,7 @@ public class TextHandler : MonoBehaviour
 
     public void UpdateTexts() {
         UpdateGoldText();
-        dayText.text = $"Day {GameInfo.gameInfo.Day.ToString()}";
+        dayText.text = $"Day {GameInfo.gameInfo.Day}";
         UpdateTimeText();
         UpdateLevelText();
     }

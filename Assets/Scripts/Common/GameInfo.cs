@@ -13,6 +13,7 @@ public class GameInfo : MonoBehaviour
     public static GameInfo gameInfo;
     public GameObject roomList;
     public Image fadeInOut;
+    
     // 게임 진행 속도 조절
     public float gameSpeed = 1f;
     // 골드 정보
@@ -59,6 +60,9 @@ public class GameInfo : MonoBehaviour
             malpungseonOnce = false;
             gold += plusGold;
         }
+        else if (timer >= 200f) {
+            EndToday();
+        }
     }
     public bool ChangeGold(int g) {
         if (gold + g > 0) {
@@ -92,48 +96,37 @@ public class GameInfo : MonoBehaviour
     {
         GameManager.gameManager.PauseGame();
         fadeInOut.gameObject.SetActive(true);
-        StartCoroutine(DoFadeInOutBlack(2f, 0f));
+        StartCoroutine(DoFadeInBlack(2f, 0f, 0f, 1f));
     }
 
-    private IEnumerator DoFadeInOutBlack(float duration, float startDelay)
+    private IEnumerator DoFadeInBlack(float duration, float startDelay, float startAlpha, float endAlpha)
     {
-        yield return StartCoroutine(FadeInBlack(duration, startDelay)); // FadeIn이 끝날 때까지 대기
-        yield return StartCoroutine(FadeOutBlack(duration, startDelay)); // FadeIn 후에 FadeOut 실행
+        yield return StartCoroutine(FadeBlack(duration, startDelay, startAlpha, endAlpha)); // FadeIn이 끝날 때까지 대기
+        UIManager.Instance.OnClickEndToday();
     }
 
-    private IEnumerator FadeInBlack(float duration, float startDelay)
+    private IEnumerator FadeBlack(float duration, float startDelay, float startAlpha, float endAlpha)
     {
         yield return new WaitForSeconds(startDelay);    // Delay...
-        fadeInOut.color = new Color(0f, 0f, 0f, 0f);
+        fadeInOut.color = new Color(0f, 0f, 0f, startAlpha);
 
         var startTime = Time.realtimeSinceStartup;
         while (Time.realtimeSinceStartup - startTime < duration)
         {
-            fadeInOut.color = new Color(0f, 0f, 0f, Mathf.Lerp(0f, 1f, (Time.realtimeSinceStartup - startTime) / duration));
+            fadeInOut.color = new Color(0f, 0f, 0f, Mathf.Lerp(startAlpha, endAlpha, (Time.realtimeSinceStartup - startTime) / duration));
             yield return null;
         }
 
-        fadeInOut.color = new Color(0f, 0f, 0f, 1f);
-        ComeMorning();
+        fadeInOut.color = new Color(0f, 0f, 0f, endAlpha);
     }
-    private IEnumerator FadeOutBlack(float duration, float startDelay)
-    {
-        yield return new WaitForSeconds(startDelay);    // Delay...
-        fadeInOut.color = new Color(0f, 0f, 0f, 1f);
-
-        var startTime = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup - startTime < duration)
-        {
-            fadeInOut.color = new Color(0f, 0f, 0f, Mathf.Lerp(1f, 0f, (Time.realtimeSinceStartup - startTime) / duration));
-            yield return null;
-        }
-
-        fadeInOut.color = new Color(0f, 0f, 0f, 0f);
-        fadeInOut.gameObject.SetActive(false);
-    }
-    private void ComeMorning()
+    public void ComeMorning()
     {
         GameManager.gameManager.PauseGame();
         timer = 320f;
+        StartCoroutine(FadeBlack(2f, 0f, 1f, 0f));
+        Invoke("UnActiveFade", 2f);
+    }
+    private void UnActiveFade() {
+        fadeInOut.gameObject.SetActive(false);
     }
 }

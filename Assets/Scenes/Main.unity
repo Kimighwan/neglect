@@ -6069,8 +6069,8 @@ RectTransform:
   - {fileID: 2120743897}
   - {fileID: 808675316}
   - {fileID: 1684301899}
-  - {fileID: 2054220090}
   - {fileID: 979315237}
+  - {fileID: 2054220090}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6094,8 +6094,6 @@ MonoBehaviour:
   exportAdventureId: 0
   UICanvasTrs: {fileID: 1028127990}
   ClosedUITrs: {fileID: 2054220090}
-  requestUpBtn: {fileID: 0}
-  requestDownBtn: {fileID: 94487764}
 --- !u!1 &1038441769
 GameObject:
   m_ObjectHideFlags: 0
