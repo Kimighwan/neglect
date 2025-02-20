@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 /*
 게임 진행에 필요한 모든 정보(데이터 베이스 제외)를 사용하려는 목적
@@ -10,6 +12,7 @@ public class GameInfo : MonoBehaviour
 {
     public static GameInfo gameInfo;
     public GameObject roomList;
+    public Image fadeInOut;
     // 게임 진행 속도 조절
     public float gameSpeed = 1f;
     // 골드 정보
@@ -85,9 +88,52 @@ public class GameInfo : MonoBehaviour
         if (level == 5) return 0;
         return neededGold[level - 1];
     }
-    public void EndToday() {
-        if (gameInfo)
+    public void EndToday()
+    {
         GameManager.gameManager.PauseGame();
+        fadeInOut.gameObject.SetActive(true);
+        StartCoroutine(DoFadeInOutBlack(2f, 0f));
+    }
 
+    private IEnumerator DoFadeInOutBlack(float duration, float startDelay)
+    {
+        yield return StartCoroutine(FadeInBlack(duration, startDelay)); // FadeIn이 끝날 때까지 대기
+        yield return StartCoroutine(FadeOutBlack(duration, startDelay)); // FadeIn 후에 FadeOut 실행
+    }
+
+    private IEnumerator FadeInBlack(float duration, float startDelay)
+    {
+        yield return new WaitForSeconds(startDelay);    // Delay...
+        fadeInOut.color = new Color(0f, 0f, 0f, 0f);
+
+        var startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - startTime < duration)
+        {
+            fadeInOut.color = new Color(0f, 0f, 0f, Mathf.Lerp(0f, 1f, (Time.realtimeSinceStartup - startTime) / duration));
+            yield return null;
+        }
+
+        fadeInOut.color = new Color(0f, 0f, 0f, 1f);
+        ComeMorning();
+    }
+    private IEnumerator FadeOutBlack(float duration, float startDelay)
+    {
+        yield return new WaitForSeconds(startDelay);    // Delay...
+        fadeInOut.color = new Color(0f, 0f, 0f, 1f);
+
+        var startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - startTime < duration)
+        {
+            fadeInOut.color = new Color(0f, 0f, 0f, Mathf.Lerp(1f, 0f, (Time.realtimeSinceStartup - startTime) / duration));
+            yield return null;
+        }
+
+        fadeInOut.color = new Color(0f, 0f, 0f, 0f);
+        fadeInOut.gameObject.SetActive(false);
+    }
+    private void ComeMorning()
+    {
+        GameManager.gameManager.PauseGame();
+        timer = 320f;
     }
 }
