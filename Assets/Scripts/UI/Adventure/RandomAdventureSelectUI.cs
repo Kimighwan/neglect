@@ -13,6 +13,10 @@ public class RandomAdventureSelectUI : MonoBehaviour
     private AdventureData adventureData;
 
     private int adventureId;
+
+    private int j;
+    private int resultId;
+
     private string adventureName;
     private string adventurePosition;
     private string adventureClass;      // 계열
@@ -38,7 +42,16 @@ public class RandomAdventureSelectUI : MonoBehaviour
     public void OnClickSelected()
     {
         if (CheckHaveAdventureID(adventureId))  // 선택된 모험가가 이미 있음
+        {
+            Debug.Log("해당 모험가를 이미 가지고 있음");
             return;
+        }
+
+        if (CheckRoom())
+        {
+            Debug.Log("더이상 모험가 수용 불가능");
+            return;
+        }
 
         string pre = PlayerPrefs.GetString("AdventureId");  // 저장된 모험가 ID 불러오기
 
@@ -76,13 +89,123 @@ public class RandomAdventureSelectUI : MonoBehaviour
         m_class.text = adventureClass;
     }
 
-    private int RandomIndexMake()   // 무작위 숫자   // 좀 안 좋은 랜덤 숫자인 듯...
+    private int RandomIndexMake()
     {
-        int randomId;
+        int randomIndexA = UnityEngine.Random.Range(1, 19);     // 브론즈   18개
+        int randomIndexB = UnityEngine.Random.Range(19, 44);    // 실버     25개
+        int randomIndexC = UnityEngine.Random.Range(44, 73);    // 골드     29개
+        int randomIndexD = UnityEngine.Random.Range(73, 88);    // 플래티넘 15개
+        int randomIndexE = UnityEngine.Random.Range(88, 91);    // 다이아   3개
 
-        randomId = UnityEngine.Random.Range(1, 91);
-        
-        return randomId;
+        int resultValue = UnityEngine.Random.Range(1, 101);
+
+        int[] probability = new int[5];
+
+        switch (GameInfo.gameInfo.Level)
+        {
+            case 1:
+                probability[0] = 79; probability[1] = 20; probability[2] = 1; probability[3] = 0; probability[4] = 0;
+                break;
+            case 2:
+                probability[0] = 44; probability[1] = 40; probability[2] = 15; probability[3] = 1; probability[4] = 0;
+                break;
+            case 3:
+                probability[0] = 19; probability[1] = 40; probability[2] = 30; probability[3] = 10; probability[4] = 1;
+                break;
+            case 4:
+                probability[0] = 0; probability[1] = 20; probability[2] = 50; probability[3] = 25; probability[4] = 5;
+                break;
+            case 5:
+                probability[0] = 0; probability[1] = 0; probability[2] = 50; probability[3] = 40; probability[4] = 10;
+                break;
+        }
+
+        int cumulativeProbability = 0;      // 누적된 확률
+
+        for (j = 0; j < 5; j++)
+        {
+            cumulativeProbability += probability[j];
+
+            if (resultValue <= cumulativeProbability)
+            {
+                break;
+            }
+        }
+
+        switch (j)
+        {
+            case 0: // 브론즈
+                resultId = randomIndexA;
+                break;
+            case 1: // 실버
+                resultId = randomIndexB;
+                break;
+            case 2: // 골드
+                resultId = randomIndexC;
+                break;
+            case 3: // 플래티넘
+                resultId = randomIndexD;
+                break;
+            case 4: // 다이아
+                resultId = randomIndexE;
+                break;
+            default:
+                break;
+        }
+
+        if (!PoolManager.Instance.userAdventureIndex.Contains(resultId))
+        {
+            PoolManager.Instance.userAdventureIndex.Add(resultId);
+        }
+        else
+        {
+            if (j == 0) // 브론즈 부족
+            {
+                // 실버 주기
+                int tmp;
+                do
+                {
+                    tmp = UnityEngine.Random.Range(19, 44);
+                } while (PoolManager.Instance.userAdventureIndex.Contains(tmp));
+            }
+            else if (j == 3) // 플래티넘 부족
+            {
+                // 아쉽게 골드 중 갖고 있지 않는 모험가 반환
+                int tmp;
+                do
+                {
+                    tmp = UnityEngine.Random.Range(44, 73);
+                } while (PoolManager.Instance.userAdventureIndex.Contains(tmp));
+
+                resultId = tmp;
+            }
+            else if (j == 4) // 다이아 부족
+            {
+                if (!CheckAdventureFullOfTier(Tier.Platinum))
+                {
+                    // 아쉽게 플래티넘 중 갖고 있지 않는 모험가 반환
+                    int tmp;
+                    do
+                    {
+                        tmp = UnityEngine.Random.Range(73, 88);
+                    } while (PoolManager.Instance.userAdventureIndex.Contains(tmp));
+
+                    resultId = tmp;
+                }
+                else // 플래티넘도 부족하기에 골드를 반환
+                {
+                    int tmp;
+                    do
+                    {
+                        tmp = UnityEngine.Random.Range(44, 73);
+                    } while (PoolManager.Instance.userAdventureIndex.Contains(tmp));
+
+                    resultId = tmp;
+                }
+            }
+        }
+
+        return resultId;
     }
 
     private bool CheckHaveAdventureID(int adventureId)                      // 매개변수의 모험가 ID를 가졌는지 확인
@@ -96,11 +219,59 @@ public class RandomAdventureSelectUI : MonoBehaviour
         {
             if(adventureId == Convert.ToInt32(adventureIdOfInt[index]))     // 매개변수와 같은 모험가 ID 검색
             {
-                Debug.Log("해당 모험가가 이미 있습니다.");
                 return true;    // 해당 모험가가 있음
             }
         }
 
         return false;           // 해당 모험가가 없음
+    }
+    
+    private bool CheckRoom()    // 객실 수 및 레벨 확인하여 최대 모험가 수를 넘는지 체크
+    {
+        int tmp = 0;
+        for(int i = 0; i < 4; i++)
+        {
+            if(GameInfo.gameInfo.roomLevels[i] == 1)
+            {
+                tmp += 2 * GameInfo.gameInfo.roomCounts[i];
+            }
+            else if (GameInfo.gameInfo.roomLevels[i] == 2)
+            {
+                tmp += 4 * GameInfo.gameInfo.roomCounts[i];
+            }
+            else
+            {
+                tmp += 6 * GameInfo.gameInfo.roomCounts[i];
+            }
+        }
+
+        int tmpCount = 0;
+        string adventrueHave = PlayerPrefs.GetString("AdventureId");
+        foreach(var i in adventrueHave.Split(","))
+        {
+            if (i != "")
+                tmpCount++;
+        }
+        return tmpCount >= tmp;    // true : 더이상 수용 불가능
+    }
+
+    private bool CheckAdventureFullOfTier(Tier tier)    // 랭크에 해당하는 모험가가 더이상 없는가
+    {
+        switch (tier)
+        {
+            case Tier.Platinum:
+                for (int i = 73; i < 88; i++)
+                {
+                    if (!PoolManager.Instance.userAdventureIndex.Contains(i))
+                    {
+                        return false;   // 아직 여유가 있다.
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
+        return true;    // 없다
     }
 }

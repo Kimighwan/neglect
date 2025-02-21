@@ -44,6 +44,12 @@ public class RandomQuestSelectUI : MonoBehaviour
         if (CheckHaveAdventureID(questId))  // 선택된 의뢰가 이미 있음
             return;
 
+        if(CheckMaxQuest())
+        {
+            Debug.Log("의뢰를 더 이상 수용할 수 없음");
+            return;
+        }
+
         string pre = PlayerPrefs.GetString("QuestId");  // 저장된 quest ID 불러오기
 
         // 선택한 quest ID 저장
@@ -153,7 +159,7 @@ public class RandomQuestSelectUI : MonoBehaviour
             // 길드레벨 3
             if (GameInfo.gameInfo.Level == 3)
             {
-                if(j == 0) // 브론즈 의뢰 부족
+                if(j == 0) // 브론즈
                 {
                     // 실버 의뢰로 승격
                     resultId = GetQuestindex(Tier.Silver);   // 실버
@@ -354,6 +360,40 @@ public class RandomQuestSelectUI : MonoBehaviour
         }
 
         return false;           // 없음
+    }
+
+    private bool CheckMaxQuest()    // 의뢰 최대 수량 체크
+    {
+        int tmpCount = 0;
+        string tmpQuest = PlayerPrefs.GetString("QuestId");
+        foreach(var i in tmpQuest.Split(","))
+        {
+            if (i != "")
+                tmpCount++;
+        }
+
+        if(GameInfo.gameInfo.Level == 1)
+        {
+            return tmpCount >= 6;
+        }
+        else if(GameInfo.gameInfo.Level == 2)
+        {
+            return tmpCount >= 8;
+        }
+        else if(GameInfo.gameInfo.Level == 3)
+        {
+            return tmpCount >= 10;
+        }
+        else if(GameInfo.gameInfo.Level == 4)
+        {
+            return tmpCount >= 12;
+        }
+        else
+        {
+            return tmpCount >= 14;
+        }
+
+        return false;
     }
 }
 
