@@ -10,6 +10,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 {
     // 파견창 Index에 따른 모험가 리스트
     public Dictionary<int, List<AdventureData>> adventureDatas = new Dictionary<int, List<AdventureData>>();
+
     // 파견창 Index에 따른 QuestData
     public Dictionary<int, QuestData> questData = new Dictionary<int, QuestData>();
 
@@ -20,12 +21,12 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     private int targetScore;            // 목표 점수
     private int monsterId;              // 몬스터 Id
-    private int monsterStrongSize;    // 몬스터 강점 퍼센트
-    private int monsterWeakSize;      // 몬스터 약점 퍼센트
+    private int monsterStrongSize;      // 몬스터 강점 퍼센트
+    private int monsterWeakSize;        // 몬스터 약점 퍼센트
     private int tierScore;              // 모험가 등급 점수
 
-    private string monsterStrong;     // 몬스터 강점
-    private string monsterWeak;       // 몬스터 약점
+    private string monsterStrong;       // 몬스터 강점
+    private string monsterWeak;         // 몬스터 약점
 
     private float samePositionRate;     // 포지션 중복 비율
     private float sameClassRate;        // 클래스 중복 비율

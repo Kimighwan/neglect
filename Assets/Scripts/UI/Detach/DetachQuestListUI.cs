@@ -14,7 +14,7 @@ public class DetachQuestListUI : BaseUI
 
     public int qusetIndex;     // 파견에서 몇번째 파견창인지
 
-    // private List<int> questId = new List<int>(); // 스크롤 쓰기 전 변수
+
     private QuestSortType questSortType = QuestSortType.Level;
     private QuestOrderType questOrderType = QuestOrderType.DOWN;
 
@@ -32,8 +32,13 @@ public class DetachQuestListUI : BaseUI
 
     private void OnEnable()
     {
-        PoolManager.Instance.SetQuestListData();
+        PoolManager.Instance.SetDetachQuestListData();
         SetScroll();
+    }
+
+    private void OnDisable()
+    {
+        QuestData.questSelectedId = 0;
     }
 
     private void SetScroll()
@@ -140,7 +145,7 @@ public class DetachQuestListUI : BaseUI
         // 의뢰 처리 하는 곳에서 questData를 넘겨준다
         // 의뢰 처리 하는 곳에서 모험가도 받게 될 것인데
         // 위 두 개의 정보를 가지고 의뢰 시스템이 작동한다
-        PoolManager.Instance.DeleteQuestData();
+        PoolManager.Instance.UsingQuestData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachQuestListUI>());
     }
 }

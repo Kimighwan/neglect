@@ -47,11 +47,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
             return;
         }
 
-        if (CheckRoom())
-        {
-            Debug.Log("더이상 모험가 수용 불가능");
-            return;
-        }
+        //if (CheckRoom())
+        //{
+        //    Debug.Log("더이상 모험가 수용 불가능");
+        //    return;
+        //}
 
         string pre = PlayerPrefs.GetString("AdventureId");  // 저장된 모험가 ID 불러오기
 
