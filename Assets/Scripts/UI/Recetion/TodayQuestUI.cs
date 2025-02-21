@@ -50,6 +50,8 @@ public class TodayQuestUI : BaseUI
 
     private void SetQuestList() // 의뢰 리스트 생성
     {
+        PoolManager.Instance.userQuestIndex.Clear();
+
         for (int index = 0; index < 3; index++)
         {
             var ui = Instantiate(Resources.Load("UI/RandomQuestSelectUI") as GameObject);
