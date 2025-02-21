@@ -1,18 +1,28 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum BGM
 {
-    lobby,
+    Start,
+    Main6,
+    Main7,
     COUNT
 }
 
 public enum SFX
 {
-    chapter_clear,
-    stage_clear,
-    ui_button_click,
+    LevelUp,
+    Mark,           // 느낌표 활성화
+    QuestFail,
+    QuestSuccess,
+    Stamp,          // 정산 보고서 도장 소리
+    OpenBook,       // 도감 Open
+    CloseBook,      // 도감 Close
+    BookFlip3,
+    BookFlip4,
+    BookFlip5,
+    BookFlip7,
     COUNT
 }
 
