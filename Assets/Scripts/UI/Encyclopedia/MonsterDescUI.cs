@@ -2,7 +2,7 @@ using TMPro;
 
 public class MonsterDescUI : MonsterUI
 {
-    public MonsterDescData monsterDescData;
+    public MonsterData monsterData;
 
     private string monsterName;
     private string monsterTier;
@@ -30,13 +30,13 @@ public class MonsterDescUI : MonsterUI
 
     private void GetMonsterDescData()
     {
-        monsterDescData = DataTableManager.Instance.GetMonsterDescData(DataTableManager.Instance.monsterDescId);
+        monsterData = DataTableManager.Instance.GetMonsterData(DataTableManager.Instance.monsterDescId);
 
-        this.monsterName = monsterDescData.monsterName;
-        this.monsterTier = monsterDescData.monsterTier;
-        this.monsterWeekness = monsterDescData.monsterWeekness;
-        this.monsterStrength = monsterDescData.monsterStrength;
-        this.monsterDesc = monsterDescData.monsterDesc;
+        this.monsterName = monsterData.monsterName;
+        this.monsterTier = monsterData.monsterTier;
+        this.monsterWeekness = monsterData.monsterWeekness;
+        this.monsterStrength = monsterData.monsterStrength;
+        this.monsterDesc = monsterData.monsterDesc;
     }
 
     private void InitData()
@@ -48,7 +48,7 @@ public class MonsterDescUI : MonsterUI
         txtDesc.text = monsterDesc;
     }
 
-    public void BackBtn()
+    public void BackBtnOfMonsterDescUI()
     {
         UIManager.Instance.CloseUI(this);
 

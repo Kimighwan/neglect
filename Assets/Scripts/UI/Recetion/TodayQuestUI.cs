@@ -8,6 +8,7 @@ public class TodayQuestUI : BaseUI
 
     private List<GameObject> uiListPool = new List<GameObject>();   // 의뢰 종이 3장 Pool
 
+
     private void Awake()
     {
         SetQuestList();

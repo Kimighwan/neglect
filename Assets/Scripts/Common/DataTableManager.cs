@@ -18,7 +18,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     {
         base.Init();
 
-        LoadMonsterDescDataTable();
+        LoadMonsterDataTable();
         LoadSystemDescDataTable();
         LoadAdventureDataTable();
         LoadQuestDataTable();
@@ -27,34 +27,32 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     #region Monster_Desc
 
-    private const string MONSTER_DATA_TABLE = "dm_list1";
-    private List<MonsterDescData> MonsterDescDataTable = new List<MonsterDescData>();
+    private const string MONSTER_DATA_TABLE = "mob_list";
+    private List<MonsterData> MonsterDataTable = new List<MonsterData>();
 
-    private void LoadMonsterDescDataTable()
+    private void LoadMonsterDataTable()
     {
         var parsedDataTable = CSVReader.Read($"{DATA_PATH}/{MONSTER_DATA_TABLE}");
 
         foreach (var data in parsedDataTable)
         {
-            var monsterDescData = new MonsterDescData
+            var monsterDescData = new MonsterData
             {
-                monsterId = Convert.ToInt32(data["dm_id"]),
+                monsterId = Convert.ToInt32(data["mob_id"]),
                 monsterName = data["name"].ToString(),
                 monsterTier = data["tier"].ToString(),
                 monsterWeekness = data["weak"].ToString(),
                 monsterStrength = data["strong"].ToString(),
                 monsterDesc = data["script1"].ToString(),
-                weakCount = Convert.ToInt32(data["weak_count"]),
-                strongCount = Convert.ToInt32(data["strong_count"]),
             };
 
-            MonsterDescDataTable.Add(monsterDescData);
+            MonsterDataTable.Add(monsterDescData);
         }
     }
 
-    public MonsterDescData GetMonsterDescData(int monsterId)
+    public MonsterData GetMonsterData(int monsterId)
     {
-        return MonsterDescDataTable.Where(item => item.monsterId == monsterId).FirstOrDefault();
+        return MonsterDataTable.Where(item => item.monsterId == monsterId).FirstOrDefault();
         // 몬스터 ID에 맞는 정보들을 반환
         // 만약 데이터가 존재 하지 않는다면 null 반환
     }
@@ -111,12 +109,12 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
             var adventureData = new AdventureData
             {
                 adventureId = Convert.ToInt32(data["char_id"]),
+                adventureIndex = Convert.ToInt32(data["index"]),
                 adventureName = data["name"].ToString(),
                 adventureTier = data["tier"].ToString(),
                 adventurePosition = data["position"].ToString(),
                 adventureClass = data["class"].ToString(),
                 adventureType = data["type"].ToString(),
-                randomId = Convert.ToInt32(data["random_id"]),
             };
 
             AdventureDataTable.Add(adventureData);
@@ -130,9 +128,9 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         // 만약 데이터가 존재 하지 않는다면 null 반환
     }
 
-    public AdventureData GetRandomAdventureData(int randomId)
+    public AdventureData GetRandomAdventureData(int index)
     {
-        return AdventureDataTable.Where(item => item.randomId == randomId).FirstOrDefault();
+        return AdventureDataTable.Where(item => item.adventureIndex == index).FirstOrDefault();
         // 시스템 ID에 맞는 정보들을 반환
         // 만약 데이터가 존재 하지 않는다면 null 반환
     }
@@ -155,10 +153,12 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 questId = Convert.ToInt32(data["quest_id"]),
                 questName = data["name"].ToString(),
                 questLevel = data["tier"].ToString(),
+                questActive = Convert.ToInt32(data["active"]),
+                questMonsterDescId = Convert.ToInt32(data["object_id"]),
                 questMonster = data["object"].ToString(),
                 questReward = Convert.ToInt32(data["reward"]),
                 questTime = Convert.ToInt32(data["day"]),
-                questMonsterDescId = Convert.ToInt32(data["object_id"]),
+                questIndex = Convert.ToInt32(data["index"]),
             };
 
             QuestDataTable.Add(questData);
@@ -168,6 +168,13 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     public QuestData GetQuestData(int questId)
     {
         return QuestDataTable.Where(item => item.questId == questId).FirstOrDefault();
+        // 시스템 ID에 맞는 정보들을 반환
+        // 만약 데이터가 존재 하지 않는다면 null 반환
+    }
+
+    public QuestData GetQuestDataUsingIndex(int questIndex)
+    {
+        return QuestDataTable.Where(item => item.questIndex == questIndex).FirstOrDefault();
         // 시스템 ID에 맞는 정보들을 반환
         // 만약 데이터가 존재 하지 않는다면 null 반환
     }
@@ -206,7 +213,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     #endregion
 }
 
-public class MonsterDescData : BaseUIData
+public class MonsterData : BaseUIData
 {
     public int monsterId;
     public string monsterName;
@@ -214,8 +221,6 @@ public class MonsterDescData : BaseUIData
     public string monsterWeekness;
     public string monsterStrength;
     public string monsterDesc;
-    public int weakCount;
-    public int strongCount;
 }
 
 public class SystemDescData : BaseUIData
@@ -233,6 +238,7 @@ public class SystemDescData : BaseUIData
 public class AdventureData : InfiniteScrollData // BaseUIData
 {
     public int adventureId;
+    public int adventureIndex;
     public string adventureName;
     public string adventurePosition;
     public string adventureClass;
@@ -241,7 +247,6 @@ public class AdventureData : InfiniteScrollData // BaseUIData
 
     public static List<int> adventureSelectId = new List<int>();
 
-    public int randomId;
 }
 
 public class QuestData : InfiniteScrollData // BaseUIData
@@ -250,6 +255,8 @@ public class QuestData : InfiniteScrollData // BaseUIData
     public int questTime;
     public int questReward;
     public int questMonsterDescId;
+    public int questIndex;
+    public int questActive;
 
     public string questName;
     public string questLevel;

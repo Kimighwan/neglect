@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -11,7 +9,6 @@ public class RandomQuestSelectUI : MonoBehaviour
     public TextMeshProUGUI time;
     public TextMeshProUGUI reward;
 
-
     private QuestData questData;
 
     private int questId;
@@ -19,6 +16,7 @@ public class RandomQuestSelectUI : MonoBehaviour
     private int questReward;
     private int questMonsterDescId;
 
+    private int j;
     private int resultId;
 
 
@@ -61,7 +59,7 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     private void GetQuestData()
     {
-        questData = DataTableManager.Instance.GetQuestData(RandomIndexMake());
+        questData = DataTableManager.Instance.GetQuestDataUsingIndex(RandomIndexMake());
 
         questId = questData.questId;
         this.questName = questData.questName;
@@ -81,15 +79,48 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     private int RandomIndexMake()   // 무작위 숫자
     {
-        int randomIdA = UnityEngine.Random.Range(131001, 131007);
-        int randomIdB = UnityEngine.Random.Range(132007, 132013);
-        int randomIdC = UnityEngine.Random.Range(133013, 133022);
-        int randomIdD = UnityEngine.Random.Range(134022, 134026);
-        int randomIdE = UnityEngine.Random.Range(135026, 135029);
+        int randomIdA = UnityEngine.Random.Range(1, 10);    // 브론즈
+        int randomIdB = UnityEngine.Random.Range(10, 20);   // 실버
+        int randomIdC = UnityEngine.Random.Range(20, 30);   // 골드
+        int randomIdD = UnityEngine.Random.Range(31, 38);   // 플래니텀
+        int randomIdE = UnityEngine.Random.Range(38, 41);   // 다이아
 
-        int i = UnityEngine.Random.Range(1, 6);
+        int resultValue = UnityEngine.Random.Range(1, 101);
 
-        switch (i)
+        int[] probability = new int[5];
+
+        switch (GameInfo.gameInfo.Level)
+        {
+            case 1:
+                probability[0] = 80; probability[1] = 20; probability[2] = 0; probability[3] = 0; probability[4] = 0;
+                break;
+            case 2:
+                probability[0] = 45; probability[1] = 40; probability[2] = 15; probability[3] = 0; probability[4] = 0;
+                break;
+            case 3:
+                probability[0] = 20; probability[1] = 45; probability[2] = 30; probability[3] = 5; probability[4] = 0;
+                break;
+            case 4:
+                probability[0] = 0; probability[1] = 35; probability[2] = 50; probability[3] = 10; probability[4] = 5;
+                break;
+            case 5:
+                probability[0] = 0; probability[1] = 10; probability[2] = 60; probability[3] = 25; probability[4] = 5;
+                break;
+        }
+
+        int cumulativeProbability = 0;
+
+        for(j = 0; j < 5; j++)
+        {
+            cumulativeProbability += probability[j];
+
+            if (resultValue < cumulativeProbability)
+            {
+                break;
+            }
+        }
+
+        switch (j)
         {
             case 1:
                 resultId = randomIdA;
@@ -112,6 +143,7 @@ public class RandomQuestSelectUI : MonoBehaviour
 
         return resultId;
     }
+
 
     //private void SetMonsterDescID()
     //{

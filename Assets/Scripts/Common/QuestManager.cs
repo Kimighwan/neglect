@@ -23,8 +23,6 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     private int monsterStrongSize;    // 몬스터 강점 퍼센트
     private int monsterWeakSize;      // 몬스터 약점 퍼센트
     private int tierScore;              // 모험가 등급 점수
-    private int weakCount;
-    private int strongCount;
 
     private string monsterStrong;     // 몬스터 강점
     private string monsterWeak;       // 몬스터 약점
@@ -79,25 +77,14 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     {
         monsterId = questData[index].questMonsterDescId;    // 몬스터 ID 체크
         
-        var monsterData = DataTableManager.Instance.GetMonsterDescData(monsterId);  // 여기는 정상
+        var monsterData = DataTableManager.Instance.GetMonsterData(monsterId);  // 여기는 정상
 
-        weakCount = monsterData.weakCount;
-        strongCount = monsterData.strongCount;
 
-        if(weakCount != 0)
-        {
-            monsterWeakSize = Convert.ToInt32(monsterData.monsterWeekness.Substring(2, 1));
-            monsterWeak = monsterData.monsterWeekness.Substring(0, 2);
-        }
+        monsterWeakSize = Convert.ToInt32(monsterData.monsterWeekness.Substring(2, 1));
+        monsterWeak = monsterData.monsterWeekness.Substring(0, 2);
 
-        if (strongCount != 0)
-        {
-            monsterStrongSize = Convert.ToInt32(monsterData.monsterStrength.Substring(2, 1));
-            monsterStrong = monsterData.monsterStrength.Substring(0, 2);
-        }
-
-        //monsterStrongSize = Convert.ToInt32(monsterData.monsterStrength.Substring(2, 1));
-        //monsterStrong = monsterData.monsterStrength.Substring(0, 2);
+        monsterStrongSize = Convert.ToInt32(monsterData.monsterStrength.Substring(2, 1));
+        monsterStrong = monsterData.monsterStrength.Substring(0, 2);
 
         var questLevel = questData[index].questLevel;
 
@@ -200,35 +187,21 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     {
         foreach (var item in adventureDatas[index])
         {
-            if(weakCount != 0)
+            if (monsterWeak != "")
             {
-                if (monsterWeak != "")
+                if (item.adventureType == monsterWeak)
                 {
-                    if (item.adventureType == monsterWeak)
-                    {
-                        strongRate += ((float)0.1 * monsterWeakSize);
-                    }
+                    strongRate += ((float)0.1 * monsterWeakSize);
                 }
             }
 
-            if (strongCount != 0)
+            if (monsterStrong != "")
             {
-                if (monsterStrong != "")
+                if (item.adventureType == monsterStrong)
                 {
-                    if (item.adventureType == monsterStrong)
-                    {
-                        strongRate += ((float)0.1 * monsterStrongSize);
-                    }
+                    strongRate += ((float)0.1 * monsterStrongSize);
                 }
             }
-
-            //if(monsterStrong != "")
-            //{
-            //    if (item.adventureType == monsterStrong)
-            //    {
-            //        strongRate += ((float)0.1 * monsterStrongSize);
-            //    }
-            //}
         }
     }
 
