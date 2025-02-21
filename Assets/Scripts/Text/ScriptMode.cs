@@ -71,19 +71,28 @@ public class ScriptMode : MonoBehaviour
         }
     }
 
-    IEnumerator TypeText(string line)
-    {
-        isTyping = true;
-        data.scr.text = "";
+    IEnumerator TypeText(string line) {
+    isTyping = true;
+    data.scr.text = ""; // 초기화
 
-        foreach (char letter in line)
+    string richText = "";
+    bool insideTag = false; // 현재 < > 태그 안에 있는지 체크
+
+    foreach (char letter in line)
+    {
+        if (letter == '<') insideTag = true;
+        richText += letter;
+        if (letter == '>') insideTag = false;
+        if (!insideTag)
         {
-            data.scr.text += letter;
+            data.scr.text = richText;
             yield return new WaitForSeconds(typingSpeed);
         }
-
-        isTyping = false;
     }
+
+    isTyping = false;
+    }
+
     
     public void OnClickSkip()
     {
