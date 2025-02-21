@@ -15,6 +15,8 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
     public List<int> usingQuestList = new List<int>();      // 현재 파견 중인 의뢰
 
+    public List<int> usingAdventureList = new List<int>();  // 현재 파견 중인 모험가
+
     protected override void Init()
     {
         base.Init();
@@ -73,17 +75,11 @@ public class PoolManager : SingletonBehaviour<PoolManager>
         foreach(var item in adventureIds)
         {
             int adventureIdOfInt = Convert.ToInt32(item);
+            if (usingAdventureList.Contains(adventureIdOfInt)) continue;
+
             var data = DataTableManager.Instance.GetAdventureData(adventureIdOfInt);
 
             userAdventureList.Add(data);
-        }
-
-        foreach (var k in usingIds)
-        {
-            int deleteId = Convert.ToInt32(k);
-            var data = DataTableManager.Instance.GetAdventureData(deleteId);
-
-            userAdventureList.Remove(data);
         }
     }
 
@@ -143,26 +139,31 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
     public void UsingAdventureData()   // 선택된 모험가 사용중이라고 표현
     {
-        string add = "";
-        foreach (var item in AdventureData.adventureSelectId)
+        foreach(int i in AdventureData.adventureSelectId)
         {
-            if (add == "")
-            {
-                add += item.ToString();
-            }
-            else
-            {
-                add += "," + item.ToString();
-            }
+            usingAdventureList.Add(i);
         }
 
-        if (PlayerPrefs.GetString("UsingAdventure") == "")
-            PlayerPrefs.SetString("UsingAdventure", add);  // 사용중인 모험가 체크
-        else
-        {
-            var tmp = PlayerPrefs.GetString("UsingAdventure");
-            PlayerPrefs.SetString("UsingAdventure", tmp + "," + add);
-        }
+        //string add = "";
+        //foreach (var item in AdventureData.adventureSelectId)
+        //{
+        //    if (add == "")
+        //    {
+        //        add += item.ToString();
+        //    }
+        //    else
+        //    {
+        //        add += "," + item.ToString();
+        //    }
+        //}
+
+        //if (PlayerPrefs.GetString("UsingAdventure") == "")
+        //    PlayerPrefs.SetString("UsingAdventure", add);  // 사용중인 모험가 체크
+        //else
+        //{
+        //    var tmp = PlayerPrefs.GetString("UsingAdventure");
+        //    PlayerPrefs.SetString("UsingAdventure", tmp + "," + add);
+        //}
 
         //var adventureId = PlayerPrefs.GetString("AdventureId");
         //var adventureIds = adventureId.Split(',');
