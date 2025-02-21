@@ -48,7 +48,6 @@ public class QuestDetailUI : BaseUI
     {
         var monsterDescUI = new BaseUIData();
 
-        UIManager.Instance.CloseUI(this);
         UIManager.Instance.OpenUI<MonsterDescUI>(monsterDescUI);
     }
 }
