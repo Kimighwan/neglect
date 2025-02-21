@@ -27,7 +27,7 @@ public class DetachAdventureListUI : BaseUI
 
     private void OnEnable()
     {
-        PoolManager.Instance.SetAdventureListData();
+        PoolManager.Instance.SetDetachAdventureListData();
         SetScroll();
     }
 
@@ -262,7 +262,8 @@ public class DetachAdventureListUI : BaseUI
         // 의뢰 처리 하는 곳에서 adventureData를 넘겨준다
         // 의뢰 처리 하는 곳에서 의뢰도 받게 될 것인데
         // 위 두 개의 정보를 가지고 의뢰 시스템이 작동한다
-        PoolManager.Instance.DeleteAdventureData();
+
+        PoolManager.Instance.UsingAdventureData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachAdventureListUI>());
     }
 }
