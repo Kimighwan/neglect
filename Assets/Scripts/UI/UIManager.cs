@@ -97,7 +97,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         ui.transform.SetParent(ClosedUITrs);
 
         frontUI = null;
-        var lastChild = UICanvasTrs.GetChild(UICanvasTrs.childCount - 3);
+        var lastChild = UICanvasTrs.GetChild(UICanvasTrs.childCount - 2);
         if (lastChild)
         {
             frontUI = lastChild.gameObject.GetComponent<BaseUI>();
