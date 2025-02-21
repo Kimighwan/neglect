@@ -4,6 +4,7 @@ public class SystemDescUI : SystemUI
 {
     public SystemDescData systemDescData;
 
+    public TextMeshProUGUI title;
     public TextMeshProUGUI txtDesc;
 
     public GameObject beforeObj;
@@ -21,6 +22,7 @@ public class SystemDescUI : SystemUI
 
     private void OnEnable()
     {
+        pageIndex = 1;
         GetSystemDescData();
     }
 
@@ -41,6 +43,8 @@ public class SystemDescUI : SystemUI
         script5 = systemDescData.systemScript5;
 
         endPage = systemDescData.endPage;
+
+        title.text = systemDescData.systemName;
     }
 
     public void BackBtnOfSystemDescUI()   // 뒤로가기 버튼
