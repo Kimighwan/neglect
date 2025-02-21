@@ -11,19 +11,18 @@ public class ScriptMode : MonoBehaviour
     private List<ScriptData> scriptList;
     private int currentLine = 0;
     private bool isTyping = false;
+    private bool illExist = true;
     private Coroutine typingCoroutine;
 
     private void Start()
     {
         data = ScriptDialogObjectData.data;
         scriptList = new List<ScriptData>();
-        PrepareScriptText(100001, 100099);
-        ShowNextScript();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (isScriptMode && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
         {
             if (isTyping)
             {
@@ -38,20 +37,17 @@ public class ScriptMode : MonoBehaviour
         }
     }
 
-    public void PrepareScriptText(int startId, int endId) {
+    public void PrepareScriptText(int startId, int endId, bool b) {
         for (int i = startId; i <= endId; i++)
         {
-            ScriptData data = DataTableManager.Instance.GetScriptData(i);
+            ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
             if (data != null)
             {
-                scriptList.Add(data);
+                scriptList.Add(scriptData);
             }
         }
-        
-        data.background.SetActive(true);
-        data.panel.SetActive(true);
-        data.skipBtn.SetActive(true);
-        isScriptMode = true;
+        illExist = b;
+        ActiveObjects(true);
     }
 
     public void ShowNextScript()
@@ -62,22 +58,16 @@ public class ScriptMode : MonoBehaviour
             {
                 StopCoroutine(typingCoroutine);
             }
-            
+            Debug.Log(currentLine);
             ScriptData scriptData = scriptList[currentLine];
-            if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptPos);
+            if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos);
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
             currentLine++;
         }
         else
         {
-            data.scr.text = "";
-            data.background.SetActive(false);
-            data.panel.SetActive(false);
-            data.skipBtn.SetActive(false);
-            scriptList.Clear();
-            this.GetComponent<ScriptImageHandler>().EndTheScripts();
-            isScriptMode = false;
+            EndScripts();
         }
     }
 
@@ -101,15 +91,32 @@ public class ScriptMode : MonoBehaviour
         ShowNextScript();
     }
 
-    private void ShowCharWithExp(string c, string e, string p) {
-        int pos = 1;
-        if (p == "left") pos = 0;
-        else if (p == "middle") pos = 1;
-        else if (p == "right") pos = 2;
-
+    private void ShowCharWithExp(string name, string exp, string inout, string pos) {
         string charName = "";
-        if (c == "안나") charName = "Anna";
-        else if (c == "본부직원") {}
-        this.GetComponent<ScriptImageHandler>().SetCharacter(charName, e, pos);
+        if (name == "데이지") charName = "Daisy";
+        else if (name == "멜링" || name == "???") charName = "Melling";
+        this.GetComponent<ScriptImageHandler>().SetCharacter(charName, exp, inout, pos);
+    }
+
+    private void ActiveObjects(bool b) {
+        if (b) {
+            if (illExist) data.background.SetActive(b);
+            else data.backPanel.SetActive(b);
+        }
+        else {
+            data.background.SetActive(b);
+            data.backPanel.SetActive(b);
+        }
+        data.panel.SetActive(b);
+        data.skipBtn.SetActive(b);
+    }
+
+    private void EndScripts() {
+        data.scr.text = "";
+        ActiveObjects(false);
+        scriptList.Clear();
+        this.GetComponent<ScriptImageHandler>().EndTheScripts();
+        currentLine = 0;
+        isScriptMode = false;
     }
 }

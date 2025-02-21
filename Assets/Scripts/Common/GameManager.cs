@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
         if (!pause && !scriptMode.isScriptMode) {
             info.UpdateGameInfo();
             UITextHandler.textHandler.UpdateTexts();
-            dialogMode.UpdateDialog();
         }
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DialogMode : MonoBehaviour
 {
+    private ScriptDialogObjectData data;
     private float minTypingSpeed = 0.2f;
     private float maxTypingSpeed = 0.8f;
     private float holdTime = 1f;
@@ -12,47 +13,27 @@ public class DialogMode : MonoBehaviour
     public float changeMaxTypingSpeed = 0.8f;
     public float changeHoldTime = 0.5f;
 
-    private TextMeshProUGUI textA;
-    private TextMeshProUGUI charTextA;
-    private GameObject uiMalpungseonA;
-    private GameObject malpungseonA;
-    
-    private TextMeshProUGUI textB;
-    private TextMeshProUGUI charTextB;
-    private GameObject uiMalpungseonB;
-    private GameObject malpungseonB;
-
     private Queue<ScriptData> scriptQueue = new Queue<ScriptData>();
     private bool isSpeakerA = true;
-    private int dialogIndex = 0;
 
-    public void UpdateDialog() {
-        if (!GameInfo.gameInfo.malpungseonOnce && GameInfo.gameInfo.Day == ScriptDialogObjectData.data.GetDialogStartDay(dialogIndex)) {
-            if ((GameInfo.gameInfo.Timer/10) > ScriptDialogObjectData.data.GetDialogStartTime(dialogIndex)) {
-                bool b = (dialogIndex % 2 == 0) ? true : false; 
-                PrepareDialogText(ScriptDialogObjectData.data.GetDialogStartId(dialogIndex), ScriptDialogObjectData.data.GetDialogEndId(dialogIndex), b);
-                GameInfo.gameInfo.malpungseonOnce = true;
-                dialogIndex++;
-            }
-        }
+    void Start() {
+        data = ScriptDialogObjectData.data;
     }
-
     public void ChangeDialogSpeed(float f) {
         minTypingSpeed = changeMinTypingSpeed / f;
         maxTypingSpeed = changeMaxTypingSpeed / f;
         holdTime = changeHoldTime / f;
     }
 
-    public void PrepareDialogText(int startId, int endId, bool isDeskL)
+    public void PrepareDialogText(int startId, int endId)
     {
-        AllocateObject();
         scriptQueue.Clear();
         for (int i = startId; i <= endId; i++)
         {
-            ScriptData data = DataTableManager.Instance.GetScriptData(i);
+            ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
             if (data != null)
             {
-                scriptQueue.Enqueue(data);
+                scriptQueue.Enqueue(scriptData);
             }
         }
         StartCoroutine(StartDialogue());
@@ -60,7 +41,7 @@ public class DialogMode : MonoBehaviour
 
     private IEnumerator StartDialogue()
     {
-        ActiveObjectAB(false, false);
+        data.ActiveAllDialogObject(false, false);
 
         while (scriptQueue.Count > 0)
         {
@@ -75,24 +56,24 @@ public class DialogMode : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
 
-        ActiveObjectAB(false, false);
+        data.ActiveAllDialogObject(false, false);
     }
 
     private IEnumerator TypeSentence(ScriptData scriptData)
     {
         if (isSpeakerA)
         {
-            ActiveObjectAB(true, false);
-            textA.text = "";
-            charTextA.text = scriptData.scriptSpeaker;
-            yield return StartCoroutine(TypeEffect(textA, scriptData.scriptLine));
+            data.ActiveAllDialogObject(true, false);
+            data.malpungseon1Text.text = "";
+            data.speaker1Text.text = scriptData.scriptSpeaker;
+            yield return StartCoroutine(TypeEffect(data.malpungseon1Text, scriptData.scriptLine));
         }
         else
         {
-            ActiveObjectAB(false, true);
-            textB.text = "";
-            charTextB.text = scriptData.scriptSpeaker;
-            yield return StartCoroutine(TypeEffect(textB, scriptData.scriptLine));
+            data.ActiveAllDialogObject(false, true);
+            data.malpungseon2Text.text = "";
+            data.speaker2Text.text = scriptData.scriptSpeaker;
+            yield return StartCoroutine(TypeEffect(data.malpungseon2Text, scriptData.scriptLine));
         }
         isSpeakerA = !isSpeakerA;
     }
@@ -105,25 +86,5 @@ public class DialogMode : MonoBehaviour
             targetText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
-    }
-
-    private void ActiveObjectAB(bool a, bool b) {
-        uiMalpungseonA.SetActive(a);
-        malpungseonA.SetActive(a);
-        uiMalpungseonB.SetActive(b);
-        malpungseonB.SetActive(b);
-    }
-
-    private void AllocateObject() {
-        ScriptDialogObjectData data = ScriptDialogObjectData.data;
-        textA = data.malpungseon1Text;
-        charTextA = data.speaker1Text;
-        uiMalpungseonA = data.malpungseon11;
-        malpungseonA = data.malpungseon1;
-
-        textB = data.malpungseon2Text;
-        charTextB = data.speaker2Text;
-        uiMalpungseonB = data.malpungseon22;
-        malpungseonB = data.malpungseon2;
     }
 }

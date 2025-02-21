@@ -10,19 +10,20 @@ public class ScriptDialogObjectData : MonoBehaviour
     private void Awake()
     {
         data = this;
-        ActiveAllDialogObject();
+        ActiveAllDialogObject(true, true);
     }
     private void Start()
     {
         mainCamera = Camera.main;
         PlaceDialog();
-        UnActiveAllDialogObject();
+        ActiveAllDialogObject(false, false);
     }
 
     #region ScriptMode
 
     [Header("ScriptMode")]
     public GameObject background;
+    public GameObject backPanel;
     public GameObject panel;
     public GameObject skipBtn;
     public TextMeshProUGUI scr;
@@ -40,8 +41,8 @@ public class ScriptDialogObjectData : MonoBehaviour
     public Transform background1;
     public Transform background2;
 
-    public GameObject malpungseon11;
-    public GameObject malpungseon22;
+    public GameObject malpungseonUI1;
+    public GameObject malpungseonUI2;
     public TextMeshProUGUI speaker1Text;
     public TextMeshProUGUI speaker2Text;
     public TextMeshProUGUI malpungseon1Text;
@@ -51,26 +52,11 @@ public class ScriptDialogObjectData : MonoBehaviour
     public RectTransform malpungseon1RT;
     public RectTransform malpungseon2RT;
 
-    private List<int> dialogStartId = new List<int>{ 101811, 101821, 101831, 101911, 101921, 101931 };
-    private List<int> dialogEndId = new List<int>{ 101816, 101827, 101835, 101915, 101927, 101938 };
-    private List<int> dialogStartDay = new List<int> {3, 5, 7, 9, 11, 13};
-    private List<float> dialogStartTime = new List<float> {9f, 8f, 10f, 10f, 8f, 9f};
-    public int GetDialogStartId(int i) { return dialogStartId[i]; }
-    public int GetDialogEndId(int i) { return dialogEndId[i]; }
-    public int GetDialogStartDay(int i) { return dialogStartDay[i]; }
-    public float GetDialogStartTime(int i) { return dialogStartTime[i]; }
-
-    private void ActiveAllDialogObject() {
-        malpungseon11.SetActive(true);
-        malpungseon22.SetActive(true);
-        malpungseon1.SetActive(true);
-        malpungseon2.SetActive(true);
-    }
-    private void UnActiveAllDialogObject() {
-        malpungseon11.SetActive(false);
-        malpungseon22.SetActive(false);
-        malpungseon1.SetActive(false);
-        malpungseon2.SetActive(false);
+    public void ActiveAllDialogObject(bool a, bool b) {
+        malpungseonUI1.SetActive(a);
+        malpungseonUI2.SetActive(b);
+        malpungseon1.SetActive(a);
+        malpungseon2.SetActive(b);
     }
     private void PlaceDialog() {
         Vector3 screenPos;
