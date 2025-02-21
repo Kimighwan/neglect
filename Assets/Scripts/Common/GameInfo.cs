@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 /*
 게임 진행에 필요한 모든 정보(데이터 베이스 제외)를 사용하려는 목적
@@ -10,6 +12,8 @@ public class GameInfo : MonoBehaviour
 {
     public static GameInfo gameInfo;
     public GameObject roomList;
+    public Image fadeInOut;
+    
     // 게임 진행 속도 조절
     public float gameSpeed = 1f;
     // 골드 정보
@@ -56,6 +60,9 @@ public class GameInfo : MonoBehaviour
             malpungseonOnce = false;
             gold += plusGold;
         }
+        else if (timer >= 200f) {
+            EndToday();
+        }
     }
     public bool ChangeGold(int g) {
         if (gold + g > 0) {
@@ -75,7 +82,7 @@ public class GameInfo : MonoBehaviour
             else return false;
             roomList.GetComponent<Room>().ActiveRoom();
             request.ActiveRequest();
-            GameInfo.gameInfo.Level++;
+            gameInfo.Level++;
             plusGold = rooms * 100;
             return true;
         }
@@ -84,5 +91,42 @@ public class GameInfo : MonoBehaviour
     public int GetNeededGold() {
         if (level == 5) return 0;
         return neededGold[level - 1];
+    }
+    public void EndToday()
+    {
+        GameManager.gameManager.PauseGame();
+        fadeInOut.gameObject.SetActive(true);
+        StartCoroutine(DoFadeInBlack(2f, 0f, 0f, 1f));
+    }
+
+    private IEnumerator DoFadeInBlack(float duration, float startDelay, float startAlpha, float endAlpha)
+    {
+        yield return StartCoroutine(FadeBlack(duration, startDelay, startAlpha, endAlpha)); // FadeIn이 끝날 때까지 대기
+        UIManager.Instance.OnClickEndToday();
+    }
+
+    private IEnumerator FadeBlack(float duration, float startDelay, float startAlpha, float endAlpha)
+    {
+        yield return new WaitForSeconds(startDelay);    // Delay...
+        fadeInOut.color = new Color(0f, 0f, 0f, startAlpha);
+
+        var startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - startTime < duration)
+        {
+            fadeInOut.color = new Color(0f, 0f, 0f, Mathf.Lerp(startAlpha, endAlpha, (Time.realtimeSinceStartup - startTime) / duration));
+            yield return null;
+        }
+
+        fadeInOut.color = new Color(0f, 0f, 0f, endAlpha);
+    }
+    public void ComeMorning()
+    {
+        GameManager.gameManager.PauseGame();
+        timer = 320f;
+        StartCoroutine(FadeBlack(2f, 0f, 1f, 0f));
+        Invoke("UnActiveFade", 2f);
+    }
+    private void UnActiveFade() {
+        fadeInOut.gameObject.SetActive(false);
     }
 }

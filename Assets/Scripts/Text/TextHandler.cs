@@ -13,7 +13,6 @@ public class TextHandler : MonoBehaviour
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI timeText;
-    public TextMeshProUGUI plusGoldText;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI neededGoldText;
 
@@ -23,7 +22,7 @@ public class TextHandler : MonoBehaviour
 
     public void UpdateTexts() {
         UpdateGoldText();
-        dayText.text = $"Day {GameInfo.gameInfo.Day.ToString()}";
+        dayText.text = $"Day {GameInfo.gameInfo.Day}";
         UpdateTimeText();
         UpdateLevelText();
     }
@@ -32,7 +31,6 @@ public class TextHandler : MonoBehaviour
         int g = GameInfo.gameInfo.Gold;
         string s = g.ToString("N0");
         goldText.text = s;
-        plusGoldText.text = $"+{GameInfo.gameInfo.plusGold.ToString()}";
     }
     
     // 시간 정보 자동 변환
@@ -52,11 +50,11 @@ public class TextHandler : MonoBehaviour
     }
 
     private void UpdateLevelText() {
-        levelText.text = $"Level {GameInfo.gameInfo.Level.ToString()}";
+        levelText.text = $"Lv {GameInfo.gameInfo.Level.ToString()}";
         int g = GameInfo.gameInfo.GetNeededGold();
         if (g != 0) {
             neededGoldText.text = $"필요한 골드 {g}";
         }
-        else neededGoldText.text = "Max Level";
+        else neededGoldText.text = "Max Lv";
     }
 }
