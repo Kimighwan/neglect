@@ -10,7 +10,7 @@ public class QuestResult : BaseUI
     public GameObject receiptBtn;
 
     private int resultIndex;        // 파견창 인덱스
-    private int result;              // 결과 / -1 : 전멸 / 0 : 일반 성공 / 1 : 대성공
+    private int result;             // 결과 / -1 : 전멸 / 0 : 일반 성공 / 1 : 대성공
 
     private void Start()
     {
