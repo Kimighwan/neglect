@@ -21,6 +21,11 @@ public class UIManager : SingletonBehaviour<UIManager>
         PlayerPrefs.GetString("AdventureId", "");
     }
 
+    private void Update()
+    {
+        HandleInput();
+    }
+
     protected override void Init()
     {
         base.Init();
@@ -105,7 +110,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         return openUIPool.ContainsKey(uiType) ? openUIPool[uiType].GetComponent<BaseUI>() : null;
     }
 
-    public bool ExistOpenUI() // 활서아화된 ui 있는지 확인
+    public bool ExistOpenUI() // 활성화된 ui 있는지 확인
     {
         return frontUI != null;
     }
@@ -164,5 +169,32 @@ public class UIManager : SingletonBehaviour<UIManager>
 
 
     #endregion
+
+
+    private void HandleInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // AudioManager.Instance.PlaySFX(SFX.ui_button_click);
+
+            if (frontUI != null) // UI가 띄워져 있다면
+            {
+                frontUI.CloseUI(); // 띄워져있는 UI 닫기
+            }
+            else // 아무 UI도 없다면 게임 종료 팝업UI 띄우기
+            {
+                var uiData = new ConfirmUIData();
+                uiData.confirmType = ConfirmType.OK_CANCEL;
+                uiData.descTxt = "종료하시겠습니까?";
+                uiData.okBtnTxt = "종료";
+                uiData.cancelBtnTxt = "취소";
+                uiData.onClickOKBtn = () =>
+                {
+                    Application.Quit();
+                };
+                UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            }
+        }
+    }
 
 }

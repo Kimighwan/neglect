@@ -15,21 +15,21 @@ public class ReceptionUI : BaseUI
     public void OnClickAdventrueListBtn()
     {
         var adventurerListUI = new BaseUIData();
-        UIManager.Instance.OpenUI<AdventurerListUI>(adventurerListUI);
         UIManager.Instance.CloseUI(this);
+        UIManager.Instance.OpenUI<AdventurerListUI>(adventurerListUI);
     }
 
     public void OnClickQuestListBtn()
     {
         var questListUI = new BaseUIData();
-        UIManager.Instance.OpenUI<QuestListUI>(questListUI);
         UIManager.Instance.CloseUI(this);
+        UIManager.Instance.OpenUI<QuestListUI>(questListUI);
     }
 
     public void OnClickNewQuestListBtn()
     {
         var questListUI = new BaseUIData();
-        UIManager.Instance.OpenUI<TodayQuestUI>(questListUI);
         UIManager.Instance.CloseUI(this);
+        UIManager.Instance.OpenUI<TodayQuestUI>(questListUI);
     }
 }
