@@ -41,7 +41,7 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     public void OnClickSelected()
     {
-        if (CheckHaveAdventureID(questId))  // 선택된 모험가가 이미 있음
+        if (CheckHaveAdventureID(questId))  // 선택된 의뢰가 이미 있음
             return;
 
         string pre = PlayerPrefs.GetString("QuestId");  // 저장된 quest ID 불러오기
@@ -337,7 +337,7 @@ public class RandomQuestSelectUI : MonoBehaviour
         UIManager.Instance.OpenUI<QuestDetailUI>(questDetailUI);
     }
 
-    private bool CheckHaveAdventureID(int questId)                          // 매개변수의 ID를 가졌는지 확인
+    private bool CheckHaveAdventureID(int questId)                  // 매개변수의 ID를 가졌는지 확인
     {
         string questIdOfString = PlayerPrefs.GetString("QuestId");  // 현재 ID 가져오기
         string[] questIdOfInt = questIdOfString.Split(',');         // 구분자 ID 분리
