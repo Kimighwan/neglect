@@ -6,6 +6,7 @@ using UnityEngine;
 public class PoolManager : SingletonBehaviour<PoolManager>
 {
     public List<QuestData> userQuestList { get; private set; } = new List<QuestData>();
+    public List<int> userQuestIndex = new List<int>();
     public List<AdventureData> userAdventureList { get; private set; } = new List<AdventureData> { };
 
     protected override void Init()
