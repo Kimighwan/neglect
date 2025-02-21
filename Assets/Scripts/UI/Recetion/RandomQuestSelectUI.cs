@@ -41,6 +41,9 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     public void OnClickSelected()
     {
+        if (CheckHaveAdventureID(questId))  // 선택된 의뢰가 이미 있음
+            return;
+
         string pre = PlayerPrefs.GetString("QuestId");  // 저장된 quest ID 불러오기
 
         // 선택한 quest ID 저장
@@ -332,6 +335,25 @@ public class RandomQuestSelectUI : MonoBehaviour
         var questDetailUI = new BaseUIData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<TodayQuestUI>());
         UIManager.Instance.OpenUI<QuestDetailUI>(questDetailUI);
+    }
+
+    private bool CheckHaveAdventureID(int questId)                  // 매개변수의 ID를 가졌는지 확인
+    {
+        string questIdOfString = PlayerPrefs.GetString("QuestId");  // 현재 ID 가져오기
+        string[] questIdOfInt = questIdOfString.Split(',');         // 구분자 ID 분리
+
+        if (questIdOfString == "") return false;
+
+        for (int index = 0; index < questIdOfInt.Length; index++)        // 모든 ID 순회
+        {
+            if (questId == Convert.ToInt32(questIdOfInt[index]))     // 매개변수와 같은 ID 검색
+            {
+                Debug.Log("해당 의뢰가 이미 있습니다.");
+                return true;    // 있음
+            }
+        }
+
+        return false;           // 없음
     }
 }
 
