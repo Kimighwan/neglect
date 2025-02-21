@@ -29,6 +29,8 @@ public class GameInfo : MonoBehaviour
     // 개방된 객실 개수
     private int rooms;
     public int Rooms { get { return rooms; } set { rooms = value; } }
+    public List<int> roomCounts = new List<int> { 1, 0, 0, 0 };
+    public List<int> roomLevels = new List<int> { 1, 1, 1, 1 };
     // 길드 레벨
     private int level;
     public int Level { get { return level; } set { level = value; } }

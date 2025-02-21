@@ -27,10 +27,10 @@ public class DialogMode : MonoBehaviour
     private int dialogIndex = 0;
 
     public void UpdateDialog() {
-        if (!GameInfo.gameInfo.malpungseonOnce && GameInfo.gameInfo.Day == ScriptObjectData.data.GetDialogStartDay(dialogIndex)) {
-            if ((GameInfo.gameInfo.Timer/10) > ScriptObjectData.data.GetDialogStartTime(dialogIndex)) {
+        if (!GameInfo.gameInfo.malpungseonOnce && GameInfo.gameInfo.Day == ScriptDialogObjectData.data.GetDialogStartDay(dialogIndex)) {
+            if ((GameInfo.gameInfo.Timer/10) > ScriptDialogObjectData.data.GetDialogStartTime(dialogIndex)) {
                 bool b = (dialogIndex % 2 == 0) ? true : false; 
-                PrepareDialogText(ScriptObjectData.data.GetDialogStartId(dialogIndex), ScriptObjectData.data.GetDialogEndId(dialogIndex), b);
+                PrepareDialogText(ScriptDialogObjectData.data.GetDialogStartId(dialogIndex), ScriptDialogObjectData.data.GetDialogEndId(dialogIndex), b);
                 GameInfo.gameInfo.malpungseonOnce = true;
                 dialogIndex++;
             }
@@ -115,7 +115,7 @@ public class DialogMode : MonoBehaviour
     }
 
     private void AllocateObject() {
-        ScriptObjectData data = ScriptObjectData.data;
+        ScriptDialogObjectData data = ScriptDialogObjectData.data;
         textA = data.malpungseon1Text;
         charTextA = data.speaker1Text;
         uiMalpungseonA = data.malpungseon11;

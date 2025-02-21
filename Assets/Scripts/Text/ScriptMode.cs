@@ -7,7 +7,7 @@ public class ScriptMode : MonoBehaviour
     public float typingSpeed = 0.05f;
     public bool isScriptMode;
 
-    private ScriptObjectData data;
+    private ScriptDialogObjectData data;
     private List<ScriptData> scriptList;
     private int currentLine = 0;
     private bool isTyping = false;
@@ -15,7 +15,7 @@ public class ScriptMode : MonoBehaviour
 
     private void Start()
     {
-        data = ScriptObjectData.data;
+        data = ScriptDialogObjectData.data;
         scriptList = new List<ScriptData>();
         PrepareScriptText(100001, 100099);
         ShowNextScript();

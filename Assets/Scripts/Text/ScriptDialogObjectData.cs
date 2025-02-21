@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScriptObjectData : MonoBehaviour
+public class ScriptDialogObjectData : MonoBehaviour
 {
-    public static ScriptObjectData data;
+    public static ScriptDialogObjectData data;
     private Camera mainCamera;
 
     private void Awake()

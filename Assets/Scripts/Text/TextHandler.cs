@@ -7,9 +7,9 @@ using UnityEngine;
 자동 업데이트 되도록 만들 예정
 */
 
-public class TextHandler : MonoBehaviour
+public class UITextHandler : MonoBehaviour
 {
-    public static TextHandler textHandler;
+    public static UITextHandler textHandler;
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI timeText;
