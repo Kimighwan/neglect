@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -11,7 +9,6 @@ public class RandomQuestSelectUI : MonoBehaviour
     public TextMeshProUGUI time;
     public TextMeshProUGUI reward;
 
-
     private QuestData questData;
 
     private int questId;
@@ -19,6 +16,7 @@ public class RandomQuestSelectUI : MonoBehaviour
     private int questReward;
     private int questMonsterDescId;
 
+    private int j;
     private int resultId;
 
 
@@ -61,7 +59,7 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     private void GetQuestData()
     {
-        questData = DataTableManager.Instance.GetQuestData(RandomIndexMake());
+        questData = DataTableManager.Instance.GetQuestDataUsingIndex(RandomIndexMake());
 
         questId = questData.questId;
         this.questName = questData.questName;
@@ -81,42 +79,245 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     private int RandomIndexMake()   // 무작위 숫자
     {
-        int randomIdA = UnityEngine.Random.Range(131001, 131007);
-        int randomIdB = UnityEngine.Random.Range(132007, 132013);
-        int randomIdC = UnityEngine.Random.Range(133013, 133022);
-        int randomIdD = UnityEngine.Random.Range(134022, 134026);
-        int randomIdE = UnityEngine.Random.Range(135026, 135029);
+        int randomIndexA = UnityEngine.Random.Range(1, 10);     // 브론즈   9개
+        int randomIndexB = GetQuestindex(Tier.Silver);          // 실버     10개
+        int randomIndexC = GetQuestindex(Tier.Gold);            // 골드     10개
+        int randomIndexD = GetQuestindex(Tier.Platinum);        // 플래티넘 7개
+        int randomIndexE = UnityEngine.Random.Range(38, 41);    // 다이아   3개
 
-        int i = UnityEngine.Random.Range(1, 6);
+        int resultValue = UnityEngine.Random.Range(1, 101);
 
-        switch (i)
+        int[] probability = new int[5];
+
+        switch (GameInfo.gameInfo.Level)
         {
             case 1:
-                resultId = randomIdA;
+                probability[0] = 80; probability[1] = 20; probability[2] = 0; probability[3] = 0; probability[4] = 0;
                 break;
             case 2:
-                resultId = randomIdB;
+                probability[0] = 45; probability[1] = 40; probability[2] = 15; probability[3] = 0; probability[4] = 0;
                 break;
             case 3:
-                resultId = randomIdC;
+                probability[0] = 20; probability[1] = 45; probability[2] = 30; probability[3] = 5; probability[4] = 0;
                 break;
             case 4:
-                resultId = randomIdD;
+                probability[0] = 0; probability[1] = 35; probability[2] = 50; probability[3] = 10; probability[4] = 5;
                 break;
             case 5:
-                resultId = randomIdE;
+                probability[0] = 0; probability[1] = 10; probability[2] = 60; probability[3] = 25; probability[4] = 5;
+                break;
+        }
+
+        int cumulativeProbability = 0;      // 누적된 확률
+
+        for(j = 0; j < 5; j++)
+        {
+            cumulativeProbability += probability[j];
+
+            if (resultValue <= cumulativeProbability)
+            {
+                break;
+            }
+        }
+
+        switch (j)
+        {
+            case 0: // 브론즈
+                resultId = randomIndexA;
+                break;
+            case 1: // 실버
+                resultId = randomIndexB;
+                break;
+            case 2: // 골드
+                resultId = randomIndexC;
+                break;
+            case 3: // 플래티넘
+                resultId = randomIndexD;
+                break;
+            case 4: // 다이아
+                resultId = randomIndexE;
                 break;
             default:
                 break;
         }
 
+        if (!PoolManager.Instance.userQuestIndex.Contains(resultId))
+        {
+            PoolManager.Instance.userQuestIndex.Add(resultId);
+        }
+        else
+        {
+            // 길드레벨 3
+            if (GameInfo.gameInfo.Level == 3)
+            {
+                if(j == 0) // 브론즈 의뢰 부족
+                {
+                    // 실버 의뢰로 승격
+                    resultId = GetQuestindex(Tier.Silver);   // 실버
+                }
+                else if(j == 3) // 플래티넘 의뢰 부족
+                {
+                    // 아쉽게 골드 중 갖고 있지 않는 의뢰 반환
+                    int tmp;
+                    do
+                    {
+                        tmp = GetQuestindex(Tier.Gold);
+                    } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    resultId = tmp;
+                }
+            }
+            // 길드레벨 4, 5
+            else
+            {
+                if (j == 1) // 실버 의뢰 부족
+                {
+                    // 골드 의뢰로 승격
+                    int tmp;
+                    do
+                    {
+                        tmp = GetQuestindex(Tier.Gold); // 골드
+                    } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    resultId = tmp;
+                }
+                else if (j == 2) // 골드 의뢰 부족
+                {
+                    // 실버 의뢰 주기
+                    int tmp;
+                    do
+                    {
+                        tmp = GetQuestindex(Tier.Silver); // 실버
+                    } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    resultId = tmp;
+                }
+                else if (j == 3) // 플래티넘 의뢰 부족
+                {
+                    // 골드 의뢰 주기
+                    int tmp;
+                    do
+                    {
+                        tmp = GetQuestindex(Tier.Gold); // 골드
+                    } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                }
+                else // 다이아 의뢰 부족
+                {
+                    if (!CheckQuestFullOfTier(Tier.Platinum))   // 플래티넘 의뢰가 아직 있다면
+                    {
+                        // 플래티넘 의뢰 주기
+                        int tmp;
+                        do
+                        {
+                            tmp = GetQuestindex(Tier.Platinum); // 플래티넘
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                    }
+                    else // 플래티넘도 없다면 골드 의뢰 주기
+                    {
+                        int tmp;
+                        do
+                        {
+                            tmp = GetQuestindex(Tier.Gold); // 골드
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                    }
+                }
+            }
+        }
+
         return resultId;
     }
 
-    //private void SetMonsterDescID()
-    //{
-    //    DataTableManager.Instance.monsterDescId = questMonsterDescId;
-    //}
+    private bool CheckQuestFullOfTier(Tier tier)    // 랭크에 해당하는 의뢰가 더이상 없는가
+    {
+        switch (tier)
+        {
+            case Tier.Bronze:
+                for(int i = 1; i < 10; i++)
+                {
+                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                    {
+                        return false;
+                    }
+                }
+                break;
+            case Tier.Silver:
+                for (int i = 10; i < 20; i++)
+                {
+                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                    {
+                        return false;
+                    }
+                }
+                break;
+            case Tier.Gold:
+                for (int i = 20; i < 30; i++)
+                {
+                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                    {
+                        return false;
+                    }
+                }
+                break;
+            case Tier.Platinum:
+                for (int i = 31; i < 38; i++)
+                {
+                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                    {
+                        return false;
+                    }
+                }
+                break;
+            case Tier.Dia:
+                for (int i = 38; i < 41; i++)
+                {
+                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                    {
+                        return false;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
+        return true;    // 없다
+    }
+
+    private int GetQuestindex(Tier tier)
+    {
+        if(tier == Tier.Silver)
+        {
+            int tmpResultValue = UnityEngine.Random.Range(1, 101);
+            if (tmpResultValue <= 90)
+            {
+                return UnityEngine.Random.Range(10, 19);
+            }
+            else
+                return 19;
+        }
+        else if(tier == Tier.Gold)
+        {
+            int tmpResultValue = UnityEngine.Random.Range(1, 101);
+            if (tmpResultValue <= 90)
+            {
+                return UnityEngine.Random.Range(20, 29);
+            }
+            else
+                return 29;
+        }
+        else if(tier == Tier.Platinum)
+        {
+            int tmpResultValue = UnityEngine.Random.Range(1, 101);
+            if (tmpResultValue <= 90)
+            {
+                return UnityEngine.Random.Range(31, 37);
+            }
+            else
+                return 37;
+        }
+
+        return -1;
+    }
 
     private void SetQuestDetailID()
     {
@@ -132,4 +333,13 @@ public class RandomQuestSelectUI : MonoBehaviour
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<TodayQuestUI>());
         UIManager.Instance.OpenUI<QuestDetailUI>(questDetailUI);
     }
+}
+
+public enum Tier
+{
+    Bronze,
+    Silver,
+    Gold,
+    Platinum,
+    Dia,
 }

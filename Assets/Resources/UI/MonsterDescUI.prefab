@@ -1289,7 +1289,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -3612615526272147720}
         m_TargetAssemblyTypeName: MonsterDescUI, Assembly-CSharp
-        m_MethodName: BackBtn
+        m_MethodName: BackBtnOfMonsterDescUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

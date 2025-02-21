@@ -874,6 +874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiAnim: {fileID: 0}
+  txt: {fileID: 541336168938168114}
 --- !u!1 &6191775579082516501
 GameObject:
   m_ObjectHideFlags: 0
