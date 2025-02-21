@@ -153,7 +153,7 @@ public class RandomQuestSelectUI : MonoBehaviour
             // 길드레벨 3
             if (GameInfo.gameInfo.Level == 3)
             {
-                if(j == 0) // 브론즈 의뢰 부족
+                if(j == 0) // 브론즈
                 {
                     // 실버 의뢰로 승격
                     resultId = GetQuestindex(Tier.Silver);   // 실버
