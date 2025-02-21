@@ -4,49 +4,34 @@ using UnityEngine.UI;
 
 public class ScriptImageHandler : MonoBehaviour
 {
+    private List<string> preName = new List<string> { "", "", "" };
     public Image BackGround;
     public Image LeftSpeaker;  // UI에서 캐릭터를 표시할 Image 컴포넌트
     public Image MiddleSpeaker;
     public Image RightSpeaker;
     private Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
 
-    public void SetCharacter(string c, string e, int pos) // 0 left, 1 middle, 2 right
+    public void SetCharacter(string name, string exp, string inout, string pos)
     {
-        string fileName = c + '_' + e;
+        string fileName = name + '_' + exp;
         // 캐시된 이미지가 있는지 확인
         if (!spriteCache.TryGetValue(fileName, out Sprite sprite))
         { // 캐시에 없으면 Resources 폴더에서 로드
-            string path = $"Arts/Characters/{c}/{fileName}";
+            string path = $"Arts/Characters/{name}/{fileName}";
             sprite = Resources.Load<Sprite>(path);
-            if (sprite != null)
-            {
-                spriteCache[c] = sprite;
-            }
-            else
-            {
+            if (sprite != null) spriteCache[name] = sprite;
+            else {
                 Debug.LogWarning($"[SetCharacter] {path} 경로에서 스프라이트를 찾을 수 없음!");
                 return;
             }
         }
-        switch (pos) {
-            case 0 :
-                ActiveImage(pos);
-                LeftSpeaker.sprite = sprite;
-                Vector3 scale = LeftSpeaker.rectTransform.localScale;
-                scale.x = -1; 
-                LeftSpeaker.rectTransform.localScale = scale;
-                break;
-            case 1 :
-                ActiveImage(pos);
-                MiddleSpeaker.sprite = sprite;
-                break;
-            case 2 :
-                ActiveImage(pos);
-                RightSpeaker.sprite = sprite;
-                break;
-        }
+        ReplaceCharacter(name, sprite, pos);
     }
     public void EndTheScripts() {
+        preName = new List<string> { "", "", "" };
+        LeftSpeaker.sprite = null;
+        MiddleSpeaker.sprite = null;
+        RightSpeaker.sprite = null;
         LeftSpeaker.gameObject.SetActive(false);
         MiddleSpeaker.gameObject.SetActive(false);
         RightSpeaker.gameObject.SetActive(false);
@@ -77,6 +62,32 @@ public class ScriptImageHandler : MonoBehaviour
             case 2 :
                 RightSpeaker.gameObject.SetActive(false);
                 break;
+        }
+    }
+
+    private void ReplaceCharacter(string name, Sprite sprite, string pos) {
+        switch (pos) {
+        case "left":
+            ActiveImage(0);
+            if (preName[1] == name) UnActiveImage(1);
+            if (preName[2] == name) UnActiveImage(2);
+            LeftSpeaker.sprite = sprite;
+            preName[0] = name;
+            break;
+        case "middle":
+            ActiveImage(1);
+            if (preName[0] == name) UnActiveImage(0);
+            if (preName[2] == name) UnActiveImage(2);
+            MiddleSpeaker.sprite = sprite;
+            preName[1] = name;
+            break;
+        case "right":
+            ActiveImage(2);
+            if (preName[0] == name) UnActiveImage(0);
+            if (preName[1] == name) UnActiveImage(1);
+            RightSpeaker.sprite = sprite;
+            preName[2] = name;
+            break;
         }
     }
 }
