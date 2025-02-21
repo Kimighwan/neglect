@@ -6,7 +6,8 @@ using UnityEngine;
 public class PoolManager : SingletonBehaviour<PoolManager>
 {
     public List<QuestData> userQuestList { get; private set; } = new List<QuestData>();
-    public List<int> userQuestIndex = new List<int>();
+
+    public List<int> userQuestIndex = new List<int>();  // 랜덤 의뢰 보여주기에서 중복 의뢰 보여주지 않기 위한 List
     public List<AdventureData> userAdventureList { get; private set; } = new List<AdventureData> { };
 
     protected override void Init()
