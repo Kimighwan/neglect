@@ -6,6 +6,7 @@ public class Test : MonoBehaviour
 {
     public GameObject image;
     public GameObject btn;
+
     public void OnClickQuestTestBtn(int index)
     {
         var detachQuestUI = new QuestIndex(index);

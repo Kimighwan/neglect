@@ -282,8 +282,6 @@ public class DetachAdventureListUI : BaseUI
             return;
         }
 
-        QuestManager.Instance.test[adventureIndex - 1].questBtn.interactable = false;
-
         PoolManager.Instance.UsingAdventureData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachAdventureListUI>());
     }
