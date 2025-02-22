@@ -1,22 +1,27 @@
 using TMPro;
-using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUpUI : BaseUI
 {
     public TextMeshProUGUI levelInfo;
     public TextMeshProUGUI otherInfo;
-    private float fill = 0f;
+    public Button levelUpButton;
 
-    private void Start() {
+    private void OnEnable() {
         int l = GameInfo.gameInfo.Level;
-        int ro = GameInfo.gameInfo.Rooms;
-        int re = GameInfo.gameInfo.Requests;
-        levelInfo.text = $"Level {l} >> {l + 1}";
-        otherInfo.text = $"활성화된 객실 수 {ro} >> {ro + 1}\n활성화된 파견 수 {re} >> {re + 1}\n모험가 새로고침 확률 변경";
+        if (l == 5) {
+            levelInfo.text = "Max Level";
+            otherInfo.text = "";
+            levelUpButton.interactable = false;
+        }
+        else {
+            levelInfo.text = $"Level {l} >> {l + 1}";
+            if (l == 4) otherInfo.text = $"객실 수 {l} >> {l}\n파견 수 {l + 1} >> {l + 1}\n의뢰 수 {(l + 2) * 2} >> {(l + 3) * 2}\n모험가 새로고침 확률 변경";
+            else otherInfo.text = $"객실 수 {l} >> {l + 1}\n파견 수 {l + 1} >> {l + 2}\n의뢰 수 {(l + 2) * 2} >> {(l + 3) * 2}\n모험가 새로고침 확률 변경";
+        }
     }
 
     public void OnClickYes() {
-        Debug.Log("클릭");
         if (GameInfo.gameInfo.OnClickLevelUpYes()) OnClickCloseButton();
     }
     public void OnClickNo() {

@@ -15,9 +15,9 @@ public class Fade : SingletonBehaviour<Fade>
         fadeImg.transform.localScale = Vector3.zero;    // 일단 fade Image 안 보이게 설정
     }
 
-    public void DoFade(Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactivateOnFinish, bool ill, Action onFinish = null)
+    public void DoFade(Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactivateOnFinish, Action onFinish = null)
     {
-        StartCoroutine(FadeCo(color, startAlpha, endAlpha, duration, startDelay, deactivateOnFinish, ill, onFinish));
+        StartCoroutine(FadeCo(color, startAlpha, endAlpha, duration, startDelay, deactivateOnFinish, onFinish));
     }
 
     /// <summary>
@@ -33,13 +33,8 @@ public class Fade : SingletonBehaviour<Fade>
     /// 
     /// ill 변수는 true이면 일러스트 보이게 false이면 사라지게
     /// </summary>
-    private IEnumerator FadeCo(Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactivateOnFinish, bool ill, Action onFinish)
+    private IEnumerator FadeCo(Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactivateOnFinish, Action onFinish)
     {
-        if (!ill)
-        {
-            illImg.gameObject.SetActive(false);
-        }
-
         yield return new WaitForSeconds(startDelay);    // Delay...
 
         fadeImg.transform.localScale = Vector3.one;
@@ -51,12 +46,6 @@ public class Fade : SingletonBehaviour<Fade>
             fadeImg.color = new Color(color.r, color.g, color.b, Mathf.Lerp(startAlpha, endAlpha, (Time.realtimeSinceStartup - startTime) / duration));
             yield return null;
         }
-
-        if (ill)
-        {
-            illImg.gameObject.SetActive(true);
-        }
-
 
         fadeImg.color = new Color(color.r, color.g, color.b, endAlpha);
 

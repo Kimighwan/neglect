@@ -15,7 +15,7 @@ public class MainUIController : MonoBehaviour
 
     void Start()
     {
-        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, true, false);
+        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, true);
     }
 
     private void Update()

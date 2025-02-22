@@ -5,8 +5,8 @@ using UnityEngine;
 public class AdventurerUI : BaseUI
 {
     public TextMeshProUGUI txt;
-
     private List<GameObject> uiListPool = new List<GameObject>();   // 모험가 카드 3장 Pool
+    private Desk desk;
 
     private void Awake()
     {
@@ -21,6 +21,13 @@ public class AdventurerUI : BaseUI
 
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
+    }
+
+    public override void SetInfo(BaseUIData uiData)
+    {
+        base.SetInfo(uiData);
+        var deskData = uiData as AdventurerUIWithDesk;
+        desk = deskData.desk;
     }
 
     private void Update()
@@ -72,5 +79,11 @@ public class AdventurerUI : BaseUI
         }
 
         uiListPool.Clear();
+    }
+
+    public override void OnClickCloseButton()
+    {
+        desk.OnClickBut();
+        base.OnClickCloseButton();
     }
 }

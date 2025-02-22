@@ -68,3 +68,19 @@ public class QuestResultIndex : BaseUIData
         index = i;
     }
 }
+
+public class AdventurerUIWithDesk : BaseUIData {
+    public Desk desk;
+    public AdventurerUIWithDesk(Desk d) {
+        desk = d;
+    }
+}
+
+public class RoomIndex : BaseUIData {
+    public int index;
+    public bool isActive;
+    public RoomIndex(int i, bool b) {
+        index = i;
+        isActive = b;
+    }
+}

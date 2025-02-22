@@ -58,7 +58,6 @@ public class ScriptMode : MonoBehaviour
             {
                 StopCoroutine(typingCoroutine);
             }
-            Debug.Log(currentLine);
             ScriptData scriptData = scriptList[currentLine];
             if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos);
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
@@ -72,25 +71,25 @@ public class ScriptMode : MonoBehaviour
     }
 
     IEnumerator TypeText(string line) {
-    isTyping = true;
-    data.scr.text = ""; // 초기화
+        isTyping = true;
+        data.scr.text = ""; // 초기화
 
-    string richText = "";
-    bool insideTag = false; // 현재 < > 태그 안에 있는지 체크
+        string richText = "";
+        bool insideTag = false; // 현재 < > 태그 안에 있는지 체크
 
-    foreach (char letter in line)
-    {
-        if (letter == '<') insideTag = true;
-        richText += letter;
-        if (letter == '>') insideTag = false;
-        if (!insideTag)
+        foreach (char letter in line)
         {
-            data.scr.text = richText;
-            yield return new WaitForSeconds(typingSpeed);
+            if (letter == '<') insideTag = true;
+            richText += letter;
+            if (letter == '>') insideTag = false;
+            if (!insideTag)
+            {
+                data.scr.text = richText;
+                yield return new WaitForSeconds(typingSpeed);
+            }
         }
-    }
 
-    isTyping = false;
+        isTyping = false;
     }
 
     

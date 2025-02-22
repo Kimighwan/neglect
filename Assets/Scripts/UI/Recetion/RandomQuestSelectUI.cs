@@ -388,11 +388,11 @@ public class RandomQuestSelectUI : MonoBehaviour
         {
             return tmpCount >= 12;
         }
-        else
+        else if(GameInfo.gameInfo.Level == 5)
         {
             return tmpCount >= 14;
         }
-
+        
         return false;
     }
 }

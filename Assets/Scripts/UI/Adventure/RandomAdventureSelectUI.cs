@@ -228,23 +228,6 @@ public class RandomAdventureSelectUI : MonoBehaviour
     
     private bool CheckRoom()    // 객실 수 및 레벨 확인하여 최대 모험가 수를 넘는지 체크
     {
-        int tmp = 0;
-        for(int i = 0; i < 4; i++)
-        {
-            if(GameInfo.gameInfo.roomLevels[i] == 1)
-            {
-                tmp += 2 * GameInfo.gameInfo.roomCounts[i];
-            }
-            else if (GameInfo.gameInfo.roomLevels[i] == 2)
-            {
-                tmp += 4 * GameInfo.gameInfo.roomCounts[i];
-            }
-            else
-            {
-                tmp += 6 * GameInfo.gameInfo.roomCounts[i];
-            }
-        }
-
         int tmpCount = 0;
         string adventrueHave = PlayerPrefs.GetString("AdventureId");
         foreach(var i in adventrueHave.Split(","))
@@ -252,7 +235,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
             if (i != "")
                 tmpCount++;
         }
-        return tmpCount >= tmp;    // true : 더이상 수용 불가능
+        return tmpCount >= GameInfo.gameInfo.GetMaxAdventurerCounts();    // true : 더이상 수용 불가능
     }
 
     private bool CheckAdventureFullOfTier(Tier tier)    // 랭크에 해당하는 모험가가 더이상 없는가
