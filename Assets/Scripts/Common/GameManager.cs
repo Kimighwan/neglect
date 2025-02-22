@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     public ScriptMode scriptMode;
     public DialogMode dialogMode;
     private GameInfo info;
-    private bool pause = false;
+    private bool pause = true;
     void Awake()
     {
         gameManager = this;
@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     {
         info = GameInfo.gameInfo;
         info.StartGameInfo();
+        info.PrepareShowIll(2f, 0f, true);
+        Invoke("PauseGame", 1.5f);
     }
 
     void Update()
@@ -36,5 +38,8 @@ public class GameManager : MonoBehaviour
     }
     public bool IsPaused() {
         return pause;
+    }
+    public void EndTheGame() {
+        
     }
 }

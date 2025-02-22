@@ -6,12 +6,12 @@ using UnityEngine;
 public class DialogMode : MonoBehaviour
 {
     private ScriptDialogObjectData data;
-    private float minTypingSpeed = 0.2f;
-    private float maxTypingSpeed = 0.8f;
-    private float holdTime = 1f;
-    public float changeMinTypingSpeed = 0.2f;
-    public float changeMaxTypingSpeed = 0.8f;
-    public float changeHoldTime = 0.5f;
+    private float minTypingSpeed = 0.5f;
+    private float maxTypingSpeed = 1.5f;
+    private float holdTime = 2f;
+    public float changeMinTypingSpeed = 0.5f;
+    public float changeMaxTypingSpeed = 1.5f;
+    public float changeHoldTime = 2f;
 
     private Queue<ScriptData> scriptQueue = new Queue<ScriptData>();
     private bool isSpeakerA = true;
@@ -48,11 +48,11 @@ public class DialogMode : MonoBehaviour
             ScriptData scriptData = scriptQueue.Dequeue();
             yield return StartCoroutine(TypeSentence(scriptData));
 
+            yield return new WaitForSeconds(holdTime);
+
             while (GameManager.gameManager.IsPaused()) {
                 yield return null;
             }
-
-            yield return new WaitForSeconds(holdTime);
         }
         yield return new WaitForSeconds(0.5f);
 
@@ -78,13 +78,25 @@ public class DialogMode : MonoBehaviour
         isSpeakerA = !isSpeakerA;
     }
 
-    private IEnumerator TypeEffect(TextMeshProUGUI targetText, string sentence)
-    {
+    private IEnumerator TypeEffect(TextMeshProUGUI targetText, string sentence) {
         float typingSpeed = Mathf.Lerp(maxTypingSpeed, minTypingSpeed, Mathf.Clamp01(sentence.Length / 100f));
+        targetText.text = "";
+
+        string richText = "";
+        bool insideTag = false; // < > 태그 내부인지 체크
+
         foreach (char letter in sentence)
         {
-            targetText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            if (letter == '<') insideTag = true;
+            richText += letter;
+
+            if (letter == '>') insideTag = false;
+
+            if (!insideTag)
+            {
+                targetText.text = richText;
+                yield return new WaitForSeconds(typingSpeed);
+            }
         }
     }
 }

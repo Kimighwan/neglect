@@ -11,7 +11,6 @@ using System.Collections;
 public class GameInfo : MonoBehaviour
 {
     public static GameInfo gameInfo;
-    public GameObject roomList;
     public Image fadeInOut;
     
     // 게임 진행 속도 조절
@@ -19,22 +18,19 @@ public class GameInfo : MonoBehaviour
     // 골드 정보
     private int gold;
     public int Gold { get { return gold; } set { gold = value; } }
-    public int plusGold;
+    private int plusGold;
     // 몇 일차인지
     private int day;
     public int Day { get { return day; } set { day = value; } }
     // 시간 정보
     private float timer;
     public float Timer { get { return timer; } set { timer = value; } }
-    // 개방된 객실 개수
-    private int rooms;
-    public int Rooms { get { return rooms; } set { rooms = value; } }
-    public List<int> roomCounts = new List<int> { 1, 0, 0, 0 };
-    public List<int> roomLevels = new List<int> { 1, 1, 1, 1 };
+    // 객실 정보
+    private List<Room> rooms = new List<Room> { null, null, null, null };
     // 길드 레벨
     private int level;
     public int Level { get { return level; } set { level = value; } }
-    private List<int> neededGold = new List<int> { 200, 500, 1500, 5000 };
+    private List<int> neededGold = new List<int> { 500, 2000, 20000, 100000 };
     // 개방된 파견창 개수
     public Request request;
     private int requests;
@@ -49,10 +45,10 @@ public class GameInfo : MonoBehaviour
         gold = 10;
         day = 1;
         timer = 80.0f;
-        rooms = 1;
         level = 1;
         requests = 2;
-        plusGold = rooms * 100;
+        plusGold = 300;
+        fadeInOut.gameObject.SetActive(true);
     }
     public void UpdateGameInfo() {
         timer += Time.deltaTime * gameSpeed;
@@ -82,14 +78,79 @@ public class GameInfo : MonoBehaviour
             else if (level == 3 && ChangeGold(-neededGold[2])) {}
             else if (level == 4 && ChangeGold(-neededGold[3])) {}
             else return false;
-            roomList.GetComponent<Room>().ActiveRoom();
             request.ActiveRequest();
             gameInfo.Level++;
-            plusGold = rooms * 100;
             return true;
         }
         return false;
     }
+
+    public void AllocateRoom(int i, Room r) {
+        rooms[i] = r;
+    }
+    // 객실 개방 버튼 누름
+    public bool RoomActive(int index) {
+        if (ChangeGold(-1000)) {
+            rooms[index].isActive = true;
+            CalculatePlusGold();
+            rooms[index].ActiveRoom();
+            return true;
+        }
+        return false;
+    }
+    // 객실 레벨 업 버튼 누름
+    public bool RoomLevelUp(int index) {
+        int l = rooms[index].level;
+        if (l < 3) {
+            if ((l == 1 && ChangeGold(-3000)) || (l == 2 && ChangeGold(-10000))) {
+                rooms[index].level++;
+                CalculatePlusGold();
+                return true;
+            }
+        }
+        return false;
+    }
+    private void CalculatePlusGold() {
+        int sum = 0;
+        for (int i = 0; i < 4; i++) {
+            if (rooms[i].isActive) {
+                int l = rooms[i].level;
+                switch (l) {
+                    case 1:
+                        sum += 300;
+                        break;
+                    case 2:
+                        sum += 1000;
+                        break;
+                    case 3:
+                        sum += 4000;
+                        break;
+                }
+            }
+        }
+        plusGold = sum;
+    }
+    public int GetMaxAdventurerCounts() {
+        int sum = 0;
+        for (int i = 0; i < 4; i++) {
+            if (rooms[i].isActive) {
+                int l = rooms[i].level;
+                switch (l) {
+                    case 1:
+                        sum += 2;
+                        break;
+                    case 2:
+                        sum += 4;
+                        break;
+                    case 3:
+                        sum += 6;
+                        break;
+                }
+            }
+        }
+        return sum;
+    }
+
     public int GetNeededGold() {
         if (level == 5) return 0;
         return neededGold[level - 1];
@@ -98,37 +159,48 @@ public class GameInfo : MonoBehaviour
     {
         GameManager.gameManager.PauseGame();
         fadeInOut.gameObject.SetActive(true);
-        StartCoroutine(DoFadeInBlack(2f, 0f, 0f, 1f));
+        StartCoroutine(ComeNight(2f, 0f, 0f, 1f));
     }
 
-    private IEnumerator DoFadeInBlack(float duration, float startDelay, float startAlpha, float endAlpha)
+    private IEnumerator ComeNight(float duration, float startDelay, float startAlpha, float endAlpha)
     {
         yield return StartCoroutine(FadeBlack(duration, startDelay, startAlpha, endAlpha)); // FadeIn이 끝날 때까지 대기
         UIManager.Instance.OnClickEndToday();
     }
 
-    private IEnumerator FadeBlack(float duration, float startDelay, float startAlpha, float endAlpha)
+    public IEnumerator FadeBlack(float duration, float startDelay, float startAlpha, float endAlpha)
     {
-        yield return new WaitForSeconds(startDelay);    // Delay...
-        fadeInOut.color = new Color(0f, 0f, 0f, startAlpha);
+        yield return new WaitForSeconds(startDelay);
 
-        var startTime = Time.realtimeSinceStartup;
+        fadeInOut.color = new Color(0f, 0f, 0f, startAlpha);
+        float startTime = Time.realtimeSinceStartup;
+
         while (Time.realtimeSinceStartup - startTime < duration)
         {
             fadeInOut.color = new Color(0f, 0f, 0f, Mathf.Lerp(startAlpha, endAlpha, (Time.realtimeSinceStartup - startTime) / duration));
             yield return null;
         }
-
         fadeInOut.color = new Color(0f, 0f, 0f, endAlpha);
+
+        if (endAlpha == 0f) fadeInOut.gameObject.SetActive(false);
     }
+
     public void ComeMorning()
     {
         GameManager.gameManager.PauseGame();
         timer = 320f;
         StartCoroutine(FadeBlack(2f, 0f, 1f, 0f));
-        Invoke("UnActiveFade", 2f);
     }
-    private void UnActiveFade() {
-        fadeInOut.gameObject.SetActive(false);
+
+    public IEnumerator FadeBlackInOut(float duration, float startDelay) {
+        yield return StartCoroutine(FadeBlack(duration, startDelay, 0f, 1f));
+        yield return StartCoroutine(FadeBlack(duration, startDelay, 1f, 0f));
+    }
+
+    public void PrepareShowIll(float duration, float startDelay, bool start) {
+        if (start) {
+            StartCoroutine(FadeBlack(duration, startDelay, 1f, 0f));
+        }
+        else StartCoroutine(FadeBlackInOut(duration, startDelay));
     }
 }

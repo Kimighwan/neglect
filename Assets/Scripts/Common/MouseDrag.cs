@@ -9,13 +9,8 @@ using UnityEngine.EventSystems;
 
 public class MouseDrag : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IDropHandler
 {
-    private void Awake() { return; }
-    protected virtual void Start() { return;}
-
     public virtual void OnPointerDown(PointerEventData eventData) { return; }
-
     public virtual void OnDrag(PointerEventData eventData) { return; }
-
     public virtual void OnPointerUp(PointerEventData eventData) { return; }
     public virtual void OnDrop(PointerEventData eventData) { return; }
 }

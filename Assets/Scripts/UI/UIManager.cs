@@ -17,7 +17,6 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     void Start()
     {
-        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, true, false);
         PlayerPrefs.GetString("AdventureId", "");
     }
 
@@ -140,19 +139,16 @@ public class UIManager : SingletonBehaviour<UIManager>
         var encyclopediaUI = new BaseUIData();
         UIManager.Instance.OpenUI<EncyclopediaUI>(encyclopediaUI);
     }
-
-    public void OnClickAdventureTable()
+    public void OnClickAdventureTable(Desk desk)
     {
-        var adventureUI = new BaseUIData();
+        var adventureUI = new AdventurerUIWithDesk(desk);
         UIManager.Instance.OpenUI<AdventurerUI>(adventureUI);
     }
-
     public void OnClickCounter()
     {
         var receptionUI = new BaseUIData();
         UIManager.Instance.OpenUI<ReceptionUI>(receptionUI);
     }
-
     public void OnClickLevelUp() {
         var levelUpUI = new BaseUIData();
         UIManager.instance.OpenUI<LevelUpUI>(levelUpUI);
@@ -160,6 +156,10 @@ public class UIManager : SingletonBehaviour<UIManager>
     public void OnClickEndToday() {
         var EndToday = new BaseUIData();
         UIManager.instance.OpenUI<ReportUI>(EndToday);
+    }
+    public void OnClickRoom(int index, bool b) {
+        var roomUI = new RoomIndex(index, b);
+        UIManager.instance.OpenUI<RoomUI>(roomUI);
     }
 
     #endregion

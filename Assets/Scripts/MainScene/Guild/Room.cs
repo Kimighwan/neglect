@@ -1,31 +1,25 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Room : MonoBehaviour
+public class Room : MouseDrag
 {
-    public List<GameObject> rooms = new List<GameObject>(4);
-    private bool room1 = true;
-    private bool room2 = false;
-    private bool room3 = false;
-    private bool room4 = false;
-    private void Start() {
-        rooms[0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+    public int index = 0;
+    public int level = 1;
+    public bool isActive = false;
+    public int Level { get { return level; } set { level = value; } }
+
+    void Start()
+    {
+        if (index == 0) isActive = true;
+        GameInfo.gameInfo.AllocateRoom(index, this);
+    }
+
+    public override void OnPointerDown(PointerEventData eventData)
+    {
+        UIManager.Instance.OnClickRoom(index, isActive);
     }
     public void ActiveRoom() {
-        if (!room4) {
-            if (room1 && !room2) {
-                room2 = true;
-                rooms[1].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
-            }
-            else if (room2 && !room3) {
-                room3 = true;
-                rooms[2].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
-            }
-            else if (room3 && !room4) {
-                room4 = true;
-                rooms[3].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
-            }
-            GameInfo.gameInfo.Rooms++;
-        }
+        this.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+        isActive = true;
     }
 }

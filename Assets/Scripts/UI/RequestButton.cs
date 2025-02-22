@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class RequestButton : MouseDrag
 {
@@ -10,7 +11,6 @@ public class RequestButton : MouseDrag
     }
     public Transform cameraTransform; // 이동할 카메라
     public RectTransform requestBG;
-    public float moveSpeed = 3f; // 이동 속도
 
     private Vector3 originalCamPos; // 원래 위치
     private Vector3 targetCamPos; // 목표 위치
@@ -19,7 +19,7 @@ public class RequestButton : MouseDrag
 
     private bool isMoved = false; // 이동 여부 체크
 
-    protected override void Start()
+    void Start()
     {
         originalCamPos = cameraTransform.position;
         targetCamPos = originalCamPos + new Vector3(0, -5, 0);
@@ -30,27 +30,33 @@ public class RequestButton : MouseDrag
 
     public void OnClickBut()
     {
-        StopAllCoroutines(); // 기존 이동 중이라면 중단
+        this.GetComponent<Image>().raycastTarget = false;
         StartCoroutine(MoveCameraAndUI(isMoved ? originalCamPos : targetCamPos, isMoved ? originalUIPos : targetUIPos));
         isMoved = !isMoved;
     }
 
-    IEnumerator MoveCameraAndUI(Vector3 camDestination, Vector3 uiDestination)
+    private IEnumerator MoveCameraAndUI(Vector3 camDestination, Vector3 uiDestination)
     {
         float elapsedTime = 0f;
+        float duration = 0.6f; // 이동 시간 (1초)
         Vector3 camStartPos = cameraTransform.position;
         Vector3 uiStartPos = requestBG.anchoredPosition;
 
-        while (elapsedTime < 1f) // 1초 동안 이동
+        while (elapsedTime < duration)
         {
-            cameraTransform.position = Vector3.Lerp(camStartPos, camDestination, elapsedTime);
-            requestBG.anchoredPosition = Vector3.Lerp(uiStartPos, uiDestination, elapsedTime);
-            elapsedTime += Time.deltaTime * moveSpeed;
+            float t = elapsedTime / duration;
+            t = t * t * (3f - 2f * t); // **SmoothStep 방식** (Ease In-Out)
+
+            cameraTransform.position = Vector3.Lerp(camStartPos, camDestination, t);
+            requestBG.anchoredPosition = Vector3.Lerp(uiStartPos, uiDestination, t);
+
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // 정확한 위치로 설정
+        // 정확한 위치 보정
         cameraTransform.position = camDestination;
         requestBG.anchoredPosition = uiDestination;
+        this.GetComponent<Image>().raycastTarget = true;
     }
 }
