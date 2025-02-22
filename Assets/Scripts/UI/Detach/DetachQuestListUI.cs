@@ -145,6 +145,23 @@ public class DetachQuestListUI : BaseUI
         // 의뢰 처리 하는 곳에서 questData를 넘겨준다
         // 의뢰 처리 하는 곳에서 모험가도 받게 될 것인데
         // 위 두 개의 정보를 가지고 의뢰 시스템이 작동한다
+        if(QuestData.questSelectedId == 0)
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "의뢰를 다시 선택하십시오.";
+            uiData.okBtnTxt = "확인";
+            uiData.onClickOKBtn = () =>
+            {
+                UIManager.Instance.CloseCurrentFrontUI();
+            };
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
+
+
+        // QuestManager.Instance.test[qusetIndex - 1].questBtn.interactable = false;
+
         PoolManager.Instance.UsingQuestData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachQuestListUI>());
     }
