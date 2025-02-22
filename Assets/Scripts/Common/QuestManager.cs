@@ -16,6 +16,8 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 결과 저장
 
+    public List<Test> test = new List<Test>();
+
 
     private float leftTime;             // 의뢰 완성까지 남은 시간
 

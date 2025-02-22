@@ -31,6 +31,11 @@ public class DetachAdventureListUI : BaseUI
         SetScroll();
     }
 
+    private void OnDisable()
+    {
+        AdventureData.adventureSelectId.Clear();
+    }
+
     private void SetScroll()
     {
         infiniteScrollList.Clear();

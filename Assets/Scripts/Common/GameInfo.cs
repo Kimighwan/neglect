@@ -97,6 +97,7 @@ public class GameInfo : MonoBehaviour
     public void EndToday()
     {
         GameManager.gameManager.PauseGame();
+        UIManager.Instance.CloseAllOpenUI();    // 모든 UI 창 닫기
         fadeInOut.gameObject.SetActive(true);
         StartCoroutine(DoFadeInBlack(2f, 0f, 0f, 1f));
     }
