@@ -17,7 +17,7 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     void Start()
     {
-        GameInfo.gameInfo.FadeBlack(1f, 0f, 1f, 0f);
+        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, true);
         PlayerPrefs.GetString("AdventureId", "");
     }
 
