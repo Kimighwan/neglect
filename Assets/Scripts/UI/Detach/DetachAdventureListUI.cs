@@ -282,6 +282,8 @@ public class DetachAdventureListUI : BaseUI
             return;
         }
 
+        PoolManager.Instance.adventrueBtn[adventureIndex - 1].interactable = false;
+
         PoolManager.Instance.UsingAdventureData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachAdventureListUI>());
     }
