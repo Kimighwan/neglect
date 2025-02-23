@@ -54,13 +54,14 @@ public class ScriptMode : MonoBehaviour
     {
         if (currentLine < scriptList.Count)
         {
-            // 일러스트 설정정
+            // 일러스트 설정
             if (typingCoroutine != null)
             {
                 StopCoroutine(typingCoroutine);
             }
             ScriptData scriptData = scriptList[currentLine];
             if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos);
+            else if (scriptData.scriptIll != "") ShowIllImage(scriptData.scriptIll);
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
             currentLine++;
@@ -105,6 +106,9 @@ public class ScriptMode : MonoBehaviour
         if (name == "데이지") charName = "Daisy";
         else if (name == "멜링" || name == "???") charName = "Melling";
         this.GetComponent<ScriptImageHandler>().SetCharacter(charName, exp, inout, pos);
+    }
+    private void ShowIllImage(string fileName) {
+        this.GetComponent<ScriptImageHandler>().SetIllImage(fileName);
     }
 
     private void ActiveObjects(bool b) {

@@ -27,6 +27,25 @@ public class ScriptImageHandler : MonoBehaviour
         }
         ReplaceCharacter(name, sprite, pos);
     }
+    public void SetIllImage(string fileName) {
+        if (fileName == "0") {
+            BackGround.sprite = null;
+            BackGround.color = new Color(0f, 0f, 0f);
+            return;
+        }
+        else BackGround.color = new Color(1f, 1f, 1f);
+        if (!spriteCache.TryGetValue(fileName, out Sprite sprite))
+        { // 캐시에 없으면 Resources 폴더에서 로드
+            string path = $"Arts/Illustration/{fileName}";
+            sprite = Resources.Load<Sprite>(path);
+            if (sprite != null) spriteCache[fileName] = sprite;
+            else {
+                Debug.LogWarning($"[SetCharacter] {path} 경로에서 스프라이트를 찾을 수 없음!");
+                return;
+            }
+        }
+        BackGround.sprite = sprite;
+    }
     public void EndTheScripts() {
         preName = new List<string> { "", "", "" };
         LeftSpeaker.sprite = null;
