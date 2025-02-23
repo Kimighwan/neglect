@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Progress;
 
 
@@ -18,6 +19,10 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     public List<Test> test = new List<Test>();
 
+    public Image[] stateIcons;
+
+
+    const string ICON_PATH = "Arts/Icon";
 
     private float leftTime;             // 의뢰 완성까지 남은 시간
 
@@ -26,6 +31,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     private int monsterStrongSize;      // 몬스터 강점 퍼센트
     private int monsterWeakSize;        // 몬스터 약점 퍼센트
     private int tierScore;              // 모험가 등급 점수
+    private int resultScore;            // 결과 점수
 
     private string monsterStrong;       // 몬스터 강점
     private string monsterWeak;         // 몬스터 약점
@@ -62,6 +68,26 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         Debug.Log($"몬스터 약점 : {monsterWeak}{monsterWeakSize} / 몬스터 강점 : {monsterStrong}{monsterStrongSize}");
         Debug.Log($"약점 비율 : {weakRate} / 강점 비율 : {strongRate}");
 
+        SetFaceIcon(index);                  // 파견 점수에 따른 이모티콘 표시
+    }
+
+    private void SetFaceIcon(int index)
+    {
+        if(resultScore < targetScore * 0.9)
+        {
+            // 빨강 이모티콘
+            stateIcons[index - 1].sprite = Resources.Load($"{ICON_PATH}/IconFaceHard") as Sprite;
+        }
+        else if(resultScore <= targetScore * 1.1)
+        {
+            // 노랑 이모티콘
+            stateIcons[index - 1].sprite = Resources.Load($"{ICON_PATH}/IconFaceNormal") as Sprite;
+        }
+        else if(resultScore > targetScore * 1.1)
+        {
+            // 초록 이모티콘
+            stateIcons[index - 1].sprite = Resources.Load($"{ICON_PATH}/IconFaceEasy") as Sprite;
+        }
     }
 
     private bool DoCheck(int index)
@@ -86,13 +112,18 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         
         var monsterData = DataTableManager.Instance.GetMonsterData(monsterId);  // 여기는 정상
 
-
-        monsterWeakSize = Convert.ToInt32(monsterData.monsterWeekness.Substring(2, 1));
-        monsterWeak = monsterData.monsterWeekness.Substring(0, 2);
-
-        monsterStrongSize = Convert.ToInt32(monsterData.monsterStrength.Substring(2, 1));
-        monsterStrong = monsterData.monsterStrength.Substring(0, 2);
-
+        if(monsterData.monsterWeekness != "")
+        {
+            monsterWeakSize = Convert.ToInt32(monsterData.monsterWeekness.Substring(2, 1));
+            monsterWeak = monsterData.monsterWeekness.Substring(0, 2);
+        }
+        
+        if(monsterData.monsterStrength != "")
+        {
+            monsterStrongSize = Convert.ToInt32(monsterData.monsterStrength.Substring(2, 1));
+            monsterStrong = monsterData.monsterStrength.Substring(0, 2);
+        }
+        
         var questLevel = questData[index].questLevel;
 
         switch (questLevel)
@@ -244,16 +275,16 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         float rate = samePositionRate + sameClassRate + mixPositionRate + misClassRate + strongRate - weakRate;
         int addScore = (int)(tierScore * rate);
 
-        int sumScore = addScore + tierScore;
+        resultScore = addScore + tierScore;
 
-        if(targetScore < sumScore)
+        if(targetScore < resultScore)
         {
-            int tmp = sumScore - targetScore;
+            int tmp = resultScore - targetScore;
             bigRate = (tmp / 10) * 0.5f;
         }
-        else if(targetScore > sumScore)
+        else if(targetScore > resultScore)
         {
-            int tmp = targetScore - sumScore;
+            int tmp = targetScore - resultScore;
             dieRate = (tmp / 10) * 0.1f;
         }
 
