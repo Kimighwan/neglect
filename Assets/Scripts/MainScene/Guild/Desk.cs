@@ -26,32 +26,30 @@ public class Desk : MouseDrag
 
     public void OnClickBut()
     {
-        //this.GetComponent<BoxCollider2D>().enabled = false;
-        cameraTransform.position = isMoved ? originalCamPos : targetCamPos;
-        //StartCoroutine(MoveCamera(isMoved ? originalCamPos : targetCamPos));
+        this.GetComponent<BoxCollider2D>().enabled = false;
+        StartCoroutine(MoveCamera(isMoved ? originalCamPos : targetCamPos));
         isMoved = !isMoved;
-        //this.GetComponent<BoxCollider2D>().enabled = true;
     }
 
-    // private IEnumerator MoveCamera(Vector3 camDestination)
-    // {
-    //     float elapsedTime = 0f;
-    //     float duration = 0.8f; // 이동 시간 (1초)
-    //     Vector3 camStartPos = cameraTransform.position;
+    private IEnumerator MoveCamera(Vector3 camDestination)
+    {
+        float elapsedTime = 0f;
+        float duration = 0.8f; // 이동 시간 (1초)
+        Vector3 camStartPos = cameraTransform.position;
 
-    //     while (elapsedTime < duration)
-    //     {
-    //         float t = elapsedTime / duration;
-    //         t = t * t * (3f - 2f * t); // **SmoothStep 방식** (Ease In-Out)
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            t = t * t * (3f - 2f * t); // **SmoothStep 방식** (Ease In-Out)
 
-    //         cameraTransform.position = Vector3.Lerp(camStartPos, camDestination, t);
+            cameraTransform.position = Vector3.Lerp(camStartPos, camDestination, t);
 
-    //         elapsedTime += Time.deltaTime;
-    //         yield return null;
-    //     }
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
 
-    //     // 정확한 위치 보정
-    //     cameraTransform.position = camDestination;
-    //     this.GetComponent<BoxCollider2D>().enabled = true;
-    // }
+        // 정확한 위치 보정
+        cameraTransform.position = camDestination;
+        this.GetComponent<BoxCollider2D>().enabled = true;
+    }
 }

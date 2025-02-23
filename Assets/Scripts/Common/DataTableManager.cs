@@ -199,7 +199,6 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 scriptExp = data["exp"].ToString(),
                 scriptLine = data["script"].ToString(),
                 scriptInOut = data["inout"].ToString(),
-                scriptIll = data["ill"].ToString(),
             };
 
             ScriptDataTable.Add(scriptData);
@@ -274,5 +273,4 @@ public class ScriptData : BaseUIData {
     public string scriptExp;
     public string scriptLine;
     public string scriptInOut;
-    public string scriptIll;
 }
