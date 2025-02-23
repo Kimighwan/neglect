@@ -16,7 +16,8 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 결과 저장
 
-    public List<Test> test = new List<Test>();
+    // public List<Test> test = new List<Test>();
+    public GameObject[] faceIcon;       // 점수 상태별 얼굴 아이콘
 
 
     private float leftTime;             // 의뢰 완성까지 남은 시간
@@ -61,6 +62,11 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         Debug.Log($"몬스터 약점 : {monsterWeak}{monsterWeakSize} / 몬스터 강점 : {monsterStrong}{monsterStrongSize}");
         Debug.Log($"약점 비율 : {weakRate} / 강점 비율 : {strongRate}");
+
+    }
+
+    private void SetIcon()
+    {
 
     }
 
