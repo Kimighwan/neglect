@@ -2,6 +2,7 @@ using Gpm.Ui;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -11,6 +12,7 @@ public class DetachQuestListUI : BaseUI
 
     public TextMeshProUGUI sortBtnText;
     public TextMeshProUGUI orderBtnText;
+
 
     public int qusetIndex;     // 파견에서 몇번째 파견창인지
 
@@ -159,8 +161,7 @@ public class DetachQuestListUI : BaseUI
             return;
         }
 
-
-        // QuestManager.Instance.test[qusetIndex - 1].questBtn.interactable = false;
+        PoolManager.Instance.questBtn[qusetIndex - 1].interactable = false;
 
         PoolManager.Instance.UsingQuestData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachQuestListUI>());

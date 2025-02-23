@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class Test : MonoBehaviour
 {
@@ -42,12 +41,27 @@ public class Test : MonoBehaviour
 
     public void OnClickAwakeBtn(int index)
     {
-        PoolManager.Instance.usingQuestList.Remove(QuestManager.Instance.questData[index].questId);
-        QuestData.questSelectedId = 0;
+        // Quest Awake
+        if (PoolManager.Instance.usingQuestList.Count != 0)
+        {
+            PoolManager.Instance.usingQuestList.Remove(QuestManager.Instance.questData[index].questId);
+            QuestData.questSelectedId = 0;
 
-        QuestManager.Instance.questData.Remove(index);
+            QuestManager.Instance.questData.Remove(index);
+        }
 
-        //PoolManager.Instance.SetDetachQuestListData();
+        // Adventure Awake
+        if (PoolManager.Instance.usingAdventureList.Count != 0)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                PoolManager.Instance.usingAdventureList.Clear();
+            }
+
+            AdventureData.adventureSelectId.Clear();
+
+            QuestManager.Instance.adventureDatas[index].Clear();
+        } 
     }
 }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Progress;
 
 public class PoolManager : SingletonBehaviour<PoolManager>
@@ -16,6 +17,10 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public List<int> usingQuestList = new List<int>();      // 현재 파견 중인 의뢰
 
     public List<int> usingAdventureList = new List<int>();  // 현재 파견 중인 모험가
+
+
+    public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
+    public Button[] adventrueBtn;   // 파견창의 모험가 선택 버튼
 
     protected override void Init()
     {
@@ -66,9 +71,6 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
         var adventureId = PlayerPrefs.GetString("AdventureId");
         var adventureIds = adventureId.Split(',');
-
-        var usingId = PlayerPrefs.GetString("UsingAdventure");
-        var usingIds = usingId.Split(",");
 
         if (adventureId == "") return;
 
