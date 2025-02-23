@@ -54,7 +54,6 @@ public class ScriptMode : MonoBehaviour
     {
         if (currentLine < scriptList.Count)
         {
-            // 일러스트 설정정
             if (typingCoroutine != null)
             {
                 StopCoroutine(typingCoroutine);
