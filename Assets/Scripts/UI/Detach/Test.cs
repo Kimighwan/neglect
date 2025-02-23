@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class Test : MonoBehaviour
 {
@@ -37,6 +38,16 @@ public class Test : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         image.SetActive(false);
         btn.SetActive(true);
+    }
+
+    public void OnClickAwakeBtn(int index)
+    {
+        PoolManager.Instance.usingQuestList.Remove(QuestManager.Instance.questData[index].questId);
+        QuestData.questSelectedId = 0;
+
+        QuestManager.Instance.questData.Remove(index);
+
+        //PoolManager.Instance.SetDetachQuestListData();
     }
 }
 
