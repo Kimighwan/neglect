@@ -8,6 +8,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
     public TextMeshProUGUI position;
     public TextMeshProUGUI m_class;
     public TextMeshProUGUI type;
+    public TextMeshProUGUI needGoldText;
 
 
     private AdventureData adventureData;
@@ -16,6 +17,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
 
     private int j;
     private int resultId;
+    private int needGold;
 
     private string adventureName;
     private string adventurePosition;
@@ -41,6 +43,18 @@ public class RandomAdventureSelectUI : MonoBehaviour
 
     public void OnClickSelected()
     {
+        if (GameInfo.gameInfo.Gold < needGold)
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "골드가 부족합니다.";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
+
+        // 골드 차감
+
         if (CheckHaveAdventureID(adventureId))  // 선택된 모험가가 이미 있음
         {
             Debug.Log("해당 모험가를 이미 가지고 있음");
@@ -64,9 +78,6 @@ public class RandomAdventureSelectUI : MonoBehaviour
         {
             PlayerPrefs.SetString("AdventureId", pre + "," + adventureId.ToString());
         }
-        
-        // 골드 차감
-
     }
 
     private void GetAdventureData()
@@ -79,6 +90,32 @@ public class RandomAdventureSelectUI : MonoBehaviour
         this.adventureClass = adventureData.adventureClass;
         this.adventureType = adventureData.adventureType;
         this.adventureTier = adventureData.adventureTier;
+        
+        if(adventureTier == "브론즈")
+        {
+            needGold = 200;
+            needGoldText.text = "영입 200 골드";
+        }
+        else if (adventureTier == "실버")
+        {
+            needGold = 500;
+            needGoldText.text = "영입 500 골드";
+        }
+        else if (adventureTier == "골드")
+        {
+            needGold = 1000;
+            needGoldText.text = "영입 100 골드";
+        }
+        else if (adventureTier == "플래티넘")
+        {
+            needGold = 2000;
+            needGoldText.text = "영입 2000 골드";
+        }
+        else if (adventureTier == "다이아")
+        {
+            needGold = 5000;
+            needGoldText.text = "영입 5000 골드";
+        }
     }
 
     private void InitData()
