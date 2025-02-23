@@ -27,6 +27,7 @@ public class GameInfo : MonoBehaviour
     public float Timer { get { return timer; } set { timer = value; } }
     // 객실 정보
     private List<Room> rooms = new List<Room> { null, null, null, null };
+
     // 길드 레벨
     private int level;
     public int Level { get { return level; } set { level = value; } }
@@ -84,19 +85,48 @@ public class GameInfo : MonoBehaviour
         }
         return false;
     }
-
+    public int GetRoomLevel(int i) {
+        if (rooms[i] != null) return rooms[i].level;
+        return 0;
+    }
     public void AllocateRoom(int i, Room r) {
         rooms[i] = r;
     }
+    public bool isRoomActivated(int index) {
+        return rooms[index].isActive;
+    }
     // 객실 개방 버튼 누름
     public bool RoomActive(int index) {
-        if (ChangeGold(-1000)) {
+        if (CheckMaxRoomActivated() && ChangeGold(-1000)) {
             rooms[index].isActive = true;
             CalculatePlusGold();
             rooms[index].ActiveRoom();
             return true;
         }
         return false;
+    }
+    private bool CheckMaxRoomActivated() {
+        int k = 0;
+        switch (level) {
+            case 1:
+                for (int i = 0; i < 4; i++) if (rooms[i].isActive) k++;
+                if (k >= 1) return false;
+                break;
+            case 2:
+                for (int i = 0; i < 4; i++) if (rooms[i].isActive) k++;
+                if (k >= 2) return false;
+                break;
+            case 3:
+                for (int i = 0; i < 4; i++) if (rooms[i].isActive) k++;
+                if (k >= 3) return false;
+                break;
+            case 4:
+            case 5:
+                for (int i = 0; i < 4; i++) if (rooms[i].isActive) k++;
+                if (k >= 4) return false;
+                break;
+        }
+        return true;
     }
     // 객실 레벨 업 버튼 누름
     public bool RoomLevelUp(int index) {
@@ -160,7 +190,7 @@ public class GameInfo : MonoBehaviour
         GameManager.gameManager.PauseGame();
         UIManager.Instance.CloseAllOpenUI();    // 모든 UI 창 닫기
         fadeInOut.gameObject.SetActive(true);
-        StartCoroutine(ComeNight(2f, 0f, 0f, 1f));
+        StartCoroutine(ComeNight(1.2f, 0f, 0f, 1f));
     }
 
     private IEnumerator ComeNight(float duration, float startDelay, float startAlpha, float endAlpha)
@@ -190,7 +220,7 @@ public class GameInfo : MonoBehaviour
     {
         GameManager.gameManager.PauseGame();
         timer = 320f;
-        StartCoroutine(FadeBlack(2f, 0f, 1f, 0f));
+        StartCoroutine(FadeBlack(1.2f, 0f, 1f, 0f));
     }
 
     public IEnumerator FadeBlackInOut(float duration, float startDelay) {

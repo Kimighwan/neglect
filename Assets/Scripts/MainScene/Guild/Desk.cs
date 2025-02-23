@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class Desk : MouseDrag
 {
+    public bool tutorialOnce = false;
     public Transform cameraTransform; // 이동할 카메라
     public float moveSpeed = 2f; // 이동 속도
 

@@ -104,9 +104,7 @@ public class AdventurerUIWithDesk : BaseUIData {
 
 public class RoomIndex : BaseUIData {
     public int index;
-    public bool isActive;
     public RoomIndex(int i, bool b) {
         index = i;
-        isActive = b;
     }
 }
