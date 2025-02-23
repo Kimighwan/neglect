@@ -61,6 +61,16 @@ public class TodayQuestUI : BaseUI
 
     public void OnClickAwakeBtn()
     {
+        if (GameInfo.gameInfo.Gold < 100)
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "골드가 부족합니다.";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
+
         // 골드 지불하며 의뢰 리스트 초기화
         RemoveList();
         SetQuestList();
