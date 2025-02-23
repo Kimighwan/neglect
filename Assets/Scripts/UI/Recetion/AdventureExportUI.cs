@@ -1,11 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AdventureExportUI : BaseUI
 {
+    public TextMeshProUGUI stateText;
 
+    private void OnEnable()
+    {
+        SetStateText();
+    }
 
     public override void Init(Transform anchor)
     {
@@ -49,5 +55,18 @@ public class AdventureExportUI : BaseUI
         }
 
         PlayerPrefs.SetString("AdventureId", addId);
+    }
+
+    private void SetStateText()
+    {
+        Debug.Log("SetStateText");
+        if (PoolManager.Instance.usingAdventureList.Contains(UIManager.Instance.exportAdventureId))
+        {
+            stateText.text = "파견 중";
+        }
+        else
+        {
+            stateText.text = "대기 중";
+        }
     }
 }
