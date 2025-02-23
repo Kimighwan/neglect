@@ -665,6 +665,7 @@ MonoBehaviour:
   position: {fileID: 5576593748691832101}
   m_class: {fileID: 5162742261226801732}
   type: {fileID: 912696082309956468}
+  needGoldText: {fileID: 7626331651472849761}
 --- !u!1 &6968680794265374614
 GameObject:
   m_ObjectHideFlags: 0

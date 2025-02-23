@@ -58,6 +58,10 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         SetMixScore(index);             // 조합 비율
         SetStrongAndWeak(index);        // 약점 & 강점 비율
         SetTier(index);                 // 등급 점수
+
+        Debug.Log($"몬스터 약점 : {monsterWeak}{monsterWeakSize} / 몬스터 강점 : {monsterStrong}{monsterStrongSize}");
+        Debug.Log($"약점 비율 : {weakRate} / 강점 비율 : {strongRate}");
+
     }
 
     private bool DoCheck(int index)
@@ -194,7 +198,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
             {
                 if (item.adventureType == monsterWeak)
                 {
-                    strongRate += ((float)0.1 * monsterWeakSize);
+                    weakRate += ((float)0.1 * monsterWeakSize);
                 }
             }
 

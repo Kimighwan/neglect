@@ -274,10 +274,6 @@ public class DetachAdventureListUI : BaseUI
             uiData.confirmType = ConfirmType.OK;
             uiData.descTxt = "모험가 4명을 선택하십시오.";
             uiData.okBtnTxt = "확인";
-            uiData.onClickOKBtn = () =>
-            {
-                UIManager.Instance.CloseCurrentFrontUI();
-            };
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }

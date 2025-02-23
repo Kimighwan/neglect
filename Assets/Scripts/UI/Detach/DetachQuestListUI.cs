@@ -153,10 +153,6 @@ public class DetachQuestListUI : BaseUI
             uiData.confirmType = ConfirmType.OK;
             uiData.descTxt = "의뢰를 다시 선택하십시오.";
             uiData.okBtnTxt = "확인";
-            uiData.onClickOKBtn = () =>
-            {
-                UIManager.Instance.CloseCurrentFrontUI();
-            };
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }

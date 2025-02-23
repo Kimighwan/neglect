@@ -987,6 +987,7 @@ MonoBehaviour:
   m_time: {fileID: 273315962334601196}
   m_target: {fileID: 1596398811052907876}
   m_reward: {fileID: 3807842254727768071}
+  monsterDetailBtn: {fileID: 2219362900787871959}
 --- !u!1 &5305387088065402771
 GameObject:
   m_ObjectHideFlags: 0
