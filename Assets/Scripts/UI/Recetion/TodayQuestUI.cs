@@ -20,7 +20,7 @@ public class TodayQuestUI : BaseUI
 
         var rectTransform = GetComponent<RectTransform>();
 
-        rectTransform.anchoredPosition = new Vector3(-371.75f, -58f, 0f);
+        rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
     }
 
