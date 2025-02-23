@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestDetailUI : BaseUI
 {
@@ -9,8 +10,11 @@ public class QuestDetailUI : BaseUI
     public TextMeshProUGUI m_target;
     public TextMeshProUGUI m_reward;
 
+    public Button monsterDetailBtn;
 
     private int monsterId;
+
+    private bool active;
 
     public override void Init(Transform anchor)
     {
@@ -34,6 +38,13 @@ public class QuestDetailUI : BaseUI
         m_time.text = "의뢰시간 : " + data.questTime.ToString();
         m_target.text = data.questMonster;
         m_reward.text = "의로보상 : " + data.questReward.ToString();
+
+        if (data.questActive == 1)
+            active = true;
+        else
+            active = false;
+
+        monsterDetailBtn.gameObject.SetActive(active);
     }
 
     public void OnClickBackOfQuestDetailList()
