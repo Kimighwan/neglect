@@ -33,8 +33,7 @@ public class QuestResult : BaseUI
         var rectTransform = GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(800f, 450f);
 
-        QuestManager.Instance.Calculation(resultIndex);
-        result = QuestManager.Instance.resultList[resultIndex];
+        //QuestManager.Instance.Calculation(resultIndex)????????????????
     }
 
     public void OnClickReceiptBtn()
@@ -50,20 +49,21 @@ public class QuestResult : BaseUI
         txt.text = "의뢰 확인 중...";
 
         yield return new WaitForSeconds(2f);
+        Debug.Log($"0 : 성공 / 1 : 대성공 / -1 : 전멸 = {QuestManager.Instance.resultList[resultIndex]}");
 
-        if(result == 0)
+        if(QuestManager.Instance.resultList[resultIndex] == 0)
         {
             txt.text = "의뢰 성공";
             receiptBtn.SetActive(true);
         }
-        else if(result == 1)
+        else if(QuestManager.Instance.resultList[resultIndex] == 1)
         {
             txt.text = "의뢰 대성공!!!";
             receiptBtn.SetActive(true);
         }
-        else if(result == -1)
+        else if(QuestManager.Instance.resultList[resultIndex] == -1)
         {
-            txt.text = "의뢰 실패...";
+            txt.text = "전멸...";
             receiptBtn.SetActive(false);
         }
     }
