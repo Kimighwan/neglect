@@ -4,7 +4,7 @@ public class SystemDescUI : SystemUI
 {
     public SystemDescData systemDescData;
 
-    public TextMeshProUGUI title;
+    //public TextMeshProUGUI title;
     public TextMeshProUGUI txtDesc;
 
     public GameObject beforeObj;
@@ -44,7 +44,7 @@ public class SystemDescUI : SystemUI
 
         endPage = systemDescData.endPage;
 
-        title.text = systemDescData.systemName;
+        //title.text = systemDescData.systemName;
     }
 
     public void BackBtnOfSystemDescUI()   // 뒤로가기 버튼

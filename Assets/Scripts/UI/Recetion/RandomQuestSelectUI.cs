@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RandomQuestSelectUI : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class RandomQuestSelectUI : MonoBehaviour
     public TextMeshProUGUI level;
     public TextMeshProUGUI time;
     public TextMeshProUGUI reward;
+
+    public Button btn;
+    public TextMeshProUGUI btnTxt;
 
     private QuestData questData;
 
@@ -64,6 +68,9 @@ public class RandomQuestSelectUI : MonoBehaviour
 
         // 골드 차감
 
+
+        btnTxt.text = "영입 완료";
+        btn.interactable = false;
     }
 
     private void GetQuestData()
