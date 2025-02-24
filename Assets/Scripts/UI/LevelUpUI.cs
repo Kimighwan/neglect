@@ -5,6 +5,7 @@ public class LevelUpUI : BaseUI
 {
     public TextMeshProUGUI levelInfo;
     public TextMeshProUGUI otherInfo;
+    public TextMeshProUGUI levelUpInfo;
     public Button levelUpButton;
 
     private void OnEnable() {
@@ -12,19 +13,28 @@ public class LevelUpUI : BaseUI
         if (l == 5) {
             levelInfo.text = "Max Level";
             otherInfo.text = "";
+            levelUpInfo.text = "-";
             levelUpButton.interactable = false;
         }
         else {
             levelInfo.text = $"Level {l} >> {l + 1}";
-            if (l == 4) otherInfo.text = $"객실 수 {l} >> {l}\n파견 수 {l + 1} >> {l + 1}\n의뢰 수 {(l + 2) * 2} >> {(l + 3) * 2}\n모험가 새로고침 확률 변경";
-            else otherInfo.text = $"객실 수 {l} >> {l + 1}\n파견 수 {l + 1} >> {l + 2}\n의뢰 수 {(l + 2) * 2} >> {(l + 3) * 2}\n모험가 새로고침 확률 변경";
+            if (l == 4) {
+                otherInfo.text = $"객실 수 {l} >> {l}\n파견 수 {l + 1} >> {l + 1}\n의뢰 수 {(l + 2) * 2} >> {(l + 3) * 2}\n모험가 새로고침 확률 변경";
+                levelUpInfo.text = "필요 골드 100000";
+            }
+            else {
+                otherInfo.text = $"객실 수 {l} >> {l + 1}\n파견 수 {l + 1} >> {l + 2}\n의뢰 수 {(l + 2) * 2} >> {(l + 3) * 2}\n모험가 새로고침 확률 변경";
+                if (l == 1) levelUpInfo.text = "필요 골드 500";
+                else if (l == 2) levelUpInfo.text = "필요 골드 2000";
+                else if (l == 3) levelUpInfo.text = "필요 골드 20000";
+            }
         }
     }
 
-    public void OnClickYes() {
-        if (GameInfo.gameInfo.OnClickLevelUpYes()) OnClickCloseButton();
-    }
-    public void OnClickNo() {
-        OnClickCloseButton();
+    public void OnClickLevelUpButton() {
+        if (GameInfo.gameInfo.OnClickLevelUpYes()) {
+            OnClickCloseButton();
+            UIManager.Instance.OpenSimpleInfoUI("길드 레벨 업!");
+        }
     }
 }

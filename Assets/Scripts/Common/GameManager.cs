@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public DialogMode dialogMode;
     private GameInfo info;
     private bool pause = true;
+    private bool fastMode = false;
     void Awake()
     {
         gameManager = this;
@@ -90,16 +91,33 @@ public class GameManager : MonoBehaviour
             info.pauseButton.sprite = info.pauseAndGo[0];
             info.ChangeAniObjSpeed(1f);
         }
+        fastMode = false;
+        info.fastButton.sprite = info.pauseAndGo[4];
         info.gameSpeed = 1f;
         dialogMode.ChangeDialogSpeed(1f);
     }
     public void QuickGame() {
-        info.gameSpeed = 50f;
-        info.ChangeAniObjSpeed(5f);
-        dialogMode.ChangeDialogSpeed(10f);
+        fastMode = !fastMode;
+        if (fastMode) {
+            info.fastButton.sprite = info.pauseAndGo[5];
+            info.gameSpeed = 20f;
+            info.ChangeAniObjSpeed(10f);
+            dialogMode.ChangeDialogSpeed(10f);
+        }
+        else {
+            info.fastButton.sprite = info.pauseAndGo[4];
+            info.gameSpeed = 1f;
+            dialogMode.ChangeDialogSpeed(1f);
+            info.ChangeAniObjSpeed(1f);
+        }
     }
     public bool IsPaused() {
         return pause;
+    }
+    public void OpenTutorial(int id) {
+        DataTableManager.Instance.systemDescId = id;
+        var systemDescUI = new BaseUIData();
+        UIManager.Instance.OpenUI<SystemDescUI>(systemDescUI);
     }
     public void EndTheGame() {
         

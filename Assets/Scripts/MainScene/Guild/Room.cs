@@ -11,16 +11,16 @@ public class Room : MouseDrag
 
     void Start()
     {
-        if (index == 0) {
-            isActive = true;
-            Destroy(locker);
-        }
         GameInfo.gameInfo.AllocateRoom(index, this);
     }
 
     public override void OnPointerDown(PointerEventData eventData)
     {
         UIManager.Instance.OnClickRoom(index, isActive);
+        if (!GameInfo.gameInfo.roomTutorial) {
+            GameInfo.gameInfo.roomTutorial = true;
+            GameManager.gameManager.OpenTutorial(590008);
+        }
     }
     public void ActiveRoom() {
         this.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);

@@ -132,6 +132,10 @@ public class UIManager : SingletonBehaviour<UIManager>
             frontUI.CloseUI(true);
         }
     }
+    public void OpenSimpleInfoUI(string str) {
+        var simpleInfoUI = new StringInfo(str);
+        UIManager.Instance.OpenUI<SimpleInfoUI>(simpleInfoUI);
+    }
 
     #region OnClickEvent
 

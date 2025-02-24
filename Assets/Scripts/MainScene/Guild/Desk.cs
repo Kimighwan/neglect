@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class Desk : MouseDrag
 {
-    public bool tutorialOnce = false;
+    private bool tutorialOnce = false;
     public Transform cameraTransform; // 이동할 카메라
     public float moveSpeed = 2f; // 이동 속도
 
@@ -31,6 +31,10 @@ public class Desk : MouseDrag
         //StartCoroutine(MoveCamera(isMoved ? originalCamPos : targetCamPos));
         isMoved = !isMoved;
         //this.GetComponent<BoxCollider2D>().enabled = true;
+        if (!tutorialOnce) {
+            tutorialOnce = true;
+            GameManager.gameManager.OpenTutorial(590004);
+        }
     }
 
     // private IEnumerator MoveCamera(Vector3 camDestination)

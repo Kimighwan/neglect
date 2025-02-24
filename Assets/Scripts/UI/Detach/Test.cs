@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Test : MonoBehaviour
 {
+    private bool adTutorialOnce = false;
     public GameObject image;
     public GameObject btn;
 
@@ -17,6 +19,14 @@ public class Test : MonoBehaviour
     {
         var detachAdventureUI = new AdventureIndexClass(index);
         UIManager.Instance.OpenUI<DetachAdventureListUI>(detachAdventureUI);
+        if (!adTutorialOnce) {
+            adTutorialOnce = true;
+            transform.parent.parent.gameObject.GetComponent<Request>().ClearAdTutorial();
+            GameManager.gameManager.OpenTutorial(590007);
+        }
+    }
+    public void SetAdTutorialOnceTrue() {
+        adTutorialOnce = true;
     }
 
     public void OnClickQuestResultTestBtn(int index)
@@ -106,5 +116,12 @@ public class RoomIndex : BaseUIData {
     public int index;
     public RoomIndex(int i, bool b) {
         index = i;
+    }
+}
+
+public class StringInfo : BaseUIData {
+    public string str;
+    public StringInfo(string s) {
+        str = s;
     }
 }

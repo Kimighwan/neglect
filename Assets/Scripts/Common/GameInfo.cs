@@ -13,6 +13,7 @@ public class GameInfo : MonoBehaviour
     public static GameInfo gameInfo;
     public Image fadeInOut;
     public Image pauseButton;
+    public Image fastButton;
     public List<Sprite> pauseAndGo;
     public List<GameObject> AnimatedObj;
     
@@ -30,6 +31,7 @@ public class GameInfo : MonoBehaviour
     public float Timer { get { return timer; } set { timer = value; } }
     // 객실 정보
     private List<Room> rooms = new List<Room> { null, null, null, null };
+    public bool roomTutorial = false;
 
     // 길드 레벨
     private int level;
@@ -51,7 +53,7 @@ public class GameInfo : MonoBehaviour
         timer = 80.0f;
         level = 1;
         requests = 2;
-        plusGold = 300;
+        plusGold = 0;
         fadeInOut.gameObject.SetActive(true);
     }
     public void UpdateGameInfo() {
@@ -80,11 +82,15 @@ public class GameInfo : MonoBehaviour
             else if (level == 2 && ChangeGold(-neededGold[1])) {}
             else if (level == 3 && ChangeGold(-neededGold[2])) {}
             else if (level == 4 && ChangeGold(-neededGold[3])) {}
-            else return false;
+            else {
+                UIManager.Instance.OpenSimpleInfoUI("골드가 부족합니다!");
+                return false;
+            }
             request.ActiveRequest();
             gameInfo.Level++;
             return true;
         }
+        UIManager.Instance.OpenSimpleInfoUI("최고 레벨 입니다!");
         return false;
     }
     public int GetRoomLevel(int i) {
@@ -99,12 +105,18 @@ public class GameInfo : MonoBehaviour
     }
     // 객실 개방 버튼 누름
     public bool RoomActive(int index) {
-        if (CheckMaxRoomActivated() && ChangeGold(-1000)) {
-            rooms[index].isActive = true;
-            CalculatePlusGold();
-            rooms[index].ActiveRoom();
-            return true;
+        if (CheckMaxRoomActivated()) {
+            if (ChangeGold(-1000)) {
+                rooms[index].isActive = true;
+                CalculatePlusGold();
+                rooms[index].ActiveRoom();
+                UIManager.Instance.OpenSimpleInfoUI("객실 개방!");
+                return true;
+            }
+            UIManager.Instance.OpenSimpleInfoUI("골드가\n부족합니다!");
+            return false;
         }
+        UIManager.Instance.OpenSimpleInfoUI("객실 개방\n한도 초과!");
         return false;
     }
     private bool CheckMaxRoomActivated() {
@@ -137,9 +149,13 @@ public class GameInfo : MonoBehaviour
             if ((l == 1 && ChangeGold(-3000)) || (l == 2 && ChangeGold(-10000))) {
                 rooms[index].level++;
                 CalculatePlusGold();
+                UIManager.Instance.OpenSimpleInfoUI("객실 레벨업!");
                 return true;
             }
+            UIManager.Instance.OpenSimpleInfoUI("골드가\n부족합니다!");
+            return false;
         }
+        UIManager.Instance.OpenSimpleInfoUI("최고 레벨\n객실입니다!");
         return false;
     }
     private void CalculatePlusGold() {

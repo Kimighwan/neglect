@@ -61,3 +61,9 @@ TagManager:
   - name: SpeakBubble
     uniqueID: 2641527955
     locked: 0
+  - name: human
+    uniqueID: 508413069
+    locked: 0
+  - name: Counter
+    uniqueID: 309505651
+    locked: 0

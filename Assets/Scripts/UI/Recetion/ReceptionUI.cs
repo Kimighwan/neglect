@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ReceptionUI : BaseUI
 {
+    private bool adTutorial = false;
+    private bool qTutorial = false;
     public override void Init(Transform anchor)
     {
         base.Init(anchor);
@@ -17,6 +19,10 @@ public class ReceptionUI : BaseUI
         var adventurerListUI = new BaseUIData();
         UIManager.Instance.CloseUI(this);
         UIManager.Instance.OpenUI<AdventurerListUI>(adventurerListUI);
+        if (!adTutorial) {
+            adTutorial = true;
+            GameManager.gameManager.OpenTutorial(590005);
+        }
     }
 
     public void OnClickQuestListBtn()
@@ -24,6 +30,10 @@ public class ReceptionUI : BaseUI
         var questListUI = new BaseUIData();
         UIManager.Instance.CloseUI(this);
         UIManager.Instance.OpenUI<QuestListUI>(questListUI);
+        if (!qTutorial) {
+            qTutorial = true;
+            GameManager.gameManager.OpenTutorial(590003);
+        }
     }
 
     public void OnClickNewQuestListBtn()
@@ -31,5 +41,9 @@ public class ReceptionUI : BaseUI
         var questListUI = new BaseUIData();
         UIManager.Instance.CloseUI(this);
         UIManager.Instance.OpenUI<TodayQuestUI>(questListUI);
+        if (!qTutorial) {
+            qTutorial = true;
+            GameManager.gameManager.OpenTutorial(590003);
+        }
     }
 }
