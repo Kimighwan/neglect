@@ -19,7 +19,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     public List<Test> test = new List<Test>();
 
-    public Transform[] stateIconPos;
+    public RawImage[] stateIcons;
 
 
     const string ICON_PATH = "Arts/Icon";
@@ -298,6 +298,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         if (saveTmp > randomValue)
         {
             resultList[index] = -1;     // 전멸
+            stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
             return;
         }
         saveTmp += nomalRate;
@@ -305,10 +306,12 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         if (saveTmp > randomValue)
         {
             resultList[index] = 0;      // 일반 성공
+            stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
             return;
         }
 
         resultList[index] = 1;          // 대성공
+        stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
     }
 }
 
