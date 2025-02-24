@@ -256,6 +256,8 @@ MonoBehaviour:
   level: {fileID: 4718816195145528371}
   time: {fileID: 3307475050303192431}
   reward: {fileID: 2441204350292977336}
+  btn: {fileID: 3420182879060861309}
+  btnTxt: {fileID: 5090017118059963985}
 --- !u!1 &3483959067812906653
 GameObject:
   m_ObjectHideFlags: 0
