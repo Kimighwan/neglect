@@ -11185,6 +11185,11 @@ MonoBehaviour:
   - {fileID: -585948888, guid: 4f86dfc821787e9468fd0375e50c77c7, type: 3}
   - {fileID: 579921617, guid: 75651324e4be48c4e8f624751d748536, type: 3}
   - {fileID: -213842563, guid: 4f86dfc821787e9468fd0375e50c77c7, type: 3}
+  AnimatedObj:
+  - {fileID: 980625615}
+  - {fileID: 627498565}
+  - {fileID: 1099963524}
+  - {fileID: 325855560}
   gameSpeed: 1
   request: {fileID: 1684301902}
   malpungseonOnce: 0

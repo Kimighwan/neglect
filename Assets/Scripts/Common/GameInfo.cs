@@ -14,6 +14,7 @@ public class GameInfo : MonoBehaviour
     public Image fadeInOut;
     public Image pauseButton;
     public List<Sprite> pauseAndGo;
+    public List<GameObject> AnimatedObj;
     
     // 게임 진행 속도 조절
     public float gameSpeed = 1f;
@@ -234,5 +235,10 @@ public class GameInfo : MonoBehaviour
             StartCoroutine(FadeBlack(duration, startDelay, 1f, 0f));
         }
         else StartCoroutine(FadeBlackInOut(duration, startDelay));
+    }
+    public void ChangeAniObjSpeed(float f) {
+        foreach (GameObject obj in AnimatedObj) {
+            if (obj.GetComponent<Animator>() != null) obj.GetComponent<Animator>().speed = f;
+        }
     }
 }

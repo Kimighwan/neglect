@@ -83,16 +83,19 @@ public class GameManager : MonoBehaviour
             info.pauseButton.gameObject.GetComponent<UIPressed>().defaultImg = info.pauseAndGo[2];
             info.pauseButton.gameObject.GetComponent<UIPressed>().pressedImg = info.pauseAndGo[3];
             info.pauseButton.sprite = info.pauseAndGo[2];
+            info.ChangeAniObjSpeed(0f);
         } else {
             info.pauseButton.gameObject.GetComponent<UIPressed>().defaultImg = info.pauseAndGo[0];
             info.pauseButton.gameObject.GetComponent<UIPressed>().pressedImg = info.pauseAndGo[1];
             info.pauseButton.sprite = info.pauseAndGo[0];
+            info.ChangeAniObjSpeed(1f);
         }
         info.gameSpeed = 1f;
         dialogMode.ChangeDialogSpeed(1f);
     }
     public void QuickGame() {
         info.gameSpeed = 50f;
+        info.ChangeAniObjSpeed(5f);
         dialogMode.ChangeDialogSpeed(10f);
     }
     public bool IsPaused() {

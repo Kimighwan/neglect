@@ -1,10 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 public class ReportUI : BaseUI
 {
     public Image image;
+    public TextMeshProUGUI day;
+    public TextMeshProUGUI quest;
+    public TextMeshProUGUI NowScore;
+    public TextMeshProUGUI NextScore;
+
     private void OnEnable() {
+        day.text = $"{GameInfo.gameInfo.Day}일차";
+        quest.text = $"<완료한 의뢰>\n브론즈 X 3 => 300\n실버 X 1 => 200\n금일 점수 500";
         DoFadeIn();
     }
     public void OnClickCloseBut()
