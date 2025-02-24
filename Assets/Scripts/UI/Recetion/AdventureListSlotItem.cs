@@ -66,9 +66,9 @@ public class AdventureListSlotItem : InfiniteScrollItem
             classImg.texture = Resources.Load("Arts/Icon/Class/SupportIcon") as Texture2D;
 
         // Type Image
-        if (adventureClass == "물리")
+        if (adventureType == "물리")
             typeImg.texture = Resources.Load("Arts/Icon/Type/PhysicIcon") as Texture2D;
-        else if (adventurePosition == "마법")
+        else if (adventureType == "마법")
             typeImg.texture = Resources.Load("Arts/Icon/Type/MagicIcon") as Texture2D;
         else
             typeImg.texture = Resources.Load("Arts/Icon/Type/HolyIcon") as Texture2D;
