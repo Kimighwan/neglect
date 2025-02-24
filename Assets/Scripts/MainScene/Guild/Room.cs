@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Room : MouseDrag
 {
+    public GameObject locker;
     public int index = 0;
     public int level = 1;
     public bool isActive = false;
@@ -10,7 +11,10 @@ public class Room : MouseDrag
 
     void Start()
     {
-        if (index == 0) isActive = true;
+        if (index == 0) {
+            isActive = true;
+            Destroy(locker);
+        }
         GameInfo.gameInfo.AllocateRoom(index, this);
     }
 
@@ -20,6 +24,7 @@ public class Room : MouseDrag
     }
     public void ActiveRoom() {
         this.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+        Destroy(locker);
         isActive = true;
     }
 }

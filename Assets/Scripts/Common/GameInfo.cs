@@ -12,6 +12,8 @@ public class GameInfo : MonoBehaviour
 {
     public static GameInfo gameInfo;
     public Image fadeInOut;
+    public Image pauseButton;
+    public List<Sprite> pauseAndGo;
     
     // 게임 진행 속도 조절
     public float gameSpeed = 1f;
@@ -70,7 +72,6 @@ public class GameInfo : MonoBehaviour
         }
         return false;
     }
-
     // 레벨 업 Yes 버튼 누름
     public bool OnClickLevelUpYes() {
         if (level < 5) {

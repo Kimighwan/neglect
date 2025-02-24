@@ -19,9 +19,6 @@ public class Request : MonoBehaviour
         Initiate();
         SetState();
     }
-    private void Update() {
-        
-    }
     private void Initiate() {
         requests[0].GetComponent<Image>().color = new Color(1f, 1f, 1f);
         requests[1].GetComponent<Image>().color = new Color(1f, 1f, 1f);
@@ -67,17 +64,18 @@ public class Request : MonoBehaviour
     }
     public void ActiveRequest() {
         if (!isActivated[4]) {
-            int i = 1;
-            if (isActivated[i] && !isActivated[i + 1]) isActivated[i++] = true;
-            else if (isActivated[++i] && !isActivated[i + 1]) isActivated[i++] = true;
-            else if (isActivated[++i] && !isActivated[i + 1]) isActivated[i++] = true;
-            else return;
-            requests[i].GetComponent<Image>().color = new Color(1f, 1f, 1f);
-            quests[i].interactable = true;
-            adventures[i].interactable = true;
-            awakes[i].interactable = true;
-            states[i].text = "";
-            GameInfo.gameInfo.Requests++;
+            for (int i = 2; i < 5; i++) {
+                if (!isActivated[i]) {
+                    isActivated[i] = true;
+                    requests[i].GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    quests[i].interactable = true;
+                    adventures[i].interactable = true;
+                    awakes[i].interactable = true;
+                    states[i].text = "";
+                    GameInfo.gameInfo.Requests++;
+                    break;
+                }
+            }
         }
     }
     public void SetState() { // 모든 버튼의 상태를 정하는 메소드로 할당이 다 되면 호출, 초기화 시 호출

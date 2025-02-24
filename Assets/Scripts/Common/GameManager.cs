@@ -79,6 +79,15 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame() {
         pause = !pause;
+        if (pause) {
+            info.pauseButton.gameObject.GetComponent<UIPressed>().defaultImg = info.pauseAndGo[2];
+            info.pauseButton.gameObject.GetComponent<UIPressed>().pressedImg = info.pauseAndGo[3];
+            info.pauseButton.sprite = info.pauseAndGo[2];
+        } else {
+            info.pauseButton.gameObject.GetComponent<UIPressed>().defaultImg = info.pauseAndGo[0];
+            info.pauseButton.gameObject.GetComponent<UIPressed>().pressedImg = info.pauseAndGo[1];
+            info.pauseButton.sprite = info.pauseAndGo[0];
+        }
         info.gameSpeed = 1f;
         dialogMode.ChangeDialogSpeed(1f);
     }
