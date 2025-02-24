@@ -19,7 +19,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     public List<Test> test = new List<Test>();
 
-    public Image[] stateIcons;
+    public Transform[] stateIconPos;
 
 
     const string ICON_PATH = "Arts/Icon";
@@ -76,17 +76,17 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         if(resultScore < targetScore * 0.9)
         {
             // 빨강 이모티콘
-            stateIcons[index - 1].sprite = Resources.Load($"{ICON_PATH}/IconFaceHard") as Sprite;
+            
         }
         else if(resultScore <= targetScore * 1.1)
         {
             // 노랑 이모티콘
-            stateIcons[index - 1].sprite = Resources.Load($"{ICON_PATH}/IconFaceNormal") as Sprite;
+            
         }
         else if(resultScore > targetScore * 1.1)
         {
             // 초록 이모티콘
-            stateIcons[index - 1].sprite = Resources.Load($"{ICON_PATH}/IconFaceEasy") as Sprite;
+            
         }
     }
 
