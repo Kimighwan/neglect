@@ -12,6 +12,9 @@ public class GameInfo : MonoBehaviour
 {
     public static GameInfo gameInfo;
     public Image fadeInOut;
+    public Image pauseButton;
+    public List<Sprite> pauseAndGo;
+    public List<GameObject> AnimatedObj;
     
     // 게임 진행 속도 조절
     public float gameSpeed = 1f;
@@ -70,7 +73,6 @@ public class GameInfo : MonoBehaviour
         }
         return false;
     }
-
     // 레벨 업 Yes 버튼 누름
     public bool OnClickLevelUpYes() {
         if (level < 5) {
@@ -233,5 +235,10 @@ public class GameInfo : MonoBehaviour
             StartCoroutine(FadeBlack(duration, startDelay, 1f, 0f));
         }
         else StartCoroutine(FadeBlackInOut(duration, startDelay));
+    }
+    public void ChangeAniObjSpeed(float f) {
+        foreach (GameObject obj in AnimatedObj) {
+            if (obj.GetComponent<Animator>() != null) obj.GetComponent<Animator>().speed = f;
+        }
     }
 }

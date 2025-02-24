@@ -7,10 +7,12 @@ using UnityEngine.EventSystems;
 // 반드시 public이어야 사용가능 할 거에요.
 // Raycast Target으로 사용하는 원리이기 때문에 위에 다른 거로 막혀있으면 사용 불가합니다.
 
-public class MouseDrag : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IDropHandler
+public class MouseDrag : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public virtual void OnPointerDown(PointerEventData eventData) { return; }
     public virtual void OnDrag(PointerEventData eventData) { return; }
     public virtual void OnPointerUp(PointerEventData eventData) { return; }
     public virtual void OnDrop(PointerEventData eventData) { return; }
+    public virtual void OnPointerEnter(PointerEventData eventData) { return; }
+    public virtual void OnPointerExit(PointerEventData eventData) { return; }
 }

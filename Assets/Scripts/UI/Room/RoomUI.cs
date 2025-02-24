@@ -52,12 +52,14 @@ public class RoomUI : BaseUI
     }
 
     public void OnClickActivateRoom() {
-        GameInfo.gameInfo.RoomActive(index);
+        if (GameInfo.gameInfo.RoomActive(index)) OnClickCloseButton();
     }
 
     public void OnClickLevelUpButton() {
         if (!isActive) OnClickActivateRoom();
-        else GameInfo.gameInfo.RoomLevelUp(index);
+        else {
+            if (GameInfo.gameInfo.RoomLevelUp(index)) OnClickCloseButton();
+        }
     }
 
     public override void OnClickCloseButton()
