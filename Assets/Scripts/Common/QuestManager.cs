@@ -15,7 +15,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     // 파견창 Index에 따른 QuestData
     public Dictionary<int, QuestData> questData = new Dictionary<int, QuestData>();
 
-    public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 결과 저장
+    public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 전멸, 성공, 대성공 확인
 
     public List<Test> test = new List<Test>();
 
@@ -40,10 +40,10 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     private float sameClassRate;        // 클래스 중복 비율
     private float mixPositionRate;      // 포지션 조합 비율
     private float misClassRate;         // 클래스 조합 비율
-    private float weakRate;             // 약점 비율(마이너스 적용)
-    private float strongRate;           // 강점 비율
-    private float dieRate;              // 전멸 확률
-    private float bigRate;              // 대성공 확률
+    private float weakRate;             // 약점 비율
+    private float strongRate;           // 강점 비율(마이너스 적용)
+    private float dieRate = 0;              // 전멸 확률
+    private float bigRate = 0;              // 대성공 확률
 
     private int frontCount = 0;         // 전위 수
     private int midCount = 0;           // 중위 수
@@ -60,13 +60,12 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         SetQuest(index);
 
 
+        SetTier(index);                 // 등급 점수
         SetSameScore(index);            // 중복 비율
         SetMixScore(index);             // 조합 비율
         SetStrongAndWeak(index);        // 약점 & 강점 비율
-        SetTier(index);                 // 등급 점수
+        Calculation(index);
 
-        Debug.Log($"몬스터 약점 : {monsterWeak}{monsterWeakSize} / 몬스터 강점 : {monsterStrong}{monsterStrongSize}");
-        Debug.Log($"약점 비율 : {weakRate} / 강점 비율 : {strongRate}");
 
         SetFaceIcon(index);                  // 파견 점수에 따른 이모티콘 표시
     }
@@ -97,11 +96,11 @@ public class QuestManager : SingletonBehaviour<QuestManager>
             Debug.Log("퀘스트를 다시 선택 해주세요.");
             return true ;
         }
-        else if (adventureDatas[index].Count != 4)
-        {
-            Debug.Log("모험가를 다시 선택 해주세요.");
-            return true;
-        }
+        //else if (adventureDatas[index].Count != 4)
+        //{
+        //    Debug.Log("모험가를 다시 선택 해주세요.");
+        //    return true;
+        //}
 
         return false ;
     }
@@ -272,17 +271,18 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     
     public void Calculation(int index)
     {
-        float rate = samePositionRate + sameClassRate + mixPositionRate + misClassRate + strongRate - weakRate;
+        float rate = samePositionRate + sameClassRate + mixPositionRate + misClassRate - strongRate + weakRate;
+
         int addScore = (int)(tierScore * rate);
 
         resultScore = addScore + tierScore;
 
-        if(targetScore < resultScore)
+        if(targetScore < resultScore)   // 점수 오버
         {
             int tmp = resultScore - targetScore;
-            bigRate = (tmp / 10) * 0.5f;
+            bigRate = (tmp / 10) * 0.05f;
         }
-        else if(targetScore > resultScore)
+        else if(targetScore > resultScore)  // 점수 언더
         {
             int tmp = targetScore - resultScore;
             dieRate = (tmp / 10) * 0.1f;
@@ -290,7 +290,8 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         float nomalRate = 100f - (bigRate + dieRate);
 
-        int randomValue = UnityEngine.Random.Range(1, 101);
+        float randomValue = UnityEngine.Random.Range(0f, 100f);
+        randomValue = Mathf.Floor(randomValue * 10f) / 10f;
 
         float saveTmp = dieRate;
 
