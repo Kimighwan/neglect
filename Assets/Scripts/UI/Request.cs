@@ -96,4 +96,9 @@ public class Request : MonoBehaviour
             }
         }
     }
+    public void ClearAdTutorial() {
+        foreach (GameObject obj in requests) {
+            obj.GetComponent<Test>().SetAdTutorialOnceTrue();
+        }
+    }
 }

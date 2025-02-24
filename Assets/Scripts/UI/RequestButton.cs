@@ -16,7 +16,7 @@ public class RequestButton : MouseDrag
     private Vector3 targetCamPos; // 목표 위치
     private Vector3 originalUIPos; // UI 원래 위치
     private Vector3 targetUIPos;
-
+    private bool tutorialOnce = false;
     private bool isMoved = false; // 이동 여부 체크
 
     void Start()
@@ -33,6 +33,10 @@ public class RequestButton : MouseDrag
         this.GetComponent<Image>().raycastTarget = false;
         StartCoroutine(MoveCameraAndUI(isMoved ? originalCamPos : targetCamPos, isMoved ? originalUIPos : targetUIPos));
         isMoved = !isMoved;
+        if (!tutorialOnce) {
+            tutorialOnce = true;
+            GameManager.gameManager.OpenTutorial(590006);
+        }
     }
 
     private IEnumerator MoveCameraAndUI(Vector3 camDestination, Vector3 uiDestination)
