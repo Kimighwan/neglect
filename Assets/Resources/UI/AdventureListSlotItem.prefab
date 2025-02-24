@@ -866,12 +866,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoApplySize: 1
   m_name: {fileID: 3926000949576523632}
-  position: {fileID: 0}
-  type: {fileID: 0}
-  m_class: {fileID: 0}
-  positionPos: {fileID: 0}
-  classPos: {fileID: 0}
-  typePos: {fileID: 0}
+  positionPos: {fileID: 4049513109687925555}
+  classPos: {fileID: 7064579604829948273}
+  typePos: {fileID: 6510604692578835648}
+  rank: {fileID: 8798436822190501316}
 --- !u!1 &8652272611766739965
 GameObject:
   m_ObjectHideFlags: 0
