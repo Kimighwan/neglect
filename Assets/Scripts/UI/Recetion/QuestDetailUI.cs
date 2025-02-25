@@ -10,6 +10,11 @@ public class QuestDetailUI : BaseUI
     public TextMeshProUGUI m_target;
     public TextMeshProUGUI m_reward;
 
+    public TextMeshProUGUI paperName;
+    public TextMeshProUGUI paperLevel;
+    public TextMeshProUGUI paperTime;
+    public TextMeshProUGUI paperReward;
+
     public Button monsterDetailBtn;
 
     private int monsterId;
@@ -39,13 +44,29 @@ public class QuestDetailUI : BaseUI
         m_target.text = data.questMonster;
         m_reward.text = "의로보상 : " + data.questReward.ToString();
 
+        paperName.text = data.questName;
+        paperLevel.text = data.questLevel;
+        paperTime.text = data.questTime.ToString();
+        paperReward.text = data.questReward.ToString();
+
         if (data.questActive == 1)
             active = true;
         else
             active = false;
 
-        monsterDetailBtn.gameObject.SetActive(active);
+        // 도감에 존재하느냐에 따라 활성화/비활성화
+        monsterDetailBtn.interactable = active;
+
+        // 몬스터 처치한 적이 있으면 도감 활성화 가능
+        if (PlayerPrefs.HasKey($"{data.questMonster}"))
+        {
+            if (PlayerPrefs.GetInt($"{data.questMonster}") == 1)
+                monsterDetailBtn.interactable = active;
+            else
+                monsterDetailBtn.interactable = false;
+        }
     }
+
 
     public void OnClickBackOfQuestDetailList()
     {
