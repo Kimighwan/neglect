@@ -7,6 +7,7 @@ public enum BGM
     Start,          // 타이틀(Start씬)
     Main6,          // 길드 내부1
     Main7,          // 길드 내부2
+    CoinDrop1,      // 정산1
     COUNT           
 }
 
@@ -25,6 +26,7 @@ public enum SFX
     BookFlip7,      // 페이지 넘기는 소리4
     Click1,         // 클릭음1
     Click2,         // 클릭음2
+    CoinDrop2,      // 정산2
     COUNT
 }
 

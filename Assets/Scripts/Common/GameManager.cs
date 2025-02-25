@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -116,6 +117,17 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.OpenUI<SystemDescUI>(systemDescUI);
     }
     public void EndTheGame() {
-        
+        Invoke("BackToTitle", 2f);
+    }
+    private void BackToTitle() {
+        Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
+        {
+            SceneManager.LoadScene(0);
+            UIManager.Instance.CloseAllOpenUI();
+
+            Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 1f, false, () =>
+            {
+            });
+        });
     }
 }

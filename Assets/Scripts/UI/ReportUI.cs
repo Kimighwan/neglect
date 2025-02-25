@@ -11,9 +11,9 @@ public class ReportUI : BaseUI
     public TextMeshProUGUI NextScore;
 
     private void OnEnable() {
-        day.text = $"{GameInfo.gameInfo.Day}일차";
-        quest.text = $"<완료한 의뢰>\n브론즈 X 3 => 300\n실버 X 1 => 200\n금일 점수 500";
         DoFadeIn();
+        Invoke("StartTyping", 0.5f);
+        AudioManager.Instance.PlayBGM(BGM.CoinDrop1);
     }
     public void OnClickCloseBut()
     {
@@ -56,5 +56,49 @@ public class ReportUI : BaseUI
         image.color = new Color(0f, 0f, 0f, endAlpha);
         GameInfo.gameInfo.ComeMorning();
         CloseUI();
+    }
+    private void StartTyping()
+    {
+        StartCoroutine(TypeDialog($"{GameInfo.gameInfo.Day}일차", $"<완료한 의뢰>\n브론즈 X 3 => 300\n실버 X 1 => 200\n금일 점수 500"
+        , $"현재 점수 {GameInfo.gameInfo.PlayerScore}점", $"?차 목표까지 ?점\n기한까지 ?일"));
+    }
+    private IEnumerator TypeDialog(string s1, string s2, string s3, string s4)
+    {
+        day.text = "";
+        foreach (char letter in s1)
+        {
+            day.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(0.3f);
+
+        quest.text = "";
+        foreach (char letter in s2)
+        {
+            quest.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(0.3f);
+
+        NowScore.text = "";
+        foreach (char letter in s3)
+        {
+            NowScore.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(0.3f);
+
+        NextScore.text = "";
+        foreach (char letter in s4)
+        {
+            NextScore.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySFX(SFX.CoinDrop2);
     }
 }

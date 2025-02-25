@@ -81,6 +81,8 @@ public class QuestResult : BaseUI
             receiptBtn.SetActive(true);
 
             reward = QuestManager.Instance.questData[resultIndex].questReward;
+            GameInfo.gameInfo.CheckSuccessTier(QuestManager.Instance.questData[resultIndex].questLevel);
+            ScriptDialogHandler.handler.ConditionalScriptPlay(QuestManager.Instance.questData[resultIndex].questId);
         }
         else if(QuestManager.Instance.resultList[resultIndex] == 1)
         {
@@ -88,6 +90,8 @@ public class QuestResult : BaseUI
             receiptBtn.SetActive(true);
 
             reward = QuestManager.Instance.questData[resultIndex].questReward * 2;
+            GameInfo.gameInfo.CheckSuccessTier(QuestManager.Instance.questData[resultIndex].questLevel);
+            ScriptDialogHandler.handler.ConditionalScriptPlay(QuestManager.Instance.questData[resultIndex].questId);
         }
         else if(QuestManager.Instance.resultList[resultIndex] == -1)
         {
