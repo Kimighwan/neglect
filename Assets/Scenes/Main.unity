@@ -793,7 +793,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uBAA8\uD5D8\uAC00\uC120\uD0DD"
+  m_text: "\uBAA8\uD5D8\uAC00 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uBAA8\uD5D8\uAC00\uC120\uD0DD"
+  m_text: "\uBAA8\uD5D8\uAC00 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -3079,7 +3079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uC758\uB8B0\uC120\uD0DD"
+  m_text: "\uC758\uB8B0 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -3565,7 +3565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uC758\uB8B0\uC120\uD0DD"
+  m_text: "\uC758\uB8B0 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -6653,7 +6653,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uC758\uB8B0\uC120\uD0DD"
+  m_text: "\uC758\uB8B0 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -8999,7 +8999,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uBAA8\uD5D8\uAC00\uC120\uD0DD"
+  m_text: "\uBAA8\uD5D8\uAC00 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -9499,7 +9499,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uBAA8\uD5D8\uAC00\uC120\uD0DD"
+  m_text: "\uBAA8\uD5D8\uAC00 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -10652,7 +10652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uC758\uB8B0\uC120\uD0DD"
+  m_text: "\uC758\uB8B0 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -11455,7 +11455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uC758\uB8B0\uC120\uD0DD"
+  m_text: "\uC758\uB8B0 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -13996,7 +13996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD30C\uACAC\uBAA8\uD5D8\uAC00\uC120\uD0DD"
+  m_text: "\uBAA8\uD5D8\uAC00 \uC120\uD0DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
@@ -17485,6 +17485,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questTxt.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
       propertyPath: stateIcons.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -17509,13 +17513,61 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2011603936}
     - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questObject.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questTxt.Array.data[0]
+      value: 
+      objectReference: {fileID: 811299877}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questTxt.Array.data[1]
+      value: 
+      objectReference: {fileID: 1323353157}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questTxt.Array.data[2]
+      value: 
+      objectReference: {fileID: 461328955}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questTxt.Array.data[3]
+      value: 
+      objectReference: {fileID: 1455421602}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questTxt.Array.data[4]
+      value: 
+      objectReference: {fileID: 423586736}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
       propertyPath: adventureBtn.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: adventureTxt.Array.size
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
       propertyPath: stateIcons.Array.data[0]
       value: 
       objectReference: {fileID: 1426071985}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questObject.Array.data[0]
+      value: 
+      objectReference: {fileID: 811299877}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questObject.Array.data[1]
+      value: 
+      objectReference: {fileID: 1323353157}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questObject.Array.data[2]
+      value: 
+      objectReference: {fileID: 461328955}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questObject.Array.data[3]
+      value: 
+      objectReference: {fileID: 1455421602}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: questObject.Array.data[4]
+      value: 
+      objectReference: {fileID: 423586736}
     - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
       propertyPath: adventureBtn.Array.data[0]
       value: 
@@ -17536,6 +17588,26 @@ PrefabInstance:
       propertyPath: adventureBtn.Array.data[4]
       value: 
       objectReference: {fileID: 681565843}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: adventureTxt.Array.data[0]
+      value: 
+      objectReference: {fileID: 195393888}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: adventureTxt.Array.data[1]
+      value: 
+      objectReference: {fileID: 1763821670}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: adventureTxt.Array.data[2]
+      value: 
+      objectReference: {fileID: 1174678026}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: adventureTxt.Array.data[3]
+      value: 
+      objectReference: {fileID: 150105740}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: adventureTxt.Array.data[4]
+      value: 
+      objectReference: {fileID: 1125007552}
     - target: {fileID: 6731396957795849450, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
       propertyPath: m_Name
       value: QuestManager

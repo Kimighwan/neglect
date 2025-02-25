@@ -60,6 +60,8 @@ public class Test : MonoBehaviour
             QuestData.questSelectedId = 0;
 
             QuestManager.Instance.questData.Remove(index);
+
+            QuestManager.Instance.questTxt[index - 1].text = "의뢰 선택";
         }
 
         // Adventure Awake
@@ -73,6 +75,8 @@ public class Test : MonoBehaviour
             AdventureData.adventureSelectId.Clear();
 
             QuestManager.Instance.adventureDatas[index].Clear();
+
+            QuestManager.Instance.adventureTxt[index - 1].text = "모험가 선택";
         } 
     }
 }

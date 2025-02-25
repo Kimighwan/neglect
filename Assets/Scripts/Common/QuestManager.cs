@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,9 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
     public Button[] adventureBtn;   // 파견창의 모험가 선택 버튼
+
+    public TextMeshProUGUI[] questTxt;
+    public TextMeshProUGUI[] adventureTxt;
 
 
     const string ICON_PATH = "Arts/Icon";
