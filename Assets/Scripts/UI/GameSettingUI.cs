@@ -49,6 +49,11 @@ public class GameSettingUI : BaseUI
         Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
         {
             SceneManager.LoadScene(0);
+            UIManager.Instance.CloseAllOpenUI();
+
+            Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 1f, false, () =>
+            {
+            });
         });
     }
 

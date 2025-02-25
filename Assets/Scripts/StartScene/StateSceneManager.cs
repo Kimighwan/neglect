@@ -44,8 +44,5 @@ public class StateSceneManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("천사"))
             PlayerPrefs.SetInt("천사", 0);
 
-        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, false, () =>
-        {;
-        });
     }
 }
