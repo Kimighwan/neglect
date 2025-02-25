@@ -51,22 +51,26 @@ public class QuestResult : BaseUI
         yield return new WaitForSeconds(2f);
         Debug.Log($"0 : 성공 / 1 : 대성공 / -1 : 전멸 = {QuestManager.Instance.resultList[resultIndex]}");
 
+
         // 의뢰 종료시 모험가 다시 사용하게 Test
         foreach (var i in QuestManager.Instance.adventureDatas[resultIndex])
         {
-            Debug.Log("파견된 모험가 다시 사용할 수 있음");
             PoolManager.Instance.usingAdventureList.Remove(i.adventureId);
         }
-
+        
         if (QuestManager.Instance.resultList[resultIndex] == 0)
         {
             txt.text = "의뢰 성공";
             receiptBtn.SetActive(true);
+
+            GameInfo.gameInfo.ChangeGold(QuestManager.Instance.questData[resultIndex].questReward);
         }
         else if(QuestManager.Instance.resultList[resultIndex] == 1)
         {
             txt.text = "의뢰 대성공!!!";
             receiptBtn.SetActive(true);
+
+            GameInfo.gameInfo.ChangeGold(QuestManager.Instance.questData[resultIndex].questReward * 2);
         }
         else if(QuestManager.Instance.resultList[resultIndex] == -1)
         {
@@ -76,8 +80,6 @@ public class QuestResult : BaseUI
             // 전멸 시 모험가 삭제 Test
             foreach (var i in QuestManager.Instance.adventureDatas[resultIndex])
             {
-                Debug.Log($"현재 파견창({resultIndex})에 해당하는 파견된 모함가 ID : {i.adventureId}");
-
                 var adventureId = PlayerPrefs.GetString("AdventureId");
                 var adventureIds = adventureId.Split(',');
 
