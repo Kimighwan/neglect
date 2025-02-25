@@ -16,6 +16,7 @@ public class QuestDetailUI : BaseUI
     public TextMeshProUGUI paperReward;
 
     public Button monsterDetailBtn;
+    public Button lockBtn;
 
     private int monsterId;
 
@@ -61,9 +62,15 @@ public class QuestDetailUI : BaseUI
         if (PlayerPrefs.HasKey($"{data.questMonster}"))
         {
             if (PlayerPrefs.GetInt($"{data.questMonster}") == 1)
+            {
+                lockBtn.gameObject.SetActive(false);
                 monsterDetailBtn.interactable = active;
+            }
             else
+            {
                 monsterDetailBtn.interactable = false;
+                lockBtn.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -81,5 +88,15 @@ public class QuestDetailUI : BaseUI
         var monsterDescUI = new BaseUIData();
 
         UIManager.Instance.OpenUI<MonsterDescUI>(monsterDescUI);
+    }
+
+    public void OnClickLockBtn()
+    {
+        var uiData = new ConfirmUIData();
+        uiData.confirmType = ConfirmType.OK;
+        uiData.descTxt = "아직 도감이 해금되지 않았습니다.";
+        uiData.okBtnTxt = "확인";
+        UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+        return;
     }
 }
