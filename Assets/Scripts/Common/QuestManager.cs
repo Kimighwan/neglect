@@ -290,7 +290,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         float nomalRate = 100f - (bigRate + dieRate);
 
-        float randomValue = UnityEngine.Random.Range(0f, 100f);
+        float randomValue = UnityEngine.Random.Range(0f, 1f);
         randomValue = Mathf.Floor(randomValue * 10f) / 10f;
 
         float saveTmp = dieRate;
