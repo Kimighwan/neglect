@@ -4,25 +4,25 @@ using UnityEngine;
 
 public enum BGM
 {
-    Start,
-    Main6,
-    Main7,
-    COUNT
+    Start,          // 타이틀(Start씬)
+    Main6,          // 길드 내부1
+    Main7,          // 길드 내부2
+    COUNT           
 }
 
 public enum SFX
 {
-    LevelUp,
+    LevelUp,        // 레벨 업
     Mark,           // 느낌표 활성화
-    QuestFail,
-    QuestSuccess,
+    QuestFail,      // 의뢰 실패(전멸)
+    QuestSuccess,   // 의뢰 완료
     Stamp,          // 정산 보고서 도장 소리
     OpenBook,       // 도감 Open
     CloseBook,      // 도감 Close
-    BookFlip3,
-    BookFlip4,
-    BookFlip5,
-    BookFlip7,
+    BookFlip3,      // 페이지 넘기는 소리1
+    BookFlip4,      // 페이지 넘기는 소리2
+    BookFlip5,      // 페이지 넘기는 소리3
+    BookFlip7,      // 페이지 넘기는 소리4
     COUNT
 }
 
@@ -43,7 +43,6 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     protected override void Init()
     {
         base.Init();
-
         LoadBGMPlayer();
         LoadSFXPlayer();
     }
@@ -65,6 +64,8 @@ public class AudioManager : SingletonBehaviour<AudioManager>
             newAudioSource.clip = audioClip;
             newAudioSource.loop = true;
             newAudioSource.playOnAwake = false;
+            newAudioSource.spatialBlend = 0f;
+            newAudioSource.volume = 1f;
             newGO.transform.parent = BGMTrs;
 
             m_BGMPlayer[(BGM)i] = newAudioSource;
@@ -88,6 +89,8 @@ public class AudioManager : SingletonBehaviour<AudioManager>
             newAudioSource.clip = audioClip;
             newAudioSource.loop = false;
             newAudioSource.playOnAwake = false;
+            newAudioSource.spatialBlend = 0f;
+            newAudioSource.volume = 1f;
             newGO.transform.parent = SFXTrs;
 
             m_SFXPlayer[(SFX)i] = newAudioSource;
@@ -159,6 +162,21 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         foreach (var audioSourceItem in m_SFXPlayer)
         {
             audioSourceItem.Value.volume = 1f;
+        }
+    }
+
+    public void ChangeBGMVolume(float i) { // 소리 조절 슬라이더 1~10
+        float f = i / 10;
+        foreach (var audioSourceItem in m_BGMPlayer)
+        {
+            audioSourceItem.Value.volume = f;
+        }
+    }
+    public void ChangeSFXVolume(float i) { // 소리 조절 슬라이더 1~10
+        float f = i / 10;
+        foreach (var audioSourceItem in m_SFXPlayer)
+        {
+            audioSourceItem.Value.volume = f;
         }
     }
 }

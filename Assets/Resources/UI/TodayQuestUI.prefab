@@ -122,8 +122,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3261295266244395698}
         m_TargetAssemblyTypeName: BaseUI, Assembly-CSharp
-        m_MethodName: CloseUI
-        m_Mode: 6
+        m_MethodName: OnClickCloseButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

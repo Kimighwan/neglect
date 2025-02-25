@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Transform cameraTransform;
     public static GameManager gameManager;
     public ScriptMode scriptMode;
     public DialogMode dialogMode;
     private GameInfo info;
     private bool pause = true;
+    public bool Pause { get { return pause; } set { } }
     private bool fastMode = false;
+    public bool FastMode { get { return fastMode; } set { } }
     void Awake()
     {
         gameManager = this;
@@ -18,6 +21,10 @@ public class GameManager : MonoBehaviour
         info.StartGameInfo();
         info.PrepareShowIll(2f, 0f, true);
         Invoke("PauseGame", 1.5f);
+    }
+    void OnEnable()
+    {
+        AudioManager.Instance.PlayBGM(BGM.Main6);
     }
 
 
@@ -110,9 +117,6 @@ public class GameManager : MonoBehaviour
             dialogMode.ChangeDialogSpeed(1f);
             info.ChangeAniObjSpeed(1f);
         }
-    }
-    public bool IsPaused() {
-        return pause;
     }
     public void OpenTutorial(int id) {
         DataTableManager.Instance.systemDescId = id;

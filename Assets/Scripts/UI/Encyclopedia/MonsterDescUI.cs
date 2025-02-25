@@ -56,6 +56,7 @@ public class MonsterDescUI : MonsterUI
 
     public void BackBtnOfMonsterDescUI()
     {
+        AudioManager.Instance.PlaySFX(SFX.BookFlip4);
         UIManager.Instance.CloseUI(this);
 
         var monsterUI = new BaseUIData();
@@ -109,4 +110,9 @@ public class MonsterDescUI : MonsterUI
     //    if (s != "")image.sprite = Resources.Load<Sprite>($"Arts/Monsters/{s}");
     //    else image.sprite = null;
     //}
+    public override void OnClickCloseButton()
+    {
+        AudioManager.Instance.PlaySFX(SFX.CloseBook);
+        base.OnClickCloseButton();
+    }
 }

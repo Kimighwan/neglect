@@ -206,6 +206,7 @@ public class GameInfo : MonoBehaviour
     public void EndToday()
     {
         GameManager.gameManager.PauseGame();
+        AudioManager.Instance.StopBGM();
         UIManager.Instance.CloseAllOpenUI();    // 모든 UI 창 닫기
         fadeInOut.gameObject.SetActive(true);
         StartCoroutine(ComeNight(1.2f, 0f, 0f, 1f));
@@ -236,6 +237,8 @@ public class GameInfo : MonoBehaviour
 
     public void ComeMorning()
     {
+        AudioManager.Instance.PlayBGM(BGM.Main6);
+        GameManager.gameManager.cameraTransform.position = new Vector3(0f, 0f, -10f);
         GameManager.gameManager.PauseGame();
         timer = 320f;
         StartCoroutine(FadeBlack(1.2f, 0f, 1f, 0f));

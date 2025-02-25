@@ -34,6 +34,7 @@ public class LevelUpUI : BaseUI
     public void OnClickLevelUpButton() {
         if (GameInfo.gameInfo.OnClickLevelUpYes()) {
             OnClickCloseButton();
+            AudioManager.Instance.PlaySFX(SFX.LevelUp);
             UIManager.Instance.OpenSimpleInfoUI("길드 레벨 업!");
         }
     }

@@ -52,13 +52,19 @@ public class RoomUI : BaseUI
     }
 
     public void OnClickActivateRoom() {
-        if (GameInfo.gameInfo.RoomActive(index)) OnClickCloseButton();
+        if (GameInfo.gameInfo.RoomActive(index)) {
+            AudioManager.Instance.PlaySFX(SFX.LevelUp);
+            OnClickCloseButton();
+        }
     }
 
     public void OnClickLevelUpButton() {
         if (!isActive) OnClickActivateRoom();
         else {
-            if (GameInfo.gameInfo.RoomLevelUp(index)) OnClickCloseButton();
+            if (GameInfo.gameInfo.RoomLevelUp(index)) {
+                AudioManager.Instance.PlaySFX(SFX.LevelUp);
+                OnClickCloseButton();
+            }
         }
     }
 
