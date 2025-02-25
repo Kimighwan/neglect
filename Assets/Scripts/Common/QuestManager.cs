@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -17,14 +19,17 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 전멸, 성공, 대성공 확인
 
-    public List<Test> test = new List<Test>();
+    public RawImage[] stateIcons;   // 상태 아이콘
 
-    public RawImage[] stateIcons;
+
+    public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
+    public Button[] adventureBtn;   // 파견창의 모험가 선택 버튼
+
+    public TextMeshProUGUI[] questTxt;
+    public TextMeshProUGUI[] adventureTxt;
 
 
     const string ICON_PATH = "Arts/Icon";
-
-    private float leftTime;             // 의뢰 완성까지 남은 시간
 
     private int targetScore;            // 목표 점수
     private int monsterId;              // 몬스터 Id
@@ -33,9 +38,18 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     private int tierScore;              // 모험가 등급 점수
     private int resultScore;            // 결과 점수
 
+    private int frontCount = 0;         // 전위 수
+    private int midCount = 0;           // 중위 수
+    private int backCount = 0;          // 후위 수
+    private int A = 0;                  // 공격 수
+    private int B = 0;                  // 방어 수
+    private int C = 0;                  // 지원 수
+    private int resultMaxRate;          // 어떤 확률이 제일 큰지? / 전멸, 성공, 대성공
+
     private string monsterStrong;       // 몬스터 강점
     private string monsterWeak;         // 몬스터 약점
 
+    private float leftTime;             // 의뢰 완성까지 남은 시간
     private float samePositionRate;     // 포지션 중복 비율
     private float sameClassRate;        // 클래스 중복 비율
     private float mixPositionRate;      // 포지션 조합 비율
@@ -45,48 +59,58 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     private float dieRate = 0;              // 전멸 확률
     private float bigRate = 0;              // 대성공 확률
 
-    private int frontCount = 0;         // 전위 수
-    private int midCount = 0;           // 중위 수
-    private int backCount = 0;          // 후위 수
+    private bool[] checkUpdate = new bool[5];         // Update 함수 한 번만 실행하기 위해서
 
-    private int A = 0;                  // 공격 수
-    private int B = 0;                  // 방어 수
-    private int C = 0;                  // 지원 수
+    private void Update()
+    {
+        for(int i = 0; i < 1; i++)
+        {
+            if(questBtn[i].interactable == false && adventureBtn[i].interactable == false)
+            {
+                if (checkUpdate[i]) return;
+
+                checkUpdate[i] = true;
+
+                Debug.Log("아이콘 Update");
+
+                SetQuest(i + 1);
+
+                SetTier(i + 1);                 // 등급 점수
+                SetSameScore(i + 1);            // 중복 비율
+                SetMixScore(i + 1);             // 조합 비율
+                SetStrongAndWeak(i + 1);        // 약점 & 강점 비율
+                Calculation(i + 1);             // 점수 계산
+
+                stateIcons[i].color = new Color(1, 1, 1, 1);
+
+                if (resultMaxRate == -1)
+                    stateIcons[i].texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
+                else if(resultMaxRate == 0)
+                    stateIcons[i].texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+                else
+                    stateIcons[i].texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+            }
+            else
+            {
+                checkUpdate[i] = false;
+                stateIcons[i].texture = null;
+                stateIcons[i].color = new Color(0, 0, 0, 0);
+            }
+        }
+    }
 
     public void OnClickQusetStart(int index)
     {
         if (DoCheck(index)) return;
 
-        SetQuest(index);
+        //SetQuest(index);
 
 
-        SetTier(index);                 // 등급 점수
-        SetSameScore(index);            // 중복 비율
-        SetMixScore(index);             // 조합 비율
-        SetStrongAndWeak(index);        // 약점 & 강점 비율
-        Calculation(index);
-
-
-        SetFaceIcon(index);                  // 파견 점수에 따른 이모티콘 표시
-    }
-
-    private void SetFaceIcon(int index)
-    {
-        if(resultScore < targetScore * 0.9)
-        {
-            // 빨강 이모티콘
-            
-        }
-        else if(resultScore <= targetScore * 1.1)
-        {
-            // 노랑 이모티콘
-            
-        }
-        else if(resultScore > targetScore * 1.1)
-        {
-            // 초록 이모티콘
-            
-        }
+        //SetTier(index);                 // 등급 점수
+        //SetSameScore(index);            // 중복 비율
+        //SetMixScore(index);             // 조합 비율
+        //SetStrongAndWeak(index);        // 약점 & 강점 비율
+        //Calculation(index);             // 점수 계산
     }
 
     private bool DoCheck(int index)
@@ -147,6 +171,14 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     private void SetSameScore(int index)
     {
+        frontCount = 0;
+        backCount = 0;
+        midCount = 0;
+
+        A = 0;
+        B = 0;
+        C = 0;
+
         foreach (var item in adventureDatas[index])
         {
             // 포지션
@@ -222,6 +254,9 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     private void SetStrongAndWeak(int index)
     {
+        weakRate = 0;
+        strongRate = 0;
+
         foreach (var item in adventureDatas[index])
         {
             if (monsterWeak != "")
@@ -244,6 +279,8 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     private void SetTier(int index)
     {
+        tierScore = 0;
+
         foreach (var item in adventureDatas[index])
         {
             string tier = item.adventureTier;
@@ -275,7 +312,9 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         int addScore = (int)(tierScore * rate);
 
+        resultScore = 0;
         resultScore = addScore + tierScore;
+        Debug.Log($"합계 점수 : {resultScore}");
 
         if(targetScore < resultScore)   // 점수 오버
         {
@@ -290,6 +329,8 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         float nomalRate = 100f - (bigRate + dieRate);
 
+        resultMaxRate = bigRate > dieRate ? (bigRate > nomalRate ? 1 : 0) : (dieRate > nomalRate ? -1 : 0);
+
         float randomValue = UnityEngine.Random.Range(0f, 100f);
         randomValue = Mathf.Floor(randomValue * 10f) / 10f;
 
@@ -298,7 +339,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         if (saveTmp > randomValue)
         {
             resultList[index] = -1;     // 전멸
-            stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
+            //stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
             return;
         }
         saveTmp += nomalRate;
@@ -306,12 +347,18 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         if (saveTmp > randomValue)
         {
             resultList[index] = 0;      // 일반 성공
-            stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+            //stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
             return;
         }
 
         resultList[index] = 1;          // 대성공
-        stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+        //stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+    }
+
+    public void BtnActive(int index)
+    {
+        questBtn[index - 1].interactable = true;
+        adventureBtn[index - 1].interactable = true;
     }
 }
 
