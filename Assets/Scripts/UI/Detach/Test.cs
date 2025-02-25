@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Test : MonoBehaviour
 {
     private bool adTutorialOnce = false;
     public GameObject image;
     public GameObject btn;
+
 
     public void OnClickQuestTestBtn(int index)
     {

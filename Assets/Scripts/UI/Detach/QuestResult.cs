@@ -49,8 +49,9 @@ public class QuestResult : BaseUI
         txt.text = "의뢰 확인 중...";
 
         yield return new WaitForSeconds(2f);
-        Debug.Log($"0 : 성공 / 1 : 대성공 / -1 : 전멸 = {QuestManager.Instance.resultList[resultIndex]}");
 
+        // 버튼 다시 활성화
+        QuestManager.Instance.BtnActive(resultIndex);
 
         // 의뢰 종료시 모험가 다시 사용하게 Test
         foreach (var i in QuestManager.Instance.adventureDatas[resultIndex])
