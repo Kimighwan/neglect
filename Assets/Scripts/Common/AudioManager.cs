@@ -23,6 +23,8 @@ public enum SFX
     BookFlip4,      // 페이지 넘기는 소리2
     BookFlip5,      // 페이지 넘기는 소리3
     BookFlip7,      // 페이지 넘기는 소리4
+    Click1,         // 클릭음1
+    Click2,         // 클릭음2
     COUNT
 }
 

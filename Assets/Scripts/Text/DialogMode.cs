@@ -6,12 +6,12 @@ using UnityEngine;
 public class DialogMode : MonoBehaviour
 {
     private ScriptDialogObjectData data;
-    private float minTypingSpeed = 0.5f;
-    private float maxTypingSpeed = 1.5f;
-    private float holdTime = 2f;
-    public float changeMinTypingSpeed = 0.5f;
-    public float changeMaxTypingSpeed = 1.5f;
-    public float changeHoldTime = 2f;
+    private float minTypingSpeed = 0.05f;
+    private float maxTypingSpeed = 0.15f;
+    private float holdTime = 1.5f;
+    private float changeMinTypingSpeed = 0.05f;
+    private float changeMaxTypingSpeed = 0.15f;
+    private float changeHoldTime = 1.5f;
 
     private Queue<ScriptData> scriptQueue = new Queue<ScriptData>();
     private bool isSpeakerA = true;
@@ -79,7 +79,9 @@ public class DialogMode : MonoBehaviour
     }
 
     private IEnumerator TypeEffect(TextMeshProUGUI targetText, string sentence) {
+        
         float typingSpeed = Mathf.Lerp(maxTypingSpeed, minTypingSpeed, Mathf.Clamp01(sentence.Length / 100f));
+        Debug.Log(typingSpeed);
         targetText.text = "";
 
         string richText = "";

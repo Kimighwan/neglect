@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ScriptDialogHandler : MonoBehaviour
 {
+    public static ScriptDialogHandler handler;
     public ScriptMode script;
     public DialogMode dialog;
 
@@ -18,6 +19,10 @@ public class ScriptDialogHandler : MonoBehaviour
     private List<int> endDialog = new List<int> { 101915, 101927, 101938 };
     private List<int> dialogStartDay = new List<int> { 4, 9, 14 }; // 9시에
 
+    void Awake()
+    {
+        handler = this;
+    }
     private void Start() {
         info = GameInfo.gameInfo;
     }

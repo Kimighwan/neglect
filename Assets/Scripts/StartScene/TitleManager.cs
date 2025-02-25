@@ -7,6 +7,11 @@ public class TitleManager : MonoBehaviour
         Invoke("PlayTitleBGM", 0.1f);
     }
 
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) AudioManager.Instance.PlaySFX(SFX.Click2);
+    }
+
     private void PlayTitleBGM() {
         if (AudioManager.Instance != null) {
             AudioManager.Instance.UnMute();

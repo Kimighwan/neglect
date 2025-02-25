@@ -49,10 +49,8 @@ public class GameManager : MonoBehaviour
             info.UpdateGameInfo();
             UITextHandler.textHandler.UpdateTexts();
         }
-        // 현재 프레임에 어떤 키가 눌렸는지 확인
         if (Input.anyKeyDown)
         {
-            // 입력된 키가 현재 기대하는 코나미 코드와 일치하는지 체크
             if (Input.GetKeyDown(konamiCode[index]))
             {
                 index++;
@@ -61,28 +59,22 @@ public class GameManager : MonoBehaviour
                 if (index == konamiCode.Length)
                 {
                     GameInfo.gameInfo.ChangeGold(999999);
-                    // 여기서 원하는 동작을 실행
-                    // 예: 특수 이벤트 실행, 이펙트 재생 등
-
-                    // 인덱스 리셋
                     index = 0;
                 }
             }
             else
             {
-                // 만약 틀린 키가 눌렸다면, 
-                // 만약 그 키가 첫번째 키라면 새롭게 시작 (UpArrow)
                 if (Input.GetKeyDown(konamiCode[0]))
                 {
                     index = 1;
                 }
                 else
                 {
-                    // 올바른 순서가 아니면 인덱스를 초기화
                     index = 0;
                 }
             }
         }
+        if (Input.GetMouseButtonDown(0)) AudioManager.Instance.PlaySFX(SFX.Click2);
     }
 
     public void PauseGame() {
@@ -109,7 +101,7 @@ public class GameManager : MonoBehaviour
             info.fastButton.sprite = info.pauseAndGo[5];
             info.gameSpeed = 20f;
             info.ChangeAniObjSpeed(10f);
-            dialogMode.ChangeDialogSpeed(10f);
+            dialogMode.ChangeDialogSpeed(6f);
         }
         else {
             info.fastButton.sprite = info.pauseAndGo[4];
