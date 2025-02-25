@@ -553,8 +553,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -621,7 +621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &92556184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 961166168}
-  btn: {fileID: 92556183}
+  resultBtn: {fileID: 92556183}
 --- !u!1 &191832812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,7 +2335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  btn: {fileID: 0}
+  resultBtn: {fileID: 0}
 --- !u!114 &344702400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2582,7 +2582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &368747620
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2793,7 +2793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1736706903}
-  btn: {fileID: 561072339}
+  resultBtn: {fileID: 561072339}
 --- !u!1 &380880414
 GameObject:
   m_ObjectHideFlags: 0
@@ -4540,7 +4540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &561072340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5371,7 +5371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &638633039
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5583,7 +5583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 49589810}
-  btn: {fileID: 1345461047}
+  resultBtn: {fileID: 1345461047}
 --- !u!1 &681565840
 GameObject:
   m_ObjectHideFlags: 0
@@ -5637,7 +5637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  btn: {fileID: 0}
+  resultBtn: {fileID: 0}
 --- !u!114 &681565843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7119,7 +7119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 775801805}
-  btn: {fileID: 638633038}
+  resultBtn: {fileID: 638633038}
 --- !u!1 &847892234
 GameObject:
   m_ObjectHideFlags: 0
@@ -9713,7 +9713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  btn: {fileID: 0}
+  resultBtn: {fileID: 0}
 --- !u!114 &1125596351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10916,7 +10916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  btn: {fileID: 0}
+  resultBtn: {fileID: 0}
 --- !u!114 &1287854710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12547,7 +12547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  btn: {fileID: 0}
+  resultBtn: {fileID: 0}
 --- !u!114 &1509672102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15265,8 +15265,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15558,8 +15558,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16536,7 +16536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 847892234}
-  btn: {fileID: 368747619}
+  resultBtn: {fileID: 368747619}
 --- !u!1 &1926899898
 GameObject:
   m_ObjectHideFlags: 0
@@ -16920,8 +16920,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17448,7 +17448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  btn: {fileID: 0}
+  resultBtn: {fileID: 0}
 --- !u!114 &2011603936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17596,7 +17596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  btn: {fileID: 0}
+  resultBtn: {fileID: 0}
 --- !u!114 &2039603098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17810,8 +17810,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -18061,7 +18061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  btn: {fileID: 0}
+  resultBtn: {fileID: 0}
 --- !u!114 &2130372538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18622,6 +18622,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: resultBtn.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
       propertyPath: stateIcons.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -18677,6 +18681,26 @@ PrefabInstance:
       propertyPath: adventureTxt.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: resultBtn.Array.data[0]
+      value: 
+      objectReference: {fileID: 1345461050}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: resultBtn.Array.data[1]
+      value: 
+      objectReference: {fileID: 561072341}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: resultBtn.Array.data[2]
+      value: 
+      objectReference: {fileID: 638633040}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: resultBtn.Array.data[3]
+      value: 
+      objectReference: {fileID: 368747621}
+    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
+      propertyPath: resultBtn.Array.data[4]
+      value: 
+      objectReference: {fileID: 92556184}
     - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
       propertyPath: stateIcons.Array.data[0]
       value: 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StateSceneManager : MonoBehaviour
 {
@@ -42,5 +43,6 @@ public class StateSceneManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("천사"))
             PlayerPrefs.SetInt("천사", 0);
+
     }
 }

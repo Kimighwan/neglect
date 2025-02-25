@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class TodayQuestUI : BaseUI
 {
-    public TextMeshProUGUI txt;
+    public TextMeshProUGUI bronzeTxt;
+    public TextMeshProUGUI silverTxt;
+    public TextMeshProUGUI goldTxt;
+    public TextMeshProUGUI platinumTxt;
+    public TextMeshProUGUI diaTxt;
 
     private List<GameObject> uiListPool = new List<GameObject>();   // 의뢰 종이 3장 Pool
 
@@ -28,23 +32,43 @@ public class TodayQuestUI : BaseUI
     {
         if(GameInfo.gameInfo.Level == 1)
         {
-            txt.text = "확률 : 80:20:0:0:0";
+            bronzeTxt.text = "80%";
+            silverTxt.text = "20%";
+            goldTxt.text = "0%";
+            platinumTxt.text = "0%";
+            diaTxt.text = "0%";
         }
         else if (GameInfo.gameInfo.Level == 2)
         {
-            txt.text = "확률 : 45:40:15:0:0";
+            bronzeTxt.text = "45%";
+            silverTxt.text = "40%";
+            goldTxt.text = "15%";
+            platinumTxt.text = "0%";
+            diaTxt.text = "0%";
         }
         else if (GameInfo.gameInfo.Level == 3)
         {
-            txt.text = "확률 : 20:45:30:5:0";
+            bronzeTxt.text = "20%";
+            silverTxt.text = "45%";
+            goldTxt.text = "30%";
+            platinumTxt.text = "5%";
+            diaTxt.text = "0%";
         }
         else if (GameInfo.gameInfo.Level == 4)
         {
-            txt.text = "확률 : 0:35:50:10:5";
+            bronzeTxt.text = "0%";
+            silverTxt.text = "35%";
+            goldTxt.text = "50%";
+            platinumTxt.text = "10%";
+            diaTxt.text = "5%";
         }
         else
         {
-            txt.text = "확률 : 0:10:60:25:5";
+            bronzeTxt.text = "0%";
+            silverTxt.text = "10%";
+            goldTxt.text = "60%";
+            platinumTxt.text = "25%";
+            diaTxt.text = "5%";
         }
     }
 
