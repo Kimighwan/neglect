@@ -311,10 +311,10 @@ public class AdventurerListUI : BaseUI
         }
     }
 
-    public void OnClickCloseBtnOfAdventureListUI()
-    {
-        CloseUI(true);
-        if(UIManager.Instance.GetActiveUI<AdventureExportUI>())
-            UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdventureExportUI>());
-    }
+    //public void OnClickCloseBtnOfAdventureListUI()
+    //{
+    //    CloseUI(true);
+    //    if(UIManager.Instance.GetActiveUI<AdventureExportUI>())
+    //        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdventureExportUI>());
+    //}
 }
