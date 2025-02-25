@@ -11845,6 +11845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b7b2a4f9899c94183cf478686d3fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 519420032}
   scriptMode: {fileID: 1466448779}
   dialogMode: {fileID: 1625238570}
 --- !u!4 &1387281765

@@ -18,7 +18,6 @@ public class GameSettingUI : BaseUI
         masterVolume.onValueChanged.AddListener(delegate { UpdateVolumes(); });
         BGMVolume.onValueChanged.AddListener(delegate { UpdateVolumes(); });
         SFXVolume.onValueChanged.AddListener(delegate { UpdateVolumes(); });
-        UpdateVolumes();
     }
 
     void OnEnable()
@@ -28,6 +27,7 @@ public class GameSettingUI : BaseUI
             if (GameManager.gameManager.FastMode) wasFastMode = true;
             GameManager.gameManager.PauseGame();
         }
+        
     }
 
     void UpdateVolumes()

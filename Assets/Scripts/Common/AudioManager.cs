@@ -45,7 +45,6 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         base.Init();
         LoadBGMPlayer();
         LoadSFXPlayer();
-        Debug.Log("인스턴스 생성됨");
     }
 
     private void LoadBGMPlayer()    // 모든 BGM 불러와서 컨테이너에 저장

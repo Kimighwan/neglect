@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Transform cameraTransform;
     public static GameManager gameManager;
     public ScriptMode scriptMode;
     public DialogMode dialogMode;
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     }
     void OnEnable()
     {
-        
+        AudioManager.Instance.PlayBGM(BGM.Main6);
     }
 
 

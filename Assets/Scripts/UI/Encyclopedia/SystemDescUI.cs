@@ -49,6 +49,7 @@ public class SystemDescUI : SystemUI
 
     public void BackBtnOfSystemDescUI()   // 뒤로가기 버튼
     {
+        AudioManager.Instance.PlaySFX(SFX.BookFlip5);
         UIManager.Instance.CloseUI(this);
 
         var systemUI = new BaseUIData();
@@ -99,10 +100,18 @@ public class SystemDescUI : SystemUI
     public void NextBtn()
     {
         pageIndex++;
+        AudioManager.Instance.PlaySFX(SFX.BookFlip3);
     }
 
     public void BeforeBtn()
     {
         pageIndex--;
+        AudioManager.Instance.PlaySFX(SFX.BookFlip4);
+    }
+
+    public override void OnClickCloseButton()
+    {
+        AudioManager.Instance.PlaySFX(SFX.CloseBook);
+        base.OnClickCloseButton();
     }
 }
