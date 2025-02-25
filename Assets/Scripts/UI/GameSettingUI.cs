@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameSettingUI : BaseUI
@@ -45,7 +46,10 @@ public class GameSettingUI : BaseUI
     }
 
     public void GoToTitle() {
-        Debug.Log("나중에 Start씬으로 가게 할 거임");
+        Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
+        {
+            SceneManager.LoadScene(0);
+        });
     }
 
     public override void OnClickCloseButton()

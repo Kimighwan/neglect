@@ -444,9 +444,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6911777591616016545}
-        m_TargetAssemblyTypeName: ConfirmUI, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 537868580261392189}
+        m_TargetAssemblyTypeName: GameSettingUI, Assembly-CSharp
+        m_MethodName: GoToTitle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
