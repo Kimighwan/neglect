@@ -24,6 +24,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
     public Button[] adventureBtn;   // 파견창의 모험가 선택 버튼
+    public Button[] resultBtn;      // 파견창의 결과 확인 버튼
 
     public TextMeshProUGUI[] questTxt;
     public TextMeshProUGUI[] adventureTxt;
@@ -70,8 +71,6 @@ public class QuestManager : SingletonBehaviour<QuestManager>
                 if (checkUpdate[i]) return;
 
                 checkUpdate[i] = true;
-
-                Debug.Log("아이콘 Update");
 
                 SetQuest(i + 1);
 

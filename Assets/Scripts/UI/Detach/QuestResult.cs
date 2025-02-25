@@ -7,13 +7,17 @@ using UnityEngine;
 public class QuestResult : BaseUI
 {
     public TextMeshProUGUI txt;
+    public TextMeshProUGUI rewardTxt;
+
     public GameObject receiptBtn;
 
     private int resultIndex;        // 파견창 인덱스
     private int result;             // 결과 / -1 : 전멸 / 0 : 일반 성공 / 1 : 대성공
+    private int reward;
 
     private void Start()
     {
+        reward = 0;
         receiptBtn.SetActive(false);
         StartCoroutine(UpdateResultCo());
     }
@@ -31,7 +35,8 @@ public class QuestResult : BaseUI
         base.Init(anchor);
 
         var rectTransform = GetComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(800f, 450f);
+        rectTransform.sizeDelta = new Vector2(300f, 200f);
+        rectTransform.localScale = new Vector3(2, 2, 2);
 
         //QuestManager.Instance.Calculation(resultIndex)????????????????
     }
@@ -39,6 +44,8 @@ public class QuestResult : BaseUI
     public void OnClickReceiptBtn()
     {
         // 골드 추가하고
+        GameInfo.gameInfo.ChangeGold(reward);
+
         // 모험가 다시 풀기
 
         UIManager.Instance.CloseUI(this);
@@ -50,8 +57,17 @@ public class QuestResult : BaseUI
 
         yield return new WaitForSeconds(2f);
 
+        rewardTxt.text = "+G " + QuestManager.Instance.questData[resultIndex].questReward.ToString();
+
+        // 버튼 Text 다시 설정
+        QuestManager.Instance.questTxt[resultIndex - 1].text = "의뢰 선택";
+        QuestManager.Instance.adventureTxt[resultIndex - 1].text = "모험가 선택";
+
         // 버튼 다시 활성화
         QuestManager.Instance.BtnActive(resultIndex);
+
+        // 결과 확인 버튼 비활성화
+        QuestManager.Instance.resultBtn[resultIndex - 1].gameObject.SetActive(false);
 
         // 의뢰 종료시 모험가 다시 사용하게 Test
         foreach (var i in QuestManager.Instance.adventureDatas[resultIndex])
@@ -64,19 +80,21 @@ public class QuestResult : BaseUI
             txt.text = "의뢰 성공";
             receiptBtn.SetActive(true);
 
-            GameInfo.gameInfo.ChangeGold(QuestManager.Instance.questData[resultIndex].questReward);
+            reward = QuestManager.Instance.questData[resultIndex].questReward;
         }
         else if(QuestManager.Instance.resultList[resultIndex] == 1)
         {
             txt.text = "의뢰 대성공!!!";
             receiptBtn.SetActive(true);
 
-            GameInfo.gameInfo.ChangeGold(QuestManager.Instance.questData[resultIndex].questReward * 2);
+            reward = QuestManager.Instance.questData[resultIndex].questReward * 2;
         }
         else if(QuestManager.Instance.resultList[resultIndex] == -1)
         {
             txt.text = "전멸...";
             receiptBtn.SetActive(false);
+
+            reward = 0;
 
             // 전멸 시 모험가 삭제 Test
             foreach (var i in QuestManager.Instance.adventureDatas[resultIndex])
@@ -104,5 +122,6 @@ public class QuestResult : BaseUI
                 PlayerPrefs.SetString("AdventureId", addId);
             }
         }
+
     }
 }

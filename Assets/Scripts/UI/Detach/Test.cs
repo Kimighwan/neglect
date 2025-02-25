@@ -8,7 +8,7 @@ public class Test : MonoBehaviour
 {
     private bool adTutorialOnce = false;
     public GameObject image;
-    public GameObject btn;
+    public GameObject resultBtn;
 
 
     public void OnClickQuestTestBtn(int index)
@@ -48,7 +48,7 @@ public class Test : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         image.SetActive(false);
-        btn.SetActive(true);
+        resultBtn.SetActive(true);
     }
 
     public void OnClickAwakeBtn(int index)
