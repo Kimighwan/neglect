@@ -1,4 +1,5 @@
 using Gpm.Ui;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,10 +25,19 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
     private AdventureData adventureData;
 
+    // Export
+    public TextMeshProUGUI curStateTxt;
+
+    private void OnEnable()
+    {
+        SetStateText();
+    }
+
     private int adventureId;
     private string adventurePosition;
     private string adventureType;
     private string adventureClass;
+    private string adventureTier;
 
     public override void UpdateData(InfiniteScrollData scrollData)
     {
@@ -41,7 +51,7 @@ public class AdventureListSlotItem : InfiniteScrollItem
         var adventureName = adventureData.adventureName;
         adventurePosition = adventureData.adventurePosition;
         adventureType = adventureData.adventureType;
-        var adventureTier = adventureData.adventureTier;
+        adventureTier = adventureData.adventureTier;
         adventureClass = adventureData.adventureClass;
 
         nameTxt.text = adventureName;
@@ -88,10 +98,37 @@ public class AdventureListSlotItem : InfiniteScrollItem
         m_name.text = adventureName;
     }
 
-
-    public void OnClick()
+    private void SetStateText()
     {
-        Debug.Log($"{adventureId}");
+        if (PoolManager.Instance.usingAdventureList.Contains(UIManager.Instance.exportAdventureId))
+        {
+            curStateTxt.text = "파견 중";
+        }
+        else
+        {
+            curStateTxt.text = "대기 중";
+        }
+    }
+
+
+    public void OnClickExportBtn()
+    {
+        if (adventureTier == "브론즈")
+            GameInfo.gameInfo.ChangeGold(40);
+        else if (adventureTier == "실버")
+            GameInfo.gameInfo.ChangeGold(100);
+        else if (adventureTier == "골드")
+            GameInfo.gameInfo.ChangeGold(200);
+        else if (adventureTier == "플래티넘")
+            GameInfo.gameInfo.ChangeGold(400);
+        else
+            GameInfo.gameInfo.ChangeGold(1000);
+
+        // PlayerPrefs에 해당 모험가 제거
+        DeleteAdventure();
+
+        // 인피니티 스크롤 업데이트
+        AdventurerListUI.Instance.UpdateScrollItem();
     }
 
 
@@ -100,69 +137,30 @@ public class AdventureListSlotItem : InfiniteScrollItem
         exportGameObject.SetActive(true);
 
         UIManager.Instance.exportAdventureId = adventureId;
-
-        //var adventureExportUI = new BaseUIData();
-        //UIManager.Instance.OpenUI<AdventureExportUI>(adventureExportUI);
-
-        //var ui = UIManager.Instance.GetActiveUI<AdventureExportUI>();
-
-        //ui.gameObject.transform.SetParent(this.transform);
-
-        //var rectTransform = ui.GetComponent<RectTransform>();
-        //rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
-        //rectTransform.sizeDelta = new Vector2(110f, 110f);
     }
 
-
-    //public void PositionMouseOnUI()
-    //{
-    //    UIManager.Instance.advemtureDetailDescText = adventurePosition;
-    //    var advemtureDetailDescUI = new BaseUIData();
-    //    UIManager.Instance.OpenUI<AdvemtureDetailDescUI>(advemtureDetailDescUI);
-
-    //    var ui = UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>();
-    //    ui.transform.SetParent(positionPos);
-    //    ui.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(50f, 0f, 0f);
-    //}
-
-    public void PositionMouseOffUI()
+    private void DeleteAdventure()
     {
-        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>());
-    }
+        var adventureId = PlayerPrefs.GetString("AdventureId");
+        var adventureIds = adventureId.Split(',');
 
+        if (adventureId == "") return;
 
-    //public void ClassMouseOnUI()
-    //{
-    //    UIManager.Instance.advemtureDetailDescText = adventureClass;
-    //    var advemtureDetailDescUI = new BaseUIData();
-    //    UIManager.Instance.OpenUI<AdvemtureDetailDescUI>(advemtureDetailDescUI);
+        string addId = "";
 
-    //    var ui = UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>();
-    //    ui.transform.SetParent(classPos);
-    //    ui.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(50f, 0f, 0f);
-    //}
+        foreach (var item in adventureIds)
+        {
+            int adventureIdOfInt = Convert.ToInt32(item);
 
+            if (Convert.ToInt32(this.adventureId) != adventureIdOfInt)
+            {
+                if (addId == "")
+                    addId += adventureIdOfInt.ToString();
+                else
+                    addId += "," + adventureIdOfInt.ToString();
+            }
+        }
 
-    public void ClassMouseOffUI()
-    {
-        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>());
-    }
-
-
-    //public void TypeMouseOnUI()
-    //{
-    //    UIManager.Instance.advemtureDetailDescText = adventureType;
-    //    var advemtureDetailDescUI = new BaseUIData();
-    //    UIManager.Instance.OpenUI<AdvemtureDetailDescUI>(advemtureDetailDescUI);
-
-    //    var ui = UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>();
-    //    ui.transform.SetParent(typePos);
-    //    ui.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(50f, 0f, 0f);
-    //}
-
-
-    public void TypeMouseOffUI()
-    {
-        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdvemtureDetailDescUI>());
+        PlayerPrefs.SetString("AdventureId", addId);
     }
 }
