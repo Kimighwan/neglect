@@ -166,6 +166,10 @@ public class UIManager : SingletonBehaviour<UIManager>
         var roomUI = new RoomIndex(index, b);
         UIManager.instance.OpenUI<RoomUI>(roomUI);
     }
+    public void OnClickGameSetting() {
+        var settingUI = new BaseUIData();
+        UIManager.Instance.OpenUI<GameSettingUI>(settingUI);
+    }
 
     #endregion
 

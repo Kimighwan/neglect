@@ -50,7 +50,7 @@ public class DialogMode : MonoBehaviour
 
             yield return new WaitForSeconds(holdTime);
 
-            while (GameManager.gameManager.IsPaused()) {
+            while (GameManager.gameManager.Pause) {
                 yield return null;
             }
         }
