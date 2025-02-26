@@ -13,6 +13,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
     public TextMeshProUGUI type;
     public TextMeshProUGUI needGoldText;
 
+    public Button selectBtn;
 
     private AdventureData adventureData;
 
@@ -46,6 +47,17 @@ public class RandomAdventureSelectUI : MonoBehaviour
 
     public void OnClickSelected()
     {
+        if (CheckHaveAdventureID(adventureId))  // 선택된 모험가가 이미 있음
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "이미 영입된 모험가 입니다.";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            needGoldText.text = "영입 완료";
+            return;
+        }
+
         if (GameInfo.gameInfo.Gold < needGold)
         {
             var uiData = new ConfirmUIData();
@@ -70,11 +82,8 @@ public class RandomAdventureSelectUI : MonoBehaviour
         // 골드 차감
         GameInfo.gameInfo.ChangeGold(-needGold);
 
-        if (CheckHaveAdventureID(adventureId))  // 선택된 모험가가 이미 있음
-        {
-            Debug.Log("해당 모험가를 이미 가지고 있음");
-            return;
-        }
+        needGoldText.text = "영입 완료";
+        selectBtn.interactable = false;
 
         string pre = PlayerPrefs.GetString("AdventureId");  // 저장된 모험가 ID 불러오기
 

@@ -53,7 +53,11 @@ public class RandomQuestSelectUI : MonoBehaviour
 
         if(CheckMaxQuest())
         {
-            Debug.Log("의뢰를 더 이상 수용할 수 없음");
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "의뢰 최대치";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }
 
@@ -69,10 +73,8 @@ public class RandomQuestSelectUI : MonoBehaviour
             PlayerPrefs.SetString("QuestId", pre + "," + questId.ToString());
         }
 
-        // 골드 차감
 
-
-        btnTxt.text = "영입 완료";
+        btnTxt.text = "선택 완료";
         btn.interactable = false;
     }
 

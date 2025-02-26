@@ -174,6 +174,9 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         B = 0;
         C = 0;
 
+        samePositionRate = 0;
+        sameClassRate = 0;
+
         foreach (var item in adventureDatas[index])
         {
             // 포지션
@@ -238,6 +241,9 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     private void SetMixScore(int index)
     {
+        mixPositionRate = 0;
+        misClassRate = 0;
+
         if (frontCount == 1 && backCount == 1) mixPositionRate = 0.1f;
         if(frontCount == 1 && midCount == 1 && backCount == 1) mixPositionRate = 0.3f;
         if (frontCount == 1 && midCount == 1 && backCount == 2) mixPositionRate = 0.5f;
@@ -276,7 +282,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     {
         tierScore = 0;
 
-        foreach (var item in adventureDatas[index])
+        foreach (var item in adventureDatas[index]) // adventureDatas가 초기화가 안 되어서 이전 모험가도 같이 계산되나?
         {
             string tier = item.adventureTier;
             switch (tier)   // 모험가 등급 점수
@@ -309,6 +315,10 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         resultScore = 0;
         resultScore = addScore + tierScore;
+        Debug.Log($"기본 점수 : {tierScore}");
+
+        Debug.Log($"계산 비율 : {rate}");
+        Debug.Log($"추가 점수 : {addScore}");
         Debug.Log($"합계 점수 : {resultScore}");
 
         if(targetScore < resultScore)   // 점수 오버
