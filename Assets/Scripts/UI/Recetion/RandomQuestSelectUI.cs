@@ -107,6 +107,9 @@ public class RandomQuestSelectUI : MonoBehaviour
             rankImage.texture = Resources.Load("Arts/QuestRank/platinum_quest") as Texture2D;
         else if (questLevel == "다이아")
             rankImage.texture = Resources.Load("Arts/QuestRank/diamond_quest") as Texture2D;
+
+        if ((questId / 100) % 10 == 8)
+            rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
     }
 
     private int RandomIndexMake()   // 무작위 숫자
