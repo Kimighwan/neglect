@@ -99,6 +99,7 @@ public class ScriptMode : MonoBehaviour
     {
         currentLine = scriptList.Count;
         ShowNextScript();
+        
     }
 
     private void ShowCharWithExp(string name, string exp, string inout, string pos) {

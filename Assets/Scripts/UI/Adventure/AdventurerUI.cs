@@ -41,6 +41,11 @@ public class AdventurerUI : BaseUI
         desk = deskData.desk;
     }
 
+    void OnEnable()
+    {
+        GameManager.gameManager.cameraTransform.position = new Vector3(-12, 0, -10f);
+    }
+
     private void Update()
     {
         if(GameInfo.gameInfo.Level == 1)
@@ -124,7 +129,7 @@ public class AdventurerUI : BaseUI
 
     public override void OnClickCloseButton()
     {
-        desk.OnClickBut();
+        GameManager.gameManager.cameraTransform.position = new Vector3(0f, 0f, -10f);
         base.OnClickCloseButton();
     }
 }

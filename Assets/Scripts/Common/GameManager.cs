@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         info = GameInfo.gameInfo;
         info.StartGameInfo();
         info.PrepareShowIll(2f, 0f, true);
-        Invoke("PauseGame", 1.5f);
+        Invoke("PauseGame", 1f);
     }
     void OnEnable()
     {

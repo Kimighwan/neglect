@@ -90,6 +90,7 @@ public class GameInfo : MonoBehaviour
 
         while (Time.realtimeSinceStartup - startTime < duration)
         {
+            if (clickedSkipBut) break;
             fadeInOut.color = new Color(0f, 0f, 0f, Mathf.Lerp(startAlpha, endAlpha, (Time.realtimeSinceStartup - startTime) / duration));
             yield return null;
         }
@@ -294,6 +295,7 @@ public class GameInfo : MonoBehaviour
 
     #region Other
 
+    public bool clickedSkipBut = false;
     public void PrepareShowIll(float duration, float startDelay, bool start) {
         if (start) {
             StartCoroutine(FadeBlack(duration, startDelay, 1f, 0f));
