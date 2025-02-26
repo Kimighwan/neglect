@@ -27,7 +27,7 @@ public class GameInfo : MonoBehaviour
         gameInfo = this;
     }
     public void StartGameInfo() {
-        gold = 0;
+        gold = 1000;
         day = 1;
         timer = 80.0f;
         level = 1;
@@ -136,6 +136,8 @@ public class GameInfo : MonoBehaviour
     #region RoomInfo
     private List<Room> rooms = new List<Room> { null, null, null, null };
     public bool roomTutorial = false;
+    public bool firstPurchase = true;
+
     public int GetRoomLevel(int i) {
         if (rooms[i] != null) return rooms[i].level;
         return 0;
@@ -149,7 +151,7 @@ public class GameInfo : MonoBehaviour
     // 객실 개방 버튼 누름
     public bool RoomActive(int index) {
         if (CheckMaxRoomActivated()) {
-            if (ChangeGold(-1000)) {
+            if (firstPurchase || ChangeGold(-1000)) {
                 rooms[index].isActive = true;
                 CalculatePlusGold();
                 rooms[index].ActiveRoom();
