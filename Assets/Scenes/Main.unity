@@ -1030,6 +1030,7 @@ GameObject:
   - component: {fileID: 172250423}
   - component: {fileID: 172250422}
   - component: {fileID: 172250425}
+  - component: {fileID: 172250426}
   m_Layer: 5
   m_Name: Request5
   m_TagString: Untagged
@@ -1115,10 +1116,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questManagers: {fileID: 0}
   image: {fileID: 961166168}
   resultBtn: {fileID: 92556183}
   gaugeObject: {fileID: 931915968}
   gaugeImage: {fileID: 931915969}
+--- !u!114 &172250426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172250421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb2ef2fb298a384884558aa31da3916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questBtn: {fileID: 2011603936}
+  adventureBtn: {fileID: 681565843}
+  stateIcons: {fileID: 1520311363}
+  detachIndex: 5
 --- !u!1 &191832812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2811,6 +2829,7 @@ GameObject:
   - component: {fileID: 370210822}
   - component: {fileID: 370210821}
   - component: {fileID: 370210823}
+  - component: {fileID: 370210824}
   m_Layer: 5
   m_Name: Request2
   m_TagString: Untagged
@@ -2895,10 +2914,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questManagers: {fileID: 0}
   image: {fileID: 1736706903}
   resultBtn: {fileID: 561072339}
   gaugeObject: {fileID: 791828237}
   gaugeImage: {fileID: 791828238}
+--- !u!114 &370210824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370210819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb2ef2fb298a384884558aa31da3916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questBtn: {fileID: 1509672102}
+  adventureBtn: {fileID: 1125596351}
+  stateIcons: {fileID: 851132226}
+  detachIndex: 2
 --- !u!1 &380880414
 GameObject:
   m_ObjectHideFlags: 0
@@ -5674,6 +5710,7 @@ GameObject:
   - component: {fileID: 675045285}
   - component: {fileID: 675045284}
   - component: {fileID: 675045286}
+  - component: {fileID: 675045287}
   m_Layer: 5
   m_Name: Request1
   m_TagString: Untagged
@@ -5758,10 +5795,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questManagers: {fileID: 0}
   image: {fileID: 49589810}
   resultBtn: {fileID: 1345461047}
   gaugeObject: {fileID: 475992280}
   gaugeImage: {fileID: 475992284}
+--- !u!114 &675045287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675045282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb2ef2fb298a384884558aa31da3916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questBtn: {fileID: 1595785615}
+  adventureBtn: {fileID: 1203731442}
+  stateIcons: {fileID: 1426071985}
+  detachIndex: 1
 --- !u!1 &681565840
 GameObject:
   m_ObjectHideFlags: 0
@@ -7209,6 +7263,7 @@ GameObject:
   - component: {fileID: 819719516}
   - component: {fileID: 819719515}
   - component: {fileID: 819719517}
+  - component: {fileID: 819719518}
   m_Layer: 5
   m_Name: Request3
   m_TagString: Untagged
@@ -7294,10 +7349,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questManagers: {fileID: 0}
   image: {fileID: 775801805}
   resultBtn: {fileID: 638633038}
   gaugeObject: {fileID: 1151064678}
   gaugeImage: {fileID: 1151064679}
+--- !u!114 &819719518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819719513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb2ef2fb298a384884558aa31da3916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questBtn: {fileID: 1287854710}
+  adventureBtn: {fileID: 2039603098}
+  stateIcons: {fileID: 1235684987}
+  detachIndex: 3
 --- !u!1 &847892234
 GameObject:
   m_ObjectHideFlags: 0
@@ -17013,6 +17085,7 @@ GameObject:
   - component: {fileID: 1918976134}
   - component: {fileID: 1918976133}
   - component: {fileID: 1918976135}
+  - component: {fileID: 1918976136}
   m_Layer: 5
   m_Name: Request4
   m_TagString: Untagged
@@ -17098,10 +17171,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questManagers: {fileID: 0}
   image: {fileID: 847892234}
   resultBtn: {fileID: 368747619}
   gaugeObject: {fileID: 901699175}
   gaugeImage: {fileID: 901699176}
+--- !u!114 &1918976136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918976131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb2ef2fb298a384884558aa31da3916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questBtn: {fileID: 344702400}
+  adventureBtn: {fileID: 2130372538}
+  stateIcons: {fileID: 691588845}
+  detachIndex: 4
 --- !u!1 &1926899898
 GameObject:
   m_ObjectHideFlags: 0
@@ -19283,6 +19373,22 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questTxt.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: resultBtn.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: stateIcons.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: gaugeObject.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: questBtn.Array.data[0]
       value: 
       objectReference: {fileID: 1595785615}
@@ -19303,9 +19409,101 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2011603936}
     - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questTxt.Array.data[0]
+      value: 
+      objectReference: {fileID: 811299877}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questTxt.Array.data[1]
+      value: 
+      objectReference: {fileID: 1323353157}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questTxt.Array.data[2]
+      value: 
+      objectReference: {fileID: 461328955}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questTxt.Array.data[3]
+      value: 
+      objectReference: {fileID: 1455421602}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questTxt.Array.data[4]
+      value: 
+      objectReference: {fileID: 423586736}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: adventrueBtn.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureBtn.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureTxt.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: resultBtn.Array.data[0]
+      value: 
+      objectReference: {fileID: 1345461050}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: resultBtn.Array.data[1]
+      value: 
+      objectReference: {fileID: 561072341}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: resultBtn.Array.data[2]
+      value: 
+      objectReference: {fileID: 638633040}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: resultBtn.Array.data[3]
+      value: 
+      objectReference: {fileID: 368747621}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: resultBtn.Array.data[4]
+      value: 
+      objectReference: {fileID: 92556184}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questManagers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: stateIcons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1426071985}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: stateIcons.Array.data[1]
+      value: 
+      objectReference: {fileID: 851132226}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: stateIcons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1235684987}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: stateIcons.Array.data[3]
+      value: 
+      objectReference: {fileID: 691588845}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: stateIcons.Array.data[4]
+      value: 
+      objectReference: {fileID: 1520311363}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: gaugeObject.Array.data[0]
+      value: 
+      objectReference: {fileID: 475992280}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: gaugeObject.Array.data[1]
+      value: 
+      objectReference: {fileID: 791828237}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: gaugeObject.Array.data[2]
+      value: 
+      objectReference: {fileID: 1151064678}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: gaugeObject.Array.data[3]
+      value: 
+      objectReference: {fileID: 901699175}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: gaugeObject.Array.data[4]
+      value: 
+      objectReference: {fileID: 931915968}
     - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: adventrueBtn.Array.data[0]
       value: 
@@ -19326,6 +19524,66 @@ PrefabInstance:
       propertyPath: adventrueBtn.Array.data[4]
       value: 
       objectReference: {fileID: 681565843}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureBtn.Array.data[0]
+      value: 
+      objectReference: {fileID: 1203731442}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureBtn.Array.data[1]
+      value: 
+      objectReference: {fileID: 1125596351}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureBtn.Array.data[2]
+      value: 
+      objectReference: {fileID: 2039603098}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureBtn.Array.data[3]
+      value: 
+      objectReference: {fileID: 2130372538}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureBtn.Array.data[4]
+      value: 
+      objectReference: {fileID: 681565843}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureTxt.Array.data[0]
+      value: 
+      objectReference: {fileID: 195393888}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureTxt.Array.data[1]
+      value: 
+      objectReference: {fileID: 1763821670}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureTxt.Array.data[2]
+      value: 
+      objectReference: {fileID: 1174678026}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureTxt.Array.data[3]
+      value: 
+      objectReference: {fileID: 150105740}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: adventureTxt.Array.data[4]
+      value: 
+      objectReference: {fileID: 1125007552}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questManagers.Array.data[0]
+      value: 
+      objectReference: {fileID: 675045287}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questManagers.Array.data[1]
+      value: 
+      objectReference: {fileID: 370210824}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questManagers.Array.data[2]
+      value: 
+      objectReference: {fileID: 819719518}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questManagers.Array.data[3]
+      value: 
+      objectReference: {fileID: 1918976136}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: questManagers.Array.data[4]
+      value: 
+      objectReference: {fileID: 172250426}
     - target: {fileID: 8096654969328027545, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: m_Name
       value: PoolManager
@@ -19335,255 +19593,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a534696f5ab718f43a4f268a11033385, type: 3}
---- !u!1001 &6590954314759666380
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193879164435033841, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questBtn.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questTxt.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: resultBtn.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: stateIcons.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: gaugeObject.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questBtn.Array.data[0]
-      value: 
-      objectReference: {fileID: 1595785615}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questBtn.Array.data[1]
-      value: 
-      objectReference: {fileID: 1509672102}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questBtn.Array.data[2]
-      value: 
-      objectReference: {fileID: 1287854710}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questBtn.Array.data[3]
-      value: 
-      objectReference: {fileID: 344702400}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questBtn.Array.data[4]
-      value: 
-      objectReference: {fileID: 2011603936}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questObject.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questTxt.Array.data[0]
-      value: 
-      objectReference: {fileID: 811299877}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questTxt.Array.data[1]
-      value: 
-      objectReference: {fileID: 1323353157}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questTxt.Array.data[2]
-      value: 
-      objectReference: {fileID: 461328955}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questTxt.Array.data[3]
-      value: 
-      objectReference: {fileID: 1455421602}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questTxt.Array.data[4]
-      value: 
-      objectReference: {fileID: 423586736}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureBtn.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureTxt.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: resultBtn.Array.data[0]
-      value: 
-      objectReference: {fileID: 1345461050}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: resultBtn.Array.data[1]
-      value: 
-      objectReference: {fileID: 561072341}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: resultBtn.Array.data[2]
-      value: 
-      objectReference: {fileID: 638633040}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: resultBtn.Array.data[3]
-      value: 
-      objectReference: {fileID: 368747621}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: resultBtn.Array.data[4]
-      value: 
-      objectReference: {fileID: 92556184}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: stateIcons.Array.data[0]
-      value: 
-      objectReference: {fileID: 1426071985}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: stateIcons.Array.data[1]
-      value: 
-      objectReference: {fileID: 851132226}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: stateIcons.Array.data[2]
-      value: 
-      objectReference: {fileID: 1235684987}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: stateIcons.Array.data[3]
-      value: 
-      objectReference: {fileID: 691588845}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: stateIcons.Array.data[4]
-      value: 
-      objectReference: {fileID: 1520311363}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: gaugeObject.Array.data[0]
-      value: 
-      objectReference: {fileID: 475992280}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: gaugeObject.Array.data[1]
-      value: 
-      objectReference: {fileID: 791828237}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: gaugeObject.Array.data[2]
-      value: 
-      objectReference: {fileID: 1151064678}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: gaugeObject.Array.data[3]
-      value: 
-      objectReference: {fileID: 901699175}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: gaugeObject.Array.data[4]
-      value: 
-      objectReference: {fileID: 931915968}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questObject.Array.data[0]
-      value: 
-      objectReference: {fileID: 811299877}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questObject.Array.data[1]
-      value: 
-      objectReference: {fileID: 1323353157}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questObject.Array.data[2]
-      value: 
-      objectReference: {fileID: 461328955}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questObject.Array.data[3]
-      value: 
-      objectReference: {fileID: 1455421602}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: questObject.Array.data[4]
-      value: 
-      objectReference: {fileID: 423586736}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureBtn.Array.data[0]
-      value: 
-      objectReference: {fileID: 1203731442}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureBtn.Array.data[1]
-      value: 
-      objectReference: {fileID: 1125596351}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureBtn.Array.data[2]
-      value: 
-      objectReference: {fileID: 2039603098}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureBtn.Array.data[3]
-      value: 
-      objectReference: {fileID: 2130372538}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureBtn.Array.data[4]
-      value: 
-      objectReference: {fileID: 681565843}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureTxt.Array.data[0]
-      value: 
-      objectReference: {fileID: 195393888}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureTxt.Array.data[1]
-      value: 
-      objectReference: {fileID: 1763821670}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureTxt.Array.data[2]
-      value: 
-      objectReference: {fileID: 1174678026}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureTxt.Array.data[3]
-      value: 
-      objectReference: {fileID: 150105740}
-    - target: {fileID: 5450212101362708701, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: adventureTxt.Array.data[4]
-      value: 
-      objectReference: {fileID: 1125007552}
-    - target: {fileID: 6731396957795849450, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
-      propertyPath: m_Name
-      value: QuestManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b24ffaaaa2d97d048865da1bc89a3bf5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -19595,5 +19604,4 @@ SceneRoots:
   - {fileID: 1387281765}
   - {fileID: 1405666976}
   - {fileID: 2086829201598844197}
-  - {fileID: 6590954314759666380}
   - {fileID: 547554594}

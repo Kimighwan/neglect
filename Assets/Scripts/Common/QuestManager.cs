@@ -5,27 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class QuestManager : SingletonBehaviour<QuestManager>
+public class QuestManager : MonoBehaviour
 {
-    // 파견창 Index에 따른 모험가 리스트
-    public Dictionary<int, List<AdventureData>> adventureDatas = new Dictionary<int, List<AdventureData>>();
+    public Button questBtn;       // 의뢰 선택 버튼
+    public Button adventureBtn;   // 파모험가 선택 버튼
 
-    // 파견창 Index에 따른 QuestData
-    public Dictionary<int, QuestData> questData = new Dictionary<int, QuestData>();
+    public RawImage stateIcons;   // 상태 아이콘
 
-    public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 전멸, 성공, 대성공 확인
-
-    public RawImage[] stateIcons;   // 상태 아이콘
-
-
-    public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
-    public Button[] adventureBtn;   // 파견창의 모험가 선택 버튼
-    public Button[] resultBtn;      // 파견창의 결과 확인 버튼
-
-    public TextMeshProUGUI[] questTxt;
-    public TextMeshProUGUI[] adventureTxt;
-
-    public GameObject[] gaugeObject;    // 각 파견창의 게이지 오브젝트
+    public int detachIndex;
 
     const string ICON_PATH = "Arts/Icon";
 
@@ -57,41 +44,38 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     private float dieRate = 0;              // 전멸 확률
     private float bigRate = 0;              // 대성공 확률
 
-    private bool[] checkUpdate = new bool[5];         // Update 함수 한 번만 실행하기 위해서
+    public List<AdventureData> adventureDatas = new List<AdventureData>();
 
     private void Update()
     {
-        for(int i = 0; i < 5; i++)
+        if (questBtn.interactable == false && adventureBtn.interactable == false)
         {
-            if(questBtn[i].interactable == false && adventureBtn[i].interactable == false)
-            {
-                if (checkUpdate[i]) return;
+            if (PoolManager.Instance.checkUpdate[detachIndex - 1]) return;
 
-                checkUpdate[i] = true;
+            PoolManager.Instance.checkUpdate[detachIndex - 1] = true;
 
-                SetQuest(i + 1);
+            SetQuest(detachIndex);
 
-                SetTier(i + 1);                 // 등급 점수
-                SetSameScore(i + 1);            // 중복 비율
-                SetMixScore(i + 1);             // 조합 비율
-                SetStrongAndWeak(i + 1);        // 약점 & 강점 비율
-                Calculation(i + 1);             // 점수 계산
+            SetTier(detachIndex);                 // 등급 점수
+            SetSameScore(detachIndex);            // 중복 비율
+            SetMixScore(detachIndex);             // 조합 비율
+            SetStrongAndWeak(detachIndex);        // 약점 & 강점 비율
+            Calculation(detachIndex);             // 점수 계산
 
-                stateIcons[i].color = new Color(1, 1, 1, 1);
+            stateIcons.color = new Color(1, 1, 1, 1);
 
-                if (resultMaxRate == -1)
-                    stateIcons[i].texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
-                else if(resultMaxRate == 0)
-                    stateIcons[i].texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
-                else
-                    stateIcons[i].texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
-            }
+            if (resultMaxRate == -1)
+                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
+            else if (resultMaxRate == 0)
+                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
             else
-            {
-                checkUpdate[i] = false;
-                stateIcons[i].texture = null;
-                stateIcons[i].color = new Color(0, 0, 0, 0);
-            }
+                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+        }
+        else
+        {
+            PoolManager.Instance.checkUpdate[detachIndex - 1] = false;
+            stateIcons.texture = null;
+            stateIcons.color = new Color(0, 0, 0, 0);
         }
     }
 
@@ -111,7 +95,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     private bool DoCheck(int index)
     {
-        if (questData[index] == null)
+        if (PoolManager.Instance.questData[index] == null)
         {
             Debug.Log("퀘스트를 다시 선택 해주세요.");
             return true ;
@@ -127,7 +111,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
     private void SetQuest(int index)
     {
-        monsterId = questData[index].questMonsterDescId;    // 몬스터 ID 체크
+        monsterId = PoolManager.Instance.questData[index].questMonsterDescId;    // 몬스터 ID 체크
         
         var monsterData = DataTableManager.Instance.GetMonsterData(monsterId);  // 여기는 정상
 
@@ -143,7 +127,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
             monsterStrong = monsterData.monsterStrength.Substring(0, 2);
         }
         
-        var questLevel = questData[index].questLevel;
+        var questLevel = PoolManager.Instance.questData[index].questLevel;
 
         switch (questLevel)
         {
@@ -178,7 +162,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         samePositionRate = 0;
         sameClassRate = 0;
 
-        foreach (var item in adventureDatas[index])
+        foreach (var item in adventureDatas)
         {
             // 포지션
             if(item.adventurePosition == "전위")
@@ -259,7 +243,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         weakRate = 0;
         strongRate = 0;
 
-        foreach (var item in adventureDatas[index])
+        foreach (var item in adventureDatas)
         {
             if (monsterWeak != "")
             {
@@ -283,25 +267,30 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     {
         tierScore = 0;
 
-        foreach (var item in adventureDatas[index]) // adventureDatas가 초기화가 안 되어서 이전 모험가도 같이 계산되나?
+        foreach (var item in adventureDatas) // adventureDatas가 초기화가 안 되어서 이전 모험가도 같이 계산되나?
         {
             string tier = item.adventureTier;
             switch (tier)   // 모험가 등급 점수
             {
                 case "브론즈":
                     tierScore += 100;
+                    Debug.Log($"{tier}이라서 +100");
                     break;
                 case "실버":
                     tierScore += 200;
+                    Debug.Log($"{tier}이라서 +200");
                     break;
                 case "골드":
                     tierScore += 300;
+                    Debug.Log($"{tier}이라서 +300");
                     break;
                 case "플래티넘":
                     tierScore += 400;
+                    Debug.Log($"{tier}이라서 +400");
                     break;
                 case "다이아":
                     tierScore += 600;
+                    Debug.Log($"{tier}이라서 +600");
                     break;
             }
         }
@@ -348,7 +337,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         if (saveTmp > randomValue)
         {
-            resultList[index] = -1;     // 전멸
+            PoolManager.Instance.resultList[index] = -1;     // 전멸
             //stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
             return;
         }
@@ -356,19 +345,14 @@ public class QuestManager : SingletonBehaviour<QuestManager>
 
         if (saveTmp > randomValue)
         {
-            resultList[index] = 0;      // 일반 성공
+            PoolManager.Instance.resultList[index] = 0;      // 일반 성공
             //stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
             return;
         }
 
-        resultList[index] = 1;          // 대성공
+        PoolManager.Instance.resultList[index] = 1;          // 대성공
         //stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
     }
 
-    public void BtnActive(int index)
-    {
-        questBtn[index - 1].interactable = true;
-        adventureBtn[index - 1].interactable = true;
-    }
 }
 
