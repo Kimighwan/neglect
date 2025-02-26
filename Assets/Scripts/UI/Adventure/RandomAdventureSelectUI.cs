@@ -1,9 +1,12 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RandomAdventureSelectUI : MonoBehaviour
 {
+    public RawImage rankImage;
+
     public TextMeshProUGUI c_name;
     public TextMeshProUGUI position;
     public TextMeshProUGUI m_class;
@@ -100,26 +103,31 @@ public class RandomAdventureSelectUI : MonoBehaviour
         if(adventureTier == "브론즈")
         {
             needGold = 200;
+            rankImage.texture = Resources.Load("Arts/Rank/RankBronze") as Texture2D;
             needGoldText.text = "영입 200 골드";
         }
         else if (adventureTier == "실버")
         {
             needGold = 500;
+            rankImage.texture = Resources.Load("Arts/Rank/RankSilver") as Texture2D;
             needGoldText.text = "영입 500 골드";
         }
         else if (adventureTier == "골드")
         {
             needGold = 1000;
+            rankImage.texture = Resources.Load("Arts/Rank/RankGold") as Texture2D;
             needGoldText.text = "영입 100 골드";
         }
         else if (adventureTier == "플래티넘")
         {
             needGold = 2000;
+            rankImage.texture = Resources.Load("Arts/Rank/RankPlatinum") as Texture2D;
             needGoldText.text = "영입 2000 골드";
         }
         else if (adventureTier == "다이아")
         {
             needGold = 5000;
+            rankImage.texture = Resources.Load("Arts/Rank/RankDiamond") as Texture2D;
             needGoldText.text = "영입 5000 골드";
         }
     }
