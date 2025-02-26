@@ -30,10 +30,11 @@ public class AdventurerListUI : BaseUI
 
     public TextMeshProUGUI sortBtnText;
     public TextMeshProUGUI orderBtnText;
+    public TextMeshProUGUI adventureCount;
 
 
     private AdventureSortType adventureSortType = AdventureSortType.GRADE;
-    private AdventureOrderType adventureOrderType = AdventureOrderType.DOWN;
+    private AdventureOrderType adventureOrderType = AdventureOrderType.UP;
 
     private void Awake()
     {
@@ -70,6 +71,12 @@ public class AdventurerListUI : BaseUI
     {
         PoolManager.Instance.SetAdventureListData();
         SetScroll();
+        CountUpdate();
+    }
+
+    private void CountUpdate()
+    {
+        adventureCount.text = CheckCurrentAdventureCount().ToString() + "/" + GameInfo.gameInfo.GetMaxAdventurerCounts().ToString();
     }
 
     public void UpdateScrollItem()
@@ -77,6 +84,7 @@ public class AdventurerListUI : BaseUI
         PoolManager.Instance.SetAdventureListData();
         SortAdventure();
         SetScroll();
+        CountUpdate();
     }
 
     public void OnClickBackBtnOfAdventureListUI()   // 뒤로가기
@@ -283,11 +291,11 @@ public class AdventurerListUI : BaseUI
         {
             case AdventureOrderType.DOWN:
                 adventureOrderType = AdventureOrderType.UP;
-                orderBtnText.text = "UP";
+                orderBtnText.text = "DOWN";
                 break;
             case AdventureOrderType.UP:
                 adventureOrderType = AdventureOrderType.DOWN;
-                orderBtnText.text = "DOWN";
+                orderBtnText.text = "UP";
                 break;
             default:
                 break;
@@ -301,20 +309,29 @@ public class AdventurerListUI : BaseUI
         switch (adventureOrderType)
         {
             case AdventureOrderType.DOWN:
-                orderBtnText.text = "DOWN";
+                orderBtnText.text = "UP";
                 break;
             case AdventureOrderType.UP:
-                orderBtnText.text = "UP";
+                orderBtnText.text = "DOWN";
                 break;
             default:
                 break;
         }
     }
 
-    //public void OnClickCloseBtnOfAdventureListUI()
-    //{
-    //    CloseUI(true);
-    //    if(UIManager.Instance.GetActiveUI<AdventureExportUI>())
-    //        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<AdventureExportUI>());
-    //}
+    private int CheckCurrentAdventureCount()
+    {
+        var a = PlayerPrefs.GetString("AdventureId");
+        var b = a.Split(',');
+
+        int tmp = 0;
+
+        foreach(var item in b)
+        {
+            if (item != "") tmp++;
+
+        }
+
+        return tmp;
+    }
 }

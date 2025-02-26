@@ -1,9 +1,12 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RandomAdventureSelectUI : MonoBehaviour
 {
+    public RawImage rankImage;
+
     public TextMeshProUGUI c_name;
     public TextMeshProUGUI position;
     public TextMeshProUGUI m_class;
@@ -53,19 +56,25 @@ public class RandomAdventureSelectUI : MonoBehaviour
             return;
         }
 
+        // 모험가 더 이상 영입 불가능
+        if(CheckMaxAdventureCounts())
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "모험가 최대치";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
+
         // 골드 차감
+        GameInfo.gameInfo.ChangeGold(-needGold);
 
         if (CheckHaveAdventureID(adventureId))  // 선택된 모험가가 이미 있음
         {
             Debug.Log("해당 모험가를 이미 가지고 있음");
             return;
         }
-
-        //if (CheckRoom())
-        //{
-        //    Debug.Log("더이상 모험가 수용 불가능");
-        //    return;
-        //}
 
         string pre = PlayerPrefs.GetString("AdventureId");  // 저장된 모험가 ID 불러오기
 
@@ -94,26 +103,31 @@ public class RandomAdventureSelectUI : MonoBehaviour
         if(adventureTier == "브론즈")
         {
             needGold = 200;
+            rankImage.texture = Resources.Load("Arts/Rank/RankBronze") as Texture2D;
             needGoldText.text = "영입 200 골드";
         }
         else if (adventureTier == "실버")
         {
             needGold = 500;
+            rankImage.texture = Resources.Load("Arts/Rank/RankSilver") as Texture2D;
             needGoldText.text = "영입 500 골드";
         }
         else if (adventureTier == "골드")
         {
             needGold = 1000;
+            rankImage.texture = Resources.Load("Arts/Rank/RankGold") as Texture2D;
             needGoldText.text = "영입 100 골드";
         }
         else if (adventureTier == "플래티넘")
         {
             needGold = 2000;
+            rankImage.texture = Resources.Load("Arts/Rank/RankPlatinum") as Texture2D;
             needGoldText.text = "영입 2000 골드";
         }
         else if (adventureTier == "다이아")
         {
             needGold = 5000;
+            rankImage.texture = Resources.Load("Arts/Rank/RankDiamond") as Texture2D;
             needGoldText.text = "영입 5000 골드";
         }
     }
@@ -263,7 +277,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
         return false;           // 해당 모험가가 없음
     }
     
-    private bool CheckRoom()    // 객실 수 및 레벨 확인하여 최대 모험가 수를 넘는지 체크
+    private bool CheckMaxAdventureCounts()    // 객실 수 및 레벨 확인하여 최대 모험가 수를 넘는지 체크
     {
         int tmpCount = 0;
         string adventrueHave = PlayerPrefs.GetString("AdventureId");
