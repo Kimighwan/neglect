@@ -59,7 +59,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
             return;
         }
 
-        if (GameInfo.gameInfo.Gold < needGold)
+        if (!GameInfo.gameInfo.ChangeGold(-needGold))
         {
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK;
