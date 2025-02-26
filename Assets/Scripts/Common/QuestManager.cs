@@ -310,6 +310,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     public void Calculation(int index)
     {
         float rate = samePositionRate + sameClassRate + mixPositionRate + misClassRate - strongRate + weakRate;
+        rate = Mathf.Floor(rate * 10f) / 10f;
 
         int addScore = (int)(tierScore * rate);
 
@@ -320,21 +321,24 @@ public class QuestManager : SingletonBehaviour<QuestManager>
         Debug.Log($"계산 비율 : {rate}");
         Debug.Log($"추가 점수 : {addScore}");
         Debug.Log($"합계 점수 : {resultScore}");
+        Debug.Log($"목표 점수 : {targetScore}");
 
-        if(targetScore < resultScore)   // 점수 오버
+        if (targetScore < resultScore)   // 점수 오버
         {
             int tmp = resultScore - targetScore;
-            bigRate = (tmp / 10) * 0.05f;
+            bigRate = (tmp / 10) * 0.5f;
         }
         else if(targetScore > resultScore)  // 점수 언더
         {
             int tmp = targetScore - resultScore;
-            dieRate = (tmp / 10) * 0.1f;
+            dieRate = (tmp / 10) * 1f;
         }
 
         float nomalRate = 100f - (bigRate + dieRate);
 
         resultMaxRate = bigRate > dieRate ? (bigRate > nomalRate ? 1 : 0) : (dieRate > nomalRate ? -1 : 0);
+        Debug.Log($"전멸 : {dieRate} / 성공 : {nomalRate} / 대 : {bigRate}");
+
 
         float randomValue = UnityEngine.Random.Range(0f, 100f);
         randomValue = Mathf.Floor(randomValue * 10f) / 10f;
