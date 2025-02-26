@@ -59,17 +59,6 @@ public class RandomAdventureSelectUI : MonoBehaviour
             return;
         }
 
-        if (!GameInfo.gameInfo.ChangeGold(-needGold))
-        {
-            var uiData = new ConfirmUIData();
-            uiData.confirmType = ConfirmType.OK;
-            uiData.descTxt = "골드가 부족합니다.";
-            uiData.okBtnTxt = "확인";
-            AudioManager.Instance.PlaySFX(SFX.Denied);
-            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-            return;
-        }
-
         // 모험가 더 이상 영입 불가능
         if (CheckMaxAdventureCounts())
         {
@@ -82,8 +71,16 @@ public class RandomAdventureSelectUI : MonoBehaviour
             return;
         }
 
-        // 골드 차감
-        GameInfo.gameInfo.ChangeGold(-needGold);
+        if (!GameInfo.gameInfo.ChangeGold(-needGold))
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "골드가 부족합니다.";
+            uiData.okBtnTxt = "확인";
+            AudioManager.Instance.PlaySFX(SFX.Denied);
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
 
         needGoldText.text = "영입 완료";
         selectBtn.interactable = false;

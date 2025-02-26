@@ -112,10 +112,6 @@ public class AdventurerUI : BaseUI
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }
-
-        // 골드 감소
-        GameInfo.gameInfo.ChangeGold(-100);
-
         RemoveList();
         SetAdventureList();
     }

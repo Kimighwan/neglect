@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     }
     void OnEnable()
     {
+        PlayerPrefs.DeleteAll();
         AudioManager.Instance.PlayBGM(BGM.Main6);
     }
 
@@ -120,11 +121,12 @@ public class GameManager : MonoBehaviour
     public void EndTheGame() {
         Invoke("BackToTitle", 2f);
     }
-    private void BackToTitle() {
+    public void GoToTitle() {
+        UIManager.Instance.CloseAllOpenUI();
+        AudioManager.Instance.StopBGM();
         Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
         {
             SceneManager.LoadScene(0);
-            UIManager.Instance.CloseAllOpenUI();
 
             Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 1f, false, () =>
             {

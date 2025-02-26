@@ -96,9 +96,6 @@ public class TodayQuestUI : BaseUI
             return;
         }
 
-        // 골드 감소
-        GameInfo.gameInfo.ChangeGold(-100);
-
         RemoveList();
         SetQuestList();
     }

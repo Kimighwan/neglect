@@ -46,15 +46,7 @@ public class GameSettingUI : BaseUI
     }
 
     public void GoToTitle() {
-        Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
-        {
-            SceneManager.LoadScene(0);
-            UIManager.Instance.CloseAllOpenUI();
-
-            Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 1f, false, () =>
-            {
-            });
-        });
+        GameManager.gameManager.GoToTitle();
     }
 
     public override void OnClickCloseButton()

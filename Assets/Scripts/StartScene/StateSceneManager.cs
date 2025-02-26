@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StateSceneManager : MonoBehaviour
 {
-
     void Start()
     {
         if (!PlayerPrefs.HasKey("고블린"))
@@ -46,6 +43,7 @@ public class StateSceneManager : MonoBehaviour
     }
     void OnEnable()
     {
+        PlayerPrefs.DeleteAll();
         Invoke("PlayTitleBGM", 0.1f);
     }
 
