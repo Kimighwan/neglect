@@ -92,29 +92,24 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
     {
         DetachAdventureListUI tmp = UIManager.Instance.GetActiveUI<DetachAdventureListUI>() as DetachAdventureListUI;
 
-        if (AdventureData.adventureSelectId.Contains(adventureid))
+        if (AdventureData.adventureSelectId.Contains(adventureid))  // 선택 취소
         {
             AdventureData.adventureSelectId.Remove(adventureid);
-            adList.Remove(adventureData);                           // 선택한 모험가 삭제
 
-            QuestManager.Instance.adventureDatas.Remove(tmp.adventureIndex);    // 기존 파견 index에 맞는 리스트 삭제
-            QuestManager.Instance.adventureDatas.Add(tmp.adventureIndex, adList);   // 삭제된 모험가 리스트 다시 넣기
+            PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.Remove(adventureData);   /// 파견 index에 맞는 QuestManager의 선택된 모험가 삭제
 
             return;
         }
 
-        if (AdventureData.adventureSelectId.Count == 4) // 제일 마지막에 선택한 모험가 삭제
+        if (AdventureData.adventureSelectId.Count == 4) // 제일 마지막에 선택한 모험가 삭제 필요
         {
             AdventureData.adventureSelectId.RemoveAt(0);
-            adList.RemoveAt(0);
+            PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.RemoveAt(0);
         }
 
         AdventureData.adventureSelectId.Add(adventureid);
 
-        adList.Add(adventureData);
-
-        QuestManager.Instance.adventureDatas.Remove(tmp.adventureIndex);    // 기존 파견 index에 맞는 리스트 삭제
-        QuestManager.Instance.adventureDatas.Add(tmp.adventureIndex, adList);   // 삭제된 모험가 리스트 다시 넣기
+        PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.Add(adventureData);   // 선택된 모험가 파견 index에 맞는 QuestManager에 넣기
     }
 
 }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Test : MonoBehaviour
 {
+    public QuestManager questManagers;
+
     private bool adTutorialOnce = false;
     public GameObject image;
     public GameObject resultBtn;
@@ -94,15 +96,14 @@ public class Test : MonoBehaviour
 
     public void OnClickQuestStart(int index)
     {
-        QuestManager.Instance.OnClickQusetStart(index);
         image.SetActive(true);
         StartCoroutine(testt());
 
         questStart = true;
 
         startDay = GameInfo.gameInfo.Day;
-        endDay = startDay + QuestManager.Instance.questData[index].questTime; // 파견 결과 나오는 날...
-        totalDay = QuestManager.Instance.questData[index].questTime; 
+        endDay = startDay + PoolManager.Instance.questData[index].questTime; // 파견 결과 나오는 날...
+        totalDay = PoolManager.Instance.questData[index].questTime; 
         
         if (totalDay != 0)   // 스토리 의뢰가 아니면 게이지 이미지 활성화
         {
@@ -122,27 +123,24 @@ public class Test : MonoBehaviour
         // Quest Awake
         if (PoolManager.Instance.usingQuestList.Count != 0)
         {
-            PoolManager.Instance.usingQuestList.Remove(QuestManager.Instance.questData[index].questId);
+            PoolManager.Instance.usingQuestList.Remove(PoolManager.Instance.questData[index].questId);
             QuestData.questSelectedId = 0;
 
-            QuestManager.Instance.questData.Remove(index);
+            PoolManager.Instance.questData.Remove(index);
 
-            QuestManager.Instance.questTxt[index - 1].text = "의뢰 선택";
+            PoolManager.Instance.questTxt[index - 1].text = "의뢰 선택";
         }
 
         // Adventure Awake
         if (PoolManager.Instance.usingAdventureList.Count != 0)
         {
-            for (int i = 0; i < 4; i++)
-            {
-                PoolManager.Instance.usingAdventureList.Clear();
-            }
+            PoolManager.Instance.usingAdventureList.Clear();
 
             AdventureData.adventureSelectId.Clear();
 
-            QuestManager.Instance.adventureDatas[index].Clear();
+            questManagers.adventureDatas.Clear();
 
-            QuestManager.Instance.adventureTxt[index - 1].text = "모험가 선택";
+            PoolManager.Instance.adventureTxt[index - 1].text = "모험가 선택";
         } 
     }
 }

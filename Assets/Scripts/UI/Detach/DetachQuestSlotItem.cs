@@ -59,14 +59,14 @@ public class DetachQuestSlotItem : InfiniteScrollItem
         if (QuestData.questSelectedId == questid)
         {
             QuestData.questSelectedId = 0;
-            QuestManager.Instance.questData.Remove(tmp.qusetIndex);
+            PoolManager.Instance.questData.Remove(tmp.qusetIndex);
             checkImage.SetActive(false);
         }
         else
         {
             QuestData.questSelectedId = questid;
-            QuestManager.Instance.questData.Remove(tmp.qusetIndex);
-            QuestManager.Instance.questData.Add(tmp.qusetIndex, questData);
+            PoolManager.Instance.questData.Remove(tmp.qusetIndex);
+            PoolManager.Instance.questData.Add(tmp.qusetIndex, questData);
         }
     }
 }

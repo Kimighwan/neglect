@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,31 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
 
     public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
-    public Button[] adventrueBtn;   // 파견창의 모험가 선택 버튼
+    public Button[] adventureBtn;   // 파견창의 모험가 선택 버튼
+
+    // QuestManager 이전
+
+    //// 파견창 Index에 따른 모험가 리스트
+    //public Dictionary<int, List<AdventureData>> adventureDatas = new Dictionary<int, List<AdventureData>>();
+    public List<AdventureData> ingAdventureDatas = new List<AdventureData>(); // 현재 파견 중인 모험가들
+
+    // 파견창 Index에 따른 QuestData
+    public Dictionary<int, QuestData> questData = new Dictionary<int, QuestData>();
+
+    public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 전멸, 성공, 대성공 확인
+
+    // 같은 의미인 객체가 존재 public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
+    // 같은 의미인 객체가 존재public Button[] adventureBtn;   // 파견창의 모험가 선택 버튼
+    public Button[] resultBtn;      // 파견창의 결과 확인 버튼
+
+    public TextMeshProUGUI[] questTxt;
+    public TextMeshProUGUI[] adventureTxt;
+
+    public GameObject[] gaugeObject;    // 각 파견창의 게이지 오브젝트
+
+    public bool[] checkUpdate = new bool[5];         // Update 함수 한 번만 실행하기 위해서
+
+    public QuestManager[] questManagers;
 
     protected override void Init()
     {
@@ -106,37 +131,6 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public void UsingQuestData()   // 선택된 의뢰 사용중이라고 표현
     {
         usingQuestList.Add(QuestData.questSelectedId);
-
-        //if (PlayerPrefs.GetString("UsingQuest") == "")
-        //    PlayerPrefs.SetString("UsingQuest", QuestData.questSelectedId.ToString());  // 사용중인 의뢰 체크
-        //else
-        //{
-        //    var tmp = PlayerPrefs.GetString("UsingQuest");
-        //    PlayerPrefs.SetString("UsingQuest", tmp + "," + QuestData.questSelectedId.ToString());
-        //}
-
-        //var questId = PlayerPrefs.GetString("QuestId");
-        //var questIds = questId.Split(',');
-
-        //if (questId == "") return;
-        //if (QuestData.questSelectedId == 0) return;
-
-        //string addId = "";
-
-        //foreach (var item in questIds)
-        //{
-        //    int questIdOfInt = Convert.ToInt32(item);
-
-        //    if(questIdOfInt != QuestData.questSelectedId)
-        //    {
-        //        if(addId == "") 
-        //            addId += questIdOfInt.ToString();
-        //        else
-        //            addId += "," + questIdOfInt.ToString();
-        //    }
-        //}
-
-        //PlayerPrefs.SetString("QuestId", addId);
     }
 
     public void UsingAdventureData()   // 선택된 모험가 사용중이라고 표현
@@ -145,48 +139,11 @@ public class PoolManager : SingletonBehaviour<PoolManager>
         {
             usingAdventureList.Add(i);
         }
+    }
 
-        //string add = "";
-        //foreach (var item in AdventureData.adventureSelectId)
-        //{
-        //    if (add == "")
-        //    {
-        //        add += item.ToString();
-        //    }
-        //    else
-        //    {
-        //        add += "," + item.ToString();
-        //    }
-        //}
-
-        //if (PlayerPrefs.GetString("UsingAdventure") == "")
-        //    PlayerPrefs.SetString("UsingAdventure", add);  // 사용중인 모험가 체크
-        //else
-        //{
-        //    var tmp = PlayerPrefs.GetString("UsingAdventure");
-        //    PlayerPrefs.SetString("UsingAdventure", tmp + "," + add);
-        //}
-
-        //var adventureId = PlayerPrefs.GetString("AdventureId");
-        //var adventureIds = adventureId.Split(',');
-
-        //if (adventureId == "") return;
-
-        //string addId = "";
-
-        //foreach (var item in adventureIds)
-        //{
-        //    int adventureIdOfInt = Convert.ToInt32(item);
-
-        //    if (!AdventureData.adventureSelectId.Contains(adventureIdOfInt))
-        //    {
-        //        if (addId == "")
-        //            addId += adventureIdOfInt.ToString();
-        //        else
-        //            addId += "," + adventureIdOfInt.ToString();
-        //    }
-        //}
-
-        //PlayerPrefs.SetString("AdventureId", addId);
+    public void BtnActive(int index)
+    {
+        questBtn[index - 1].interactable = true;
+        adventureBtn[index - 1].interactable = true;
     }
 }

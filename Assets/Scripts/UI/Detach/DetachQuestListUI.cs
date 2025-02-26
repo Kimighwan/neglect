@@ -161,7 +161,7 @@ public class DetachQuestListUI : BaseUI
         PoolManager.Instance.questBtn[qusetIndex - 1].interactable = false;
 
         // 버튼 Text 업데이트
-        QuestManager.Instance.questTxt[qusetIndex - 1].text = QuestManager.Instance.questData[qusetIndex].questName;
+        PoolManager.Instance.questTxt[qusetIndex - 1].text = PoolManager.Instance.questData[qusetIndex].questName;
 
         PoolManager.Instance.UsingQuestData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachQuestListUI>());

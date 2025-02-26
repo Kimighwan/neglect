@@ -278,9 +278,9 @@ public class DetachAdventureListUI : BaseUI
         //    return;
         //}
 
-        PoolManager.Instance.adventrueBtn[adventureIndex - 1].interactable = false;
+        PoolManager.Instance.adventureBtn[adventureIndex - 1].interactable = false;
 
-        QuestManager.Instance.adventureTxt[adventureIndex - 1].text = "선택 완료";
+        PoolManager.Instance.adventureTxt[adventureIndex - 1].text = "선택 완료";
 
         PoolManager.Instance.UsingAdventureData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachAdventureListUI>());

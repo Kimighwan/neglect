@@ -49,7 +49,7 @@ public class QuestResult : BaseUI
         GameInfo.gameInfo.ChangeGold(reward);
 
         // 각 파견창의 게이지 비활성화
-        QuestManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
+        PoolManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
 
         // 모험가 다시 풀기
 
@@ -59,7 +59,7 @@ public class QuestResult : BaseUI
     public void OnClickDieOKBtn()     // 전멸 확인 버튼
     {
         // 각 파견창의 게이지 비활성화
-        QuestManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
+        PoolManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
 
         // 모험가 다시 풀기
 
@@ -72,25 +72,25 @@ public class QuestResult : BaseUI
 
         yield return new WaitForSeconds(2f);
 
-        rewardTxt.text = "+G " + QuestManager.Instance.questData[resultIndex].questReward.ToString();
+        rewardTxt.text = "+G " + PoolManager.Instance.questData[resultIndex].questReward.ToString();
 
         // 버튼 Text 다시 설정
-        QuestManager.Instance.questTxt[resultIndex - 1].text = "의뢰 선택";
-        QuestManager.Instance.adventureTxt[resultIndex - 1].text = "모험가 선택";
+        PoolManager.Instance.questTxt[resultIndex - 1].text = "의뢰 선택";
+        PoolManager.Instance.adventureTxt[resultIndex - 1].text = "모험가 선택";
 
         // 버튼 다시 활성화
-        QuestManager.Instance.BtnActive(resultIndex);
+        PoolManager.Instance.BtnActive(resultIndex);
 
         // 결과 확인 버튼 비활성화
-        QuestManager.Instance.resultBtn[resultIndex - 1].gameObject.SetActive(false);
+        PoolManager.Instance.resultBtn[resultIndex - 1].gameObject.SetActive(false);
 
         // 의뢰 종료시 모험가 다시 사용하게 Test
-        foreach (var i in QuestManager.Instance.adventureDatas[resultIndex])
+        foreach (var i in PoolManager.Instance.questManagers[resultIndex].adventureDatas)
         {
             PoolManager.Instance.usingAdventureList.Remove(i.adventureId);
         }
         
-        if (QuestManager.Instance.resultList[resultIndex] == 0)
+        if (PoolManager.Instance.resultList[resultIndex] == 0)
         {
             AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 성공";
@@ -98,11 +98,11 @@ public class QuestResult : BaseUI
             diaOKBtn.SetActive(false);
             SetMonsterPlayerPrefs();
 
-            reward = QuestManager.Instance.questData[resultIndex].questReward;
-            GameInfo.gameInfo.CheckSuccessTier(QuestManager.Instance.questData[resultIndex].questLevel);
-            ScriptDialogHandler.handler.ConditionalScriptPlay(QuestManager.Instance.questData[resultIndex].questId);
+            reward = PoolManager.Instance.questData[resultIndex].questReward;
+            GameInfo.gameInfo.CheckSuccessTier(PoolManager.Instance.questData[resultIndex].questLevel);
+            ScriptDialogHandler.handler.ConditionalScriptPlay(PoolManager.Instance.questData[resultIndex].questId);
         }
-        else if(QuestManager.Instance.resultList[resultIndex] == 1)
+        else if(PoolManager.Instance.resultList[resultIndex] == 1)
         {
             AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 대성공!!!";
@@ -110,11 +110,11 @@ public class QuestResult : BaseUI
             diaOKBtn.SetActive(false);
             SetMonsterPlayerPrefs();
 
-            reward = QuestManager.Instance.questData[resultIndex].questReward * 2;
-            GameInfo.gameInfo.CheckSuccessTier(QuestManager.Instance.questData[resultIndex].questLevel);
-            ScriptDialogHandler.handler.ConditionalScriptPlay(QuestManager.Instance.questData[resultIndex].questId);
+            reward = PoolManager.Instance.questData[resultIndex].questReward * 2;
+            GameInfo.gameInfo.CheckSuccessTier(PoolManager.Instance.questData[resultIndex].questLevel);
+            ScriptDialogHandler.handler.ConditionalScriptPlay(PoolManager.Instance.questData[resultIndex].questId);
         }
-        else if(QuestManager.Instance.resultList[resultIndex] == -1)
+        else if(PoolManager.Instance.resultList[resultIndex] == -1)
         {
             AudioManager.Instance.PlaySFX(SFX.QuestFail);
             txt.text = "전멸...";
@@ -124,7 +124,7 @@ public class QuestResult : BaseUI
             reward = 0;
 
             // 전멸 시 모험가 삭제 Test
-            foreach (var i in QuestManager.Instance.adventureDatas[resultIndex])
+            foreach (var i in PoolManager.Instance.questManagers[resultIndex].adventureDatas)
             {
                 var adventureId = PlayerPrefs.GetString("AdventureId");
                 var adventureIds = adventureId.Split(',');
@@ -150,11 +150,11 @@ public class QuestResult : BaseUI
             }
         }
 
-        QuestManager.Instance.adventureDatas[resultIndex].Clear(); // 파견창에 맞는 모험가 데이터 삭제
+        PoolManager.Instance.questManagers[resultIndex].adventureDatas.Clear(); // 파견창에 맞는 모험가 데이터 삭제
     }
 
     private void SetMonsterPlayerPrefs()
     {
-        PlayerPrefs.SetInt($"{QuestManager.Instance.questData[resultIndex].questMonster}", 1);
+        PlayerPrefs.SetInt($"{PoolManager.Instance.questData[resultIndex].questMonster}", 1);
     }
 }

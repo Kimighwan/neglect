@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     }
     void OnEnable()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         AudioManager.Instance.PlayBGM(BGM.Main6);
     }
 
