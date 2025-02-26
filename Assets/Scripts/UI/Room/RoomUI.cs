@@ -44,6 +44,7 @@ public class RoomUI : BaseUI
             else if (l == 3) {
                 title.text = "";
                 level.text = "최고 등급 객실";
+                other.text = "";
                 neededGold.text = "추가 레벨업X";
                 button.interactable = false;
             }

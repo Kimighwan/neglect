@@ -49,8 +49,8 @@ public class GameManager : MonoBehaviour
     {
         if (!pause && !scriptMode.isScriptMode) {
             info.UpdateGameInfo();
-            UITextHandler.textHandler.UpdateTexts();
         }
+        UITextHandler.textHandler.UpdateTexts();
         if (Input.anyKeyDown)
         {
             if (Input.GetKeyDown(konamiCode[index]))
