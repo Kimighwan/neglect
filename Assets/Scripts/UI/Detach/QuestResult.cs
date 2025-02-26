@@ -79,6 +79,7 @@ public class QuestResult : BaseUI
         {
             txt.text = "의뢰 성공";
             receiptBtn.SetActive(true);
+            SetMonsterPlayerPrefs();
 
             reward = QuestManager.Instance.questData[resultIndex].questReward;
             GameInfo.gameInfo.CheckSuccessTier(QuestManager.Instance.questData[resultIndex].questLevel);
@@ -88,6 +89,7 @@ public class QuestResult : BaseUI
         {
             txt.text = "의뢰 대성공!!!";
             receiptBtn.SetActive(true);
+            SetMonsterPlayerPrefs();
 
             reward = QuestManager.Instance.questData[resultIndex].questReward * 2;
             GameInfo.gameInfo.CheckSuccessTier(QuestManager.Instance.questData[resultIndex].questLevel);
@@ -128,5 +130,10 @@ public class QuestResult : BaseUI
         }
 
         QuestManager.Instance.adventureDatas[resultIndex].Clear(); // 파견창에 맞는 모험가 데이터 삭제
+    }
+
+    private void SetMonsterPlayerPrefs()
+    {
+        PlayerPrefs.SetInt($"{QuestManager.Instance.questData[resultIndex].questMonster}", 1);
     }
 }

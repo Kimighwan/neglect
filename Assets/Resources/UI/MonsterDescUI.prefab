@@ -1702,7 +1702,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7075365715418417793}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
@@ -1782,9 +1782,9 @@ RectTransform:
   - {fileID: 8075975623642116493}
   - {fileID: 1840655182859017087}
   - {fileID: 2539554629221844616}
+  - {fileID: 7241507620553223216}
   - {fileID: 4342611333247923568}
   - {fileID: 3400731652659037627}
-  - {fileID: 7241507620553223216}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1805,24 +1805,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiAnim: {fileID: 0}
-  goblin: {fileID: 0}
-  slime: {fileID: 0}
-  pixie: {fileID: 0}
-  soul: {fileID: 0}
-  oak: {fileID: 0}
-  undead: {fileID: 0}
-  golem: {fileID: 0}
-  cupid: {fileID: 0}
-  gargoyle: {fileID: 0}
-  ogre: {fileID: 0}
-  devil: {fileID: 0}
-  angel: {fileID: 0}
   txtName: {fileID: 4680549512643887637}
   txtTier: {fileID: 6197811488185095847}
   txtWeekness: {fileID: 3285862546869600536}
   txtStrength: {fileID: 6253532636172723916}
   txtDesc: {fileID: 6368259384055269305}
-  image: {fileID: 0}
+  monsterImage: {fileID: 156520793643020001}
 --- !u!1 &8069354455953079902
 GameObject:
   m_ObjectHideFlags: 0

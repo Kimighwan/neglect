@@ -18,7 +18,7 @@ public class MonsterDescUI : BaseUI
     public TextMeshProUGUI txtWeekness;
     public TextMeshProUGUI txtStrength;
     public TextMeshProUGUI txtDesc;
-    public RawImage image;
+    public RawImage monsterImage;
 
     private void Awake()
     {
@@ -65,7 +65,7 @@ public class MonsterDescUI : BaseUI
 
     private void SetMonsterImage(int id)
     {
-        image.texture = Resources.Load($"Arts/Monster/{id}") as Texture2D;
+        monsterImage.texture = Resources.Load($"Arts/Monsters/{id}") as Texture2D;
 
         //string s = "";
         //switch (id)
