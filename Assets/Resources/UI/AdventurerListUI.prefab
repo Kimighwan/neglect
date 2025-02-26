@@ -374,7 +374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000054297372}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2192143433498797932
@@ -498,7 +498,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6898578379922190051}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9996236
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1800,6 +1800,7 @@ MonoBehaviour:
   infiniteScrollList: {fileID: 2598333605276653140}
   sortBtnText: {fileID: 1001998254581111569}
   orderBtnText: {fileID: 5123792053287365719}
+  adventureCount: {fileID: 636761800250077259}
 --- !u!1 &8191544764653507536
 GameObject:
   m_ObjectHideFlags: 0
