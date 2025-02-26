@@ -26,7 +26,7 @@ public class RoomUI : BaseUI
             title.text = "객실 개방";
             level.text = "";
             other.text = "모험가 수 +2\n하루 수익 +300";
-            neededGold.text = "필요 골드 1000";
+            neededGold.text = GameInfo.gameInfo.firstPurchase ?  "1번 무료!!!" : "필요 골드 1000";
         }
         else {
             title.text = "객실 레벨업";
@@ -53,6 +53,7 @@ public class RoomUI : BaseUI
 
     public void OnClickActivateRoom() {
         if (GameInfo.gameInfo.RoomActive(index)) {
+            if (GameInfo.gameInfo.firstPurchase) GameInfo.gameInfo.firstPurchase = false;
             AudioManager.Instance.PlaySFX(SFX.LevelUp);
             OnClickCloseButton();
         }

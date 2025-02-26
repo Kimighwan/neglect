@@ -17,7 +17,7 @@ public class ReportUI : BaseUI
         NextScore.text = "";
         DoFadeIn();
         Invoke("StartTyping", 0.5f);
-        AudioManager.Instance.PlayBGM(BGM.CoinDrop1);
+        AudioManager.Instance.PlayBGM(BGM.TypeWriter);
     }
     public void OnClickCloseBut()
     {
@@ -103,6 +103,7 @@ public class ReportUI : BaseUI
         }
 
         AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySFX(SFX.CoinDrop1);
         AudioManager.Instance.PlaySFX(SFX.CoinDrop2);
     }
 }

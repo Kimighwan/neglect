@@ -96,6 +96,7 @@ public class QuestDetailUI : BaseUI
         uiData.confirmType = ConfirmType.OK;
         uiData.descTxt = "아직 도감이 해금되지 않았습니다.";
         uiData.okBtnTxt = "확인";
+        AudioManager.Instance.PlaySFX(SFX.Denied);
         UIManager.Instance.OpenUI<ConfirmUI>(uiData);
         return;
     }

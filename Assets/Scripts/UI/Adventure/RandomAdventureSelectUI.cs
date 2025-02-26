@@ -53,6 +53,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
             uiData.confirmType = ConfirmType.OK;
             uiData.descTxt = "이미 영입된 모험가 입니다.";
             uiData.okBtnTxt = "확인";
+            AudioManager.Instance.PlaySFX(SFX.Denied);
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             needGoldText.text = "영입 완료";
             return;
@@ -64,6 +65,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
             uiData.confirmType = ConfirmType.OK;
             uiData.descTxt = "골드가 부족합니다.";
             uiData.okBtnTxt = "확인";
+            AudioManager.Instance.PlaySFX(SFX.Denied);
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }
@@ -75,6 +77,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
             uiData.confirmType = ConfirmType.OK;
             uiData.descTxt = "모험가 최대치";
             uiData.okBtnTxt = "확인";
+            AudioManager.Instance.PlaySFX(SFX.Denied);
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }
