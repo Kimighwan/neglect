@@ -7,10 +7,12 @@ public class RequestButton : MouseDrag
 {
     public override void OnPointerDown(PointerEventData eventData)
     {
+        backimage.SetActive(!backimage.activeSelf);
         OnClickBut();
     }
     public Transform cameraTransform; // 이동할 카메라
     public RectTransform requestBG;
+    public GameObject backimage;        // 검은색 뒷 배경
 
     private Vector3 originalCamPos; // 원래 위치
     private Vector3 targetCamPos; // 목표 위치
