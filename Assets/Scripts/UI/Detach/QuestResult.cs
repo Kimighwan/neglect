@@ -10,6 +10,7 @@ public class QuestResult : BaseUI
     public TextMeshProUGUI rewardTxt;
 
     public GameObject receiptBtn;
+    public GameObject diaOKBtn;     // 전멸시 사용할 버튼
 
     private int resultIndex;        // 파견창 인덱스
     private int result;             // 결과 / -1 : 전멸 / 0 : 일반 성공 / 1 : 대성공
@@ -19,6 +20,7 @@ public class QuestResult : BaseUI
     {
         reward = 0;
         receiptBtn.SetActive(false);
+        diaOKBtn.SetActive(false);
         StartCoroutine(UpdateResultCo());
     }
 
@@ -46,6 +48,16 @@ public class QuestResult : BaseUI
         // 골드 추가하고
         GameInfo.gameInfo.ChangeGold(reward);
 
+        // 각 파견창의 게이지 비활성화
+        QuestManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
+
+        // 모험가 다시 풀기
+
+        UIManager.Instance.CloseUI(this);
+    }
+
+    public void OnClickDieOKBtn()     // 전멸 확인 버튼
+    {
         // 각 파견창의 게이지 비활성화
         QuestManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
 
@@ -83,6 +95,7 @@ public class QuestResult : BaseUI
             AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 성공";
             receiptBtn.SetActive(true);
+            diaOKBtn.SetActive(false);
             SetMonsterPlayerPrefs();
 
             reward = QuestManager.Instance.questData[resultIndex].questReward;
@@ -94,6 +107,7 @@ public class QuestResult : BaseUI
             AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 대성공!!!";
             receiptBtn.SetActive(true);
+            diaOKBtn.SetActive(false);
             SetMonsterPlayerPrefs();
 
             reward = QuestManager.Instance.questData[resultIndex].questReward * 2;
@@ -105,6 +119,7 @@ public class QuestResult : BaseUI
             AudioManager.Instance.PlaySFX(SFX.QuestFail);
             txt.text = "전멸...";
             receiptBtn.SetActive(false);
+            diaOKBtn.SetActive(true);
 
             reward = 0;
 
