@@ -51,7 +51,7 @@ public class GameInfo : MonoBehaviour
     public int Gold { get { return gold; } set { gold = value; } }
     private int plusGold;
     public bool ChangeGold(int g) {
-        if (gold + g > 0) {
+        if (gold + g >= 0) {
             gold += g;
             return true;
         }

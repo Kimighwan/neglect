@@ -102,7 +102,7 @@ public class AdventurerUI : BaseUI
 
     public void OnClickAwakeBtn()
     {
-        if(GameInfo.gameInfo.Gold < 100)
+        if(!GameInfo.gameInfo.ChangeGold(-100))
         {
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK;

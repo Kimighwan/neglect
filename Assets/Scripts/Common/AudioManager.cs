@@ -7,6 +7,9 @@ public enum BGM
     Start,          // 타이틀(Start씬)
     Main6,          // 길드 내부1
     Main7,          // 길드 내부2
+    ScriptDefault,  // 일반 스크립트 상황
+    ScriptIntro,    // 0_1 스크립트
+    Script0_2,      // 0_2 스크립트
     CoinDrop1,      // 정산1
     COUNT           
 }

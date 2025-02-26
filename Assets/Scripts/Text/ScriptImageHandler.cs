@@ -13,6 +13,12 @@ public class ScriptImageHandler : MonoBehaviour
 
     public void SetCharacter(string name, string exp, string inout, string pos)
     {
+        LeftSpeaker.color = new Color(1f, 1f, 1f);
+        MiddleSpeaker.color = new Color(1f, 1f, 1f);
+        RightSpeaker.color = new Color(1f, 1f, 1f);
+        LeftSpeaker.rectTransform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+        MiddleSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        RightSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         string fileName = name + '_' + exp;
         // 캐시된 이미지가 있는지 확인
         if (!spriteCache.TryGetValue(fileName, out Sprite sprite))
@@ -43,6 +49,14 @@ public class ScriptImageHandler : MonoBehaviour
                 Debug.LogWarning($"[SetCharacter] {path} 경로에서 스프라이트를 찾을 수 없음!");
                 return;
             }
+        }
+        switch (fileName) {
+            case "0_1":
+                AudioManager.Instance.PlayBGM(BGM.ScriptIntro);
+                break;
+            case "0_2":
+                AudioManager.Instance.PlayBGM(BGM.Script0_2);
+                break;
         }
         BackGround.sprite = sprite;
     }
@@ -92,6 +106,7 @@ public class ScriptImageHandler : MonoBehaviour
             if (preName[2] == name) UnActiveImage(2);
             LeftSpeaker.sprite = sprite;
             preName[0] = name;
+            SelectSpeaker(0);
             break;
         case "middle":
             ActiveImage(1);
@@ -99,6 +114,7 @@ public class ScriptImageHandler : MonoBehaviour
             if (preName[2] == name) UnActiveImage(2);
             MiddleSpeaker.sprite = sprite;
             preName[1] = name;
+            SelectSpeaker(1);
             break;
         case "right":
             ActiveImage(2);
@@ -106,7 +122,49 @@ public class ScriptImageHandler : MonoBehaviour
             if (preName[1] == name) UnActiveImage(1);
             RightSpeaker.sprite = sprite;
             preName[2] = name;
+            SelectSpeaker(2);
             break;
+        }
+    }
+
+    private void SelectSpeaker(int i) {
+        switch (i) {
+            case 0:
+                LeftSpeaker.color = new Color(1f, 1f, 1f);
+                LeftSpeaker.rectTransform.localScale = new Vector3(-1.2f, 1.2f, 1.2f);
+                if (MiddleSpeaker.sprite != null) {
+                    MiddleSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    MiddleSpeaker.color = new Color(0.75f, 0.75f, 0.75f);
+                }
+                if (RightSpeaker.sprite != null) {
+                    RightSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    RightSpeaker.color = new Color(0.75f, 0.75f, 0.75f);
+                }
+                break;
+            case 1:
+                MiddleSpeaker.color = new Color(1f, 1f, 1f);
+                MiddleSpeaker.rectTransform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                if (LeftSpeaker.sprite != null) {
+                    LeftSpeaker.rectTransform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                    LeftSpeaker.color = new Color(0.75f, 0.75f, 0.75f);
+                }
+                if (RightSpeaker.sprite != null) {
+                    RightSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    RightSpeaker.color = new Color(0.75f, 0.75f, 0.75f);
+                }
+                break;
+            case 2:
+                RightSpeaker.color = new Color(1f, 1f, 1f);
+                RightSpeaker.rectTransform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                if (LeftSpeaker.sprite != null) {
+                    LeftSpeaker.rectTransform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                    LeftSpeaker.color = new Color(0.75f, 0.75f, 0.75f);
+                }
+                if (MiddleSpeaker.sprite != null) {
+                    MiddleSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    MiddleSpeaker.color = new Color(0.75f, 0.75f, 0.75f);
+                }
+                break;
         }
     }
 }

@@ -10,7 +10,7 @@ public class ScriptDialogHandler : MonoBehaviour
     private GameInfo info;
     private int scriptIndex = 0;
     private List<int> startScript = new List<int> { 100001, 100016, 100101, 100201, 100301 };
-    private List<int> endScript = new List<int> { 100015, 100032, 100120, 100219, 100315 };
+    private List<int> endScript = new List<int> { 100015, 100033, 100120, 100219, 100315 };
     private List<int> scriptStartDay = new List<int> { 1, 1, 5, 10, 15}; // 8시에
     private List<bool> illExist = new List<bool> { true, false, false, false, false };
 
