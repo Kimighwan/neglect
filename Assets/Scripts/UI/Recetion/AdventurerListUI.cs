@@ -291,11 +291,11 @@ public class AdventurerListUI : BaseUI
         {
             case AdventureOrderType.DOWN:
                 adventureOrderType = AdventureOrderType.UP;
-                orderBtnText.text = "UP";
+                orderBtnText.text = "DOWN";
                 break;
             case AdventureOrderType.UP:
                 adventureOrderType = AdventureOrderType.DOWN;
-                orderBtnText.text = "DOWN";
+                orderBtnText.text = "UP";
                 break;
             default:
                 break;
@@ -309,10 +309,10 @@ public class AdventurerListUI : BaseUI
         switch (adventureOrderType)
         {
             case AdventureOrderType.DOWN:
-                orderBtnText.text = "DOWN";
+                orderBtnText.text = "UP";
                 break;
             case AdventureOrderType.UP:
-                orderBtnText.text = "UP";
+                orderBtnText.text = "DOWN";
                 break;
             default:
                 break;
