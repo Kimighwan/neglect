@@ -99,6 +99,10 @@ public class DialogMode : MonoBehaviour
                 targetText.text = richText;
                 yield return new WaitForSeconds(typingSpeed);
             }
+
+            if (GameManager.gameManager.FastMode) {
+                typingSpeed = Mathf.Lerp(maxTypingSpeed, minTypingSpeed, Mathf.Clamp01(sentence.Length / 100f));
+            }
         }
     }
 }

@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         fastMode = !fastMode;
         if (fastMode) {
             info.fastButton.sprite = info.pauseAndGo[5];
-            info.gameSpeed = 20f;
+            info.gameSpeed = 15f;
             info.ChangeAniObjSpeed(10f);
             dialogMode.ChangeDialogSpeed(6f);
         }
