@@ -127,5 +127,6 @@ public class QuestResult : BaseUI
             }
         }
 
+        QuestManager.Instance.adventureDatas[resultIndex].Clear(); // 파견창에 맞는 모험가 데이터 삭제
     }
 }
