@@ -15,11 +15,13 @@ public class AdventureListSlotItem : InfiniteScrollItem
     public RawImage classImg;
     public RawImage typeImg;
     public RawImage rankImg;
+    public RawImage stateImg;
 
     public TextMeshProUGUI nameTxt;
     public TextMeshProUGUI positionTxt;
     public TextMeshProUGUI classTxt;
     public TextMeshProUGUI typeTxt;
+    public TextMeshProUGUI stateTxt;
 
     public GameObject exportGameObject;
 
@@ -27,11 +29,7 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
     // Export
     public TextMeshProUGUI curStateTxt;
-
-    private void OnEnable()
-    {
-        SetStateText();
-    }
+    public TextMeshProUGUI exportGold;
 
     private int adventureId;
     private string adventurePosition;
@@ -58,6 +56,18 @@ public class AdventureListSlotItem : InfiniteScrollItem
         positionTxt.text = adventurePosition;
         classTxt.text = adventureClass;
         typeTxt.text = adventureType;
+
+        if (PoolManager.Instance.usingAdventureList.Contains(adventureId))
+        {
+            stateTxt.text = "파견 중";
+            stateImg.texture = Resources.Load("Arts/Icon/arrived") as Texture2D;
+        }
+        else
+        {
+            stateTxt.text = "대기 중";
+            stateImg.texture = Resources.Load("Arts/Icon/waiting") as Texture2D;
+        }
+            
 
         // Postion Image
         if (adventurePosition == "전위")
@@ -96,11 +106,19 @@ public class AdventureListSlotItem : InfiniteScrollItem
             rankImg.texture = Resources.Load("Arts/Rank/RankDiamond") as Texture2D;
 
         m_name.text = adventureName;
+
+        SetStateText();
+
+        if (adventureTier == "브론즈") exportGold.text = "+G 40";
+        else if(adventureTier == "실버") exportGold.text = "+G 100";
+        else if (adventureTier == "골드") exportGold.text = "+G 200";
+        else if (adventureTier == "플래티넘") exportGold.text = "+G 400";
+        else if (adventureTier == "다이아") exportGold.text = "+G 1000";
     }
 
     private void SetStateText()
     {
-        if (PoolManager.Instance.usingAdventureList.Contains(UIManager.Instance.exportAdventureId))
+        if (PoolManager.Instance.usingAdventureList.Contains(adventureId))
         {
             curStateTxt.text = "파견 중";
         }

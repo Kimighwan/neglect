@@ -53,19 +53,25 @@ public class RandomAdventureSelectUI : MonoBehaviour
             return;
         }
 
+        // 모험가 더 이상 영입 불가능
+        if(CheckMaxAdventureCounts())
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "모험가 최대치";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
+
         // 골드 차감
+        GameInfo.gameInfo.ChangeGold(-needGold);
 
         if (CheckHaveAdventureID(adventureId))  // 선택된 모험가가 이미 있음
         {
             Debug.Log("해당 모험가를 이미 가지고 있음");
             return;
         }
-
-        //if (CheckRoom())
-        //{
-        //    Debug.Log("더이상 모험가 수용 불가능");
-        //    return;
-        //}
 
         string pre = PlayerPrefs.GetString("AdventureId");  // 저장된 모험가 ID 불러오기
 
@@ -263,7 +269,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
         return false;           // 해당 모험가가 없음
     }
     
-    private bool CheckRoom()    // 객실 수 및 레벨 확인하여 최대 모험가 수를 넘는지 체크
+    private bool CheckMaxAdventureCounts()    // 객실 수 및 레벨 확인하여 최대 모험가 수를 넘는지 체크
     {
         int tmpCount = 0;
         string adventrueHave = PlayerPrefs.GetString("AdventureId");

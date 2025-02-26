@@ -23,7 +23,12 @@ public class QuestListItemSlot : InfiniteScrollItem
 
         var rectTransform = GetComponent<RectTransform>();
 
-        rectTransform.sizeDelta = new Vector2(360f, 515f);
+        rectTransform.sizeDelta = new Vector2(300f, 500f);
+        rectTransform.localScale = new Vector3(0.87f, 0.87f, 0.87f);
+        rectTransform.anchoredPosition = new Vector3(960f, 0f, 0f);
+        rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, 290f);
+        rectTransform.offsetMin = new Vector2(rectTransform.offsetMin.x, 290f);
+        rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
         questData = scrollData as QuestData;
 

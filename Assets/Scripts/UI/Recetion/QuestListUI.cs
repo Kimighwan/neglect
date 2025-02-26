@@ -2,6 +2,7 @@ using Gpm.Ui;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public enum QuestSortType
@@ -21,6 +22,7 @@ public class QuestListUI : BaseUI
 
     public TextMeshProUGUI sortBtnText;
     public TextMeshProUGUI orderBtnText;
+    public TextMeshProUGUI countText;
 
 
     private QuestSortType questSortType = QuestSortType.Level;
@@ -42,13 +44,14 @@ public class QuestListUI : BaseUI
         rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
         rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
 
-        infiniteScrollList.layout.space = new Vector2(40f, 0f);
+        infiniteScrollList.layout.padding = new Vector2(16f, 700f);
     }
 
     private void OnEnable()
     {
         PoolManager.Instance.SetQuestListData();
         SetScroll();
+        SetCountText();
     }
 
     public void OnClickBackOfQuestList()    // 뒤로가기
@@ -156,5 +159,42 @@ public class QuestListUI : BaseUI
         }
 
         SortQuest();
+    }
+
+    private int CheckCurrentQuestCount()
+    {
+        int tmp = 0;
+
+        var a = PlayerPrefs.GetString("QuestId");
+        foreach(var item in a.Split(','))
+        {
+            if (item != "")
+                tmp++;
+        }
+
+        return tmp;
+    }
+
+    private int CheckMaxQuestCount()
+    {
+        int tmp = 0;
+
+        if (GameInfo.gameInfo.Level == 1)
+            tmp = 6;
+        else if (GameInfo.gameInfo.Level == 2)
+            tmp = 8;
+        else if (GameInfo.gameInfo.Level == 3)
+            tmp = 10;
+        else if (GameInfo.gameInfo.Level == 4)
+            tmp = 12;
+        else if (GameInfo.gameInfo.Level == 5)
+            tmp = 14;
+
+        return tmp;
+    }
+
+    private void SetCountText()
+    {
+        countText.text = CheckCurrentQuestCount().ToString() + "/" + CheckMaxQuestCount().ToString();
     }
 }
