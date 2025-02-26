@@ -25,6 +25,7 @@ public class QuestManager : SingletonBehaviour<QuestManager>
     public TextMeshProUGUI[] questTxt;
     public TextMeshProUGUI[] adventureTxt;
 
+    public GameObject[] gaugeObject;    // 각 파견창의 게이지 오브젝트
 
     const string ICON_PATH = "Arts/Icon";
 
