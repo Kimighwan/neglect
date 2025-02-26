@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        AudioManager.Instance.ChangeBGMVolume(1f);
         info = GameInfo.gameInfo;
         info.StartGameInfo();
         info.PrepareShowIll(2f, 0f, true);

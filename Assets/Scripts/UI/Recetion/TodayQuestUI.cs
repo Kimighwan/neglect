@@ -91,6 +91,7 @@ public class TodayQuestUI : BaseUI
             uiData.confirmType = ConfirmType.OK;
             uiData.descTxt = "골드가 부족합니다.";
             uiData.okBtnTxt = "확인";
+            AudioManager.Instance.PlaySFX(SFX.Denied);
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }

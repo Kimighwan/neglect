@@ -57,6 +57,7 @@ public class RandomQuestSelectUI : MonoBehaviour
             uiData.confirmType = ConfirmType.OK;
             uiData.descTxt = "의뢰 최대치";
             uiData.okBtnTxt = "확인";
+            AudioManager.Instance.PlaySFX(SFX.Denied);
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }

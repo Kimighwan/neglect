@@ -34,8 +34,8 @@ public class GameSettingUI : BaseUI
     void UpdateVolumes()
     {
         // 최종 볼륨은 마스터 볼륨과 개별 볼륨의 곱으로 계산
-        float finalBGMVolume = masterVolume.value * BGMVolume.value;
-        float finalSFXVolume = masterVolume.value * SFXVolume.value;
+        float finalBGMVolume = masterVolume.value * BGMVolume.value / 100.0f;
+        float finalSFXVolume = masterVolume.value * SFXVolume.value / 100.0f;
 
         master.text = ((int)masterVolume.value).ToString();
         bgm.text = ((int)BGMVolume.value).ToString();

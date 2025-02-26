@@ -14,10 +14,12 @@ public class GameInfo : MonoBehaviour
     public Image fadeInOut;
     public Image pauseButton;
     public Image fastButton;
+    public Button closeButton;
     public List<Sprite> pauseAndGo;
     public List<GameObject> AnimatedObj;
 
     public float gameSpeed = 1f;
+    private bool alarmOnce = false;
     private int playerScore;
     public int PlayerScore { get {return playerScore; } set {} }
 
@@ -39,10 +41,15 @@ public class GameInfo : MonoBehaviour
         if (timer >= 240f) {
             timer %= 240f;
             day += 1;
+            alarmOnce = false;
             gold += plusGold;
         }
         else if (timer >= 200f) {
             EndToday();
+        }
+        else if (!alarmOnce && timer >= 180f) {
+            AudioManager.Instance.PlaySFX(SFX.Alarm);
+            alarmOnce = true;
         }
     }
 
@@ -67,8 +74,9 @@ public class GameInfo : MonoBehaviour
     public float Timer { get { return timer; } set { timer = value; } }
     public void EndToday() // 하루 끝
     {
-        GameManager.gameManager.PauseGame();
+        if (!GameManager.gameManager.Pause) GameManager.gameManager.PauseGame();
         AudioManager.Instance.StopBGM();
+        ScriptDialogHandler.handler.dialog.KillDialog();
         UIManager.Instance.CloseAllOpenUI();    // 모든 UI 창 닫기
         fadeInOut.gameObject.SetActive(true);
         StartCoroutine(ComeNight(1.2f, 0f, 0f, 1f));
@@ -76,6 +84,10 @@ public class GameInfo : MonoBehaviour
 
     private IEnumerator ComeNight(float duration, float startDelay, float startAlpha, float endAlpha)
     {
+
+        closeButton.interactable = false;
+        pauseButton.gameObject.GetComponent<Button>().interactable = false;
+        fastButton.gameObject.GetComponent<Button>().interactable = false;
         playerScore += CalculateTodayScore();
         yield return StartCoroutine(FadeBlack(duration, startDelay, startAlpha, endAlpha)); // FadeIn이 끝날 때까지 대기
         UIManager.Instance.OnClickEndToday();
@@ -106,6 +118,12 @@ public class GameInfo : MonoBehaviour
         GameManager.gameManager.PauseGame();
         timer = 320f;
         StartCoroutine(FadeBlack(1.2f, 0f, 1f, 0f));
+        Invoke("ActiveDayButtons", 1.2f);
+    }
+    private void ActiveDayButtons() {
+        closeButton.interactable = true;
+        pauseButton.gameObject.GetComponent<Button>().interactable = true;
+        fastButton.gameObject.GetComponent<Button>().interactable = true;
     }
 
     public IEnumerator FadeBlackInOut(float duration, float startDelay) {
@@ -138,9 +156,11 @@ public class GameInfo : MonoBehaviour
                 UIManager.Instance.OpenSimpleInfoUI("객실 개방!");
                 return true;
             }
+            AudioManager.Instance.PlaySFX(SFX.Denied);
             UIManager.Instance.OpenSimpleInfoUI("골드가\n부족합니다!");
             return false;
         }
+        AudioManager.Instance.PlaySFX(SFX.Denied);
         UIManager.Instance.OpenSimpleInfoUI("객실 개방\n한도 초과!");
         return false;
     }
@@ -178,9 +198,11 @@ public class GameInfo : MonoBehaviour
                 UIManager.Instance.OpenSimpleInfoUI("객실 레벨업!");
                 return true;
             }
+            AudioManager.Instance.PlaySFX(SFX.Denied);
             UIManager.Instance.OpenSimpleInfoUI("골드가\n부족합니다!");
             return false;
         }
+        AudioManager.Instance.PlaySFX(SFX.Denied);
         UIManager.Instance.OpenSimpleInfoUI("최고 레벨\n객실입니다!");
         return false;
     }
@@ -206,26 +228,7 @@ public class GameInfo : MonoBehaviour
         plusGold = sum;
     }
     // 최대 모험가수 계산해줌
-    public int GetMaxAdventurerCounts() {
-        int sum = 0;
-        for (int i = 0; i < 4; i++) {
-            if (rooms[i].isActive) {
-                int l = rooms[i].level;
-                switch (l) {
-                    case 1:
-                        sum += 2;
-                        break;
-                    case 2:
-                        sum += 4;
-                        break;
-                    case 3:
-                        sum += 6;
-                        break;
-                }
-            }
-        }
-        return sum;
-    }
+    
 
     #endregion
 
@@ -245,6 +248,7 @@ public class GameInfo : MonoBehaviour
             else if (level == 3 && ChangeGold(-neededGold[2])) {}
             else if (level == 4 && ChangeGold(-neededGold[3])) {}
             else {
+                AudioManager.Instance.PlaySFX(SFX.Denied);
                 UIManager.Instance.OpenSimpleInfoUI("골드가 부족합니다!");
                 return false;
             }
@@ -252,6 +256,7 @@ public class GameInfo : MonoBehaviour
             gameInfo.Level++;
             return true;
         }
+        AudioManager.Instance.PlaySFX(SFX.Denied);
         UIManager.Instance.OpenSimpleInfoUI("최고 레벨 입니다!");
         return false;
     }
@@ -306,6 +311,28 @@ public class GameInfo : MonoBehaviour
         foreach (GameObject obj in AnimatedObj) {
             if (obj.GetComponent<Animator>() != null) obj.GetComponent<Animator>().speed = f;
         }
+    }
+
+    public int GetMaxAdventurerCounts() {
+        int sum = 0;
+        for (int i = 0; i < 4; i++) {
+            if (rooms[i].isActive) {
+                int l = rooms[i].level;
+                switch (l) {
+                    case 1:
+                        sum += 2;
+                        break;
+                    case 2:
+                        sum += 4;
+                        break;
+                    case 3:
+                        sum += 6;
+                        break;
+                }
+            }
+        }
+        sum += level * 5;
+        return sum;
     }
 
     #endregion

@@ -12,6 +12,7 @@ public class DialogMode : MonoBehaviour
     private float changeMinTypingSpeed = 0.05f;
     private float changeMaxTypingSpeed = 0.15f;
     private float changeHoldTime = 1.5f;
+    private bool killDialog = false;
 
     private Queue<ScriptData> scriptQueue = new Queue<ScriptData>();
     private bool isSpeakerA = true;
@@ -27,6 +28,7 @@ public class DialogMode : MonoBehaviour
 
     public void PrepareDialogText(int startId, int endId)
     {
+        killDialog = false;
         scriptQueue.Clear();
         for (int i = startId; i <= endId; i++)
         {
@@ -53,8 +55,12 @@ public class DialogMode : MonoBehaviour
             while (GameManager.gameManager.Pause) {
                 yield return null;
             }
+            if (killDialog) {
+                killDialog = false;
+                scriptQueue.Clear();
+                break;
+            }
         }
-        yield return new WaitForSeconds(0.5f);
 
         data.ActiveAllDialogObject(false, false);
     }
@@ -103,6 +109,13 @@ public class DialogMode : MonoBehaviour
             if (GameManager.gameManager.FastMode) {
                 typingSpeed = Mathf.Lerp(maxTypingSpeed, minTypingSpeed, Mathf.Clamp01(sentence.Length / 100f));
             }
+            if (killDialog) {
+                break;
+            }
         }
+    }
+
+    public void KillDialog() {
+        killDialog = true;
     }
 }
