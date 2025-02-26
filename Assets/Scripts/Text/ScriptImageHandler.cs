@@ -13,7 +13,10 @@ public class ScriptImageHandler : MonoBehaviour
 
     public void SetCharacter(string name, string exp, string inout, string pos)
     {
-        LeftSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        LeftSpeaker.color = new Color(1f, 1f, 1f);
+        MiddleSpeaker.color = new Color(1f, 1f, 1f);
+        RightSpeaker.color = new Color(1f, 1f, 1f);
+        LeftSpeaker.rectTransform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         MiddleSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         RightSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         string fileName = name + '_' + exp;
@@ -127,7 +130,8 @@ public class ScriptImageHandler : MonoBehaviour
     private void SelectSpeaker(int i) {
         switch (i) {
             case 0:
-                LeftSpeaker.rectTransform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                LeftSpeaker.color = new Color(1f, 1f, 1f);
+                LeftSpeaker.rectTransform.localScale = new Vector3(-1.2f, 1.2f, 1.2f);
                 if (MiddleSpeaker.sprite != null) {
                     MiddleSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     MiddleSpeaker.color = new Color(0.75f, 0.75f, 0.75f);
@@ -138,9 +142,10 @@ public class ScriptImageHandler : MonoBehaviour
                 }
                 break;
             case 1:
+                MiddleSpeaker.color = new Color(1f, 1f, 1f);
                 MiddleSpeaker.rectTransform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
                 if (LeftSpeaker.sprite != null) {
-                    LeftSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    LeftSpeaker.rectTransform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
                     LeftSpeaker.color = new Color(0.75f, 0.75f, 0.75f);
                 }
                 if (RightSpeaker.sprite != null) {
@@ -149,9 +154,10 @@ public class ScriptImageHandler : MonoBehaviour
                 }
                 break;
             case 2:
+                RightSpeaker.color = new Color(1f, 1f, 1f);
                 RightSpeaker.rectTransform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
                 if (LeftSpeaker.sprite != null) {
-                    LeftSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    LeftSpeaker.rectTransform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
                     LeftSpeaker.color = new Color(0.75f, 0.75f, 0.75f);
                 }
                 if (MiddleSpeaker.sprite != null) {
