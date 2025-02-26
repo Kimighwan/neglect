@@ -3225,8 +3225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46b27fdab9413744aa96f92111d5e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 519420032}
-  moveSpeed: 2
 --- !u!61 &388209362
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7463,7 +7461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &871973161
 MonoBehaviour:
   m_ObjectHideFlags: 0

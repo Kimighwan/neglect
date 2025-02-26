@@ -11,6 +11,10 @@ public class ReportUI : BaseUI
     public TextMeshProUGUI NextScore;
 
     private void OnEnable() {
+        day.text = "";
+        quest.text = "";
+        NowScore.text = "";
+        NextScore.text = "";
         DoFadeIn();
         Invoke("StartTyping", 0.5f);
         AudioManager.Instance.PlayBGM(BGM.CoinDrop1);
