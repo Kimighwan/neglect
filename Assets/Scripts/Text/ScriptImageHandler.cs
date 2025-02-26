@@ -44,6 +44,15 @@ public class ScriptImageHandler : MonoBehaviour
                 return;
             }
         }
+        switch (fileName) {
+            case "0_1":
+                AudioManager.Instance.PlayBGM(BGM.ScriptIntro);
+                break;
+            case "0_2":
+                AudioManager.Instance.PlayBGM(BGM.Script0_2);
+                AudioManager.Instance.ChangeBGMVolume(6f);
+                break;
+        }
         BackGround.sprite = sprite;
     }
     public void EndTheScripts() {
@@ -54,6 +63,8 @@ public class ScriptImageHandler : MonoBehaviour
         LeftSpeaker.gameObject.SetActive(false);
         MiddleSpeaker.gameObject.SetActive(false);
         RightSpeaker.gameObject.SetActive(false);
+        AudioManager.Instance.PlayBGM(BGM.Main6);
+        AudioManager.Instance.ChangeBGMVolume(10f);
     }
 
     private void ActiveImage(int pos) {
