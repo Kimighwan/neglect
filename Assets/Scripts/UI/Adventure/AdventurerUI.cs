@@ -112,7 +112,9 @@ public class AdventurerUI : BaseUI
             return;
         }
 
-        // 골드 지불하며 모험가 리스트 초기화
+        // 골드 감소
+        GameInfo.gameInfo.ChangeGold(-100);
+
         RemoveList();
         SetAdventureList();
     }
