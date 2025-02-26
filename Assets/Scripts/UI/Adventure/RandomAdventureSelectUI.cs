@@ -65,6 +65,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
         }
 
         // 골드 차감
+        GameInfo.gameInfo.ChangeGold(-needGold);
 
         if (CheckHaveAdventureID(adventureId))  // 선택된 모험가가 이미 있음
         {
