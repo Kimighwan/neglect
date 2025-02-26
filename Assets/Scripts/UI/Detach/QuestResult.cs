@@ -77,6 +77,7 @@ public class QuestResult : BaseUI
         
         if (QuestManager.Instance.resultList[resultIndex] == 0)
         {
+            AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 성공";
             receiptBtn.SetActive(true);
             SetMonsterPlayerPrefs();
@@ -87,6 +88,7 @@ public class QuestResult : BaseUI
         }
         else if(QuestManager.Instance.resultList[resultIndex] == 1)
         {
+            AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 대성공!!!";
             receiptBtn.SetActive(true);
             SetMonsterPlayerPrefs();
@@ -97,6 +99,7 @@ public class QuestResult : BaseUI
         }
         else if(QuestManager.Instance.resultList[resultIndex] == -1)
         {
+            AudioManager.Instance.PlaySFX(SFX.QuestFail);
             txt.text = "전멸...";
             receiptBtn.SetActive(false);
 

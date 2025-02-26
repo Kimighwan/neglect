@@ -47,6 +47,7 @@ public class ScriptMode : MonoBehaviour
             }
         }
         illExist = b;
+        if (!b) AudioManager.Instance.PlayBGM(BGM.ScriptDefault); 
         ActiveObjects(true);
     }
 
@@ -60,7 +61,9 @@ public class ScriptMode : MonoBehaviour
                 StopCoroutine(typingCoroutine);
             }
             ScriptData scriptData = scriptList[currentLine];
-            if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos);
+            if (scriptData.scriptExp != "") {
+                ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos);
+            }
             else if (scriptData.scriptIll != "") ShowIllImage(scriptData.scriptIll);
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
@@ -132,5 +135,6 @@ public class ScriptMode : MonoBehaviour
         this.GetComponent<ScriptImageHandler>().EndTheScripts();
         currentLine = 0;
         isScriptMode = false;
+        AudioManager.Instance.PlayBGM(BGM.Main6);
     }
 }

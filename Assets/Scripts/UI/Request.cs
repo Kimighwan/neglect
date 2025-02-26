@@ -13,7 +13,6 @@ public class Request : MonoBehaviour
     private List<Button> awakes = new List<Button>();
 
     private List<bool> isActivated = new List<bool>{ true, true, false, false, false };
-    private List<bool> isAllocated = new List<bool>{ false, false, false, false, false };
     private void Start() {
         PopulateLists();
         Initiate();
@@ -71,28 +70,20 @@ public class Request : MonoBehaviour
                     quests[i].interactable = true;
                     adventures[i].interactable = true;
                     awakes[i].interactable = true;
-                    states[i].text = "";
+                    questStarts[i].interactable = true;
                     GameInfo.gameInfo.Requests++;
                     break;
                 }
             }
         }
     }
-    public void SetState() { // 모든 버튼의 상태를 정하는 메소드로 할당이 다 되면 호출, 초기화 시 호출
+    public void SetState() { // 초기화 시 호출
         for (int i = 0; i < 5; i++) {
             if (!isActivated[i]) {
                 quests[i].interactable = false;
                 adventures[i].interactable = false;
                 questStarts[i].interactable = false;
                 awakes[i].interactable = false;
-                states[i].text = "길드 레벨 ??에 개방";
-            }
-            else {
-                states[i].text = "";
-                if (!isAllocated[i]) {
-                    questStarts[i].interactable = false;
-                }
-                else questStarts[i].interactable = true;
             }
         }
     }
