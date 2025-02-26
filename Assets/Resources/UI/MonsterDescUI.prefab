@@ -1056,7 +1056,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -3612615526272147720}
-        m_TargetAssemblyTypeName: MonsterUI, Assembly-CSharp
+        m_TargetAssemblyTypeName: MonsterDescUI, Assembly-CSharp
         m_MethodName: OnClickSystemBtn
         m_Mode: 1
         m_Arguments:

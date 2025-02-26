@@ -66,53 +66,6 @@ public class MonsterDescUI : BaseUI
     private void SetMonsterImage(int id)
     {
         monsterImage.texture = Resources.Load($"Arts/Monsters/{id}") as Texture2D;
-
-        //string s = "";
-        //switch (id)
-        //{
-        //    case 110011:
-        //        s = "goblin";
-        //        break;
-        //    case 110012:
-        //        s = "slime";
-        //        break;
-        //    case 110021:
-        //        s = "fici";
-        //        break;
-        //    case 110022:
-        //        s = "spirit";
-        //        break;
-        //    case 110031:
-        //        s = "oak";
-        //        break;
-        //    case 110032:
-        //        s = "undead";
-        //        break;
-        //    case 110033:
-        //        s = "golem";
-        //        break;
-        //    case 110041:
-        //        s = "cupid";
-        //        break;
-        //    case 110042:
-        //        s = "gagoil";
-        //        break;
-        //    case 110043:
-        //        s = "dyurahan";
-        //        break;
-        //    case 110051:
-        //        s = "ouga";
-        //        break;
-        //    case 110052:
-        //        s = "devil";
-        //        break;
-        //    case 110053:
-        //        s = "angel";
-        //        break;
-        //}
-
-        //if (s != "") image.sprite = Resources.Load<Sprite>($"Arts/Monsters/{s}");
-        //else image.sprite = null;
     }
 
 
@@ -120,5 +73,13 @@ public class MonsterDescUI : BaseUI
     {
         AudioManager.Instance.PlaySFX(SFX.CloseBook);
         base.OnClickCloseButton();
+    }
+
+    public void OnClickSystemBtn()
+    {
+        var systemUI = new BaseUIData();
+        AudioManager.Instance.PlaySFX(SFX.OpenBook);
+        CloseUI();
+        UIManager.Instance.OpenUI<SystemUI>(systemUI);
     }
 }
