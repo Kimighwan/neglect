@@ -41,10 +41,13 @@ public class QuestResult : BaseUI
         //QuestManager.Instance.Calculation(resultIndex)????????????????
     }
 
-    public void OnClickReceiptBtn()
+    public void OnClickReceiptBtn()     // 파견 결과에 따른 골드 받기 버튼
     {
         // 골드 추가하고
         GameInfo.gameInfo.ChangeGold(reward);
+
+        // 각 파견창의 게이지 비활성화
+        QuestManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
 
         // 모험가 다시 풀기
 

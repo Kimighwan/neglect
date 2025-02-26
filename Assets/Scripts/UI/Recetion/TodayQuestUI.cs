@@ -95,7 +95,9 @@ public class TodayQuestUI : BaseUI
             return;
         }
 
-        // 골드 지불하며 의뢰 리스트 초기화
+        // 골드 감소
+        GameInfo.gameInfo.ChangeGold(-100);
+
         RemoveList();
         SetQuestList();
     }

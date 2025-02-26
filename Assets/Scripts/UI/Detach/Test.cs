@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,60 @@ public class Test : MonoBehaviour
     public GameObject image;
     public GameObject resultBtn;
 
+    public GameObject gaugeObject;
+    public RawImage gaugeImage;
+
+    private int startDay;
+    private int endDay;
+    private int totalDay;
+
+    private bool questStart;        // 파견 시작 : true
+
+    private void Update()
+    {
+        if (questStart)
+        {
+            gaugeImage.texture = Resources.Load("Arts/Guage/Empty") as Texture2D;   // 빈칸
+
+            
+            if(totalDay == 1)           // 하루 짜리 의뢰
+            {
+                if (GameInfo.gameInfo.Day == endDay)    // 꽉참
+                {
+                    gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
+                    questStart = false;
+                }
+            }
+            else if (totalDay == 2)     // 이틀 짜리 의뢰
+            {
+                if (GameInfo.gameInfo.Day == startDay + 1)    // OneOfTwo
+                {
+                    gaugeImage.texture = Resources.Load("Arts/Guage/OneOfTwo") as Texture2D;
+                }
+                else if (GameInfo.gameInfo.Day == endDay)    // 꽉참
+                {
+                    gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
+                    questStart = false;
+                }
+            }
+            else if (totalDay == 3)     // 삼일 짜리 의뢰
+            {
+                if (GameInfo.gameInfo.Day == startDay + 1)    // TwoOfTree
+                {
+                    gaugeImage.texture = Resources.Load("Arts/Guage/TwoOfTree") as Texture2D;
+                }
+                else if (GameInfo.gameInfo.Day == startDay + 2)    // OneOfThree
+                {
+                    gaugeImage.texture = Resources.Load("Arts/Guage/OneOfThree") as Texture2D;
+                }
+                else if (GameInfo.gameInfo.Day == endDay)    // 꽉참
+                {
+                    gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
+                    questStart = false;
+                }
+            }
+        }
+    }
 
     public void OnClickQuestTestBtn(int index)
     {
@@ -42,6 +97,17 @@ public class Test : MonoBehaviour
         QuestManager.Instance.OnClickQusetStart(index);
         image.SetActive(true);
         StartCoroutine(testt());
+
+        questStart = true;
+
+        startDay = GameInfo.gameInfo.Day;
+        endDay = startDay + QuestManager.Instance.questData[index].questTime; // 파견 결과 나오는 날...
+        totalDay = QuestManager.Instance.questData[index].questTime; 
+        
+        if (totalDay != 0)   // 스토리 의뢰가 아니면 게이지 이미지 활성화
+        {
+            gaugeObject.SetActive(true);
+        }
     }
 
     private IEnumerator testt()

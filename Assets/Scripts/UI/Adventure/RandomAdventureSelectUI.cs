@@ -68,16 +68,16 @@ public class RandomAdventureSelectUI : MonoBehaviour
             return;
         }
 
-        // 모험가 더 이상 영입 불가능
-        if(CheckMaxAdventureCounts())
-        {
-            var uiData = new ConfirmUIData();
-            uiData.confirmType = ConfirmType.OK;
-            uiData.descTxt = "모험가 최대치";
-            uiData.okBtnTxt = "확인";
-            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-            return;
-        }
+        //// 모험가 더 이상 영입 불가능
+        //if(CheckMaxAdventureCounts())
+        //{
+        //    var uiData = new ConfirmUIData();
+        //    uiData.confirmType = ConfirmType.OK;
+        //    uiData.descTxt = "모험가 최대치";
+        //    uiData.okBtnTxt = "확인";
+        //    UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+        //    return;
+        //}
 
         // 골드 차감
         GameInfo.gameInfo.ChangeGold(-needGold);
