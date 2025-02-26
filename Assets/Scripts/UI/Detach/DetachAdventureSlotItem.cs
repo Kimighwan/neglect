@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DetachAdventureSlotItem : InfiniteScrollItem
 {
     public TextMeshProUGUI txtName;
-    public TextMeshProUGUI txtPosition;
-    public TextMeshProUGUI txtClass;
-    public TextMeshProUGUI txtType;
+
+    public RawImage rankImg;
+    public RawImage positionImg;
+    public RawImage classImg;
+    public RawImage typeImg;
 
     public GameObject checkImage;
 
@@ -38,9 +41,42 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
         var adventureTier = adventureData.adventureTier;
 
         txtName.text = adventureName;
-        txtPosition.text = adventurePosition;
-        txtClass.text = adventureClass;
-        txtType.text = adventureType;
+
+        // Postion Image
+        if (adventurePosition == "전위")
+            positionImg.texture = Resources.Load("Arts/Icon/Pos/FrontIcon") as Texture2D;
+        else if (adventurePosition == "중위")
+            positionImg.texture = Resources.Load("Arts/Icon/Pos/MiddleIcon") as Texture2D;
+        else
+            positionImg.texture = Resources.Load("Arts/Icon/Pos/BackIcon") as Texture2D;
+
+        // Class Image
+        if (adventureClass == "공격")
+            classImg.texture = Resources.Load("Arts/Icon/Class/AttackIcon") as Texture2D;
+        else if (adventurePosition == "방어")
+            classImg.texture = Resources.Load("Arts/Icon/Class/DefenceIcon") as Texture2D;
+        else
+            classImg.texture = Resources.Load("Arts/Icon/Class/SupportIcon") as Texture2D;
+
+        // Type Image
+        if (adventureType == "물리")
+            typeImg.texture = Resources.Load("Arts/Icon/Type/PhysicIcon") as Texture2D;
+        else if (adventureType == "마법")
+            typeImg.texture = Resources.Load("Arts/Icon/Type/MagicIcon") as Texture2D;
+        else
+            typeImg.texture = Resources.Load("Arts/Icon/Type/HolyIcon") as Texture2D;
+
+        // Rank Image
+        if (adventureTier == "브론즈")
+            rankImg.texture = Resources.Load("Arts/Rank/RankBronze") as Texture2D;
+        else if (adventureTier == "실버")
+            rankImg.texture = Resources.Load("Arts/Rank/RankSilver") as Texture2D;
+        else if (adventureTier == "골드")
+            rankImg.texture = Resources.Load("Arts/Rank/RankGold") as Texture2D;
+        else if (adventureTier == "플래티넘")
+            rankImg.texture = Resources.Load("Arts/Rank/RankPlatinum") as Texture2D;
+        else
+            rankImg.texture = Resources.Load("Arts/Rank/RankDiamond") as Texture2D;
     }
 
     private void Update()
