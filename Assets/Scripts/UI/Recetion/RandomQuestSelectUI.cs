@@ -107,6 +107,9 @@ public class RandomQuestSelectUI : MonoBehaviour
             rankImage.texture = Resources.Load("Arts/QuestRank/platinum_quest") as Texture2D;
         else if (questLevel == "다이아")
             rankImage.texture = Resources.Load("Arts/QuestRank/diamond_quest") as Texture2D;
+
+        if ((questId / 100) % 10 == 8)
+            rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
     }
 
     private int RandomIndexMake()   // 무작위 숫자
@@ -118,7 +121,7 @@ public class RandomQuestSelectUI : MonoBehaviour
         int randomIndexE = UnityEngine.Random.Range(38, 41);    // 다이아   3개
 
         int resultValue = UnityEngine.Random.Range(1, 101);
-
+        Debug.Log(resultValue);
         int[] probability = new int[5];
 
         switch (GameInfo.gameInfo.Level)
@@ -151,6 +154,8 @@ public class RandomQuestSelectUI : MonoBehaviour
                 break;
             }
         }
+
+        Debug.Log($"j : {j}");
 
         switch (j)
         {
@@ -200,7 +205,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                 }
             }
             // 길드레벨 4, 5
-            else
+            else if(GameInfo.gameInfo.Level == 4 && GameInfo.gameInfo.Level == 5)
             {
                 if (j == 1) // 실버 의뢰 부족
                 {
