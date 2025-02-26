@@ -121,7 +121,7 @@ public class RandomQuestSelectUI : MonoBehaviour
         int randomIndexE = UnityEngine.Random.Range(38, 41);    // 다이아   3개
 
         int resultValue = UnityEngine.Random.Range(1, 101);
-
+        Debug.Log(resultValue);
         int[] probability = new int[5];
 
         switch (GameInfo.gameInfo.Level)
@@ -154,6 +154,8 @@ public class RandomQuestSelectUI : MonoBehaviour
                 break;
             }
         }
+
+        Debug.Log($"j : {j}");
 
         switch (j)
         {
@@ -203,7 +205,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                 }
             }
             // 길드레벨 4, 5
-            else
+            else if(GameInfo.gameInfo.Level == 4 && GameInfo.gameInfo.Level == 5)
             {
                 if (j == 1) // 실버 의뢰 부족
                 {
