@@ -73,10 +73,8 @@ public class RandomQuestSelectUI : MonoBehaviour
             PlayerPrefs.SetString("QuestId", pre + "," + questId.ToString());
         }
 
-        // 골드 차감
 
-
-        btnTxt.text = "영입 완료";
+        btnTxt.text = "선택 완료";
         btn.interactable = false;
     }
 
