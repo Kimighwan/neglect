@@ -1628,7 +1628,6 @@ GameObject:
   - component: {fileID: 233908613}
   - component: {fileID: 233908612}
   - component: {fileID: 233908611}
-  - component: {fileID: 233908614}
   m_Layer: 5
   m_Name: DayEnd
   m_TagString: Untagged
@@ -1674,7 +1673,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.49803925, g: 0.49803925, b: 0.9960785, a: 1}
@@ -1684,8 +1683,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -299226627, guid: 83b4e77c34163dc488d3facf1f4f7bbf, type: 3}
+    m_PressedSprite: {fileID: -1154955636, guid: 83b4e77c34163dc488d3facf1f4f7bbf, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1749,21 +1748,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233908609}
   m_CullTransparentMesh: 1
---- !u!114 &233908614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 233908609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73db02b4b37f7874494f0fe6a006e8e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultImg: {fileID: -1007534473, guid: 83b4e77c34163dc488d3facf1f4f7bbf, type: 3}
-  onImg: {fileID: -299226627, guid: 83b4e77c34163dc488d3facf1f4f7bbf, type: 3}
-  pressedImg: {fileID: -1154955636, guid: 83b4e77c34163dc488d3facf1f4f7bbf, type: 3}
 --- !u!1 &252030108
 GameObject:
   m_ObjectHideFlags: 0
@@ -11410,6 +11394,7 @@ MonoBehaviour:
   fadeInOut: {fileID: 1804802119}
   pauseButton: {fileID: 1575445969}
   fastButton: {fileID: 562882972}
+  closeButton: {fileID: 233908611}
   pauseAndGo:
   - {fileID: 428047731, guid: 75651324e4be48c4e8f624751d748536, type: 3}
   - {fileID: -585948888, guid: 4f86dfc821787e9468fd0375e50c77c7, type: 3}

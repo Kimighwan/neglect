@@ -10,12 +10,14 @@ public enum BGM
     ScriptDefault,  // 일반 스크립트 상황
     ScriptIntro,    // 0_1 스크립트
     Script0_2,      // 0_2 스크립트
-    CoinDrop1,      // 정산1
+    TypeWriter,     // 타자기 소리
     COUNT           
 }
 
 public enum SFX
 {
+    GameStart,      // 게임 시작 버튼
+    Denied,         // 골드 부족 같은 거 삐삑!
     LevelUp,        // 레벨 업
     Mark,           // 느낌표 활성화
     QuestFail,      // 의뢰 실패(전멸)
@@ -29,7 +31,9 @@ public enum SFX
     BookFlip7,      // 페이지 넘기는 소리4
     Click1,         // 클릭음1
     Click2,         // 클릭음2
+    CoinDrop1,      // 정산1
     CoinDrop2,      // 정산2
+    Alarm,          // 작은 알람소리
     COUNT
 }
 
@@ -172,15 +176,13 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         }
     }
 
-    public void ChangeBGMVolume(float i) { // 소리 조절 슬라이더 1~10
-        float f = i / 10;
+    public void ChangeBGMVolume(float f) { // BGM 소리 조절
         foreach (var audioSourceItem in m_BGMPlayer)
         {
             audioSourceItem.Value.volume = f;
         }
     }
-    public void ChangeSFXVolume(float i) { // 소리 조절 슬라이더 1~10
-        float f = i / 10;
+    public void ChangeSFXVolume(float f) { // SFX 소리 조절
         foreach (var audioSourceItem in m_SFXPlayer)
         {
             audioSourceItem.Value.volume = f;
