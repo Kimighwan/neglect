@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StateSceneManager : MonoBehaviour
 {
+    public Button GameEnd;
     void Start()
     {
         if (!PlayerPrefs.HasKey("고블린"))
@@ -45,6 +47,7 @@ public class StateSceneManager : MonoBehaviour
     {
         //PlayerPrefs.DeleteAll();
         Invoke("PlayTitleBGM", 0.1f);
+        if (Application.platform == RuntimePlatform.WebGLPlayer) GameEnd.interactable = false;
     }
 
     void Update()
