@@ -155,6 +155,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 questReward = Convert.ToInt32(data["reward"]),
                 questTime = Convert.ToInt32(data["day"]),
                 questIndex = Convert.ToInt32(data["index"]),
+                questScript = data["script"].ToString(),
             };
 
             QuestDataTable.Add(questData);
@@ -255,6 +256,7 @@ public class QuestData : InfiniteScrollData // BaseUIData
     public string questName;
     public string questLevel;
     public string questMonster;
+    public string questScript;
 
     public static int questSelectedId;
 }
