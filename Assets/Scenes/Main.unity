@@ -684,7 +684,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.972549, g: 0.9098039, b: 0.8156863, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -789,7 +789,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -799,8 +799,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: bd27a744c7ad9ac47b7b650b5f09ebe1, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: a79fadc444133d549873f0e0d2b8f185, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -846,8 +846,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 01c8fb3e5184e7a43a236c5008cd1f1a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questManagers: {fileID: 0}
+  questManagers: {fileID: 172250426}
   image: {fileID: 961166168}
   resultBtn: {fileID: 92556183}
   gaugeObject: {fileID: 931915968}
@@ -2742,7 +2742,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2752,8 +2752,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: bd27a744c7ad9ac47b7b650b5f09ebe1, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: a79fadc444133d549873f0e0d2b8f185, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -2799,8 +2799,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 01c8fb3e5184e7a43a236c5008cd1f1a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2914,7 +2914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questManagers: {fileID: 0}
+  questManagers: {fileID: 370210824}
   image: {fileID: 1736706903}
   resultBtn: {fileID: 561072339}
   gaugeObject: {fileID: 791828237}
@@ -4792,7 +4792,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4802,8 +4802,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: bd27a744c7ad9ac47b7b650b5f09ebe1, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: a79fadc444133d549873f0e0d2b8f185, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -4849,8 +4849,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 01c8fb3e5184e7a43a236c5008cd1f1a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5623,7 +5623,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5633,8 +5633,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: bd27a744c7ad9ac47b7b650b5f09ebe1, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: a79fadc444133d549873f0e0d2b8f185, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -5680,8 +5680,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 01c8fb3e5184e7a43a236c5008cd1f1a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5795,7 +5795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questManagers: {fileID: 0}
+  questManagers: {fileID: 675045287}
   image: {fileID: 49589810}
   resultBtn: {fileID: 1345461047}
   gaugeObject: {fileID: 475992280}
@@ -7349,7 +7349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questManagers: {fileID: 0}
+  questManagers: {fileID: 819719518}
   image: {fileID: 775801805}
   resultBtn: {fileID: 638633038}
   gaugeObject: {fileID: 1151064678}
@@ -11914,7 +11914,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -11924,8 +11924,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: bd27a744c7ad9ac47b7b650b5f09ebe1, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: a79fadc444133d549873f0e0d2b8f185, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -11971,8 +11971,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 01c8fb3e5184e7a43a236c5008cd1f1a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -15881,7 +15881,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.972549, g: 0.9098039, b: 0.8156863, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -16174,7 +16174,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.972549, g: 0.9098039, b: 0.8156863, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17171,7 +17171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9127e0e393d2d4ebf801586d651ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questManagers: {fileID: 0}
+  questManagers: {fileID: 1918976136}
   image: {fileID: 847892234}
   resultBtn: {fileID: 368747619}
   gaugeObject: {fileID: 901699175}
@@ -17708,7 +17708,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.972549, g: 0.9098039, b: 0.8156863, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18568,7 +18568,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.972549, g: 0.9098039, b: 0.8156863, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

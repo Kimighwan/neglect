@@ -43,7 +43,7 @@ public class StateSceneManager : MonoBehaviour
     }
     void OnEnable()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         Invoke("PlayTitleBGM", 0.1f);
     }
 
