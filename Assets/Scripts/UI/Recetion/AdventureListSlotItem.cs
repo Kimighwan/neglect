@@ -131,16 +131,26 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
     public void OnClickExportBtn()
     {
-        if (adventureTier == "브론즈")
+        if (adventureTier == "브론즈"){
+            PoolManager.Instance.bronzAd--;
             GameInfo.gameInfo.ChangeGold(40);
-        else if (adventureTier == "실버")
+        }
+        else if (adventureTier == "실버"){
+            PoolManager.Instance.silverAd--;
             GameInfo.gameInfo.ChangeGold(100);
-        else if (adventureTier == "골드")
+        }
+        else if (adventureTier == "골드"){
+            PoolManager.Instance.goldAd--;
             GameInfo.gameInfo.ChangeGold(200);
-        else if (adventureTier == "플래티넘")
+        }
+        else if (adventureTier == "플래티넘"){
             GameInfo.gameInfo.ChangeGold(400);
-        else
+            PoolManager.Instance.platinumAd--;
+        }
+        else{
             GameInfo.gameInfo.ChangeGold(1000);
+            PoolManager.Instance.diaAd--;
+        }
 
         // PlayerPrefs에 해당 모험가 제거
         DeleteAdventure();
