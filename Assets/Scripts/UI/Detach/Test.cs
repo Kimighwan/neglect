@@ -28,8 +28,17 @@ public class Test : MonoBehaviour
         {
             gaugeImage.texture = Resources.Load("Arts/Guage/Empty") as Texture2D;   // 빈칸
 
-            
-            if(totalDay == 1)           // 하루 짜리 의뢰
+            if(totalDay == 0)
+            {
+                if (GameInfo.gameInfo.Day == endDay)    // 꽉참
+                {
+                    gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
+                    questStart = false;
+                    image.SetActive(false);
+                    resultBtn.SetActive(true);
+                }
+            }
+            else if(totalDay == 1)           // 하루 짜리 의뢰
             {
                 if (GameInfo.gameInfo.Day == endDay)    // 꽉참
                 {
