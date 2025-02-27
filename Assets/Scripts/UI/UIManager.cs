@@ -59,6 +59,7 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     public void OpenUI<T>(BaseUIData uiData)
     {
+        GameInfo.gameInfo.LockRoomClick();
         System.Type uiType = typeof(T);
 
         bool isAlredyPone = false;
@@ -102,6 +103,11 @@ public class UIManager : SingletonBehaviour<UIManager>
         {
             frontUI = lastChild.gameObject.GetComponent<BaseUI>();
         }
+
+        if (!ExistOpenUI()) Invoke("UnLockRoomClick", 0.01f);
+    }
+    private void UnLockRoomClick() { // 객실 클릭 활성화
+        GameInfo.gameInfo.UnLockRoomClick();
     }
 
     public BaseUI GetActiveUI<T>() // 원하는 ui가 열렸으면 가져오고 아니면 null 반환

@@ -15,12 +15,15 @@ public class ReportUI : BaseUI
     private float shadowDuration = 0.3f;
     private Vector3 startScale = new Vector3(0.1f, 0.1f, 0.1f);
     private Vector3 endScale = Vector3.one;
+    private Vector2 tmpV;
+    private Quaternion tmpQ;
     private Color startColor = new Color(0f, 0f, 0f, 0f);
     private Color endColor = new Color(0f, 0f, 0f, 0.9f);
     private bool stampOn = false;
     private bool inputLock = false;
 
     private void OnEnable() {
+        RandomizeStamp();
         inputLock = true;
         day.text = "";
         quest.text = "";
@@ -160,5 +163,27 @@ public class ReportUI : BaseUI
             stampOn = true;
             inputLock = false;
         }
+    }
+
+    private void RandomizeStamp()
+    {
+        if (Stamp == null)
+            return;
+        RectTransform stampRect = Stamp.GetComponent<RectTransform>();
+        float randomX = Random.Range(-5f, 5f);
+        float randomY = Random.Range(-5f, 5f);
+
+        tmpV = stampRect.anchoredPosition;
+        stampRect.anchoredPosition += new Vector2(randomX, randomY);
+        
+        float randomAngle = Random.Range(-60f, 60f);
+        tmpQ = stampRect.localRotation;
+        stampRect.localRotation = Quaternion.Euler(0f, 0f, randomAngle);
+    }
+
+    private void BackToOriginal() {
+        RectTransform stampRect = Stamp.GetComponent<RectTransform>();
+        stampRect.anchoredPosition = tmpV;
+        stampRect.localRotation = tmpQ;
     }
 }

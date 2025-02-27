@@ -20,6 +20,7 @@ public class Room : MonoBehaviour
     }
     void OnMouseOver()
     {
+        if (UIManager.Instance.ExistOpenUI() || GameInfo.gameInfo.CheckInRequest()) return;
         whiteLine.SetActive(true);
     }
     void OnMouseDown() {
@@ -35,5 +36,9 @@ public class Room : MonoBehaviour
     void OnMouseExit()
     {
         whiteLine.SetActive(false);
+    }
+
+    public void ActiveBoxCollider(bool b) {
+        this.GetComponent<BoxCollider2D>().enabled = b;
     }
 }

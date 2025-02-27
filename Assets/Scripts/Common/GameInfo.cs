@@ -17,7 +17,6 @@ public class GameInfo : MonoBehaviour
     public Button closeButton;
     public List<Sprite> pauseAndGo;
     public List<GameObject> AnimatedObj;
-    public RoomUI roomUI;
 
     public float gameSpeed = 1f;
     private bool alarmOnce = false;
@@ -135,10 +134,22 @@ public class GameInfo : MonoBehaviour
     #endregion
 
     #region RoomInfo
+
+    public RoomUI roomUI;
     private List<Room> rooms = new List<Room> { null, null, null, null };
     public bool roomTutorial = false;
     public bool firstPurchase = true;
 
+    public void LockRoomClick() {
+        foreach (Room room in rooms) {
+            room.ActiveBoxCollider(false);
+        }
+    }
+    public void UnLockRoomClick() {
+        foreach (Room room in rooms) {
+            room.ActiveBoxCollider(true);
+        }
+    }
     public int GetRoomLevel(int i) {
         if (rooms[i] != null) return rooms[i].level;
         return 0;
@@ -268,6 +279,7 @@ public class GameInfo : MonoBehaviour
 
     #region RequestInfo
     public Request request;
+    public RequestButton requestButton;
     private int requests;
     public int Requests { get { return requests; } set { requests = value; } }
     private List<int> successTiers = new List<int> { 0, 0, 0, 0, 0 };
@@ -297,6 +309,9 @@ public class GameInfo : MonoBehaviour
             successTiers[i] = 0;
         }
         return sum;
+    }
+    public bool CheckInRequest() {
+        return requestButton.GetInRequest();
     }
 
     #endregion
