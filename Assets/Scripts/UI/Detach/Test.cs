@@ -10,7 +10,7 @@ public class Test : MonoBehaviour
     public QuestManager questManagers;
 
     private bool adTutorialOnce = false;
-    public GameObject image;
+    public GameObject image;                // 파견 진행 중 가린막 이미지
     public GameObject resultBtn;
 
     public GameObject gaugeObject;
@@ -30,13 +30,11 @@ public class Test : MonoBehaviour
 
             if(totalDay == 0)
             {
-                if (GameInfo.gameInfo.Day == endDay)    // 꽉참
-                {
-                    gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
-                    questStart = false;
-                    image.SetActive(false);
-                    resultBtn.SetActive(true);
-                }
+                Debug.Log("0일 짜리 퀘스트 바로 종료");
+                gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
+                questStart = false;
+                image.SetActive(false);
+                resultBtn.SetActive(true);
             }
             else if(totalDay == 1)           // 하루 짜리 의뢰
             {
@@ -178,12 +176,9 @@ public class Test : MonoBehaviour
 
         startDay = GameInfo.gameInfo.Day;
         endDay = startDay + PoolManager.Instance.questData[index].questTime; // 파견 결과 나오는 날...
-        totalDay = PoolManager.Instance.questData[index].questTime; 
-        
-        if (totalDay != 0)   // 스토리 의뢰가 아니면 게이지 이미지 활성화
-        {
-            gaugeObject.SetActive(true);
-        }
+        totalDay = PoolManager.Instance.questData[index].questTime;
+
+        gaugeObject.SetActive(true);
     }
 
     private IEnumerator testt()
