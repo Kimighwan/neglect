@@ -88,10 +88,50 @@ public class Test : MonoBehaviour
         adTutorialOnce = true;
     }
 
-    public void OnClickQuestResultTestBtn(int index)
+    public void OnClickQuestResultTestBtn(int index)    // 결과 창 띄우기
     {
-        var questResult = new QuestResultIndex(index);
-        UIManager.Instance.OpenUI<QuestResult>(questResult);
+        if (((PoolManager.Instance.questData[index].questId / 100) % 10) == 8)    // 특수 의뢰라면...
+        {
+            // 근데 성공시에만 체크
+            if (PoolManager.Instance.resultList[questManagers.detachIndex] != -1)
+            {
+                if (CheckMaxAdventure() >= GameInfo.gameInfo.GetMaxAdventurerCounts())   // 모험가 꽉 참.
+                {
+                    // 모험가가 가득차 보상을 받을 수 없습니다.
+                    var uiData = new ConfirmUIData();
+                    uiData.confirmType = ConfirmType.OK;
+                    uiData.descTxt = "모험가가 가득차 보상을 받을 수 없습니다.";
+                    uiData.okBtnTxt = "확인";
+                    UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+                    return;
+                }
+                else
+                {
+                    PoolManager.Instance.specialAdventureAdd = true;    // 특수 모험가 합류할 예정
+                    var questResult = new QuestResultIndex(index);
+                    UIManager.Instance.OpenUI<QuestResult>(questResult);
+                }
+            }
+        }
+        else
+        {
+            var questResult = new QuestResultIndex(index);
+            UIManager.Instance.OpenUI<QuestResult>(questResult);
+        }
+        
+    }
+
+    private int CheckMaxAdventure()
+    {
+        int tmpCount = 0;
+        string adventrueHave = PlayerPrefs.GetString("AdventureId");
+        foreach (var i in adventrueHave.Split(","))
+        {
+            if (i != "")
+                tmpCount++;
+        }
+
+        return tmpCount;
     }
 
     public void OnClickQuestStart(int index)
