@@ -54,10 +54,18 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public int platinumAd = 0;  // 플래티넘 모험가 수
     public int diaAd = 0;       // 다이아 모험가 수
 
+    // 새로운 의뢰
+    public int bronzQ = 0;     // 브론즈 의뢰 수
+    public int silverQ = 0;    // 실버 의뢰 수
+    public int goldQ = 0;      // 골드 의뢰 수
+    public int platinumQ = 0;  // 플래티넘 의뢰 수
+    public int diaQ = 0;       // 다이아 의뢰 수
+
     protected override void Init()
     {
         base.Init();
 
+        // 모험가 수
         // 브론즈
         if (PlayerPrefs.HasKey("bronzAd"))
             bronzAd = PlayerPrefs.GetInt("bronzAd");
@@ -87,6 +95,38 @@ public class PoolManager : SingletonBehaviour<PoolManager>
             diaAd = PlayerPrefs.GetInt("diaAd");
         else
             PlayerPrefs.SetInt("diaAd", 0);
+
+
+        // 퀘스트 수
+        // 브론즈
+        if (PlayerPrefs.HasKey("bronzQ"))
+            bronzQ = PlayerPrefs.GetInt("bronzQ");
+        else
+            PlayerPrefs.SetInt("bronzQ", 0);
+
+        // 실버
+        if (PlayerPrefs.HasKey("silverQ"))
+            silverQ = PlayerPrefs.GetInt("silverQ");
+        else
+            PlayerPrefs.SetInt("silverQ", 0);
+
+        // 골드
+        if (PlayerPrefs.HasKey("goldQ"))
+            goldQ = PlayerPrefs.GetInt("goldQ");
+        else
+            PlayerPrefs.SetInt("goldQ", 0);
+
+        // 플래티넘
+        if (PlayerPrefs.HasKey("platinumQ"))
+            platinumQ = PlayerPrefs.GetInt("platinumQ");
+        else
+            PlayerPrefs.SetInt("platinumQ", 0);
+
+        // 다이아
+        if (PlayerPrefs.HasKey("diaQ"))
+            diaQ = PlayerPrefs.GetInt("diaQ");
+        else
+            PlayerPrefs.SetInt("diaQ", 0);
     }
 
     public void SetDetachQuestListData()

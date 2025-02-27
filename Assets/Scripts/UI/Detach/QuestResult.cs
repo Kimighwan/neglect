@@ -54,6 +54,8 @@ public class QuestResult : BaseUI
         // 모험가 다시 풀기
 
         UIManager.Instance.CloseUI(this);
+
+        PoolManager.Instance.usingQuestList.Remove(PoolManager.Instance.questData[resultIndex].questId);
     }
 
     public void OnClickDieOKBtn()     // 전멸 확인 버튼
@@ -64,6 +66,8 @@ public class QuestResult : BaseUI
         // 모험가 다시 풀기
 
         UIManager.Instance.CloseUI(this);
+
+        PoolManager.Instance.usingQuestList.Remove(PoolManager.Instance.questData[resultIndex].questId);
     }
 
     private IEnumerator UpdateResultCo()
@@ -85,9 +89,10 @@ public class QuestResult : BaseUI
         PoolManager.Instance.resultBtn[resultIndex - 1].gameObject.SetActive(false);
 
         // 의뢰 종료시 모험가 다시 사용하게 Test
-        foreach (var i in PoolManager.Instance.questManagers[resultIndex].adventureDatas)
+        foreach (var i in PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas)
         {
-            PoolManager.Instance.usingAdventureList.Remove(i.adventureId);
+            PoolManager.Instance.usingAdventureList.Remove(i.adventureId); // 파견 중이였던 걸 해제
+            Debug.Log("파견 상태 해제");
         }
         
         if (PoolManager.Instance.resultList[resultIndex] == 0)

@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class RandomQuestSelectUI : MonoBehaviour
 {
@@ -73,6 +75,17 @@ public class RandomQuestSelectUI : MonoBehaviour
         {
             PlayerPrefs.SetString("QuestId", pre + "," + questId.ToString());
         }
+
+        if (questLevel == "브론즈")
+            PoolManager.Instance.bronzQ++;
+        else if (questLevel == "실버")
+            PoolManager.Instance.silverQ++;
+        else if (questLevel == "골드")
+            PoolManager.Instance.goldQ++;
+        else if (questLevel == "플래티넘")
+            PoolManager.Instance.platinumQ++;
+        else if (questLevel == "다이아")
+            PoolManager.Instance.diaQ++;
 
 
         btnTxt.text = "선택 완료";
@@ -185,78 +198,419 @@ public class RandomQuestSelectUI : MonoBehaviour
         }
         else
         {
-            // 길드레벨 3
-            if (GameInfo.gameInfo.Level == 3)
+            // 길드레벨 1, 2
+            // 의뢰가 부족해서 다른 티어 의뢰 보여줄 일이 없음
+            if(GameInfo.gameInfo.Level == 1 || GameInfo.gameInfo.Level == 2)
             {
-                if(j == 0) // 브론즈
+                int tmp = resultId;
+                // 브론즈 의뢰 보여줄 예정이였다면
+                if (j == 0)
                 {
-                    // 실버 의뢰로 승격
-                    resultId = GetQuestindex(Tier.Silver);   // 실버
-                }
-                else if(j == 3) // 플래티넘 의뢰 부족
-                {
-                    // 아쉽게 골드 중 갖고 있지 않는 의뢰 반환
-                    int tmp;
-                    do
+                    // 브론즈 의뢰 중 보여지지 않는 의뢰 선택
+                    if(PoolManager.Instance.bronzQ < 6)
                     {
-                        tmp = GetQuestindex(Tier.Gold);
-                    } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                        do
+                        {
+                            tmp = UnityEngine.Random.Range(1, 10);
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    }
+                    else
+                    {
+                        for(int i = 1; i < 10; i++)
+                        {
+                            tmp = i;
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                break;
+                        }
+                    }
+                    
+                    resultId = tmp;
+                    PoolManager.Instance.userQuestIndex.Add(tmp);
+                }
+                else if (j == 1) // 실버 의뢰 보여줄 예정이였다면
+                {
+                    // 실버 의뢰 중 보여지지 않는 의뢰 선택
+                    if (PoolManager.Instance.silverQ < 7)
+                    {
+                        do
+                        {
+                            tmp = GetQuestindex(Tier.Silver);          // 실버     10개
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    }
+                    else
+                    {
+                        for (int i = 10; i < 20; i++)
+                        {
+                            tmp = i;
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                break;
+                        }
+                    }
 
                     resultId = tmp;
+                    PoolManager.Instance.userQuestIndex.Add(tmp);
+                }
+                else if (j == 2) // 골드 의뢰 보여줄 예정이였다면
+                {
+                    // 골드 의뢰 중 보여지지 않는 의뢰 선택
+                    if (PoolManager.Instance.goldQ < 7)
+                    {
+                        do
+                        {
+                            tmp = GetQuestindex(Tier.Gold);            // 골드     10개
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    }
+                    else
+                    {
+                        for (int i = 20; i < 30; i++)
+                        {
+                            tmp = i;
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                break;
+                        }
+                    }
+
+                    resultId = tmp;
+                    PoolManager.Instance.userQuestIndex.Add(tmp);
+                }
+            }
+            // 길드레벨 3
+            else if (GameInfo.gameInfo.Level == 3)
+            {
+                int tmp = resultId;
+
+                if(j == 0) // 브론즈
+                {
+                    // 남는 브론즈 의뢰가 없음
+                    if (PoolManager.Instance.bronzQ >= 9)
+                    {
+                        // 실버 주자
+                        if (PoolManager.Instance.silverQ < 7)
+                        {
+                            do
+                            {
+                                tmp = GetQuestindex(Tier.Silver);          // 실버     10개
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 10; i < 20; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
+                    }
+                    else // 남는 브론즈 의뢰가 있음
+                    {
+                        // 브론즈 의뢰 중 보여지지 않는 의뢰 선택
+                        if (PoolManager.Instance.bronzQ < 6)
+                        {
+                            do
+                            {
+                                tmp = UnityEngine.Random.Range(1, 10);
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 1; i < 10; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
+                    }
+                }
+                else if(j == 1) // 실버 의뢰를 줘야할 예정이라면
+                {
+                    // 실버 주자
+                    if (PoolManager.Instance.silverQ < 7)
+                    {
+                        do
+                        {
+                            tmp = GetQuestindex(Tier.Silver);          // 실버     10개
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    }
+                    else
+                    {
+                        for (int i = 10; i < 20; i++)
+                        {
+                            tmp = i;
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                break;
+                        }
+                    }
+
+                    resultId = tmp;
+                    PoolManager.Instance.userQuestIndex.Add(tmp);
+
+                }
+                else if (j == 2) // 골드 의뢰를 줘야할 예정이라면
+                {
+                    // 골드 주자
+                    if (PoolManager.Instance.goldQ < 7)
+                    {
+                        do
+                        {
+                            tmp = GetQuestindex(Tier.Gold);          // 골드     10개
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    }
+                    else
+                    {
+                        for (int i = 20; i < 30; i++)
+                        {
+                            tmp = i;
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                break;
+                        }
+                    }
+
+                    resultId = tmp;
+                    PoolManager.Instance.userQuestIndex.Add(tmp);
                 }
             }
             // 길드레벨 4, 5
-            else if(GameInfo.gameInfo.Level == 4 && GameInfo.gameInfo.Level == 5)
+            else if(GameInfo.gameInfo.Level == 4 || GameInfo.gameInfo.Level == 5)
             {
-                if (j == 1) // 실버 의뢰 부족
-                {
-                    // 골드 의뢰로 승격
-                    int tmp;
-                    do
-                    {
-                        tmp = GetQuestindex(Tier.Gold); // 골드
-                    } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                int tmp = resultId;
 
-                    resultId = tmp;
-                }
-                else if (j == 2) // 골드 의뢰 부족
+                if(j == 1)  // 실버 의뢰 줘야했다면 남는 실버 또는 골드 주기
                 {
-                    // 실버 의뢰 주기
-                    int tmp;
-                    do
+                    if(PoolManager.Instance.silverAd < 10)
                     {
-                        tmp = GetQuestindex(Tier.Silver); // 실버
-                    } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
-
-                    resultId = tmp;
-                }
-                else if (j == 3) // 플래티넘 의뢰 부족
-                {
-                    // 골드 의뢰 주기
-                    int tmp;
-                    do
-                    {
-                        tmp = GetQuestindex(Tier.Gold); // 골드
-                    } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
-                }
-                else // 다이아 의뢰 부족
-                {
-                    if (!CheckQuestFullOfTier(Tier.Platinum))   // 플래티넘 의뢰가 아직 있다면
-                    {
-                        // 플래티넘 의뢰 주기
-                        int tmp;
-                        do
+                        // 실버 의뢰 남아서 실버 의뢰 주기
+                        // 실버 의뢰 중 보여지지 않는 의뢰 선택
+                        if (PoolManager.Instance.silverAd < 7)
                         {
-                            tmp = GetQuestindex(Tier.Platinum); // 플래티넘
-                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            do
+                            {
+                                tmp = GetQuestindex(Tier.Silver);          // 실버     10개
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 10; i < 20; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
                     }
-                    else // 플래티넘도 없다면 골드 의뢰 주기
+                    else
                     {
-                        int tmp;
-                        do
+                        // 실버 의뢰 없어서 골드 의뢰 주기
+                        // 골드 의뢰 중 보여지지 않는 의뢰 선택
+                        if (PoolManager.Instance.goldQ < 7)
                         {
-                            tmp = GetQuestindex(Tier.Gold); // 골드
-                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            do
+                            {
+                                tmp = GetQuestindex(Tier.Gold);            // 골드     10개
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 20; i < 30; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
+                    }
+                }
+                else if (j == 2) // 골드 의뢰 줘야했다면 남는 골드 또는 실버 주기
+                {
+                    if(PoolManager.Instance.goldQ < 10)
+                    {
+                        // 골드 의뢰가 남아서 골드 주기
+                        // 골드 의뢰 중 보여지지 않는 의뢰 선택
+                        if (PoolManager.Instance.goldQ < 7)
+                        {
+                            do
+                            {
+                                tmp = GetQuestindex(Tier.Gold);            // 골드     10개
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 20; i < 30; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
+                    }
+                    else
+                    {
+                        // 골드 의뢰 없어서 실버 주기
+                        // 실버 의뢰 중 보여지지 않는 의뢰 선택
+                        if (PoolManager.Instance.silverAd < 7)
+                        {
+                            do
+                            {
+                                tmp = GetQuestindex(Tier.Silver);          // 실버     10개
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 10; i < 20; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
+                    }
+                }
+                else if (j == 3) // 플래 의뢰 줘야했다면 남는 플래 또는 골드
+                {
+                    if (PoolManager.Instance.platinumQ < 7)
+                    {
+                        // 플래 의뢰가 남아서 플래 주기
+                        // 플래 의뢰 중 보여지지 않는 의뢰 선택
+                        if (PoolManager.Instance.platinumQ < 5)
+                        {
+                            do
+                            {
+                                tmp = GetQuestindex(Tier.Platinum);            // 플래 7개
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 31; i < 38; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
+                    }
+                    else if (PoolManager.Instance.goldQ < 10)
+                    {
+                        // 플래 의뢰가 없어서 골드 주기
+                        // 골드 의뢰 중 보여지지 않는 의뢰 선택
+                        if (PoolManager.Instance.goldQ < 7)
+                        {
+                            do
+                            {
+                                tmp = GetQuestindex(Tier.Gold);            // 골드     10개
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 20; i < 30; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
+                    }
+                }
+                else if (j == 3) // 다이아 의뢰 줘야했다면 남는 다이아 또는 플래 또는 골드
+                {
+                    if(PoolManager.Instance.diaQ < 3)
+                    {
+                        for (int i = 38; i < 41; i++)
+                        {
+                            tmp = i;
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                break;
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
+                    }
+                    else if (PoolManager.Instance.platinumQ < 7)
+                    {
+                        // 플래 의뢰가 남아서 플래 주기
+                        // 플래 의뢰 중 보여지지 않는 의뢰 선택
+                        if (PoolManager.Instance.platinumQ < 5)
+                        {
+                            do
+                            {
+                                tmp = GetQuestindex(Tier.Platinum);            // 플래 7개
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 31; i < 38; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
+                    }
+                    else if (PoolManager.Instance.goldQ < 10)
+                    {
+                        // 플래 의뢰가 없어서 골드 주기
+                        // 골드 의뢰 중 보여지지 않는 의뢰 선택
+                        if (PoolManager.Instance.goldQ < 7)
+                        {
+                            do
+                            {
+                                tmp = GetQuestindex(Tier.Gold);            // 골드     10개
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                        }
+                        else
+                        {
+                            for (int i = 20; i < 30; i++)
+                            {
+                                tmp = i;
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                    break;
+                            }
+                        }
+
+                        resultId = tmp;
+                        PoolManager.Instance.userQuestIndex.Add(tmp);
                     }
                 }
             }
