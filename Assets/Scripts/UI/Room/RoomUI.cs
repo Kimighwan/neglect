@@ -1,8 +1,8 @@
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class RoomUI : BaseUI
-{
+public class RoomUI : MonoBehaviour {
     public TextMeshProUGUI title;
     public TextMeshProUGUI level;
     public TextMeshProUGUI other;
@@ -11,17 +11,17 @@ public class RoomUI : BaseUI
 
     private int index; 
     private bool isActive;
-    public override void SetInfo(BaseUIData uiData)
-    {
-        base.SetInfo(uiData);
-
-        var indexData = uiData as RoomIndex;
-        index = indexData.index;
-        isActive = GameInfo.gameInfo.isRoomActivated(index);
-    }
+    public bool isUINow = false;
 
     void Start()
     {
+        button.interactable = true;
+        isUINow = true;
+    }
+
+    public void SetInfo(int i, bool b) {
+        index = i;
+        isActive = b;
         if (!isActive) {
             title.text = "객실 개방";
             level.text = "";
@@ -70,9 +70,13 @@ public class RoomUI : BaseUI
         }
     }
 
-    public override void OnClickCloseButton()
+    public void OnClickCloseButton()
     {
-        base.OnClickCloseButton();
-        Destroy(this);
+        title.text = "";
+        level.text = "";
+        other.text = "";
+        neededGold.text = "";
+        isUINow = false;
+        this.gameObject.SetActive(false);
     }
 }

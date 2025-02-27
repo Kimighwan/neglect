@@ -135,6 +135,8 @@ public class ReportUI : BaseUI
 
     IEnumerator AnimateStampShadow()
     {
+        StampShadow.enabled = true;
+
         float elapsed = 0f;
         while (elapsed < shadowDuration)
         {

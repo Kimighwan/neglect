@@ -17,6 +17,7 @@ public class GameInfo : MonoBehaviour
     public Button closeButton;
     public List<Sprite> pauseAndGo;
     public List<GameObject> AnimatedObj;
+    public RoomUI roomUI;
 
     public float gameSpeed = 1f;
     private bool alarmOnce = false;
@@ -84,7 +85,7 @@ public class GameInfo : MonoBehaviour
 
     private IEnumerator ComeNight(float duration, float startDelay, float startAlpha, float endAlpha)
     {
-
+        roomUI.OnClickCloseButton();
         closeButton.interactable = false;
         pauseButton.gameObject.GetComponent<Button>().interactable = false;
         fastButton.gameObject.GetComponent<Button>().interactable = false;

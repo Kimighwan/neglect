@@ -182,13 +182,6 @@ public class AdventurerUIWithDesk : BaseUIData {
     }
 }
 
-public class RoomIndex : BaseUIData {
-    public int index;
-    public RoomIndex(int i, bool b) {
-        index = i;
-    }
-}
-
 public class StringInfo : BaseUIData {
     public string str;
     public StringInfo(string s) {
