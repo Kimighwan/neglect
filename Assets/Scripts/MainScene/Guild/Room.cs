@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Room : MouseDrag
 {
+    public GameObject whiteLine;
     public GameObject locker;
     public int index = 0;
     public int level = 1;
@@ -26,5 +27,13 @@ public class Room : MouseDrag
         this.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
         Destroy(locker);
         isActive = true;
+    }
+    void OnMouseOver()
+    {
+        whiteLine.SetActive(true);
+    }
+    void OnMouseExit()
+    {
+        whiteLine.SetActive(false);
     }
 }

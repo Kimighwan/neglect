@@ -1,10 +1,14 @@
-// using UnityEngine;
+using UnityEngine;
 // using System.Collections;
 using UnityEngine.EventSystems;
 
 public class Desk : MouseDrag
 {
     private bool tutorialOnce = false;
+    void Start()
+    {
+        original = this.GetComponent<SpriteRenderer>().sprite;
+    }
     public override void OnPointerDown(PointerEventData eventData)
     {
         UIManager.Instance.OnClickAdventureTable(this);
@@ -13,12 +17,23 @@ public class Desk : MouseDrag
             GameManager.gameManager.OpenTutorial(590004);
         }
     }
+
+    private Sprite original;
+    public Sprite whiteLine;
+    void OnMouseOver()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = whiteLine;
+    }
+    void OnMouseExit()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = original;
+    }
     // public Transform cameraTransform; // 이동할 카메라
     // public float moveSpeed = 2f; // 이동 속도
 
     // private Vector3 originalCamPos; // 원래 위치
     // private Vector3 targetCamPos; // 목표 위치
-    
+
 
     //private bool isMoved = false; // 이동 여부 체크
 

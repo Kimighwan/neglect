@@ -12,7 +12,7 @@ public class ReportUI : BaseUI
     public Image StampShadow;
     public Image Stamp;
 
-    private float shadowDuration = 0.7f;
+    private float shadowDuration = 0.3f;
     private Vector3 startScale = new Vector3(0.1f, 0.1f, 0.1f);
     private Vector3 endScale = Vector3.one;
     private Color startColor = new Color(0f, 0f, 0f, 0f);
@@ -135,7 +135,6 @@ public class ReportUI : BaseUI
 
     IEnumerator AnimateStampShadow()
     {
-        AudioManager.Instance.PlaySFX(SFX.Stamp);
         float elapsed = 0f;
         while (elapsed < shadowDuration)
         {
@@ -154,6 +153,7 @@ public class ReportUI : BaseUI
         // 애니메이션 완료 시 스탬프 이미지 활성화
         if (Stamp != null) {
             StampShadow.enabled = false;
+            AudioManager.Instance.PlaySFX(SFX.Stamp);
             Stamp.enabled = true;
             stampOn = true;
             inputLock = false;
