@@ -49,7 +49,7 @@ public class StateSceneManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) AudioManager.Instance.PlaySFX(SFX.Click1);
+        //if (Input.GetMouseButtonDown(0)) AudioManager.Instance.PlaySFX(SFX.Click1);
     }
 
     private void PlayTitleBGM() {
