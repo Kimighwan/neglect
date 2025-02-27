@@ -164,15 +164,11 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     public QuestData GetQuestData(int questId)
     {
         return QuestDataTable.Where(item => item.questId == questId).FirstOrDefault();
-        // 시스템 ID에 맞는 정보들을 반환
-        // 만약 데이터가 존재 하지 않는다면 null 반환
     }
 
     public QuestData GetQuestDataUsingIndex(int questIndex)
     {
         return QuestDataTable.Where(item => item.questIndex == questIndex).FirstOrDefault();
-        // 시스템 ID에 맞는 정보들을 반환
-        // 만약 데이터가 존재 하지 않는다면 null 반환
     }
 
     #endregion
