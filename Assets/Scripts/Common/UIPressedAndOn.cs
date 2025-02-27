@@ -8,6 +8,12 @@ public class UIPressedAndOn : MouseDrag
     public Sprite defaultImg;
     public Sprite onImg;
     public Sprite pressedImg;
+
+    private void OnEnable()
+    {
+        this.GetComponent<Image>().sprite = defaultImg;
+    }
+
     public override void OnPointerEnter(PointerEventData eventData)
     {
         onUI = true;

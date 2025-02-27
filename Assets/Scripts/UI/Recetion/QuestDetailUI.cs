@@ -106,7 +106,7 @@ public class QuestDetailUI : BaseUI
     {
         var uiData = new ConfirmUIData();
         uiData.confirmType = ConfirmType.OK_CANCEL;
-        uiData.descTxt = "삭제 하시겠습니까?";
+        uiData.descTxt = "정말로 삭제 하시겠습니까?";
         uiData.okBtnTxt = "삭제";
         uiData.cancelBtnTxt = "아니요";
         uiData.onClickOKBtn = () =>
