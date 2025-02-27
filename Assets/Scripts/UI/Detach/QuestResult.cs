@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestResult : BaseUI
@@ -165,5 +166,7 @@ public class QuestResult : BaseUI
         PoolManager.Instance.adventureTxt[resultIndex - 1].text = "모험가 선택";
 
         PoolManager.Instance.usingQuestList.Remove(PoolManager.Instance.questData[resultIndex].questId);
+
+        PoolManager.Instance.resultList.Remove(resultIndex);
     }
 }
