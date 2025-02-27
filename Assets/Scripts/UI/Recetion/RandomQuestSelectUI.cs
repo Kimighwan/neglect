@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -185,8 +186,88 @@ public class RandomQuestSelectUI : MonoBehaviour
         }
         else
         {
+            // 길드레벨 1, 2
+            // 의뢰가 부족해서 다른 티어 의뢰 보여줄 일이 없음
+            if(GameInfo.gameInfo.Level == 1 || GameInfo.gameInfo.Level == 2)
+            {
+                int tmp = resultId;
+                // 브론즈 의뢰 보여줄 예정이였다면
+                if (j == 0)
+                {
+                    // 브론즈 의뢰 중 보여지지 않는 의뢰 선택
+                    if(PoolManager.Instance.bronzQ < 6)
+                    {
+                        do
+                        {
+                            tmp = UnityEngine.Random.Range(1, 10);
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    }
+                    else
+                    {
+                        for(int i = 1; i < 10; i++)
+                        {
+                            tmp = i;
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                break;
+                        }
+                    }
+                    
+                    resultId = tmp;
+                    PoolManager.Instance.userQuestIndex.Add(tmp);
+                }
+                else if (j == 1) // 실버 의뢰 보여줄 예정이였다면
+                {
+                    // 실버 의뢰 중 보여지지 않는 의뢰 선택10, 19
+                    if (PoolManager.Instance.bronzQ < 7)
+                    {
+                        do
+                        {
+                            tmp = GetQuestindex(Tier.Silver);          // 실버     10개
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    }
+                    else
+                    {
+                        for (int i = 10; i < 20; i++)
+                        {
+                            tmp = i;
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                break;
+                        }
+                    }
+
+                    resultId = tmp;
+                    PoolManager.Instance.userQuestIndex.Add(tmp);
+                }
+                else if (j == 2) // 골드 의뢰 보여줄 예정이였다면
+                {
+                    // 골드 의뢰 중 보여지지 않는 의뢰 선택
+                    // 실버 의뢰 중 보여지지 않는 의뢰 선택10, 19
+                    if (PoolManager.Instance.bronzQ < 7)
+                    {
+                        do
+                        {
+                            tmp = GetQuestindex(Tier.Gold);            // 골드     10개
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+
+                    }
+                    else
+                    {
+                        for (int i = 20; i < 30; i++)
+                        {
+                            tmp = i;
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                break;
+                        }
+                    }
+
+                    resultId = tmp;
+                    PoolManager.Instance.userQuestIndex.Add(tmp);
+                }
+            }
             // 길드레벨 3
-            if (GameInfo.gameInfo.Level == 3)
+            else if (GameInfo.gameInfo.Level == 3)
             {
                 if(j == 0) // 브론즈
                 {

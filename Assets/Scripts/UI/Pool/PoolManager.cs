@@ -54,6 +54,13 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public int platinumAd = 0;  // 플래티넘 모험가 수
     public int diaAd = 0;       // 다이아 모험가 수
 
+    // 새로운 의뢰
+    public int bronzQ = 0;     // 브론즈 의뢰 수
+    public int silverQ = 0;    // 실버 의뢰 수
+    public int goldQ = 0;      // 골드 의뢰 수
+    public int platinumQ = 0;  // 플래티넘 의뢰 수
+    public int diaQ = 0;       // 다이아 의뢰 수
+
     protected override void Init()
     {
         base.Init();
