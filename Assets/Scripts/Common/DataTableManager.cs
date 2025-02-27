@@ -124,15 +124,11 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     public AdventureData GetAdventureData(int adventureId)
     {
         return AdventureDataTable.Where(item => item.adventureId == adventureId).FirstOrDefault();
-        // 시스템 ID에 맞는 정보들을 반환
-        // 만약 데이터가 존재 하지 않는다면 null 반환
     }
 
     public AdventureData GetRandomAdventureData(int index)
     {
         return AdventureDataTable.Where(item => item.adventureIndex == index).FirstOrDefault();
-        // 시스템 ID에 맞는 정보들을 반환
-        // 만약 데이터가 존재 하지 않는다면 null 반환
     }
 
     #endregion

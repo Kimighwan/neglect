@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PoolManager : SingletonBehaviour<PoolManager>
 {
-    public List<QuestData> userQuestList { get; private set; } = new List<QuestData>();
+    public List<QuestData> userQuestList { get; private set; } = new List<QuestData>(); 
 
     public List<int> userQuestIndex = new List<int>();      // 랜덤 의뢰 선택에서 중복 의뢰 보여주지 않기 위한 List
 
@@ -46,6 +46,13 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public bool[] checkUpdate = new bool[5];         // Update 함수 한 번만 실행하기 위해서
 
     public QuestManager[] questManagers;
+
+    // 새로운 모험가
+    public int bronzAd = 0;     // 브론즈 모험가 수
+    public int silverAd = 0;    // 실버 모험가 수
+    public int goldAd = 0;      // 골드 모험가 수
+    public int platinumAd = 0;  // 플래티넘 모험가 수
+    public int diaAd = 0;       // 다이아 모험가 수
 
     protected override void Init()
     {

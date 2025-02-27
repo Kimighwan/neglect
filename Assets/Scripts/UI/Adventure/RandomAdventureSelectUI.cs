@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class RandomAdventureSelectUI : MonoBehaviour
 {
@@ -59,17 +60,17 @@ public class RandomAdventureSelectUI : MonoBehaviour
             return;
         }
 
-        // 모험가 더 이상 영입 불가능
-        if (CheckMaxAdventureCounts())
-        {
-            var uiData = new ConfirmUIData();
-            uiData.confirmType = ConfirmType.OK;
-            uiData.descTxt = "모험가 최대치";
-            uiData.okBtnTxt = "확인";
-            AudioManager.Instance.PlaySFX(SFX.Denied);
-            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-            return;
-        }
+        //// 모험가 더 이상 영입 불가능
+        //if (CheckMaxAdventureCounts())
+        //{
+        //    var uiData = new ConfirmUIData();
+        //    uiData.confirmType = ConfirmType.OK;
+        //    uiData.descTxt = "모험가 최대치";
+        //    uiData.okBtnTxt = "확인";
+        //    AudioManager.Instance.PlaySFX(SFX.Denied);
+        //    UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+        //    return;
+        //}
 
         if (!GameInfo.gameInfo.ChangeGold(-needGold))
         {
@@ -84,6 +85,27 @@ public class RandomAdventureSelectUI : MonoBehaviour
 
         needGoldText.text = "영입 완료";
         selectBtn.interactable = false;
+
+        if (adventureTier == "브론즈")
+        {
+            PoolManager.Instance.bronzAd++;
+        }
+        else if (adventureTier == "실버")
+        {
+            PoolManager.Instance.silverAd++;
+        }
+        else if (adventureTier == "골드")
+        {
+            PoolManager.Instance.goldAd++;
+        }
+        else if (adventureTier == "플래티넘")
+        {
+            PoolManager.Instance.platinumAd++;
+        }
+        else if (adventureTier == "다이아")
+        {
+            PoolManager.Instance.diaAd++;
+        }
 
         string pre = PlayerPrefs.GetString("AdventureId");  // 저장된 모험가 ID 불러오기
 
@@ -125,7 +147,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
         {
             needGold = 1000;
             rankImage.texture = Resources.Load("Arts/Rank/RankGold") as Texture2D;
-            needGoldText.text = "영입 100 골드";
+            needGoldText.text = "영입 1000 골드";
         }
         else if (adventureTier == "플래티넘")
         {
@@ -213,52 +235,1811 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 break;
         }
 
-        if (!PoolManager.Instance.userAdventureIndex.Contains(resultId))
+        // 보여주지 않고 있거나 && 아직 가지고 있지 않다면
+        if (!PoolManager.Instance.userAdventureIndex.Contains(resultId) && !CheckHaveRandomIndex(resultId))
         {
             PoolManager.Instance.userAdventureIndex.Add(resultId);
         }
         else
         {
-            if (j == 0) // 브론즈 부족
+            if(CheckHaveRandomIndex(resultId)) Debug.Log($"이미 갖고 있음: {resultId} ");
+            if (GameInfo.gameInfo.Level == 1)    // 레벨 1
             {
-                // 실버 주기
-                int tmp;
-                do
+                if (j == 0) // 브론즈 모험가를 보여주기로 했다면
                 {
-                    tmp = UnityEngine.Random.Range(19, 44);
-                } while (PoolManager.Instance.userAdventureIndex.Contains(tmp));
-            }
-            else if (j == 3) // 플래티넘 부족
-            {
-                // 아쉽게 골드 중 갖고 있지 않는 모험가 반환
-                int tmp;
-                do
-                {
-                    tmp = UnityEngine.Random.Range(44, 73);
-                } while (PoolManager.Instance.userAdventureIndex.Contains(tmp));
-
-                resultId = tmp;
-            }
-            else if (j == 4) // 다이아 부족
-            {
-                if (!CheckAdventureFullOfTier(Tier.Platinum))
-                {
-                    // 아쉽게 플래티넘 중 갖고 있지 않는 모험가 반환
-                    int tmp;
-                    do
+                    // 아직 보여주지 않은 브론즈 주기
+                    int tmp = resultId;
+                    if(PoolManager.Instance.bronzAd < 18)
                     {
-                        tmp = UnityEngine.Random.Range(73, 88);
-                    } while (PoolManager.Instance.userAdventureIndex.Contains(tmp));
+                        if (PoolManager.Instance.bronzAd > 10)
+                        {
+                            for (int i = 1; i < 19; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 브론즈 줄 게 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     resultId = tmp;
                 }
-                else // 플래티넘도 부족하기에 골드를 반환
+                else if(j == 1) // 실버 모험가를 보여주기로 했다면
                 {
-                    int tmp;
-                    do
+                    // 우선은 남은 실버 모험가 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.silverAd < 25)
                     {
-                        tmp = UnityEngine.Random.Range(44, 73);
-                    } while (PoolManager.Instance.userAdventureIndex.Contains(tmp));
+                        if (PoolManager.Instance.silverAd > 18)
+                        {
+                            for (int i = 19; i < 44; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    
+
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  // 실버가 없다면 브론즈 주기
+                    {
+                        if (PoolManager.Instance.bronzAd < 18)
+                        {
+                            if (PoolManager.Instance.bronzAd > 10)
+                            {
+                                for (int i = 1; i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 브론즈도 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 2) // 골드 모험가를 보여주기로 했다면
+                {
+                    // 남은 골드 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.goldAd < 29)
+                    {
+                        if (PoolManager.Instance.goldAd > 21)
+                        {
+                            for (int i = 44; i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드 줄 게 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 실버 줄게 없다면 브론즈 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
+                    {
+                        if (PoolManager.Instance.bronzAd < 18)
+                        {
+                            if (PoolManager.Instance.bronzAd > 10)
+                            {
+                                for (int i = 1; i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+
+            }
+            else if (GameInfo.gameInfo.Level == 2)  // 레벨 2
+            {
+                if (j == 0) // 브론즈 모험가를 주기로 했다면
+                {
+                    // 아직 보여주지 않은 브론즈 주기
+                    int tmp = resultId;
+                    if (PoolManager.Instance.bronzAd < 18)
+                    {
+                        if (PoolManager.Instance.bronzAd > 10)
+                        {
+                            for (int i = 1; i < 19; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 브론즈 줄 게 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 1) // 실버 모험가를 주기로 했다면
+                {
+                    // 우선은 남은 실버 모험가 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.silverAd < 25)
+                    {
+                        if (PoolManager.Instance.silverAd > 18)
+                        {
+                            for (int i = 19; i < 44; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 실버가 없다면 브론즈 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.bronzAd < 18)
+                        {
+                            if (PoolManager.Instance.bronzAd > 10)
+                            {
+                                for (int i = 1; i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 브론즈도 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 2) // 골드 모험가를 주기로 했다면
+                {
+                    // 남은 골드 모험가 주기
+                    int tmp = resultId;
+                    if (PoolManager.Instance.goldAd < 29)
+                    {
+                        if (PoolManager.Instance.goldAd > 21)
+                        {
+                            for (int i = 44; i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp)) 
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 실버도 없다면 브론즈 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.bronzAd < 18)
+                        {
+                            if (PoolManager.Instance.bronzAd > 10)
+                            {
+                                for (int i = 1; i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 3) // 플래티넘 모험가를 주기로 했다면
+                {
+                    // 남은 플래티넘 주기
+                    int tmp = resultId;
+                    if (PoolManager.Instance.platinumAd < 15)
+                    {
+                        if (PoolManager.Instance.platinumAd > 10)
+                        {
+                            for (int i = 73; i < 88; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 플래티넘 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 실버도 없다면 브론즈 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.bronzAd < 18)
+                        {
+                            if (PoolManager.Instance.bronzAd > 10)
+                            {
+                                for (int i = 1; i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+            }
+            else if (GameInfo.gameInfo.Level == 3)  // 레벨 3
+            {
+                if (j == 0) // 브론즈 모험가를 주기로 했다면
+                {
+                    // 아직 보여주지 않은 브론즈 주기
+                    int tmp = resultId;
+                    if (PoolManager.Instance.bronzAd < 18)
+                    {
+                        if (PoolManager.Instance.bronzAd > 10)
+                        {
+                            for (int i = 1; i < 19; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 브론즈 줄 게 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 1) // 실버 모험가 보여주기로 했다면
+                {
+                    // 우선은 남은 실버 모험가 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.silverAd < 25)
+                    {
+                        if (PoolManager.Instance.silverAd > 18)
+                        {
+                            for (int i = 19; i < 44; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 실버가 없다면 브론즈 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.bronzAd < 18)
+                        {
+                            if (PoolManager.Instance.bronzAd > 10)
+                            {
+                                for (int i = 1; i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 브론즈도 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 2) // 골드 모험가 보여주기로 했다면
+                {
+                    // 남은 골드 모험가 주기
+                    int tmp = resultId;
+                    if (PoolManager.Instance.goldAd < 29)
+                    {
+                        if (PoolManager.Instance.goldAd > 21)
+                        {
+                            for (int i = 44; i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 실버도 없다면 브론즈 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.bronzAd < 18)
+                        {
+                            if (PoolManager.Instance.bronzAd > 10)
+                            {
+                                for (int i = 1; i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 3) // 플래티넘 모험가를 보여주기로 했다면
+                {
+                    // 남은 플래티넘 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.platinumAd < 15)
+                    {
+                        if (PoolManager.Instance.platinumAd > 10)
+                        {
+                            for (int i = 73; i < 88; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 플래티넘 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 실버도 없다면 브론즈 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.bronzAd < 18)
+                        {
+                            if (PoolManager.Instance.bronzAd > 10)
+                            {
+                                for (int i = 1; i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if(j == 4) // 다이아 모험가를 보여주기로 했다면
+                {
+                    // 남은 다이아 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.diaAd < 3)
+                    {
+                        for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                        {
+                            if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                            {
+                                PoolManager.Instance.userAdventureIndex.Add(i);
+                                tmp = i;
+                                break;
+                            }
+                        }
+                    }
+
+                    // 다이아없다면 플래티넘 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.platinumAd < 15)
+                        {
+                            if (PoolManager.Instance.platinumAd > 10)
+                            {
+                                for (int i = 73; i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 플래티넘 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+            }
+            else if (GameInfo.gameInfo.Level == 4)  // 레벨 4
+            {
+                if (j == 1) // 실버 모험가를 보여주기로 했다면
+                {
+                    // 우선은 남은 실버 모험가 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.silverAd < 25)
+                    {
+                        if (PoolManager.Instance.silverAd > 18)
+                        {
+                            for (int i = 19; i < 44; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 실버도 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드도 없다면 플래 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
+                    {
+                        if (PoolManager.Instance.platinumAd < 15)
+                        {
+                            if (PoolManager.Instance.platinumAd > 10)
+                            {
+                                for (int i = 73; i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 2) // 골드 모험가를 보여주기로 했다면
+                {
+                    // 남은 골드 모험가 주기
+                    int tmp = resultId;
+                    if (PoolManager.Instance.goldAd < 29)
+                    {
+                        if (PoolManager.Instance.goldAd > 21)
+                        {
+                            for (int i = 44; i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 실버도 없다면 플래 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.platinumAd < 15)
+                        {
+                            if (PoolManager.Instance.platinumAd > 10)
+                            {
+                                for (int i = 73; i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 3) // 플래티넘 모험가를 보여주기로 했다면
+                {
+                    // 남은 플래티넘 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.platinumAd < 15)
+                    {
+                        if (PoolManager.Instance.platinumAd > 10)
+                        {
+                            for (int i = 73; i < 88; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 플래티넘 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 4) // 다이아 부족
+                {
+                    // 남은 다이아 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.diaAd < 3)
+                    {
+                        for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                        {
+                            if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                            {
+                                PoolManager.Instance.userAdventureIndex.Add(i);
+                                tmp = i;
+                                break;
+                            }
+                        }
+                    }
+
+                    // 다이아 없다면 플래 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.platinumAd < 15)
+                        {
+                            if (PoolManager.Instance.platinumAd > 10)
+                            {
+                                for (int i = 73; i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 플래티넘 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드 없다면 실버 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.silverAd < 25)
+                        {
+                            if (PoolManager.Instance.silverAd > 18)
+                            {
+                                for (int i = 19; i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(19, 44); i < 44; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+            }
+            else if (GameInfo.gameInfo.Level == 5)  // 레벨 5
+            {
+                if (j == 2) // 골드 모험가를 보여주기로 했다면
+                {
+                    // 남은 골드 모험가 주기
+                    int tmp = resultId;
+                    if (PoolManager.Instance.goldAd < 29)
+                    {
+                        if (PoolManager.Instance.goldAd > 21)
+                        {
+                            for (int i = 44; i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 골드도 없다면 플래 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.platinumAd < 15)
+                        {
+                            if (PoolManager.Instance.platinumAd > 10)
+                            {
+                                for (int i = 73; i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 3) // 플래티넘 모험가를 보여주기로 했다면
+                {
+                    // 남은 플래티넘 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.platinumAd < 15)
+                    {
+                        if (PoolManager.Instance.platinumAd > 10)
+                        {
+                            for (int i = 73; i < 88; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                            {
+                                if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                {
+                                    PoolManager.Instance.userAdventureIndex.Add(i);
+                                    tmp = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // 플래티넘 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    resultId = tmp;
+                }
+                else if (j == 4) // 다이아 부족
+                {
+                    // 남은 다이아 확인
+                    int tmp = resultId;
+                    if (PoolManager.Instance.diaAd < 3)
+                    {
+                        for (int i = UnityEngine.Random.Range(1, 19); i < 19; i++)
+                        {
+                            if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                            {
+                                PoolManager.Instance.userAdventureIndex.Add(i);
+                                tmp = i;
+                                break;
+                            }
+                        }
+                    }
+
+                    // 다이아 없다면 플래 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.platinumAd < 15)
+                        {
+                            if (PoolManager.Instance.platinumAd > 10)
+                            {
+                                for (int i = 73; i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(73, 88); i < 88; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 플래티넘 없다면 골드 주기
+                    if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
+                    {
+                        if (PoolManager.Instance.goldAd < 29)
+                        {
+                            if (PoolManager.Instance.goldAd > 21)
+                            {
+                                for (int i = 44; i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int i = UnityEngine.Random.Range(44, 73); i < 73; i++)
+                                {
+                                    if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
+                                    {
+                                        PoolManager.Instance.userAdventureIndex.Add(i);
+                                        tmp = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     resultId = tmp;
                 }
@@ -278,6 +2059,27 @@ public class RandomAdventureSelectUI : MonoBehaviour
         for (int index = 0; index < adventureIdOfInt.Length; index++)        // 모든 모험가 ID 순회
         {
             if(adventureId == Convert.ToInt32(adventureIdOfInt[index]))     // 매개변수와 같은 모험가 ID 검색
+            {
+                return true;    // 해당 모험가가 있음
+            }
+        }
+
+        return false;           // 해당 모험가가 없음
+    }
+
+    private bool CheckHaveRandomIndex(int mid)
+    {
+        int tmp = DataTableManager.Instance.GetRandomAdventureData(mid).adventureId;
+
+
+        string adventureIdOfString = PlayerPrefs.GetString("AdventureId");  // 현재 모험가 ID 가져오기
+        string[] adventureIdOfInt = adventureIdOfString.Split(',');         // 구분자 모험가 ID 분리
+
+        if (adventureIdOfString == "") return false;
+
+        for (int index = 0; index < adventureIdOfInt.Length; index++)        // 모든 모험가 ID 순회
+        {
+            if (tmp == Convert.ToInt32(adventureIdOfInt[index]))     // 매개변수와 같은 모험가 ID 검색
             {
                 return true;    // 해당 모험가가 있음
             }

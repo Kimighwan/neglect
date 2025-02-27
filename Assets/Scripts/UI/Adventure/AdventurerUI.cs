@@ -100,7 +100,7 @@ public class AdventurerUI : BaseUI
         }
     }
 
-    public void OnClickAwakeBtn()
+    public void OnClickAwakeBtn()   // 새로고침
     {
         if(!GameInfo.gameInfo.ChangeGold(-100))
         {
@@ -112,6 +112,7 @@ public class AdventurerUI : BaseUI
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }
+        PoolManager.Instance.userAdventureIndex.Clear();
         RemoveList();
         SetAdventureList();
     }
