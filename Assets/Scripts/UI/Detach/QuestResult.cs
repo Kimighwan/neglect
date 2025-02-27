@@ -54,6 +54,51 @@ public class QuestResult : BaseUI
         // 모험가 다시 풀기
 
         UIManager.Instance.CloseUI(this);
+
+        if (PoolManager.Instance.specialAdventureAdd)
+        {
+            // 특수 모험가 합류 예정
+            var adventureId = PlayerPrefs.GetString("AdventureId");
+            var adventureIds = adventureId.Split(',');
+
+            int tmpId = 0;
+            
+            switch (PoolManager.Instance.questData[resultIndex].questMonster)
+            {
+                case "설녀":
+                    tmpId = 128013232;
+                    break;
+                case "호문쿨루스":
+                    tmpId = 128022121;
+                    break;
+                case "헤츨링":
+                    tmpId = 128031313;
+                    break;
+            }
+
+            string addId = tmpId.ToString();
+
+            foreach (var item in adventureIds)
+            {
+                int adventureIdOfInt = Convert.ToInt32(item);
+
+                addId += "," + adventureIdOfInt.ToString();
+            }
+
+            PlayerPrefs.SetString("AdventureId", addId);
+
+            // 모험가가 가득차 보상을 받을 수 없습니다.
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "새로운 모험가 합류!!";
+            uiData.okBtnTxt = "확인";
+            uiData.onClickOKBtn = () =>
+            {
+                PoolManager.Instance.specialAdventureAdd = false;
+            };
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
     }
 
     public void OnClickDieOKBtn()     // 전멸 확인 버튼

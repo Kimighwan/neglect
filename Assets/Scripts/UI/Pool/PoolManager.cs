@@ -47,6 +47,8 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
     public QuestManager[] questManagers;
 
+    [SerializeField] public bool specialAdventureAdd = false;    // 특수 모험가 합류 하는가?
+
     // 새로운 모험가
     public int bronzAd = 0;     // 브론즈 모험가 수
     public int silverAd = 0;    // 실버 모험가 수
