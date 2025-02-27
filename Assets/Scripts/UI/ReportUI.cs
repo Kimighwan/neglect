@@ -18,6 +18,7 @@ public class ReportUI : BaseUI
     private Color startColor = new Color(0, 0, 0, 0.05f);
     private Color endColor = new Color(0, 0, 0, 0.9f);
     private bool stampOn = false;
+    private bool inputLock = false;
 
     private void OnEnable() {
         day.text = "";
@@ -34,14 +35,13 @@ public class ReportUI : BaseUI
             StampShadow.color = startColor;
             StampShadow.enabled = false;
         }
-        DoFadeIn();
-        Invoke("StartTyping", 0.5f);
-        AudioManager.Instance.PlayBGM(BGM.TypeWriter);
+        StartCoroutine(FadeIn(1f, 0f, 1f, 0f));
+        Invoke("StartTyping", 0.3f);
     }
 
     void Update()
     {
-        if (Input.anyKeyDown || Input.GetMouseButtonDown(0)) {
+        if (!inputLock && (Input.anyKeyDown || Input.GetMouseButtonDown(0))) {
             if (!stampOn) StartCoroutine(AnimateStampShadow());
             else OnClickCloseBut();
         }
@@ -53,12 +53,9 @@ public class ReportUI : BaseUI
         StartCoroutine(FadeOut(1f, 0f, 0f, 1f));
     }
 
-    private void DoFadeIn() {
-        StartCoroutine(FadeIn(1f, 0f, 1f, 0f));
-    }
-
     private IEnumerator FadeIn(float duration, float startDelay, float startAlpha, float endAlpha)
     {
+        inputLock = true;
         yield return new WaitForSeconds(startDelay);
         image.color = new Color(0f, 0f, 0f, startAlpha);
 
@@ -75,6 +72,7 @@ public class ReportUI : BaseUI
 
     private IEnumerator FadeOut(float duration, float startDelay, float startAlpha, float endAlpha)
     {
+        inputLock = true;
         yield return new WaitForSeconds(startDelay);
         image.color = new Color(0f, 0f, 0f, startAlpha);
 
@@ -91,11 +89,13 @@ public class ReportUI : BaseUI
     }
     private void StartTyping()
     {
+        AudioManager.Instance.PlayBGM(BGM.TypeWriter);
         StartCoroutine(TypeDialog($"{GameInfo.gameInfo.Day}일차", $"<완료한 의뢰>\n브론즈 X 3 => 300\n실버 X 1 => 200\n금일 점수 500"
         , $"현재 점수 {GameInfo.gameInfo.PlayerScore}점", $"?차 목표까지 ?점\n기한까지 ?일"));
     }
     private IEnumerator TypeDialog(string s1, string s2, string s3, string s4)
     {
+        inputLock = true;
         day.text = "";
         foreach (char letter in s1)
         {
@@ -133,10 +133,12 @@ public class ReportUI : BaseUI
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlaySFX(SFX.CoinDrop1);
         AudioManager.Instance.PlaySFX(SFX.CoinDrop2);
+        inputLock = false;
     }
 
     IEnumerator AnimateStampShadow()
     {
+        inputLock = true;
         StampShadow.enabled = true;
         AudioManager.Instance.PlaySFX(SFX.Stamp);
         float elapsed = 0f;
@@ -160,5 +162,6 @@ public class ReportUI : BaseUI
             Stamp.enabled = true;
             stampOn = true;
         }
+        inputLock = false;
     }
 }
