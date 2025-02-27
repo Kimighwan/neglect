@@ -14,13 +14,14 @@ public class ReportUI : BaseUI
 
     private float shadowDuration = 0.7f;
     private Vector3 startScale = new Vector3(0.1f, 0.1f, 0.1f);
-    private Vector3 endScale = new Vector3(0.9f, 0.9f, 0.9f);
-    private Color startColor = new Color(0, 0, 0, 0.05f);
-    private Color endColor = new Color(0, 0, 0, 0.9f);
+    private Vector3 endScale = Vector3.one;
+    private Color startColor = new Color(0f, 0f, 0f, 0f);
+    private Color endColor = new Color(0f, 0f, 0f, 0.9f);
     private bool stampOn = false;
     private bool inputLock = false;
 
     private void OnEnable() {
+        inputLock = true;
         day.text = "";
         quest.text = "";
         NowScore.text = "";
@@ -30,10 +31,8 @@ public class ReportUI : BaseUI
             stampOn = false;
         }
         if (StampShadow != null) {
-            StampShadow.enabled = true;
             StampShadow.rectTransform.localScale = startScale;
             StampShadow.color = startColor;
-            StampShadow.enabled = false;
         }
         StartCoroutine(FadeIn(1f, 0f, 1f, 0f));
         Invoke("StartTyping", 0.3f);
@@ -42,6 +41,7 @@ public class ReportUI : BaseUI
     void Update()
     {
         if (!inputLock && (Input.anyKeyDown || Input.GetMouseButtonDown(0))) {
+            inputLock = true;
             if (!stampOn) StartCoroutine(AnimateStampShadow());
             else OnClickCloseBut();
         }
@@ -55,7 +55,6 @@ public class ReportUI : BaseUI
 
     private IEnumerator FadeIn(float duration, float startDelay, float startAlpha, float endAlpha)
     {
-        inputLock = true;
         yield return new WaitForSeconds(startDelay);
         image.color = new Color(0f, 0f, 0f, startAlpha);
 
@@ -72,7 +71,6 @@ public class ReportUI : BaseUI
 
     private IEnumerator FadeOut(float duration, float startDelay, float startAlpha, float endAlpha)
     {
-        inputLock = true;
         yield return new WaitForSeconds(startDelay);
         image.color = new Color(0f, 0f, 0f, startAlpha);
 
@@ -95,7 +93,6 @@ public class ReportUI : BaseUI
     }
     private IEnumerator TypeDialog(string s1, string s2, string s3, string s4)
     {
-        inputLock = true;
         day.text = "";
         foreach (char letter in s1)
         {
@@ -138,8 +135,6 @@ public class ReportUI : BaseUI
 
     IEnumerator AnimateStampShadow()
     {
-        inputLock = true;
-        StampShadow.enabled = true;
         AudioManager.Instance.PlaySFX(SFX.Stamp);
         float elapsed = 0f;
         while (elapsed < shadowDuration)
@@ -161,7 +156,7 @@ public class ReportUI : BaseUI
             StampShadow.enabled = false;
             Stamp.enabled = true;
             stampOn = true;
+            inputLock = false;
         }
-        inputLock = false;
     }
 }
