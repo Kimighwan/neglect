@@ -67,12 +67,15 @@ public class QuestResult : BaseUI
             {
                 case "설녀":
                     tmpId = 128013232;
+                    PlayerPrefs.SetInt("설녀", 1);
                     break;
                 case "호문쿨루스":
                     tmpId = 128022121;
+                    PlayerPrefs.SetInt("호문쿨루스", 1);
                     break;
                 case "헤츨링":
                     tmpId = 128031313;
+                    PlayerPrefs.SetInt("헤츨링", 1);
                     break;
             }
 

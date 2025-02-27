@@ -626,7 +626,7 @@ public class RandomQuestSelectUI : MonoBehaviour
         if(tier == Tier.Silver)
         {
             int tmpResultValue = UnityEngine.Random.Range(1, 101);
-            if (tmpResultValue <= 90)
+            if (tmpResultValue <= 90 || PlayerPrefs.GetInt("설녀") == 1)
             {
                 return UnityEngine.Random.Range(10, 19);
             }
@@ -636,17 +636,17 @@ public class RandomQuestSelectUI : MonoBehaviour
         else if(tier == Tier.Gold)
         {
             int tmpResultValue = UnityEngine.Random.Range(1, 101);
-            if (tmpResultValue <= 90)
+            if (tmpResultValue <= 90 || PlayerPrefs.GetInt("호문쿨루스") == 1)
             {
                 return UnityEngine.Random.Range(20, 29);
             }
             else
                 return 29;
         }
-        else if(tier == Tier.Platinum)
+        else if(tier == Tier.Platinum )
         {
             int tmpResultValue = UnityEngine.Random.Range(1, 101);
-            if (tmpResultValue <= 90)
+            if (tmpResultValue <= 90 || PlayerPrefs.GetInt("헤츨링") == 1)
             {
                 return UnityEngine.Random.Range(31, 37);
             }
