@@ -57,6 +57,36 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     protected override void Init()
     {
         base.Init();
+
+        // 브론즈
+        if (PlayerPrefs.HasKey("bronzAd"))
+            bronzAd = PlayerPrefs.GetInt("bronzAd");
+        else
+            PlayerPrefs.SetInt("bronzAd", 0);
+
+        // 실버
+        if (PlayerPrefs.HasKey("silverAd"))
+            silverAd = PlayerPrefs.GetInt("silverAd");
+        else
+            PlayerPrefs.SetInt("silverAd", 0);
+
+        // 골드
+        if (PlayerPrefs.HasKey("goldAd"))
+            goldAd = PlayerPrefs.GetInt("goldAd");
+        else
+            PlayerPrefs.SetInt("goldAd", 0);
+
+        // 플래티넘
+        if (PlayerPrefs.HasKey("platinumAd"))
+            platinumAd = PlayerPrefs.GetInt("platinumAd");
+        else
+            PlayerPrefs.SetInt("platinumAd", 0);
+
+        // 다이아
+        if (PlayerPrefs.HasKey("diaAd"))
+            diaAd = PlayerPrefs.GetInt("diaAd");
+        else
+            PlayerPrefs.SetInt("diaAd", 0);
     }
 
     public void SetDetachQuestListData()
@@ -152,5 +182,25 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     {
         questBtn[index - 1].interactable = true;
         adventureBtn[index - 1].interactable = true;
+    }
+
+    protected override void Dispose()
+    {
+        base.Dispose();
+
+        // 브론즈
+        PlayerPrefs.SetInt("bronzAd", bronzAd);
+
+        // 실버
+        PlayerPrefs.SetInt("silverAd", silverAd);
+
+        // 골드
+        PlayerPrefs.SetInt("goldAd", goldAd);
+
+        // 플래티넘
+        PlayerPrefs.SetInt("platinumAd", platinumAd);
+
+        // 다이아
+        PlayerPrefs.SetInt("diaAd", diaAd);
     }
 }
