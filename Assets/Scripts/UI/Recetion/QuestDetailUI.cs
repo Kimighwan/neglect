@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,7 +81,7 @@ public class QuestDetailUI : BaseUI
         UIManager.Instance.CloseUI(this);
 
         var todayQuestUI = new BaseUIData();
-        UIManager.Instance.OpenUI<TodayQuestUI>(todayQuestUI);
+        UIManager.Instance.OpenUI<QuestListUI>(todayQuestUI);
     }
 
     public void OnClickMonsterDescBtn() // 몬스터 도감(설명) 열기
@@ -99,5 +100,54 @@ public class QuestDetailUI : BaseUI
         AudioManager.Instance.PlaySFX(SFX.Denied);
         UIManager.Instance.OpenUI<ConfirmUI>(uiData);
         return;
+    }
+
+    public void OnClickDeleteBtn()
+    {
+        var uiData = new ConfirmUIData();
+        uiData.confirmType = ConfirmType.OK_CANCEL;
+        uiData.descTxt = "삭제 하시겠습니까?";
+        uiData.okBtnTxt = "삭제";
+        uiData.cancelBtnTxt = "아니요";
+        uiData.onClickOKBtn = () =>
+        {
+            QuestDelete();
+        };
+        UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+    }
+
+    private void QuestDelete()
+    {
+        PoolManager.Instance.userQuestList.Remove(DataTableManager.Instance.GetQuestData(DataTableManager.Instance.questDetailId));
+
+        var questId = PlayerPrefs.GetString("QuestId");
+        var questIds = questId.Split(',');
+
+        if (questId == "") return;
+
+        string add = "";
+
+        foreach (var item in questIds)
+        {
+            int questIdOfInt = Convert.ToInt32(item);
+            if(DataTableManager.Instance.questDetailId != questIdOfInt)
+            {
+                if(add == "")
+                {
+                    add += questIdOfInt.ToString();
+                }
+                else
+                {
+                    add += "," + questIdOfInt.ToString();
+                }
+            }
+        }
+
+        PlayerPrefs.SetString("QuestId", add);
+
+        UIManager.Instance.CloseUI(this);
+
+        var todayQuestUI = new BaseUIData();
+        UIManager.Instance.OpenUI<QuestListUI>(todayQuestUI);
     }
 }
