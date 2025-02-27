@@ -317,24 +317,16 @@ public class GameInfo : MonoBehaviour
     }
 
     public int GetMaxAdventurerCounts() {
-        int sum = 0;
+        int sum = 5;
         for (int i = 0; i < 4; i++) {
-            if (rooms[i].isActive) {
-                int l = rooms[i].level;
-                switch (l) {
-                    case 1:
-                        sum += 2;
-                        break;
-                    case 2:
-                        sum += 4;
-                        break;
-                    case 3:
-                        sum += 6;
-                        break;
-                }
+            if (rooms[i].isActive) 
+            {
+                int k = rooms[i].level;
+                sum += k * 2;
             }
         }
-        sum += level * 5;
+
+        sum += level * 2;
         return sum;
     }
 

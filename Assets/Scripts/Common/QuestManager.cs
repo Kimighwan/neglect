@@ -299,6 +299,9 @@ public class QuestManager : MonoBehaviour
     
     public void Calculation(int index)
     {
+        dieRate = 0;
+        bigRate = 0;
+
         float rate = samePositionRate + sameClassRate + mixPositionRate + misClassRate - strongRate + weakRate;
         rate = Mathf.Floor(rate * 10f) / 10f;
 
