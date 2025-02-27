@@ -21,6 +21,7 @@ public class Counter : MouseDrag
     public Sprite whiteLine;
     void OnMouseOver()
     {
+        if (UIManager.Instance.ExistOpenUI() || GameInfo.gameInfo.CheckInRequest()) return;
         this.GetComponent<SpriteRenderer>().sprite = whiteLine;
     }
     void OnMouseExit()

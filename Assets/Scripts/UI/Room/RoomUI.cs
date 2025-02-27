@@ -1,4 +1,5 @@
 using TMPro;
+using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -17,6 +18,11 @@ public class RoomUI : MonoBehaviour {
     {
         button.interactable = true;
         isUINow = true;
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(ScaleChange(Vector3.zero, Vector3.one, 0.5f));
     }
 
     public void SetInfo(int i, bool b) {
@@ -78,5 +84,23 @@ public class RoomUI : MonoBehaviour {
         neededGold.text = "";
         isUINow = false;
         this.gameObject.SetActive(false);
+    }
+
+    IEnumerator ScaleChange(Vector3 originalScale ,Vector3 targetScale, float animationDuration) {
+        float elapsedTime = 0f;
+        
+        transform.localScale = originalScale;
+        
+        while (elapsedTime < animationDuration)
+        {
+            float t = elapsedTime / animationDuration;
+            float smoothStep = Mathf.SmoothStep(0f, 1f, t);
+            transform.localScale = Vector3.Lerp(originalScale, targetScale, smoothStep);
+            
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        transform.localScale = targetScale;
     }
 }

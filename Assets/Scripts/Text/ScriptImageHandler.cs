@@ -35,6 +35,7 @@ public class ScriptImageHandler : MonoBehaviour
     }
     public void SetIllImage(string fileName) {
         if (fileName == "0") {
+            AudioManager.Instance.StopBGM();
             BackGround.sprite = null;
             BackGround.color = new Color(0f, 0f, 0f);
             return;

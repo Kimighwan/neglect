@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.OpenUI<SystemDescUI>(systemDescUI);
     }
     public void EndTheGame() {
-        Invoke("BackToTitle", 2f);
+        Invoke("GoToTitle", 2f);
     }
     public void GoToTitle() {
         UIManager.Instance.CloseAllOpenUI();
