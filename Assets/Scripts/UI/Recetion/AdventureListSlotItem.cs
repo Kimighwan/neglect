@@ -131,23 +131,42 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
     public void OnClickExportBtn()
     {
-        if (adventureTier == "브론즈"){
+        var uiData = new ConfirmUIData();
+        uiData.confirmType = ConfirmType.OK_CANCEL;
+        uiData.descTxt = "정말로 삭제 하시겠습니까?";
+        uiData.okBtnTxt = "삭제";
+        uiData.cancelBtnTxt = "아니요";
+        uiData.onClickOKBtn = () =>
+        {
+            Export();
+        };
+        UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+    }
+
+    private void Export()
+    {
+        if (adventureTier == "브론즈")
+        {
             PoolManager.Instance.bronzAd--;
             GameInfo.gameInfo.ChangeGold(40);
         }
-        else if (adventureTier == "실버"){
+        else if (adventureTier == "실버")
+        {
             PoolManager.Instance.silverAd--;
             GameInfo.gameInfo.ChangeGold(100);
         }
-        else if (adventureTier == "골드"){
+        else if (adventureTier == "골드")
+        {
             PoolManager.Instance.goldAd--;
             GameInfo.gameInfo.ChangeGold(200);
         }
-        else if (adventureTier == "플래티넘"){
+        else if (adventureTier == "플래티넘")
+        {
             GameInfo.gameInfo.ChangeGold(400);
             PoolManager.Instance.platinumAd--;
         }
-        else{
+        else
+        {
             GameInfo.gameInfo.ChangeGold(1000);
             PoolManager.Instance.diaAd--;
         }
