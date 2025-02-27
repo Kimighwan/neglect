@@ -192,7 +192,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                 break;
         }
 
-        if (!PoolManager.Instance.userQuestIndex.Contains(resultId))
+        if (!PoolManager.Instance.userQuestIndex.Contains(resultId) && !CheckHaveRandomIndex(resultId))
         {
             PoolManager.Instance.userQuestIndex.Add(resultId);
         }
@@ -212,7 +212,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         do
                         {
                             tmp = UnityEngine.Random.Range(1, 10);
-                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                     }
                     else
@@ -220,7 +220,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         for(int i = 1; i < 10; i++)
                         {
                             tmp = i;
-                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                 break;
                         }
                     }
@@ -236,7 +236,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         do
                         {
                             tmp = GetQuestindex(Tier.Silver);          // 실버     10개
-                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                     }
                     else
@@ -244,7 +244,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         for (int i = 10; i < 20; i++)
                         {
                             tmp = i;
-                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                 break;
                         }
                     }
@@ -260,7 +260,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         do
                         {
                             tmp = GetQuestindex(Tier.Gold);            // 골드     10개
-                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                     }
                     else
@@ -268,7 +268,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         for (int i = 20; i < 30; i++)
                         {
                             tmp = i;
-                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                 break;
                         }
                     }
@@ -293,7 +293,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = GetQuestindex(Tier.Silver);          // 실버     10개
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -301,7 +301,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 10; i < 20; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -317,7 +317,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = UnityEngine.Random.Range(1, 10);
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -325,7 +325,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 1; i < 10; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -342,7 +342,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         do
                         {
                             tmp = GetQuestindex(Tier.Silver);          // 실버     10개
-                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                     }
                     else
@@ -350,7 +350,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         for (int i = 10; i < 20; i++)
                         {
                             tmp = i;
-                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                 break;
                         }
                     }
@@ -367,7 +367,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         do
                         {
                             tmp = GetQuestindex(Tier.Gold);          // 골드     10개
-                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                        } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                     }
                     else
@@ -375,7 +375,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         for (int i = 20; i < 30; i++)
                         {
                             tmp = i;
-                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                 break;
                         }
                     }
@@ -400,7 +400,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = GetQuestindex(Tier.Silver);          // 실버     10개
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -408,7 +408,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 10; i < 20; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -425,7 +425,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = GetQuestindex(Tier.Gold);            // 골드     10개
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -433,7 +433,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 20; i < 30; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -453,7 +453,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = GetQuestindex(Tier.Gold);            // 골드     10개
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -461,7 +461,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 20; i < 30; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -478,7 +478,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = GetQuestindex(Tier.Silver);          // 실버     10개
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -486,7 +486,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 10; i < 20; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -506,7 +506,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = GetQuestindex(Tier.Platinum);            // 플래 7개
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -514,7 +514,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 31; i < 38; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -531,7 +531,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = GetQuestindex(Tier.Gold);            // 골드     10개
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -539,7 +539,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 20; i < 30; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -555,7 +555,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         for (int i = 38; i < 41; i++)
                         {
                             tmp = i;
-                            if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                            if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                 break;
                         }
 
@@ -571,7 +571,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = GetQuestindex(Tier.Platinum);            // 플래 7개
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -579,7 +579,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 31; i < 38; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -596,7 +596,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             do
                             {
                                 tmp = GetQuestindex(Tier.Gold);            // 골드     10개
-                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp));
+                            } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
@@ -604,7 +604,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                             for (int i = 20; i < 30; i++)
                             {
                                 tmp = i;
-                                if (!PoolManager.Instance.userQuestIndex.Contains(i))
+                                if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                                     break;
                             }
                         }
@@ -619,61 +619,7 @@ public class RandomQuestSelectUI : MonoBehaviour
         return resultId;
     }
 
-    private bool CheckQuestFullOfTier(Tier tier)    // 랭크에 해당하는 의뢰가 더이상 없는가
-    {
-        switch (tier)
-        {
-            case Tier.Bronze:
-                for(int i = 1; i < 10; i++)
-                {
-                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
-                    {
-                        return false;
-                    }
-                }
-                break;
-            case Tier.Silver:
-                for (int i = 10; i < 20; i++)
-                {
-                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
-                    {
-                        return false;
-                    }
-                }
-                break;
-            case Tier.Gold:
-                for (int i = 20; i < 30; i++)
-                {
-                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
-                    {
-                        return false;
-                    }
-                }
-                break;
-            case Tier.Platinum:
-                for (int i = 31; i < 38; i++)
-                {
-                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
-                    {
-                        return false;
-                    }
-                }
-                break;
-            case Tier.Dia:
-                for (int i = 38; i < 41; i++)
-                {
-                    if (!PoolManager.Instance.userQuestIndex.Contains(i))
-                    {
-                        return false;
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-
-        return true;    // 없다
-    }
+    
 
     private int GetQuestindex(Tier tier)
     {
@@ -743,6 +689,27 @@ public class RandomQuestSelectUI : MonoBehaviour
         }
 
         return false;           // 없음
+    }
+
+    private bool CheckHaveRandomIndex(int mid)
+    {
+        int tmp = DataTableManager.Instance.GetQuestDataUsingIndex(mid).questId;
+
+
+        string questOfString = PlayerPrefs.GetString("QuestId");  // 현재 의뢰 ID 가져오기
+        string[] questIdOfInt = questOfString.Split(',');         // 구분자 의뢰 ID 분리
+
+        if (questOfString == "") return false;
+
+        for (int index = 0; index < questIdOfInt.Length; index++)        // 모든 의뢰 ID 순회
+        {
+            if (tmp == Convert.ToInt32(questIdOfInt[index]))     // 매개변수와 같은 의뢰 ID 검색
+            {
+                return true;    // 해당 의뢰 있음
+            }
+        }
+
+        return false;           // 해당 의뢰 없음
     }
 
     private bool CheckMaxQuest()    // 의뢰 최대 수량 체크
