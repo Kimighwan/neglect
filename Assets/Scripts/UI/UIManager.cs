@@ -190,6 +190,11 @@ public class UIManager : SingletonBehaviour<UIManager>
 
             if (frontUI != null) // UI가 띄워져 있다면
             {
+                if (GetActiveUI<DetachAdventureListUI>())
+                {
+                    var ui = GetActiveUI<DetachAdventureListUI>() as DetachAdventureListUI;
+                    PoolManager.Instance.questManagers[ui.adventureIndex - 1].adventureDatas.Clear();
+                }
                 frontUI.CloseUI(); // 띄워져있는 UI 닫기
             }
             else // 아무 UI도 없다면 게임 종료 팝업UI 띄우기

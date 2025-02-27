@@ -35,6 +35,8 @@ public class Test : MonoBehaviour
                 {
                     gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
                     questStart = false;
+                    image.SetActive(false);
+                    resultBtn.SetActive(true);
                 }
             }
             else if (totalDay == 2)     // 이틀 짜리 의뢰
@@ -47,6 +49,8 @@ public class Test : MonoBehaviour
                 {
                     gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
                     questStart = false;
+                    image.SetActive(false);
+                    resultBtn.SetActive(true);
                 }
             }
             else if (totalDay == 3)     // 삼일 짜리 의뢰
@@ -63,6 +67,8 @@ public class Test : MonoBehaviour
                 {
                     gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
                     questStart = false;
+                    image.SetActive(false);
+                    resultBtn.SetActive(true);
                 }
             }
         }
@@ -134,8 +140,28 @@ public class Test : MonoBehaviour
         return tmpCount;
     }
 
-    public void OnClickQuestStart(int index)
+    public void OnClickQuestStart(int index)    // 파견 시작 버튼
     {
+        if(questManagers.adventureBtn.interactable)
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "모험가를 선택하세요.";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
+
+        if(questManagers.questBtn.interactable)
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "의뢰를 선택하세요.";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
+
         image.SetActive(true);
         StartCoroutine(testt());
 
@@ -154,8 +180,6 @@ public class Test : MonoBehaviour
     private IEnumerator testt()
     {
         yield return new WaitForSeconds(1.5f);
-        image.SetActive(false);
-        resultBtn.SetActive(true);
     }
 
     public void OnClickAwakeBtn(int index)

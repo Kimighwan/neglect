@@ -285,4 +285,12 @@ public class DetachAdventureListUI : BaseUI
         PoolManager.Instance.UsingAdventureData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachAdventureListUI>());
     }
+
+    public override void OnClickCloseButton()
+    {
+        base.OnClickCloseButton();
+
+
+        PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Clear();
+    }
 }
