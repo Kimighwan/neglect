@@ -30,7 +30,7 @@ public class GameInfo : MonoBehaviour
         gold = 1000;
         day = 1;
         timer = 80.0f;
-        level = 1;
+        level = 5;
         requests = 2;
         plusGold = 0;
         playerScore = 0;

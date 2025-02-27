@@ -12,11 +12,11 @@ public class QuestResult : BaseUI
     public GameObject receiptBtn;
     public GameObject diaOKBtn;     // 전멸시 사용할 버튼
 
-    private int resultIndex;        // 파견창 인덱스
+    [SerializeField] public int resultIndex;        // 파견창 인덱스
     private int result;             // 결과 / -1 : 전멸 / 0 : 일반 성공 / 1 : 대성공
     private int reward;
 
-    private void Start()
+    private void OnEnable()
     {
         reward = 0;
         receiptBtn.SetActive(false);
@@ -48,26 +48,20 @@ public class QuestResult : BaseUI
         // 골드 추가하고
         GameInfo.gameInfo.ChangeGold(reward);
 
-        // 각 파견창의 게이지 비활성화
-        PoolManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
+        SetCommon();
 
         // 모험가 다시 풀기
 
         UIManager.Instance.CloseUI(this);
-
-        PoolManager.Instance.usingQuestList.Remove(PoolManager.Instance.questData[resultIndex].questId);
     }
 
     public void OnClickDieOKBtn()     // 전멸 확인 버튼
     {
-        // 각 파견창의 게이지 비활성화
-        PoolManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
+        SetCommon();
 
         // 모험가 다시 풀기
 
         UIManager.Instance.CloseUI(this);
-
-        PoolManager.Instance.usingQuestList.Remove(PoolManager.Instance.questData[resultIndex].questId);
     }
 
     private IEnumerator UpdateResultCo()
@@ -78,15 +72,7 @@ public class QuestResult : BaseUI
 
         rewardTxt.text = "+G " + PoolManager.Instance.questData[resultIndex].questReward.ToString();
 
-        // 버튼 Text 다시 설정
-        PoolManager.Instance.questTxt[resultIndex - 1].text = "의뢰 선택";
-        PoolManager.Instance.adventureTxt[resultIndex - 1].text = "모험가 선택";
-
-        // 버튼 다시 활성화
-        PoolManager.Instance.BtnActive(resultIndex);
-
-        // 결과 확인 버튼 비활성화
-        PoolManager.Instance.resultBtn[resultIndex - 1].gameObject.SetActive(false);
+        
 
         // 의뢰 종료시 모험가 다시 사용하게 Test
         foreach (var i in PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas)
@@ -129,7 +115,7 @@ public class QuestResult : BaseUI
             reward = 0;
 
             // 전멸 시 모험가 삭제 Test
-            foreach (var i in PoolManager.Instance.questManagers[resultIndex].adventureDatas)
+            foreach (var i in PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas)
             {
                 var adventureId = PlayerPrefs.GetString("AdventureId");
                 var adventureIds = adventureId.Split(',');
@@ -155,11 +141,29 @@ public class QuestResult : BaseUI
             }
         }
 
-        PoolManager.Instance.questManagers[resultIndex].adventureDatas.Clear(); // 파견창에 맞는 모험가 데이터 삭제
+        PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas.Clear(); // 파견창에 맞는 모험가 데이터 삭제
     }
 
     private void SetMonsterPlayerPrefs()
     {
         PlayerPrefs.SetInt($"{PoolManager.Instance.questData[resultIndex].questMonster}", 1);
+    }
+
+    private void SetCommon()
+    {
+        // 각 파견창의 게이지 비활성화
+        PoolManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
+
+        // 결과 확인 버튼 비활성화
+        PoolManager.Instance.resultBtn[resultIndex - 1].gameObject.SetActive(false);
+
+        // 버튼 다시 활성화
+        PoolManager.Instance.BtnActive(resultIndex);
+
+        // 버튼 Text 다시 설정
+        PoolManager.Instance.questTxt[resultIndex - 1].text = "의뢰 선택";
+        PoolManager.Instance.adventureTxt[resultIndex - 1].text = "모험가 선택";
+
+        PoolManager.Instance.usingQuestList.Remove(PoolManager.Instance.questData[resultIndex].questId);
     }
 }
