@@ -131,16 +131,30 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
     public void OnClickExportBtn()
     {
-        var uiData = new ConfirmUIData();
-        uiData.confirmType = ConfirmType.OK_CANCEL;
-        uiData.descTxt = "정말로 삭제 하시겠습니까?";
-        uiData.okBtnTxt = "삭제";
-        uiData.cancelBtnTxt = "아니요";
-        uiData.onClickOKBtn = () =>
+        if (stateTxt.text == "파견 중")
         {
-            Export();
-        };
-        UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            // 파견 중이라면 못하게 막기
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "파견 중입니다.";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
+        else
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK_CANCEL;
+            uiData.descTxt = "정말로 삭제 하시겠습니까?";
+            uiData.okBtnTxt = "삭제";
+            uiData.cancelBtnTxt = "아니요";
+            uiData.onClickOKBtn = () =>
+            {
+                Export();
+            };
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+        }
+        
     }
 
     private void Export()

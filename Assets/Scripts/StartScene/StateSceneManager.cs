@@ -42,6 +42,16 @@ public class StateSceneManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("천사"))
             PlayerPrefs.SetInt("천사", 0);
+
+
+        if (!PlayerPrefs.HasKey("호문쿨루스"))
+            PlayerPrefs.SetInt("호문쿨루스", 0);
+
+        if (!PlayerPrefs.HasKey("설녀"))
+            PlayerPrefs.SetInt("설녀", 0);
+
+        if (!PlayerPrefs.HasKey("헤츨링"))
+            PlayerPrefs.SetInt("헤츨링", 0);
     }
     void OnEnable()
     {
