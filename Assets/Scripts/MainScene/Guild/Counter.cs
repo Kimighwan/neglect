@@ -4,6 +4,10 @@ using UnityEngine.EventSystems;
 public class Counter : MouseDrag
 {
     private bool tutorialOnce = false;
+    void Start()
+    {
+        original = this.GetComponent<SpriteRenderer>().sprite;
+    }
     public override void OnPointerDown(PointerEventData eventData)
     {
         UIManager.Instance.OnClickCounter();
@@ -11,5 +15,16 @@ public class Counter : MouseDrag
             tutorialOnce = true;
             GameManager.gameManager.OpenTutorial(590002);
         }
+    }
+
+    private Sprite original;
+    public Sprite whiteLine;
+    void OnMouseOver()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = whiteLine;
+    }
+    void OnMouseExit()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = original;
     }
 }
