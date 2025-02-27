@@ -188,6 +188,7 @@ public class QuestResult : BaseUI
         }
 
         PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas.Clear(); // 파견창에 맞는 모험가 데이터 삭제
+        DeleteQuest();
     }
 
     private void SetMonsterPlayerPrefs()
@@ -213,5 +214,30 @@ public class QuestResult : BaseUI
         PoolManager.Instance.usingQuestList.Remove(PoolManager.Instance.questData[resultIndex].questId);
 
         PoolManager.Instance.resultList.Remove(resultIndex);
+    }
+
+    private void DeleteQuest() // 의뢰 목록에서 의뢰 제거
+    {
+        int deleteId = PoolManager.Instance.questData[resultIndex].questId;
+
+        var questId = PlayerPrefs.GetString("QuestId");
+        var questIds = questId.Split(',');
+
+        string addId = "";
+
+        foreach (var item in questIds)
+        {
+            int questIdOfInt = Convert.ToInt32(item);
+
+            if (deleteId != questIdOfInt)
+            {
+                if (addId == "")
+                    addId += questIdOfInt.ToString();
+                else
+                    addId += "," + questIdOfInt.ToString();
+            }
+        }
+
+        PlayerPrefs.SetString("QuestId", addId);
     }
 }
