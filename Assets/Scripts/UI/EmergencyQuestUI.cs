@@ -96,6 +96,7 @@ public class EmergencyQuestUI : BaseUI
         {
             resultTxt.text = "긴급 의뢰 실패";
             resultBtnTxt.text = "확인";
+            reward = 0;
         }
         else if (resultValue == 0)
         {
@@ -116,5 +117,14 @@ public class EmergencyQuestUI : BaseUI
 
         // 해당 긴급 의뢰가 끝나면 QuestData해제 - 메모리 유지관리 목적
         PoolManager.Instance.questData.Remove(index);
+    }
+
+    public void OnClickResultBtn()
+    {
+        // 성공이면 골드 추가
+        GameInfo.gameInfo.ChangeGold(reward);
+
+        // UI 닫기
+        UIManager.Instance.CloseUI(this);
     }
 }

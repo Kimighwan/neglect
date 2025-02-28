@@ -91,20 +91,39 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
     public void OnClickAdventureBtn()   // 모험가 클릭
     {
         DetachAdventureListUI tmp = UIManager.Instance.GetActiveUI<DetachAdventureListUI>() as DetachAdventureListUI;
+        var ui = UIManager.Instance.GetActiveUI<EmergencyQuestUI>() as EmergencyQuestUI;
 
         if (AdventureData.adventureSelectId.Contains(adventureid))  // 선택 취소
         {
             AdventureData.adventureSelectId.Remove(adventureid);
 
-            PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.Remove(adventureData);   /// 파견 index에 맞는 QuestManager의 선택된 모험가 삭제
+            if (tmp.adventureIndex < 10)
+            {
+                /// 파견 index에 맞는 QuestManager의 선택된 모험가 삭제
+                PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.Remove(adventureData);  
+                return;
+            }
+            else
+            {
+                /// 파견 index에 맞는 QuestManager의 선택된 모험가 삭제
+                ui.questManager.adventureDatas.Remove(adventureData);
+                return;
+            }
 
-            return;
         }
 
         if (AdventureData.adventureSelectId.Count == 4) // 제일 마지막에 선택한 모험가 삭제 필요
         {
             AdventureData.adventureSelectId.RemoveAt(0);
-            PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.RemoveAt(0);
+
+            if (tmp.adventureIndex < 10)
+            {
+                PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.RemoveAt(0);
+            }
+            else
+            {
+                ui.questManager.adventureDatas.RemoveAt(0);
+            }
         }
 
         AdventureData.adventureSelectId.Add(adventureid);
@@ -113,7 +132,7 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
             PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.Add(adventureData);   // 선택된 모험가 파견 index에 맞는 QuestManager에 넣기
         else
         {
-            var ui = UIManager.Instance.GetActiveUI<EmergencyQuestUI>() as EmergencyQuestUI;
+            
             ui.questManager.adventureDatas.Add(adventureData);
         }
     }
