@@ -204,6 +204,9 @@ public class QuestResult : BaseUI
         // 각 파견창의 게이지 비활성화
         PoolManager.Instance.gaugeObject[resultIndex - 1].SetActive(false);
 
+        // 초기화 버튼 활성화
+        PoolManager.Instance.awakeBtn[resultIndex - 1].SetActive(true);
+
         // 결과 확인 버튼 비활성화
         PoolManager.Instance.resultBtn[resultIndex - 1].gameObject.SetActive(false);
 

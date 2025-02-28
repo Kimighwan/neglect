@@ -1138,8 +1138,8 @@ MonoBehaviour:
   questManagers: {fileID: 172250426}
   image: {fileID: 961166168}
   resultBtn: {fileID: 92556183}
-  awakeBtn: {fileID: 1632545920}
   gaugeObject: {fileID: 931915968}
+  awakeBtnObject: {fileID: 1632545920}
   gaugeImage: {fileID: 931915969}
 --- !u!114 &172250426
 MonoBehaviour:
@@ -2975,8 +2975,8 @@ MonoBehaviour:
   questManagers: {fileID: 370210824}
   image: {fileID: 1736706903}
   resultBtn: {fileID: 561072339}
-  awakeBtn: {fileID: 595000829}
   gaugeObject: {fileID: 791828237}
+  awakeBtnObject: {fileID: 595000829}
   gaugeImage: {fileID: 791828238}
 --- !u!114 &370210824
 MonoBehaviour:
@@ -5906,8 +5906,8 @@ MonoBehaviour:
   questManagers: {fileID: 675045287}
   image: {fileID: 49589810}
   resultBtn: {fileID: 1345461047}
-  awakeBtn: {fileID: 2000006909}
   gaugeObject: {fileID: 475992280}
+  awakeBtnObject: {fileID: 2000006909}
   gaugeImage: {fileID: 475992284}
 --- !u!114 &675045287
 MonoBehaviour:
@@ -7493,8 +7493,8 @@ MonoBehaviour:
   questManagers: {fileID: 819719518}
   image: {fileID: 775801805}
   resultBtn: {fileID: 638633038}
-  awakeBtn: {fileID: 963245554}
   gaugeObject: {fileID: 1151064678}
+  awakeBtnObject: {fileID: 963245554}
   gaugeImage: {fileID: 1151064679}
 --- !u!114 &819719518
 MonoBehaviour:
@@ -18354,8 +18354,8 @@ MonoBehaviour:
   questManagers: {fileID: 1918976136}
   image: {fileID: 847892234}
   resultBtn: {fileID: 368747619}
-  awakeBtn: {fileID: 1895613460}
   gaugeObject: {fileID: 901699175}
+  awakeBtnObject: {fileID: 1895613460}
   gaugeImage: {fileID: 901699176}
 --- !u!114 &1918976136
 MonoBehaviour:
@@ -21137,6 +21137,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: awakeBtn.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: questBtn.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -21152,6 +21156,26 @@ PrefabInstance:
       propertyPath: stateIcons.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: awakeBtn.Array.data[0]
+      value: 
+      objectReference: {fileID: 2000006909}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: awakeBtn.Array.data[1]
+      value: 
+      objectReference: {fileID: 595000829}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: awakeBtn.Array.data[2]
+      value: 
+      objectReference: {fileID: 963245554}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: awakeBtn.Array.data[3]
+      value: 
+      objectReference: {fileID: 1895613460}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: awakeBtn.Array.data[4]
+      value: 
+      objectReference: {fileID: 1632545920}
     - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: checkUpdate.Array.size
       value: 8

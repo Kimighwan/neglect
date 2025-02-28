@@ -12,9 +12,9 @@ public class Test : MonoBehaviour
     private bool adTutorialOnce = false;
     public GameObject image;                // 파견 진행 중 가린막 이미지
     public GameObject resultBtn;
-    public GameObject awakeBtn;
 
     public GameObject gaugeObject;
+    public GameObject awakeBtnObject;
     public RawImage gaugeImage;
 
     private int startDay;
@@ -124,8 +124,6 @@ public class Test : MonoBehaviour
                     PoolManager.Instance.specialAdventureAdd = true;    // 특수 모험가 합류할 예정
                     var questResult = new QuestResultIndex(index);
                     UIManager.Instance.OpenUI<QuestResult>(questResult);
-
-                    awakeBtn.SetActive(true);
                 }
             }
         }
@@ -133,8 +131,6 @@ public class Test : MonoBehaviour
         {
             var questResult = new QuestResultIndex(index);
             UIManager.Instance.OpenUI<QuestResult>(questResult);
-
-            awakeBtn.SetActive(true);
         }
         
     }
@@ -184,7 +180,7 @@ public class Test : MonoBehaviour
         totalDay = PoolManager.Instance.questData[index].questTime;
 
         gaugeObject.SetActive(true);
-        awakeBtn.SetActive(false);
+        awakeBtnObject.SetActive(false);
     }
 
     private IEnumerator testt()
