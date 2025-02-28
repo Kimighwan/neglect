@@ -140,13 +140,16 @@ public class ScriptMode : MonoBehaviour
         AudioManager.Instance.PlayBGM(BGM.Main6);
         switch (id) {
             case 100120: // 슬라임 홍수 시작
-
+                var slimeUiData = new EmergencyQuestUIData(11);
+                UIManager.Instance.OpenUI<EmergencyQuestUI>(slimeUiData);
                 break;
             case 100219: // 몬스터 웨이브 시작
-
+                var monsterWaveUiData = new EmergencyQuestUIData(12);
+                UIManager.Instance.OpenUI<EmergencyQuestUI>(monsterWaveUiData);
                 break;
             case 100315: // 모험가 구함 시작
-            
+                var uiData = new EmergencyQuestUIData(13);
+                UIManager.Instance.OpenUI<EmergencyQuestUI>(uiData);
                 break;
         }
     }
