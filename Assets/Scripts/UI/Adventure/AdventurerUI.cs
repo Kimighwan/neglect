@@ -9,6 +9,7 @@ public class AdventurerUI : BaseUI
     public TextMeshProUGUI goldTxt;
     public TextMeshProUGUI platinumTxt;
     public TextMeshProUGUI diaTxt;
+    public TextMeshProUGUI coundTxt;
 
 
     private List<GameObject> uiListPool = new List<GameObject>();   // 모험가 카드 3장 Pool
@@ -48,7 +49,9 @@ public class AdventurerUI : BaseUI
 
     private void Update()
     {
-        if(GameInfo.gameInfo.Level == 1)
+        CountUpdate();
+
+        if (GameInfo.gameInfo.Level == 1)
         {
             bronzeTxt.text = "79%";
             silverTxt.text = "20%";
@@ -137,5 +140,26 @@ public class AdventurerUI : BaseUI
     {
         GameManager.gameManager.cameraTransform.position = new Vector3(0f, 0f, -10f);
         base.OnClickCloseButton();
+    }
+
+    private void CountUpdate()
+    {
+        coundTxt.text = CheckCurrentAdventureCount().ToString() + "/" + GameInfo.gameInfo.GetMaxAdventurerCounts().ToString();
+    }
+
+    private int CheckCurrentAdventureCount()
+    {
+        var a = PlayerPrefs.GetString("AdventureId");
+        var b = a.Split(',');
+
+        int tmp = 0;
+
+        foreach (var item in b)
+        {
+            if (item != "") tmp++;
+
+        }
+
+        return tmp;
     }
 }
