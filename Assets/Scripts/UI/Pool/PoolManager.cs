@@ -43,7 +43,7 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
     public GameObject[] gaugeObject;    // 각 파견창의 게이지 오브젝트
 
-    public bool[] checkUpdate = new bool[5];         // Update 함수 한 번만 실행하기 위해서
+    public bool[] checkUpdate = new bool[8];         // Update 함수 한 번만 실행하기 위해서
 
     public QuestManager[] questManagers;
 

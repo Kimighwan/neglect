@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiAnim: {fileID: 0}
   index: 11
+  questManager: {fileID: 0}
   nameTxt: {fileID: 5625272409258576299}
   rankTxt: {fileID: 7857939104379622003}
   descTxt: {fileID: 6337949974089723232}
@@ -625,7 +626,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE34\uAE09 \uC758\uB8B0 \uB300\uC131\uACF5!!!"
+  m_text: ???????????
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184fec928be241448a084b9d7c281a63, type: 2}
   m_sharedMaterial: {fileID: 5145352664846468154, guid: 184fec928be241448a084b9d7c281a63, type: 2}

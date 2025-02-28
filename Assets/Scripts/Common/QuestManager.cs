@@ -58,6 +58,8 @@ public class QuestManager : MonoBehaviour
             }
             else
             {
+                if (!PoolManager.Instance.ready) return;
+
                 if (PoolManager.Instance.checkUpdate[detachIndex - 6]) return;
 
                 PoolManager.Instance.checkUpdate[detachIndex - 6] = true;

@@ -8,6 +8,8 @@ public class EmergencyQuestUI : BaseUI
 {
     public int index;                       // 몇번 째 챕터인지 체크
 
+    public QuestManager questManager;
+
     public TextMeshProUGUI nameTxt;         // 의뢰 이름
     public TextMeshProUGUI rankTxt;         // 의뢰 랭크
     public TextMeshProUGUI descTxt;         // 설명
@@ -25,7 +27,7 @@ public class EmergencyQuestUI : BaseUI
 
     private QuestData emetgencyQuestData;
 
-    private QuestManager questManager;
+    
 
     // 초기 데이터 초기화
     public override void SetInfo(BaseUIData uiData)
@@ -68,7 +70,7 @@ public class EmergencyQuestUI : BaseUI
 
     public void OnClickAdventureBtn()   // 모험가 선택 버튼
     {
-        var detachAdventureUI = new AdventureIndexClass(index + 10);
+        var detachAdventureUI = new AdventureIndexClass(index);
         UIManager.Instance.OpenUI<DetachAdventureListUI>(detachAdventureUI);
     }
 
@@ -83,15 +85,19 @@ public class EmergencyQuestUI : BaseUI
 
     private IEnumerator ShowResult()
     {
+        yield return null;
+
+        yield return new WaitForSeconds(2f);
+
         // 결과 가져오기
         resultValue = PoolManager.Instance.resultList[index];
 
-        if(resultValue == -1)
+        if (resultValue == -1)
         {
             resultTxt.text = "긴급 의뢰 실패";
             resultBtnTxt.text = "확인";
         }
-        else if(resultValue == 0)
+        else if (resultValue == 0)
         {
             resultTxt.text = "긴급 의뢰 성공!";
             resultBtnTxt.text = "+" + reward.ToString() + "G";
@@ -102,12 +108,11 @@ public class EmergencyQuestUI : BaseUI
             resultBtnTxt.text = "+" + reward.ToString() + "G";
         }
 
-        yield return new WaitForSeconds(2f);
         Temp.SetActive(false);
         main.SetActive(false);
         result.SetActive(true);
 
-        
+        PoolManager.Instance.ready = false;
 
         // 해당 긴급 의뢰가 끝나면 QuestData해제 - 메모리 유지관리 목적
         PoolManager.Instance.questData.Remove(index);

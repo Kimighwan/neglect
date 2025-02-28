@@ -12750,6 +12750,7 @@ MonoBehaviour:
   - {fileID: 1099963524}
   - {fileID: 325855560}
   - {fileID: 908853305}
+  nextDay: 0
   gameSpeed: 1
   roomUI: {fileID: 2130661913}
   roomTutorial: 0
@@ -20744,6 +20745,10 @@ PrefabInstance:
     - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: stateIcons.Array.size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: checkUpdate.Array.size
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: gaugeObject.Array.size
