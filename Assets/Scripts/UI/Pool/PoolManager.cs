@@ -63,6 +63,9 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public int platinumQ = 0;  // 플래티넘 의뢰 수
     public int diaQ = 0;       // 다이아 의뢰 수
 
+    // 긴급 의뢰
+    public bool ready = false;  // 모험가 선택이 완료되었는가?
+
     protected override void Init()
     {
         base.Init();

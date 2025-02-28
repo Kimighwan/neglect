@@ -89,6 +89,12 @@ public class AdventurerUI : BaseUI
             diaTxt.text = "10%";
         }
 
+        if(GameInfo.gameInfo.nextDay)
+        {
+            PoolManager.Instance.userAdventureIndex.Clear();
+            RemoveList();
+            SetAdventureList();
+        }
     }
 
     private void SetAdventureList() // 모험가 리스트 생성

@@ -12,7 +12,7 @@ public class QuestManager : MonoBehaviour
 
     public RawImage stateIcons;   // 상태 아이콘
 
-    public int detachIndex;
+    [SerializeField] public int detachIndex;
 
     const string ICON_PATH = "Arts/Icon";
 
@@ -48,11 +48,21 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        if (questBtn.interactable == false && adventureBtn.interactable == false)
+        if (detachIndex > 10 || (questBtn.interactable == false && adventureBtn.interactable == false))
         {
-            if (PoolManager.Instance.checkUpdate[detachIndex - 1]) return;
+            if(detachIndex < 10)
+            {
+                if (PoolManager.Instance.checkUpdate[detachIndex - 1]) return;
 
-            PoolManager.Instance.checkUpdate[detachIndex - 1] = true;
+                PoolManager.Instance.checkUpdate[detachIndex - 1] = true;
+            }
+            else
+            {
+                if (PoolManager.Instance.checkUpdate[detachIndex - 6]) return;
+
+                PoolManager.Instance.checkUpdate[detachIndex - 6] = true;
+            }
+            
 
             SetQuest(detachIndex);
 
@@ -62,18 +72,25 @@ public class QuestManager : MonoBehaviour
             SetStrongAndWeak(detachIndex);        // 약점 & 강점 비율
             Calculation(detachIndex);             // 점수 계산
 
-            stateIcons.color = new Color(1, 1, 1, 1);
+            if (detachIndex < 10)
+            {
+                stateIcons.color = new Color(1, 1, 1, 1);
 
-            if (resultMaxRate == -1)
-                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
-            else if (resultMaxRate == 0)
-                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
-            else
-                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+                if (resultMaxRate == -1)
+                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
+                else if (resultMaxRate == 0)
+                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+                else
+                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+            }
         }
         else
         {
-            PoolManager.Instance.checkUpdate[detachIndex - 1] = false;
+            if (detachIndex < 10)
+                PoolManager.Instance.checkUpdate[detachIndex - 1] = false;
+            else
+                PoolManager.Instance.checkUpdate[detachIndex - 6] = false;
+
             stateIcons.texture = null;
             stateIcons.color = new Color(0, 0, 0, 0);
         }
@@ -82,15 +99,6 @@ public class QuestManager : MonoBehaviour
     public void OnClickQusetStart(int index)
     {
         if (DoCheck(index)) return;
-
-        //SetQuest(index);
-
-
-        //SetTier(index);                 // 등급 점수
-        //SetSameScore(index);            // 중복 비율
-        //SetMixScore(index);             // 조합 비율
-        //SetStrongAndWeak(index);        // 약점 & 강점 비율
-        //Calculation(index);             // 점수 계산
     }
 
     private bool DoCheck(int index)
@@ -341,7 +349,6 @@ public class QuestManager : MonoBehaviour
         if (saveTmp > randomValue)
         {
             PoolManager.Instance.resultList[index] = -1;     // 전멸
-            //stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
             return;
         }
         saveTmp += nomalRate;
@@ -349,12 +356,10 @@ public class QuestManager : MonoBehaviour
         if (saveTmp > randomValue)
         {
             PoolManager.Instance.resultList[index] = 0;      // 일반 성공
-            //stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
             return;
         }
 
         PoolManager.Instance.resultList[index] = 1;          // 대성공
-        //stateIcons[index - 1].texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
     }
 
 }

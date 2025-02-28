@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 6338304485983714964}
   - component: {fileID: 5921010337721369471}
   m_Layer: 5
-  m_Name: GoTitle
+  m_Name: GameQuit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 537868580261392189}
         m_TargetAssemblyTypeName: GameSettingUI, Assembly-CSharp
-        m_MethodName: GoToTitle
+        m_MethodName: OnClickGameQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD0C0\uC774\uD2C0\uB85C"
+  m_text: "\uC885\uB8CC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184fec928be241448a084b9d7c281a63, type: 2}
   m_sharedMaterial: {fileID: 5145352664846468154, guid: 184fec928be241448a084b9d7c281a63, type: 2}
