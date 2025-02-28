@@ -9,6 +9,7 @@ public class TodayQuestUI : BaseUI
     public TextMeshProUGUI goldTxt;
     public TextMeshProUGUI platinumTxt;
     public TextMeshProUGUI diaTxt;
+    public TextMeshProUGUI countText;
 
     private List<GameObject> uiListPool = new List<GameObject>();   // 의뢰 종이 3장 Pool
 
@@ -30,7 +31,9 @@ public class TodayQuestUI : BaseUI
 
     private void Update()
     {
-        if(GameInfo.gameInfo.Level == 1)
+        SetCountText();
+
+        if (GameInfo.gameInfo.Level == 1)
         {
             bronzeTxt.text = "80%";
             silverTxt.text = "20%";
@@ -123,5 +126,42 @@ public class TodayQuestUI : BaseUI
 
         var receptionUI = new BaseUIData();
         UIManager.Instance.OpenUI<ReceptionUI>(receptionUI);
+    }
+
+    private int CheckCurrentQuestCount()
+    {
+        int tmp = 0;
+
+        var a = PlayerPrefs.GetString("QuestId");
+        foreach (var item in a.Split(','))
+        {
+            if (item != "")
+                tmp++;
+        }
+
+        return tmp;
+    }
+
+    private int CheckMaxQuestCount()
+    {
+        int tmp = 0;
+
+        if (GameInfo.gameInfo.Level == 1)
+            tmp = 6;
+        else if (GameInfo.gameInfo.Level == 2)
+            tmp = 8;
+        else if (GameInfo.gameInfo.Level == 3)
+            tmp = 10;
+        else if (GameInfo.gameInfo.Level == 4)
+            tmp = 12;
+        else if (GameInfo.gameInfo.Level == 5)
+            tmp = 14;
+
+        return tmp;
+    }
+
+    private void SetCountText()
+    {
+        countText.text = CheckCurrentQuestCount().ToString() + "/" + CheckMaxQuestCount().ToString();
     }
 }

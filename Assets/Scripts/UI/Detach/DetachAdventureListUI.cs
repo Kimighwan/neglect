@@ -293,7 +293,7 @@ public class DetachAdventureListUI : BaseUI
             uiData.confirmType = ConfirmType.OK_CANCEL;
             uiData.descTxt = "경고! 모험가 선택을 완료하면 자동으로 의뢰가 시작됩니다. 완료하시겠습니까?";
             uiData.okBtnTxt = "확인";
-            uiData.cancelBtnTxt = "모험가 목록 초기화";
+            uiData.cancelBtnTxt = "재선택";
             uiData.onClickOKBtn = () =>
             {
                 PoolManager.Instance.ready = true;

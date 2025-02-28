@@ -61,17 +61,17 @@ public class RandomAdventureSelectUI : MonoBehaviour
             return;
         }
 
-        //// 모험가 더 이상 영입 불가능
-        //if (CheckMaxAdventureCounts())
-        //{
-        //    var uiData = new ConfirmUIData();
-        //    uiData.confirmType = ConfirmType.OK;
-        //    uiData.descTxt = "모험가 최대치";
-        //    uiData.okBtnTxt = "확인";
-        //    AudioManager.Instance.PlaySFX(SFX.Denied);
-        //    UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-        //    return;
-        //}
+        // 모험가 더 이상 영입 불가능
+        if (CheckMaxAdventureCounts())
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "모험가 최대치";
+            uiData.okBtnTxt = "확인";
+            AudioManager.Instance.PlaySFX(SFX.Denied);
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
 
         if (!GameInfo.gameInfo.ChangeGold(-needGold))
         {
@@ -2098,7 +2098,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
             if (i != "")
                 tmpCount++;
         }
-        return tmpCount >= (GameInfo.gameInfo.Level * 5) + (GameInfo.gameInfo.GetMaxAdventurerCounts() * 2);    // true : 더이상 수용 불가능
+        return tmpCount >= GameInfo.gameInfo.GetMaxAdventurerCounts();    // true : 더이상 수용 불가능
     }
 
     private bool CheckAdventureFullOfTier(Tier tier)    // 랭크에 해당하는 모험가가 더이상 없는가
