@@ -109,7 +109,8 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
 
         AdventureData.adventureSelectId.Add(adventureid);
 
-        PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.Add(adventureData);   // 선택된 모험가 파견 index에 맞는 QuestManager에 넣기
+        if(tmp.adventureIndex < 10)
+            PoolManager.Instance.questManagers[tmp.adventureIndex - 1].adventureDatas.Add(adventureData);   // 선택된 모험가 파견 index에 맞는 QuestManager에 넣기
     }
 
 }

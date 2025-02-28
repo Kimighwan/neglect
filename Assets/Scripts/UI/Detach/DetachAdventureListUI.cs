@@ -291,13 +291,16 @@ public class DetachAdventureListUI : BaseUI
         {
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK_CANCEL;
-            uiData.descTxt = "모험가 선택을 완료하시겠습니까?";
-            uiData.okBtnTxt = "완료";
-            uiData.cancelBtnTxt = "다시 선택";
+            uiData.descTxt = "경고! 모험가 선택을 완료하면 자동으로 의뢰가 시작됩니다. 완료하시겠습니까?";
+            uiData.okBtnTxt = "확인";
+            uiData.cancelBtnTxt = "모험가 목록 초기화";
             uiData.onClickOKBtn = () =>
             {
                 PoolManager.Instance.ready = true;
                 Common();
+
+                var ui = UIManager.Instance.GetActiveUI<EmergencyQuestUI>() as EmergencyQuestUI;
+                ui.OnClickStartBtn();
             };
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
         }

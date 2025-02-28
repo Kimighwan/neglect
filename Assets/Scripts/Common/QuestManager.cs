@@ -48,13 +48,21 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        if (detachIndex > 10) return;
-
-        if (questBtn.interactable == false && adventureBtn.interactable == false)
+        if (detachIndex > 10 || (questBtn.interactable == false && adventureBtn.interactable == false))
         {
-            if (PoolManager.Instance.checkUpdate[detachIndex - 1]) return;
+            if(detachIndex < 10)
+            {
+                if (PoolManager.Instance.checkUpdate[detachIndex - 1]) return;
 
-            PoolManager.Instance.checkUpdate[detachIndex - 1] = true;
+                PoolManager.Instance.checkUpdate[detachIndex - 1] = true;
+            }
+            else
+            {
+                if (PoolManager.Instance.checkUpdate[detachIndex - 6]) return;
+
+                PoolManager.Instance.checkUpdate[detachIndex - 6] = true;
+            }
+            
 
             SetQuest(detachIndex);
 
@@ -64,18 +72,25 @@ public class QuestManager : MonoBehaviour
             SetStrongAndWeak(detachIndex);        // 약점 & 강점 비율
             Calculation(detachIndex);             // 점수 계산
 
-            stateIcons.color = new Color(1, 1, 1, 1);
+            if (detachIndex < 10)
+            {
+                stateIcons.color = new Color(1, 1, 1, 1);
 
-            if (resultMaxRate == -1)
-                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
-            else if (resultMaxRate == 0)
-                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
-            else
-                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+                if (resultMaxRate == -1)
+                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
+                else if (resultMaxRate == 0)
+                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+                else
+                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+            }
         }
         else
         {
-            PoolManager.Instance.checkUpdate[detachIndex - 1] = false;
+            if (detachIndex < 10)
+                PoolManager.Instance.checkUpdate[detachIndex - 1] = false;
+            else
+                PoolManager.Instance.checkUpdate[detachIndex - 6] = false;
+
             stateIcons.texture = null;
             stateIcons.color = new Color(0, 0, 0, 0);
         }

@@ -15,8 +15,6 @@ public class EmergencyQuestUI : BaseUI
     public TextMeshProUGUI resultTxt;       // 결과 Text
     public TextMeshProUGUI resultBtnTxt;    // 결과 버튼 Text
 
-    public Button adventureBtn;
-
     public GameObject Temp;                 // 진행 중을 알리는 UI
     public GameObject main;                 // 주 UI
     public GameObject result;               // 결과 UI
@@ -37,15 +35,15 @@ public class EmergencyQuestUI : BaseUI
         questManager = GetComponent<QuestManager>();
         questManager.detachIndex = index;
 
-        if (index == 1)  // 챕터 1 - 슬라임 홍수
+        if (index == 11)  // 챕터 1 - 슬라임 홍수
         {
             emergencyQuestId = 132901;
         }
-        else if (index == 2)  // 챕터 2 - 고블린 어벤져스
+        else if (index == 12)  // 챕터 2 - 고블린 어벤져스
         {
             emergencyQuestId = 133902;
         }
-        else if (index == 3)  // 챕터 3 - 드래곤
+        else if (index == 13)  // 챕터 3 - 드래곤
         {
             emergencyQuestId = 139999;
         }
@@ -68,15 +66,6 @@ public class EmergencyQuestUI : BaseUI
         PoolManager.Instance.questData.Add(index, emetgencyQuestData);
     }
 
-    private void Update()
-    {
-        if (PoolManager.Instance.ready)
-        {
-            // 모험가 선택을 완료했다면 버튼 비활성화
-            adventureBtn.interactable = false;
-        }
-    }
-
     public void OnClickAdventureBtn()   // 모험가 선택 버튼
     {
         var detachAdventureUI = new AdventureIndexClass(index + 10);
@@ -85,17 +74,6 @@ public class EmergencyQuestUI : BaseUI
 
     public void OnClickStartBtn()   // 시작 버튼
     {
-        // 모험가를 선택하지 않았다면 시작 못 함
-        if (adventureBtn.interactable)
-        {
-            var uiData = new ConfirmUIData();
-            uiData.confirmType = ConfirmType.OK;
-            uiData.descTxt = "모험가를 선택하세요.";
-            uiData.okBtnTxt = "확인";
-            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-            return;
-        }
-
         // 대충 긴급 의뢰 진행 중 UI 띄워주고
         Temp.SetActive(true);
 
