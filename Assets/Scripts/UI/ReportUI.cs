@@ -91,7 +91,7 @@ public class ReportUI : BaseUI
     private void StartTyping()
     {
         AudioManager.Instance.PlayBGM(BGM.TypeWriter);
-        StartCoroutine(TypeDialog($"{GameInfo.gameInfo.Day}일차", $"\n\n\n<금일 점수> 500점"
+        StartCoroutine(TypeDialog($"{GameInfo.gameInfo.Day}일차", $"\n\n\n<금일 점수> {GameInfo.gameInfo.TodayScore}점"
         , $"현재 점수 {GameInfo.gameInfo.PlayerScore}점", $"\n"   /*$"?차 목표까지 ?점\n기한까지 ?일"*/));
     }
     private IEnumerator TypeDialog(string s1, string s2, string s3, string s4)
