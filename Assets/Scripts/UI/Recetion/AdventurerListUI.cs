@@ -74,6 +74,11 @@ public class AdventurerListUI : BaseUI
         CountUpdate();
     }
 
+    private void Update()
+    {
+        SortAdventure();
+    }
+
     private void CountUpdate()
     {
         adventureCount.text = CheckCurrentAdventureCount().ToString() + "/" + GameInfo.gameInfo.GetMaxAdventurerCounts().ToString();
