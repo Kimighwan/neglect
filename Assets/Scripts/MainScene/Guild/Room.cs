@@ -24,6 +24,8 @@ public class Room : MonoBehaviour
         whiteLine.SetActive(true);
     }
     void OnMouseDown() {
+        if (PoolManager.Instance.isNotTouch) return;
+
         if (!GameInfo.gameInfo.roomTutorial) {
             GameInfo.gameInfo.roomTutorial = true;
             GameManager.gameManager.OpenTutorial(590008);

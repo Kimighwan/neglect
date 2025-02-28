@@ -102,7 +102,6 @@ public class ScriptMode : MonoBehaviour
     {
         currentLine = scriptList.Count;
         ShowNextScript();
-        
     }
 
     private void ShowCharWithExp(string name, string exp, string inout, string pos) {
@@ -124,6 +123,7 @@ public class ScriptMode : MonoBehaviour
             data.background.SetActive(b);
             data.backPanel.SetActive(b);
         }
+        PoolManager.Instance.isNotTouch = b;
         data.panel.SetActive(b);
         data.skipBtn.SetActive(b);
     }

@@ -68,6 +68,9 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
     // 특수 의뢰를 받았는가? // 0 = 안 받음
     public int checkHavesSpecialQuest = 0;
+
+    // true 이면 객실 같은 오브젝트 클릭 금지
+    public bool isNotTouch = false;
     protected override void Init()
     {
         base.Init();
