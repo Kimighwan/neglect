@@ -23,8 +23,9 @@ public class GameInfo : MonoBehaviour
     public float gameSpeed = 1f;
     private bool alarmOnce = false;
     private int playerScore;
+    private int todayScore;
     public int PlayerScore { get {return playerScore; } set {} }
-
+    public int TodayScore { get { return todayScore; } set { } }
     private void Awake() {
         gameInfo = this;
     }
@@ -312,6 +313,7 @@ public class GameInfo : MonoBehaviour
             sum = successTiers[i] * (i + 1) * 100;
             successTiers[i] = 0;
         }
+        todayScore = sum;
         return sum;
     }
     public bool CheckInRequest() {
