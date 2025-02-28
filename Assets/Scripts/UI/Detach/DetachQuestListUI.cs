@@ -162,6 +162,11 @@ public class DetachQuestListUI : BaseUI
 
         // 버튼 Text 업데이트
         PoolManager.Instance.questTxt[qusetIndex - 1].text = PoolManager.Instance.questData[qusetIndex].questName;
+        if (PoolManager.Instance.questTxt[qusetIndex - 1].text.Length >= 6)
+        {
+            PoolManager.Instance.questTxt[qusetIndex - 1].text.Remove(5);
+            PoolManager.Instance.questTxt[qusetIndex - 1].text += "...";
+        }
 
         PoolManager.Instance.UsingQuestData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachQuestListUI>());
