@@ -1138,6 +1138,7 @@ MonoBehaviour:
   questManagers: {fileID: 172250426}
   image: {fileID: 961166168}
   resultBtn: {fileID: 92556183}
+  awakeBtn: {fileID: 1632545920}
   gaugeObject: {fileID: 931915968}
   gaugeImage: {fileID: 931915969}
 --- !u!114 &172250426
@@ -2974,6 +2975,7 @@ MonoBehaviour:
   questManagers: {fileID: 370210824}
   image: {fileID: 1736706903}
   resultBtn: {fileID: 561072339}
+  awakeBtn: {fileID: 595000829}
   gaugeObject: {fileID: 791828237}
   gaugeImage: {fileID: 791828238}
 --- !u!114 &370210824
@@ -5326,11 +5328,11 @@ RectTransform:
   - {fileID: 893141803}
   m_Father: {fileID: 370210820}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 52, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -20, y: -20}
   m_SizeDelta: {x: 48, y: 20}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &595000831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5904,6 +5906,7 @@ MonoBehaviour:
   questManagers: {fileID: 675045287}
   image: {fileID: 49589810}
   resultBtn: {fileID: 1345461047}
+  awakeBtn: {fileID: 2000006909}
   gaugeObject: {fileID: 475992280}
   gaugeImage: {fileID: 475992284}
 --- !u!114 &675045287
@@ -7490,6 +7493,7 @@ MonoBehaviour:
   questManagers: {fileID: 819719518}
   image: {fileID: 775801805}
   resultBtn: {fileID: 638633038}
+  awakeBtn: {fileID: 963245554}
   gaugeObject: {fileID: 1151064678}
   gaugeImage: {fileID: 1151064679}
 --- !u!114 &819719518
@@ -8916,11 +8920,11 @@ RectTransform:
   - {fileID: 769091173}
   m_Father: {fileID: 819719514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 52, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -20, y: -20}
   m_SizeDelta: {x: 48, y: 20}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &963245556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14917,11 +14921,11 @@ RectTransform:
   - {fileID: 1650979382}
   m_Father: {fileID: 172250424}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 52, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -20, y: -20}
   m_SizeDelta: {x: 48, y: 20}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1632545922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17559,11 +17563,11 @@ RectTransform:
   - {fileID: 1146683422}
   m_Father: {fileID: 1918976132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 52, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -20, y: -20}
   m_SizeDelta: {x: 48, y: 20}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1895613462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18350,6 +18354,7 @@ MonoBehaviour:
   questManagers: {fileID: 1918976136}
   image: {fileID: 847892234}
   resultBtn: {fileID: 368747619}
+  awakeBtn: {fileID: 1895613460}
   gaugeObject: {fileID: 901699175}
   gaugeImage: {fileID: 901699176}
 --- !u!114 &1918976136
@@ -19002,11 +19007,11 @@ RectTransform:
   - {fileID: 1164406065}
   m_Father: {fileID: 675045283}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 52, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -20, y: -20}
   m_SizeDelta: {x: 48, y: 20}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &2000006911
 MonoBehaviour:
   m_ObjectHideFlags: 0
