@@ -90,6 +90,12 @@ public class RandomQuestSelectUI : MonoBehaviour
 
         btnTxt.text = "선택 완료";
         btn.interactable = false;
+
+        if(((questId / 100) % 10) == 8)
+        {
+            // 특수 의뢰 받고 나서 실행
+            ScriptDialogHandler.handler.ConditionalDialogPlay(questId);
+        }
     }
 
     private void GetQuestData()
