@@ -23,8 +23,11 @@ public class GameInfo : MonoBehaviour
     public float gameSpeed = 1f;
     private bool alarmOnce = false;
     private int playerScore;
+    private int todayScore;
+    private int todayGold;
     public int PlayerScore { get {return playerScore; } set {} }
-
+    public int TodayScore { get { return todayScore; } set { } }
+    public int TodayGold { get { return todayScore; } set { } }
     private void Awake() {
         gameInfo = this;
     }
@@ -65,6 +68,11 @@ public class GameInfo : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void CalculateTodayGold(int g)
+    {
+        todayGold += g;
     }
 
     #endregion
@@ -123,6 +131,7 @@ public class GameInfo : MonoBehaviour
         StartCoroutine(FadeBlack(1.2f, 0f, 1f, 0f));
         Invoke("ActiveDayButtons", 1.2f);
         nextDay = false;
+        todayGold = 0;
     }
     private void ActiveDayButtons() {
         closeButton.interactable = true;
@@ -312,6 +321,7 @@ public class GameInfo : MonoBehaviour
             sum = successTiers[i] * (i + 1) * 100;
             successTiers[i] = 0;
         }
+        todayScore = sum;
         return sum;
     }
     public bool CheckInRequest() {

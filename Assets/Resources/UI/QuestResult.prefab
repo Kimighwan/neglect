@@ -669,6 +669,7 @@ MonoBehaviour:
   rewardTxt: {fileID: 785255170311610232}
   receiptBtn: {fileID: 7276011058340976849}
   diaOKBtn: {fileID: 4094155247613337473}
+  resultIndex: 0
 --- !u!222 &561605143824451754
 CanvasRenderer:
   m_ObjectHideFlags: 0
