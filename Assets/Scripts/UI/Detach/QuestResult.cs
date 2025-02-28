@@ -118,7 +118,7 @@ public class QuestResult : BaseUI
     {
         txt.text = "의뢰 확인 중...";
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         rewardTxt.text = "+G " + PoolManager.Instance.questData[resultIndex].questReward.ToString();
 
@@ -128,7 +128,6 @@ public class QuestResult : BaseUI
         foreach (var i in PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas)
         {
             PoolManager.Instance.usingAdventureList.Remove(i.adventureId); // 파견 중이였던 걸 해제
-            Debug.Log("파견 상태 해제");
         }
         
         if (PoolManager.Instance.resultList[resultIndex] == 0)

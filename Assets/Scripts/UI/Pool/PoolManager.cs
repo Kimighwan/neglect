@@ -66,6 +66,8 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     // 긴급 의뢰
     public bool ready = false;  // 모험가 선택이 완료되었는가?
 
+    // 특수 의뢰를 받았는가? // 0 = 안 받음
+    public int checkHavesSpecialQuest = 0;
     protected override void Init()
     {
         base.Init();
