@@ -35,7 +35,7 @@ public class GameInfo : MonoBehaviour
         gameInfo = this;
     }
     public void StartGameInfo() {
-        gold = 1000;
+        gold = 2000;
         day = 1;
         timer = 80.0f;
         level = 1;
