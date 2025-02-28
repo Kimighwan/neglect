@@ -109,6 +109,7 @@ public class QuestResult : BaseUI
         SetCommon();
 
         // 모험가 다시 풀기
+        ScriptDialogHandler.handler.ConditionalScriptPlay(PoolManager.Instance.questData[resultIndex].questId);
 
         UIManager.Instance.CloseUI(this);
     }

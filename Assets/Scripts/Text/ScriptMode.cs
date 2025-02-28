@@ -129,6 +129,8 @@ public class ScriptMode : MonoBehaviour
     }
 
     private void EndScripts() {
+        int id = scriptList[currentLine - 1].scriptId;
+        Debug.Log(id);
         data.scr.text = "";
         ActiveObjects(false);
         scriptList.Clear();
@@ -136,5 +138,16 @@ public class ScriptMode : MonoBehaviour
         currentLine = 0;
         isScriptMode = false;
         AudioManager.Instance.PlayBGM(BGM.Main6);
+        switch (id) {
+            case 100120: // 슬라임 홍수 시작
+
+                break;
+            case 100219: // 몬스터 웨이브 시작
+
+                break;
+            case 100315: // 모험가 구함 시작
+            
+                break;
+        }
     }
 }

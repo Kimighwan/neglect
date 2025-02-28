@@ -57,7 +57,7 @@ public class StateSceneManager : MonoBehaviour
     {
         //PlayerPrefs.DeleteAll();
         Invoke("PlayTitleBGM", 0.1f);
-        if (Application.platform == RuntimePlatform.WebGLPlayer) GameEnd.interactable = false;
+        GameEnd.interactable = false;
     }
 
     void Update()
