@@ -20,6 +20,8 @@ public class EmergencyQuestUI : BaseUI
 
     public QuestManager questManager;
 
+    public RawImage mainImg;
+
     public TextMeshProUGUI nameTxt;         // 의뢰 이름
     public TextMeshProUGUI rankTxt;         // 의뢰 랭크
     public TextMeshProUGUI descTxt;         // 설명
@@ -53,14 +55,17 @@ public class EmergencyQuestUI : BaseUI
         if (index == 11)  // 챕터 1 - 슬라임 홍수
         {
             emergencyQuestId = 132901;
+            mainImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
         }
         else if (index == 12)  // 챕터 2 - 고블린 어벤져스
         {
             emergencyQuestId = 133902;
+            mainImg.texture = Resources.Load("Arts/EmergencyQuest/goblinPaper") as Texture2D;
         }
         else if (index == 13)  // 챕터 3 - 드래곤
         {
             emergencyQuestId = 139999;
+            mainImg.texture = Resources.Load("Arts/EmergencyQuest/dragonPaper") as Texture2D;
         }
 
         // 퀘스트 ID로 퀘스트 정보 가져오기
