@@ -18,6 +18,8 @@ public class GameInfo : MonoBehaviour
     public List<Sprite> pauseAndGo;
     public List<GameObject> AnimatedObj;
 
+    public bool nextDay = false;            // 다음 날로 넘어갔는지 체크
+
     public float gameSpeed = 1f;
     private bool alarmOnce = false;
     private int playerScore;
@@ -91,6 +93,7 @@ public class GameInfo : MonoBehaviour
         playerScore += CalculateTodayScore();
         yield return StartCoroutine(FadeBlack(duration, startDelay, startAlpha, endAlpha)); // FadeIn이 끝날 때까지 대기
         UIManager.Instance.OnClickEndToday();
+        nextDay = true;
     }
 
     public IEnumerator FadeBlack(float duration, float startDelay, float startAlpha, float endAlpha)
@@ -119,6 +122,7 @@ public class GameInfo : MonoBehaviour
         timer = 320f;
         StartCoroutine(FadeBlack(1.2f, 0f, 1f, 0f));
         Invoke("ActiveDayButtons", 1.2f);
+        nextDay = false;
     }
     private void ActiveDayButtons() {
         closeButton.interactable = true;

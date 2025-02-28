@@ -70,6 +70,13 @@ public class TodayQuestUI : BaseUI
             platinumTxt.text = "25%";
             diaTxt.text = "5%";
         }
+
+        if (GameInfo.gameInfo.nextDay)
+        {
+            RemoveList();
+            SetQuestList();
+        }
+
     }
 
     private void SetQuestList() // 의뢰 리스트 생성
