@@ -55,14 +55,14 @@ public class StateSceneManager : MonoBehaviour
     }
     void OnEnable()
     {
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         Invoke("PlayTitleBGM", 0.1f);
         GameEnd.interactable = false;
     }
 
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0)) AudioManager.Instance.PlaySFX(SFX.Click1);
+        if (Input.GetMouseButtonDown(0)) AudioManager.Instance.PlaySFX(SFX.Click1);
     }
 
     private void PlayTitleBGM() {
