@@ -9,7 +9,7 @@ public class DetachAdventureListUI : BaseUI
     public TextMeshProUGUI sortBtnText;
     public TextMeshProUGUI orderBtnText;
 
-    public int adventureIndex;      // 파견에서 몇번째 파견창인지
+    [SerializeField] public int adventureIndex;      // 파견에서 몇번째 파견창인지
 
     private AdventureSortType adventureSortType = AdventureSortType.GRADE;
     private AdventureOrderType adventureOrderType = AdventureOrderType.DOWN;
@@ -278,10 +278,33 @@ public class DetachAdventureListUI : BaseUI
         //    return;
         //}
 
-        PoolManager.Instance.adventureBtn[adventureIndex - 1].interactable = false;
+        if (adventureIndex < 10)
+        {
+            PoolManager.Instance.adventureBtn[adventureIndex - 1].interactable = false;
 
-        PoolManager.Instance.adventureTxt[adventureIndex - 1].text = "선택 완료";
+            PoolManager.Instance.adventureTxt[adventureIndex - 1].text = "선택 완료";
 
+            Common();
+        }
+
+        if (adventureIndex > 10)
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK_CANCEL;
+            uiData.descTxt = "모험가 선택을 완료하시겠습니까?";
+            uiData.okBtnTxt = "완료";
+            uiData.cancelBtnTxt = "다시 선택";
+            uiData.onClickOKBtn = () =>
+            {
+                PoolManager.Instance.ready = true;
+                Common();
+            };
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+        }
+    }
+
+    private void Common()
+    {
         PoolManager.Instance.UsingAdventureData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachAdventureListUI>());
     }
@@ -290,7 +313,7 @@ public class DetachAdventureListUI : BaseUI
     {
         base.OnClickCloseButton();
 
-
-        PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Clear();
+        if (adventureIndex < 10)
+            PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Clear();
     }
 }
