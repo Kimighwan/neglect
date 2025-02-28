@@ -45,8 +45,22 @@ public class GameSettingUI : BaseUI
         AudioManager.Instance.ChangeSFXVolume(finalSFXVolume);
     }
 
-    public void GoToTitle() {
-        GameManager.gameManager.GoToTitle();
+    //public void GoToTitle() {
+    //    GameManager.gameManager.GoToTitle();
+    //}
+
+    public void OnClickGameQuit()
+    {
+        var uiData = new ConfirmUIData();
+        uiData.confirmType = ConfirmType.OK_CANCEL;
+        uiData.descTxt = "종료하시겠습니까?";
+        uiData.okBtnTxt = "종료";
+        uiData.cancelBtnTxt = "취소";
+        uiData.onClickOKBtn = () =>
+        {
+            Application.Quit();
+        };
+        UIManager.Instance.OpenUI<ConfirmUI>(uiData);
     }
 
     public override void OnClickCloseButton()
