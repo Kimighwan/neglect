@@ -49,6 +49,14 @@ public class AdventurerUI : BaseUI
 
     private void Update()
     {
+        if(GameInfo.gameInfo.nextDayAdventure)
+        {
+            PoolManager.Instance.userAdventureIndex.Clear();
+            RemoveList();
+            SetAdventureList();
+            GameInfo.gameInfo.nextDayAdventure = false;
+        }
+
         CountUpdate();
 
         if (GameInfo.gameInfo.Level == 1)
@@ -90,13 +98,6 @@ public class AdventurerUI : BaseUI
             goldTxt.text = "50%";
             platinumTxt.text = "40%";
             diaTxt.text = "10%";
-        }
-
-        if(GameInfo.gameInfo.nextDay)
-        {
-            PoolManager.Instance.userAdventureIndex.Clear();
-            RemoveList();
-            SetAdventureList();
         }
     }
 
