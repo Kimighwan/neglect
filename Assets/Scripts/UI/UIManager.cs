@@ -8,8 +8,10 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     public int exportAdventureId;
 
-    public Transform UICanvasTrs; // 컨버스 위치
-    public Transform ClosedUITrs; // 비활성 UI 저장소 위치
+    public Transform UICanvasTrs;       // 컨버스 위치
+    public Transform ClosedUITrs;       // 비활성 UI 저장소 위치
+
+    public Transform fadeCanvasTrs;     // 검정 화면 위에 표시하기 위한 위치
 
     private BaseUI frontUI; // 최상단 UI
     private Dictionary<System.Type, GameObject> openUIPool = new Dictionary<System.Type, GameObject>(); // 활성화된 UI 저장소
@@ -29,6 +31,7 @@ public class UIManager : SingletonBehaviour<UIManager>
     protected override void Init()
     {
         base.Init();
+        fadeCanvasTrs = GameObject.FindGameObjectWithTag("Fade").transform;
     }
 
     private BaseUI GetUI<T>(out bool isAlreadyOpen) // UI 인스턴스를 관리하며 원하는 UI 반환

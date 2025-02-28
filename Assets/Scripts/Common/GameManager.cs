@@ -126,11 +126,25 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.StopBGM();
         Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
         {
-            SceneManager.LoadScene(0);
-
-            Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 1f, false, () =>
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "종료하시겠습니까?";
+            uiData.okBtnTxt = "종료";
+            uiData.onClickOKBtn = () =>
             {
-            });
+                Application.Quit();
+            };
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+
+            // 혹시 몰라 팝업창이 안 보이면 걍 종료되도록...
+            Application.Quit();
+
+            // 타이틀로 가기 버그 수정하기에 시간이 부족하여 위 코드로 대체
+            //SceneManager.LoadScene(0);
+
+            //Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 1f, false, () =>
+            //{
+            //});
         });
     }
 }
