@@ -212,14 +212,16 @@ public class UIManager : SingletonBehaviour<UIManager>
         {
             // AudioManager.Instance.PlaySFX(SFX.ui_button_click);
 
-            // GameManager.gameManager.cameraTransform.position = new Vector3(0f, 0f, -10f);
+            if(GetActiveUI<AdventurerUI>())
+                GameManager.gameManager.cameraTransform.position = new Vector3(0f, 0f, -10f);
 
             if (frontUI != null) // UI가 띄워져 있다면
             {
                 if (GetActiveUI<DetachAdventureListUI>())
                 {
                     var ui = GetActiveUI<DetachAdventureListUI>() as DetachAdventureListUI;
-                    PoolManager.Instance.questManagers[ui.adventureIndex - 1].adventureDatas.Clear();
+                    if(ui.adventureIndex < 10) // 일반 의뢰 진행 중
+                        PoolManager.Instance.questManagers[ui.adventureIndex - 1].adventureDatas.Clear();
                 }
                 frontUI.CloseUI(); // 띄워져있는 UI 닫기
             }
