@@ -51,19 +51,16 @@ public class GameSettingUI : BaseUI
 
     public void OnClickGameQuit()
     {
-        //var uiData = new ConfirmUIData();
-        //uiData.confirmType = ConfirmType.OK_CANCEL;
-        //uiData.descTxt = "종료하시겠습니까?";
-        //uiData.okBtnTxt = "종료";
-        //uiData.cancelBtnTxt = "취소";
-        //uiData.onClickOKBtn = () =>
-        //{
-        //    Application.Quit();
-        //};
-        //UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-
-        var uiData = new BaseUIData();
-        UIManager.Instance.OpenUI<EmergencyQuestUI>(uiData);
+        var uiData = new ConfirmUIData();
+        uiData.confirmType = ConfirmType.OK_CANCEL;
+        uiData.descTxt = "종료하시겠습니까?";
+        uiData.okBtnTxt = "종료";
+        uiData.cancelBtnTxt = "취소";
+        uiData.onClickOKBtn = () =>
+        {
+            Application.Quit();
+        };
+        UIManager.Instance.OpenUI<ConfirmUI>(uiData);
     }
 
     public override void OnClickCloseButton()

@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiAnim: {fileID: 0}
   index: 11
+  questManager: {fileID: 8182708349316165853}
   nameTxt: {fileID: 5625272409258576299}
   rankTxt: {fileID: 7857939104379622003}
   descTxt: {fileID: 6337949974089723232}
@@ -625,7 +626,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE34\uAE09 \uC758\uB8B0 \uB300\uC131\uACF5!!!"
+  m_text: ???????????
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184fec928be241448a084b9d7c281a63, type: 2}
   m_sharedMaterial: {fileID: 5145352664846468154, guid: 184fec928be241448a084b9d7c281a63, type: 2}
@@ -1176,7 +1177,7 @@ GameObject:
   - component: {fileID: 7901548463678104757}
   - component: {fileID: 5599852277145802337}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: ResultBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1283,7 +1284,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7901548463678104757}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7299693045636466781}
+        m_TargetAssemblyTypeName: EmergencyQuestUI, Assembly-CSharp
+        m_MethodName: OnClickResultBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5090379243862588943
 GameObject:
   m_ObjectHideFlags: 0
