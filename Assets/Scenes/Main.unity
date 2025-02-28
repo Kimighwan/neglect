@@ -9507,6 +9507,8 @@ MonoBehaviour:
   cameraTransform: {fileID: 519420032}
   requestBG: {fileID: 984381679}
   backimage: {fileID: 2086164289}
+  txt1: {fileID: 2147289102}
+  txt2: {fileID: 1845232397}
 --- !u!1 &988241541
 GameObject:
   m_ObjectHideFlags: 0

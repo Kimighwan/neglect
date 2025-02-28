@@ -212,7 +212,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         {
             // AudioManager.Instance.PlaySFX(SFX.ui_button_click);
 
-            GameManager.gameManager.cameraTransform.position = new Vector3(0f, 0f, -10f);
+            // GameManager.gameManager.cameraTransform.position = new Vector3(0f, 0f, -10f);
 
             if (frontUI != null) // UI가 띄워져 있다면
             {
