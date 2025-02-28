@@ -58,7 +58,10 @@ public class GameSettingUI : BaseUI
         uiData.cancelBtnTxt = "취소";
         uiData.onClickOKBtn = () =>
         {
-            Application.Quit();
+            Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
+            {
+                Application.Quit();
+            });
         };
         UIManager.Instance.OpenUI<ConfirmUI>(uiData);
     }

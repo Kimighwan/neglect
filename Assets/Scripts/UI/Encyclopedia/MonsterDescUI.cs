@@ -47,7 +47,7 @@ public class MonsterDescUI : BaseUI
     private void InitData()
     {
         txtName.text = monsterName;
-        txtTier.text = monsterTier + " 등급";
+        txtTier.text = "Rank : " + monsterTier;
         txtWeekness.text = "약점 : " + monsterWeekness;
         txtStrength.text = "강점 : " + monsterStrength;
         txtDesc.text = monsterDesc;

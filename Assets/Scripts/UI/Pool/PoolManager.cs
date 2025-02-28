@@ -23,6 +23,7 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
     public Button[] adventureBtn;   // 파견창의 모험가 선택 버튼
 
+
     // QuestManager 이전
 
     //// 파견창 Index에 따른 모험가 리스트
@@ -42,6 +43,7 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public TextMeshProUGUI[] adventureTxt;
 
     public GameObject[] gaugeObject;    // 각 파견창의 게이지 오브젝트
+    public GameObject[] awakeBtn;       // 파견창의 초기화 버튼 오브젝트
 
     public bool[] checkUpdate = new bool[8];         // Update 함수 한 번만 실행하기 위해서
 

@@ -14,6 +14,7 @@ public class Test : MonoBehaviour
     public GameObject resultBtn;
 
     public GameObject gaugeObject;
+    public GameObject awakeBtnObject;
     public RawImage gaugeImage;
 
     private int startDay;
@@ -179,6 +180,7 @@ public class Test : MonoBehaviour
         totalDay = PoolManager.Instance.questData[index].questTime;
 
         gaugeObject.SetActive(true);
+        awakeBtnObject.SetActive(false);
     }
 
     private IEnumerator testt()
