@@ -29,7 +29,7 @@ public class UIManager : SingletonBehaviour<UIManager>
 
         if (frontUI == null)
         {
-            PoolManager.instance.isNotTouch = false;
+            PoolManager.instance.isNotTouchUI = false;
 
             if (PoolManager.Instance.checkHavesSpecialQuest != 0)
             {
@@ -45,7 +45,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         }
         else
         {
-            PoolManager.instance.isNotTouch = true;
+            PoolManager.instance.isNotTouchUI = true;
         }
     }
 
