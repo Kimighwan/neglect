@@ -145,5 +145,25 @@ public class EmergencyQuestUI : BaseUI
             // 긴급 의뢰(스토리 의뢰) 성공 및 대성공일 때 함수 실행
             ScriptDialogHandler.handler.ConditionalScriptPlay(emergencyQuestId);
         }
+
+        if(resultValue == -1)
+        {
+            Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 1f, false, () =>
+            {
+                var uiData = new ConfirmUIData();
+                uiData.confirmType = ConfirmType.OK;
+                uiData.descTxt = "게임 오버";
+                uiData.okBtnTxt = "종료";
+                uiData.onClickOKBtn = () =>
+                {
+                    Application.Quit();
+                };
+                UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+                UIManager.Instance.GetActiveUI<ConfirmUI>().transform.SetParent(UIManager.Instance.fadeCanvasTrs);
+
+
+
+            });
+        }
     }
 }

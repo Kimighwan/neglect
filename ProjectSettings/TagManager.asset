@@ -9,6 +9,7 @@ TagManager:
   - QeustSelectGroup
   - RandomQuestGroup
   - SelectGroup
+  - Fade
   layers:
   - Default
   - TransparentFX
