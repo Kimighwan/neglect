@@ -9,6 +9,7 @@ public class ReportUI : BaseUI
     public TextMeshProUGUI quest;
     public TextMeshProUGUI NowScore;
     public TextMeshProUGUI NextScore;
+    public GameObject clickNextTxt;
     public Image StampShadow;
     public Image Stamp;
 
@@ -135,6 +136,9 @@ public class ReportUI : BaseUI
         AudioManager.Instance.PlaySFX(SFX.CoinDrop1);
         AudioManager.Instance.PlaySFX(SFX.CoinDrop2);
         inputLock = false;
+
+        clickNextTxt.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -440f, 0);
+        clickNextTxt.SetActive(true);
     }
 
     IEnumerator AnimateStampShadow()

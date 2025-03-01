@@ -85,7 +85,22 @@ public class GameInfo : MonoBehaviour
     public int Day { get { return day; } set { day = value; } }
     private float timer;
     public float Timer { get { return timer; } set { timer = value; } }
-    public void EndToday() // 하루 끝
+
+    public void OnClickEndTodayBtn()
+    {
+        var uiData = new ConfirmUIData();
+        uiData.confirmType = ConfirmType.OK_CANCEL;
+        uiData.descTxt = "하루를 끝내시겠습니까?";
+        uiData.okBtnTxt = "네";
+        uiData.cancelBtnTxt = "취소";
+        uiData.onClickOKBtn = () =>
+        {
+            EndToday();
+        };
+        UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+    }
+
+    private void EndToday() // 하루 끝
     {
         if (!GameManager.gameManager.Pause) GameManager.gameManager.PauseGame();
         AudioManager.Instance.StopBGM();
