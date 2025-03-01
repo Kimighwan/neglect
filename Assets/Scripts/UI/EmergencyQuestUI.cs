@@ -21,6 +21,8 @@ public class EmergencyQuestUI : BaseUI
     public QuestManager questManager;
 
     public RawImage mainImg;
+    public RawImage subImg;
+    public RawImage resultImg;
 
     public TextMeshProUGUI nameTxt;         // 의뢰 이름
     public TextMeshProUGUI rankTxt;         // 의뢰 랭크
@@ -56,16 +58,22 @@ public class EmergencyQuestUI : BaseUI
         {
             emergencyQuestId = 132901;
             mainImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
+            subImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
+            resultImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
         }
         else if (index == 12)  // 챕터 2 - 고블린 어벤져스
         {
             emergencyQuestId = 133902;
             mainImg.texture = Resources.Load("Arts/EmergencyQuest/goblinPaper") as Texture2D;
+            subImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
+            resultImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
         }
         else if (index == 13)  // 챕터 3 - 드래곤
         {
             emergencyQuestId = 139999;
             mainImg.texture = Resources.Load("Arts/EmergencyQuest/dragonPaper") as Texture2D;
+            subImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
+            resultImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
         }
 
         // 퀘스트 ID로 퀘스트 정보 가져오기
@@ -171,5 +179,34 @@ public class EmergencyQuestUI : BaseUI
 
             });
         }
+    }
+    
+    public void OnClickGiveUpBtn()
+    {
+        var uiData = new ConfirmUIData();
+        uiData.confirmType = ConfirmType.OK_CANCEL;
+        uiData.descTxt = "포기시 게임오버 됩니다.";
+        uiData.okBtnTxt = "포기";
+        uiData.cancelBtnTxt = "취소";
+        uiData.onClickOKBtn = () =>
+        {
+            Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 1f, false, () =>
+            {
+                var uiData = new ConfirmUIData();
+                uiData.confirmType = ConfirmType.OK;
+                uiData.descTxt = "게임 오버";
+                uiData.okBtnTxt = "종료";
+                uiData.onClickOKBtn = () =>
+                {
+                    Application.Quit();
+                };
+                UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+                UIManager.Instance.GetActiveUI<ConfirmUI>().transform.SetParent(UIManager.Instance.fadeCanvasTrs);
+
+            });
+        };
+        UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+
+        
     }
 }
