@@ -9,6 +9,7 @@ public class ReportUI : BaseUI
     public TextMeshProUGUI quest;
     public TextMeshProUGUI NowScore;
     public TextMeshProUGUI NextScore;
+    public GameObject clickNextTxt;
     public Image StampShadow;
     public Image Stamp;
 
@@ -164,6 +165,8 @@ public class ReportUI : BaseUI
             stampOn = true;
             inputLock = false;
         }
+
+        clickNextTxt.SetActive(true);
     }
 
     private void RandomizeStamp()
