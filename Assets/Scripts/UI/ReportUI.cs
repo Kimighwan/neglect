@@ -136,6 +136,9 @@ public class ReportUI : BaseUI
         AudioManager.Instance.PlaySFX(SFX.CoinDrop1);
         AudioManager.Instance.PlaySFX(SFX.CoinDrop2);
         inputLock = false;
+
+        clickNextTxt.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -440f, 0);
+        clickNextTxt.SetActive(true);
     }
 
     IEnumerator AnimateStampShadow()
@@ -165,9 +168,6 @@ public class ReportUI : BaseUI
             stampOn = true;
             inputLock = false;
         }
-
-        clickNextTxt.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -440f, 0);
-        clickNextTxt.SetActive(true);
     }
 
     private void RandomizeStamp()
