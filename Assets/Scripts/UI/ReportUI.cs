@@ -166,6 +166,7 @@ public class ReportUI : BaseUI
             inputLock = false;
         }
 
+        clickNextTxt.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -440f, 0);
         clickNextTxt.SetActive(true);
     }
 
