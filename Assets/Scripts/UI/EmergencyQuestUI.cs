@@ -39,7 +39,7 @@ public class EmergencyQuestUI : BaseUI
     private int resultValue;                // -1 : 전멸, 0 : 일반 성공, 1 : 대성공
     private int reward;                     // 보상
 
-    private QuestData emetgencyQuestData;
+    private QuestData emergencyQuestData;
 
     
 
@@ -77,21 +77,21 @@ public class EmergencyQuestUI : BaseUI
         }
 
         // 퀘스트 ID로 퀘스트 정보 가져오기
-        emetgencyQuestData = DataTableManager.Instance.GetQuestData(emergencyQuestId);
+        emergencyQuestData = DataTableManager.Instance.GetQuestData(emergencyQuestId);
 
         // UI Text들 값 할당
-        nameTxt.text = emetgencyQuestData.questName;
-        rankTxt.text = "등급 : " + emetgencyQuestData.questLevel;
-        descTxt.text = emetgencyQuestData.questScript;
-        rewardTxt.text = "보상 : " + emetgencyQuestData.questReward + "골드";
+        nameTxt.text = emergencyQuestData.questName;
+        rankTxt.text = "등급 : " + emergencyQuestData.questLevel;
+        descTxt.text = emergencyQuestData.questScript;
+        rewardTxt.text = "보상 : " + emergencyQuestData.questReward + "골드";
 
         // 보상 값 할당
-        reward = emetgencyQuestData.questReward;
+        reward = emergencyQuestData.questReward;
 
         // QuestData 초기화 현재 시스템은 파견창 Index에 따라 QuestData가 있음
         // 긴급 의뢰는 파견창을 사용하지 않아서 존재 하지 않는 파견창 Index를 사용함
         // 챕터1 : 11, 챕터2 : 12, 챕터3 : 13 Index를 사용
-        PoolManager.Instance.questData.Add(index, emetgencyQuestData);
+        PoolManager.Instance.questData.Add(index, emergencyQuestData);
     }
 
     public void OnClickAdventureBtn()   // 모험가 선택 버튼
@@ -129,10 +129,11 @@ public class EmergencyQuestUI : BaseUI
             resultTxt.text = "긴급 의뢰 성공!";
             resultBtnTxt.text = "+" + reward.ToString() + "G";
         }
-        else
+        else if(resultValue == 1)
         {
             resultTxt.text = "긴급 의뢰 대성공!!!";
-            resultBtnTxt.text = "+" + reward.ToString() + "G";
+            resultBtnTxt.text = "+" + (reward * 2).ToString() + "G";
+            reward *= 2;
         }
 
         Temp.SetActive(false);
