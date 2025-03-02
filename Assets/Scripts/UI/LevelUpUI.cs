@@ -25,8 +25,8 @@ public class LevelUpUI : BaseUI
             else {
                 otherInfo.text = $"객실 수 {l} >> {l + 1}\n파견 수 {l + 1} >> {l + 2}\n의뢰 수 {(l + 2) * 2} >> {(l + 3) * 2}\n모험가 새로고침 확률 변경";
                 if (l == 1) levelUpInfo.text = "필요 골드 500";
-                else if (l == 2) levelUpInfo.text = "필요 골드 2000";
-                else if (l == 3) levelUpInfo.text = "필요 골드 20000";
+                else if (l == 2) levelUpInfo.text = "필요 골드 3000";
+                else if (l == 3) levelUpInfo.text = "필요 골드 10000";
             }
         }
     }

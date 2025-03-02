@@ -61,19 +61,23 @@ public class QuestResult : BaseUI
             var adventureIds = adventureId.Split(',');
 
             int tmpId = 0;
-            
+            string name = "";
+
             switch (PoolManager.Instance.questData[resultIndex].questMonster)
             {
                 case "설녀":
                     tmpId = 128013232;
+                    name = "설녀";
                     PlayerPrefs.SetInt("설녀", 1);
                     break;
                 case "호문쿨루스":
                     tmpId = 128022121;
+                    name = "호문쿨루스";
                     PlayerPrefs.SetInt("호문쿨루스", 1);
                     break;
                 case "헤츨링":
                     tmpId = 128031313;
+                    name = "헤츨링";
                     PlayerPrefs.SetInt("헤츨링", 1);
                     break;
             }
@@ -92,7 +96,7 @@ public class QuestResult : BaseUI
             // 모험가가 가득차 보상을 받을 수 없습니다.
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK;
-            uiData.descTxt = "새로운 모험가 합류!!";
+            uiData.descTxt = $"새로운 모험가 합류!!\n-{name}-";
             uiData.okBtnTxt = "확인";
             uiData.onClickOKBtn = () =>
             {

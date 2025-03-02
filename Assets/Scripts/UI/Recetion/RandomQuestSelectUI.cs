@@ -678,6 +678,16 @@ public class RandomQuestSelectUI : MonoBehaviour
         UIManager.Instance.OpenUI<QuestDetailUI>(questDetailUI);
     }
 
+    public void OnClickDetailBtnOfTodayQuestUI()  // 의뢰 세부사항 UI 열기
+    {
+        DataTableManager.Instance.monsterDescId = questMonsterDescId;
+        SetQuestDetailID();
+
+        var data = new BaseUIData();
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<TodayQuestUI>());
+        UIManager.Instance.OpenUI<QuestDetailUIOfTodayQuest>(data);
+    }
+
     private bool CheckHaveAdventureID(int questId)                  // 매개변수의 ID를 가졌는지 확인
     {
         string questIdOfString = PlayerPrefs.GetString("QuestId");  // 현재 ID 가져오기

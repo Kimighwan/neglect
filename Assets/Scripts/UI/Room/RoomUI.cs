@@ -31,7 +31,7 @@ public class RoomUI : MonoBehaviour {
         if (!isActive) {
             title.text = "객실 개방";
             level.text = "";
-            other.text = "모험가 수 +2\n하루 수익 +300";
+            other.text = "모험가 수 +2\n하루 수익 +500";
             neededGold.text = GameInfo.gameInfo.firstPurchase ?  "1번 무료!!!" : "필요 골드 1000";
         }
         else {
@@ -39,13 +39,13 @@ public class RoomUI : MonoBehaviour {
             int l = GameInfo.gameInfo.GetRoomLevel(index);
             if (l == 1) {
                 level.text = "1 >> 2";
-                other.text = "모험가 수 2 >> 4\n하루 수익 300 >> 1000";
+                other.text = "모험가 수 2 >> 4\n하루 수익 500 >> 1000";
                 neededGold.text = "필요 골드 3000";
             }
             else if (l == 2) {
                 level.text = "2 >> 3";
-                other.text = "모험가 수 4 >> 6\n하루 수익 1000 >> 4000";
-                neededGold.text = "필요 골드 10000";
+                other.text = "모험가 수 4 >> 6\n하루 수익 1000 >> 2000";
+                neededGold.text = "필요 골드 6000";
             }
             else if (l == 3) {
                 title.text = "";
