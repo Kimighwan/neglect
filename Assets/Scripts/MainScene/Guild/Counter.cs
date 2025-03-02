@@ -10,6 +10,9 @@ public class Counter : MouseDrag
     }
     public override void OnPointerDown(PointerEventData eventData)
     {
+        if (PoolManager.Instance.isNotTouch) return;
+        if (PoolManager.Instance.isNotTouchUI) return;
+
         UIManager.Instance.OnClickCounter();
         if (!tutorialOnce) {
             tutorialOnce = true;

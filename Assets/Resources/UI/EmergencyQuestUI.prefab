@@ -854,7 +854,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7299693045636466781}
         m_TargetAssemblyTypeName: EmergencyQuestUI, Assembly-CSharp
-        m_MethodName: OnClickAdventureBtn
+        m_MethodName: OnClickGiveUpBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -204,7 +204,12 @@ public class Test : MonoBehaviour
         // Adventure Awake
         if (PoolManager.Instance.usingAdventureList.Count != 0)
         {
-            PoolManager.Instance.usingAdventureList.Clear();
+            // 의뢰 종료시 모험가 다시 사용하게 Test
+            foreach (var i in questManagers.adventureDatas)
+            {
+                PoolManager.Instance.usingAdventureList.Remove(i.adventureId); // 파견 중이였던 걸 해제
+            }
+
 
             AdventureData.adventureSelectId.Clear();
 
