@@ -259,13 +259,13 @@ public class GameInfo : MonoBehaviour
                 int l = rooms[i].level;
                 switch (l) {
                     case 1:
-                        sum += 300;
+                        sum += 500;
                         break;
                     case 2:
                         sum += 1000;
                         break;
                     case 3:
-                        sum += 4000;
+                        sum += 2000;
                         break;
                 }
             }
