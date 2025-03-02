@@ -41,7 +41,13 @@ public class EmergencyQuestUI : BaseUI
 
     private QuestData emergencyQuestData;
 
-    
+
+    private void OnEnable()
+    {
+        main.SetActive(true);
+        Temp.SetActive(false);
+        result.SetActive(false);
+    }
 
     // 초기 데이터 초기화
     public override void SetInfo(BaseUIData uiData)
