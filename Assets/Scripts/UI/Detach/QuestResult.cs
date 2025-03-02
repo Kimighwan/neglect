@@ -52,8 +52,6 @@ public class QuestResult : BaseUI
 
         SetCommon();
 
-        // 모험가 다시 풀기
-
         UIManager.Instance.CloseUI(this);
 
         if (PoolManager.Instance.specialAdventureAdd)
@@ -109,7 +107,6 @@ public class QuestResult : BaseUI
     {
         SetCommon();
 
-        // 모험가 다시 풀기
 
         UIManager.Instance.CloseUI(this);
     }
@@ -190,6 +187,7 @@ public class QuestResult : BaseUI
             }
         }
 
+        // 모험가 다시 풀기
         PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas.Clear(); // 파견창에 맞는 모험가 데이터 삭제
         DeleteQuest();
     }

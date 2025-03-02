@@ -82,7 +82,7 @@ public class EmergencyQuestUI : BaseUI
         // UI Text들 값 할당
         nameTxt.text = emergencyQuestData.questName;
         rankTxt.text = "등급 : " + emergencyQuestData.questLevel;
-        descTxt.text = emergencyQuestData.questScript;
+        descTxt.text = $"{emergencyQuestData.questScript}";
         rewardTxt.text = "보상 : " + emergencyQuestData.questReward + "골드";
 
         // 보상 값 할당
@@ -161,7 +161,14 @@ public class EmergencyQuestUI : BaseUI
             ScriptDialogHandler.handler.ConditionalScriptPlay(emergencyQuestId);
         }
 
-        if(resultValue == -1)
+        // 파견 보냈던 모험가 다시 풀기
+        // 의뢰 종료시 모험가 다시 사용하게 Test
+        foreach (var i in questManager.adventureDatas)
+        {
+            PoolManager.Instance.usingAdventureList.Remove(i.adventureId); // 파견 중이였던 걸 해제
+        }
+
+        if (resultValue == -1)
         {
             Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 1f, false, () =>
             {
