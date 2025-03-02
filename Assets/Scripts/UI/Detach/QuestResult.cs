@@ -96,7 +96,7 @@ public class QuestResult : BaseUI
             // 모험가가 가득차 보상을 받을 수 없습니다.
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK;
-            uiData.descTxt = $"-{name}-\n새로운 모험가 합류!!";
+            uiData.descTxt = $"새로운 모험가 합류!!\n-{name}-";
             uiData.okBtnTxt = "확인";
             uiData.onClickOKBtn = () =>
             {

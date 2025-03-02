@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestDetailUI : BaseUI
+public class QuestDetailUIOfTodayQuest : BaseUI
 {
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI m_level;
@@ -138,9 +138,9 @@ public class QuestDetailUI : BaseUI
         foreach (var item in questIds)
         {
             int questIdOfInt = Convert.ToInt32(item);
-            if(DataTableManager.Instance.questDetailId != questIdOfInt)
+            if (DataTableManager.Instance.questDetailId != questIdOfInt)
             {
-                if(add == "")
+                if (add == "")
                 {
                     add += questIdOfInt.ToString();
                 }
