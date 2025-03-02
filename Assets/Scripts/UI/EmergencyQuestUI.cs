@@ -65,15 +65,15 @@ public class EmergencyQuestUI : BaseUI
         {
             emergencyQuestId = 133902;
             mainImg.texture = Resources.Load("Arts/EmergencyQuest/goblinPaper") as Texture2D;
-            subImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
-            resultImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
+            subImg.texture = Resources.Load("Arts/EmergencyQuest/goblinPaper") as Texture2D;
+            resultImg.texture = Resources.Load("Arts/EmergencyQuest/goblinPaper") as Texture2D;
         }
         else if (index == 13)  // 챕터 3 - 드래곤
         {
             emergencyQuestId = 139999;
             mainImg.texture = Resources.Load("Arts/EmergencyQuest/dragonPaper") as Texture2D;
-            subImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
-            resultImg.texture = Resources.Load("Arts/EmergencyQuest/slimePaper") as Texture2D;
+            subImg.texture = Resources.Load("Arts/EmergencyQuest/dragonPaper") as Texture2D;
+            resultImg.texture = Resources.Load("Arts/EmergencyQuest/dragonPaper") as Texture2D;
         }
 
         // 퀘스트 ID로 퀘스트 정보 가져오기
