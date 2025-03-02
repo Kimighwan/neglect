@@ -237,7 +237,7 @@ public class GameInfo : MonoBehaviour
     public bool RoomLevelUp(int index) {
         int l = rooms[index].level;
         if (l < 3) {
-            if ((l == 1 && ChangeGold(-3000)) || (l == 2 && ChangeGold(-10000))) {
+            if ((l == 1 && ChangeGold(-3000)) || (l == 2 && ChangeGold(-6000))) {
                 rooms[index].level++;
                 CalculatePlusGold();
                 UIManager.Instance.OpenSimpleInfoUI("객실 레벨업!");
@@ -280,7 +280,7 @@ public class GameInfo : MonoBehaviour
     #region GuildInfo
     private int level;
     public int Level { get { return level; } set { level = value; } }
-    private List<int> neededGold = new List<int> { 500, 2000, 20000, 100000 }; // 필요 골드
+    private List<int> neededGold = new List<int> { 500, 3000, 10000, 100000 }; // 필요 골드
     public int GetNeededGold() {
         if (level == 5) return 0;
         return neededGold[level - 1];

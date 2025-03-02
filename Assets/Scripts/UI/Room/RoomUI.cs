@@ -45,7 +45,7 @@ public class RoomUI : MonoBehaviour {
             else if (l == 2) {
                 level.text = "2 >> 3";
                 other.text = "모험가 수 4 >> 6\n하루 수익 1000 >> 4000";
-                neededGold.text = "필요 골드 10000";
+                neededGold.text = "필요 골드 6000";
             }
             else if (l == 3) {
                 title.text = "";
