@@ -94,7 +94,7 @@ public class GameInfo : MonoBehaviour
             {
                 var noCloseData = new ConfirmUIData();
                 noCloseData.confirmType = ConfirmType.OK;
-                noCloseData.descTxt = "오늘은 무슨 일이 일어날 것만 같다...";
+                noCloseData.descTxt = "오늘은 무슨 일이\n일어날 것만 같다...";
                 noCloseData.okBtnTxt = "확인";
                 UIManager.Instance.OpenUI<ConfirmUI>(noCloseData);
             }
