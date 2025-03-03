@@ -27,7 +27,10 @@ public class ScriptDialogHandler : MonoBehaviour
         info = GameInfo.gameInfo;
     }
     private void Update() {
-        if (info.Day >= scriptStartDay[scriptIndex] && info.Timer >= 80f && !script.isScriptMode) {
+        if (info.Day >= scriptStartDay[scriptIndex] && info.Timer >= 80f && !script.isScriptMode) 
+        {
+            if (startScript[scriptIndex] == 100101 || startScript[scriptIndex] == 100201 || startScript[scriptIndex] == 100301)
+                if (info.Timer < 120f) return;
             PlayScript(startScript[scriptIndex], endScript[scriptIndex], illExist[scriptIndex]);
             // 스크립트 재생
             scriptIndex++;
