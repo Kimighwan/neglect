@@ -35,7 +35,7 @@ public class ScriptDialogHandler : MonoBehaviour
             // 스크립트 재생
             scriptIndex++;
         }
-        if (info.Day >= dialogStartDay[dialogIndex] && info.Timer >= 90f) {
+        if (info.Day >= dialogStartDay[dialogIndex] && info.Timer >= 80f) {
             PlayDialog(startDialog[dialogIndex], endDialog[dialogIndex]);
             // 대화 재생
             dialogIndex++;
