@@ -8,6 +8,7 @@ public class DetachAdventureListUI : BaseUI
 
     public TextMeshProUGUI sortBtnText;
     public TextMeshProUGUI orderBtnText;
+    public TextMeshProUGUI countTxt;
 
     [SerializeField] public int adventureIndex;      // 파견에서 몇번째 파견창인지
 
@@ -34,6 +35,13 @@ public class DetachAdventureListUI : BaseUI
     private void OnDisable()
     {
         AdventureData.adventureSelectId.Clear();
+    }
+
+    private void Update()
+    {
+        countTxt.text 
+            = PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Count.ToString()
+            + "/4";
     }
 
     private void SetScroll()
