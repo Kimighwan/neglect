@@ -8,6 +8,9 @@ public class RequestButton : MouseDrag
 {
     public override void OnPointerDown(PointerEventData eventData)
     {
+        if (PoolManager.Instance.isNotTouch) return;
+        if (PoolManager.Instance.isNotTouchUI) return;
+
         backimage.SetActive(!backimage.activeSelf);
         OnClickBut();
     }
