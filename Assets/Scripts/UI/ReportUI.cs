@@ -93,7 +93,7 @@ public class ReportUI : BaseUI
     {
         AudioManager.Instance.PlayBGM(BGM.TypeWriter);
         StartCoroutine(TypeDialog($"{GameInfo.gameInfo.Day}일차", $"\n\n금일 점수 {GameInfo.gameInfo.TodayScore}점" +
-            $"\n금일 번 골드 {GameInfo.gameInfo.TodayGold}G"
+            $"\n금일 번 골드 {GameInfo.gameInfo.TodayGold}G\n금일 객실 수입 {GameInfo.gameInfo.plusGold}G"
         , $"현재 점수 {GameInfo.gameInfo.PlayerScore}점", $"\n현재 골드 {GameInfo.gameInfo.Gold}G"   /*$"?차 목표까지 ?점\n기한까지 ?일"*/));
     }
     private IEnumerator TypeDialog(string s1, string s2, string s3, string s4)

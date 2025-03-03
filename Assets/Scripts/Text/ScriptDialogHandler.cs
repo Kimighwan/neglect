@@ -69,6 +69,7 @@ public class ScriptDialogHandler : MonoBehaviour
         }
     }
     private void PlayScript(int s, int e, bool i) {
+        GameManager.gameManager.PauseGame();
         script.PrepareScriptText(s, e, i);
         script.ShowNextScript();
         script.isScriptMode = true;

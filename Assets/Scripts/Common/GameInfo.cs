@@ -30,7 +30,7 @@ public class GameInfo : MonoBehaviour
     private int todayGold;
     public int PlayerScore { get {return playerScore; } set {} }
     public int TodayScore { get { return todayScore; } set { } }
-    public int TodayGold { get { return todayScore; } set { } }
+    public int TodayGold { get { return todayGold; } set { } }
     private void Awake() {
         gameInfo = this;
     }
@@ -64,7 +64,7 @@ public class GameInfo : MonoBehaviour
     #region GoldInfo
     private int gold;
     public int Gold { get { return gold; } set { gold = value; } }
-    private int plusGold;
+    public int plusGold;
     public bool ChangeGold(int g) {
         if (gold + g >= 0) {
             gold += g;

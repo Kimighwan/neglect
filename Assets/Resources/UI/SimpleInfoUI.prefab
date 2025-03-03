@@ -564,6 +564,7 @@ MonoBehaviour:
   uiAnim: {fileID: 0}
   info: {fileID: 8421532766731013653}
   animationDuration: 0.5
+  mainObject: {fileID: 2006350566847869867}
 --- !u!1 &7531838221345561710
 GameObject:
   m_ObjectHideFlags: 0
