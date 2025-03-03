@@ -99,6 +99,11 @@ public class GameManager : MonoBehaviour
         dialogMode.ChangeDialogSpeed(1f);
     }
     public void QuickGame() {
+        if (pause)
+        {
+            PauseGame();
+        }
+
         fastMode = !fastMode;
         if (fastMode) {
             info.fastButton.sprite = info.pauseAndGo[5];

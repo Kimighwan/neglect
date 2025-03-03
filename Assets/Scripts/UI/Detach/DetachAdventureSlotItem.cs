@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class DetachAdventureSlotItem : InfiniteScrollItem
 {
     public TextMeshProUGUI txtName;
+    public TextMeshProUGUI posTxt;
+    public TextMeshProUGUI classTxt;
+    public TextMeshProUGUI typeTxt;
 
     public RawImage rankImg;
     public RawImage positionImg;
@@ -41,6 +44,9 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
         var adventureTier = adventureData.adventureTier;
 
         txtName.text = adventureName;
+        posTxt.text = adventurePosition;
+        classTxt.text = adventureClass;
+        typeTxt.text = adventureType;
 
         // Postion Image
         if (adventurePosition == "전위")
