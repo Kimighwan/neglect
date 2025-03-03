@@ -47,6 +47,13 @@ public class EmergencyQuestUI : BaseUI
         main.SetActive(true);
         Temp.SetActive(false);
         result.SetActive(false);
+
+        GameManager.gameManager.PauseGame();
+    }
+
+    private void OnDisable()
+    {
+        GameManager.gameManager.PauseGame();
     }
 
     // 초기 데이터 초기화

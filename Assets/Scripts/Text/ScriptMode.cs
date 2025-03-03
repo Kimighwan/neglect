@@ -129,6 +129,7 @@ public class ScriptMode : MonoBehaviour
     }
 
     private void EndScripts() {
+        GameManager.gameManager.PauseGame();
         int id = scriptList[currentLine - 1].scriptId;
         Debug.Log(id);
         data.scr.text = "";

@@ -10,6 +10,8 @@ public class RoomUI : MonoBehaviour {
     public TextMeshProUGUI neededGold;
     public Button button;
 
+    public GameObject mainObject;
+
     private int index; 
     private bool isActive;
     public bool isUINow = false;
@@ -88,19 +90,19 @@ public class RoomUI : MonoBehaviour {
 
     IEnumerator ScaleChange(Vector3 originalScale ,Vector3 targetScale, float animationDuration) {
         float elapsedTime = 0f;
-        
-        transform.localScale = originalScale;
+
+        mainObject.transform.localScale = originalScale;
         
         while (elapsedTime < animationDuration)
         {
             float t = elapsedTime / animationDuration;
             float smoothStep = Mathf.SmoothStep(0f, 1f, t);
-            transform.localScale = Vector3.Lerp(originalScale, targetScale, smoothStep);
+            mainObject.transform.localScale = Vector3.Lerp(originalScale, targetScale, smoothStep);
             
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         
-        transform.localScale = targetScale;
+        mainObject.transform.localScale = targetScale;
     }
 }

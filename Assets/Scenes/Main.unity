@@ -12969,6 +12969,7 @@ MonoBehaviour:
   nextDayQuest: 0
   nextDayAdventure: 0
   gameSpeed: 1
+  plusGold: 0
   roomUI: {fileID: 2130661913}
   roomTutorial: 0
   firstPurchase: 1
@@ -21086,6 +21087,7 @@ MonoBehaviour:
   other: {fileID: 1723997174}
   neededGold: {fileID: 988241543}
   button: {fileID: 1156614402}
+  mainObject: {fileID: 1433775104}
   isUINow: 0
 --- !u!1 &2132116561
 GameObject:
