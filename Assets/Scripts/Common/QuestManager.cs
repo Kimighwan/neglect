@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
-    public Button questBtn;       // 의뢰 선택 버튼
-    public Button adventureBtn;   // 파모험가 선택 버튼
+    public Button questBtn;             // 의뢰 선택 버튼
+    public Button adventureBtn;         // 파모험가 선택 버튼
 
-    public RawImage stateIcons;   // 상태 아이콘
+    public RawImage stateIcons;         // 상태 아이콘
 
     [SerializeField] public int detachIndex;
 
@@ -29,7 +29,7 @@ public class QuestManager : MonoBehaviour
     private int A = 0;                  // 공격 수
     private int B = 0;                  // 방어 수
     private int C = 0;                  // 지원 수
-    private int resultMaxRate;          // 어떤 확률이 제일 큰지? / 전멸, 성공, 대성공
+    private int resultRateIcon;         // 1 : 빨 / 2 : 주 / 3 : 노 / 4 : 초
 
     private string monsterStrong;       // 몬스터 강점
     private string monsterWeak;         // 몬스터 약점
@@ -41,8 +41,9 @@ public class QuestManager : MonoBehaviour
     private float misClassRate;         // 클래스 조합 비율
     private float weakRate;             // 약점 비율
     private float strongRate;           // 강점 비율(마이너스 적용)
-    private float dieRate = 0;              // 전멸 확률
-    private float bigRate = 0;              // 대성공 확률
+    private float dieRate = 0;          // 전멸 확률
+    private float bigRate = 0;          // 대성공 확률
+    
 
     public List<AdventureData> adventureDatas = new List<AdventureData>();
 
@@ -78,13 +79,17 @@ public class QuestManager : MonoBehaviour
             {
                 stateIcons.color = new Color(1, 1, 1, 1);
 
-                if (resultMaxRate == -1)
+                if (resultRateIcon == 1)        // 전멸 확률 20% 이상
                     stateIcons.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
-                else if (resultMaxRate == 0)
+                else if (resultRateIcon == 2)   // 전멸 확률 0~20%
+                    stateIcons.texture = Resources.Load("Arts/Icon/IconAdd") as Texture2D;
+                else if (resultRateIcon == 3)   // 대성공 확률 0~20%
                     stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
-                else
+                else if(resultRateIcon == 4)    // 대성공 확률 20% 이상
                     stateIcons.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
-            }
+                else                            // 아무 확률도 없음
+                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+            }       
         }
         else
         {
@@ -329,7 +334,7 @@ public class QuestManager : MonoBehaviour
         if (targetScore < resultScore)   // 점수 오버
         {
             int tmp = resultScore - targetScore;
-            bigRate = (tmp / 10) * 0.5f;
+            bigRate = (tmp / 10) * 1f;
         }
         else if(targetScore > resultScore)  // 점수 언더
         {
@@ -338,31 +343,54 @@ public class QuestManager : MonoBehaviour
         }
 
         float nomalRate = 100f - (bigRate + dieRate);
-
-        resultMaxRate = bigRate > dieRate ? (bigRate > nomalRate ? 1 : 0) : (dieRate > nomalRate ? -1 : 0);
         Debug.Log($"전멸 : {dieRate} / 성공 : {nomalRate} / 대 : {bigRate}");
 
+        int check = dieRate > bigRate ? -1 : 1;         // 1 : 대성공 확률 존재 / -1 : 전멸 확률 존재
+        if (dieRate == 0 && bigRate == 0) check = 0;    // 0 : 무조건 일반 성공
 
-        float randomValue = UnityEngine.Random.Range(0f, 100f);
-        randomValue = Mathf.Floor(randomValue * 10f) / 10f;
-
-        float saveTmp = dieRate;
-
-        if (saveTmp > randomValue)
-        {
-            PoolManager.Instance.resultList[index] = -1;     // 전멸
-            return;
-        }
-        saveTmp += nomalRate;
-
-        if (saveTmp > randomValue)
+        if(check == 0)
         {
             PoolManager.Instance.resultList[index] = 0;      // 일반 성공
             return;
         }
 
-        PoolManager.Instance.resultList[index] = 1;          // 대성공
-    }
+        float randomValue = UnityEngine.Random.Range(0f, 100f);
+        randomValue = Mathf.Floor(randomValue * 10f) / 10f;
 
+        resultRateIcon = 0;
+
+        if (check == 1)  // 대성공 확률 존재
+        {
+            if (bigRate >= 20) resultRateIcon = 4;                  // 초록
+            else resultRateIcon = 3;                                // 노랑
+
+            if (bigRate > randomValue)
+            {
+                PoolManager.Instance.resultList[index] = 1;         // 대성공
+                return;
+            }
+            else
+            {
+                PoolManager.Instance.resultList[index] = 0;         // 일반 성공
+                return;
+            }
+        }
+        else
+        {
+            if(dieRate >= 20) resultRateIcon = 1;                   // 주황
+            else resultRateIcon = 2;                                // 빨강
+
+            if (dieRate > randomValue)
+            {
+                PoolManager.Instance.resultList[index] = -1;        // 전멸
+                return;
+            }
+            else
+            {
+                PoolManager.Instance.resultList[index] = 0;      // 일반 성공
+                return;
+            }
+        }        
+    }
 }
 

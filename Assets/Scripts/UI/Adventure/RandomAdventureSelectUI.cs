@@ -14,6 +14,10 @@ public class RandomAdventureSelectUI : MonoBehaviour
     public TextMeshProUGUI type;
     public TextMeshProUGUI needGoldText;
 
+    public RawImage posImg;
+    public RawImage classImg;
+    public RawImage typeImg;
+
     public Button selectBtn;
 
     private AdventureData adventureData;
@@ -166,10 +170,34 @@ public class RandomAdventureSelectUI : MonoBehaviour
 
     private void InitData()
     {
-        c_name.text = "이름 : " + adventureName;
+        c_name.text = adventureName;
         position.text = adventurePosition;
         type.text = adventureType;
         m_class.text = adventureClass;
+
+        // Postion Image
+        if (adventurePosition == "전위")
+            posImg.texture = Resources.Load("Arts/Icon/Pos/FrontIcon") as Texture2D;
+        else if (adventurePosition == "중위")
+            posImg.texture = Resources.Load("Arts/Icon/Pos/MiddleIcon") as Texture2D;
+        else
+            posImg.texture = Resources.Load("Arts/Icon/Pos/BackIcon") as Texture2D;
+
+        // Class Image
+        if (adventureClass == "공격")
+            classImg.texture = Resources.Load("Arts/Icon/Class/AttackIcon") as Texture2D;
+        else if (adventureClass == "방어")
+            classImg.texture = Resources.Load("Arts/Icon/Class/DefenceIcon") as Texture2D;
+        else
+            classImg.texture = Resources.Load("Arts/Icon/Class/SupportIcon") as Texture2D;
+
+        // Type Image
+        if (adventureType == "물리")
+            typeImg.texture = Resources.Load("Arts/Icon/Type/PhysicIcon") as Texture2D;
+        else if (adventureType == "마법")
+            typeImg.texture = Resources.Load("Arts/Icon/Type/MagicIcon") as Texture2D;
+        else
+            typeImg.texture = Resources.Load("Arts/Icon/Type/HolyIcon") as Texture2D;
     }
 
     private int RandomIndexMake()

@@ -88,6 +88,18 @@ public class GameInfo : MonoBehaviour
 
     public void OnClickEndTodayBtn()
     {
+        if(day == 5 || day == 10 || day == 15)
+        {
+            if(timer <= 120)
+            {
+                var noCloseData = new ConfirmUIData();
+                noCloseData.confirmType = ConfirmType.OK;
+                noCloseData.descTxt = "오늘은 무슨 일이 일어날 것만 같다...";
+                noCloseData.okBtnTxt = "확인";
+                UIManager.Instance.OpenUI<ConfirmUI>(noCloseData);
+            }
+        }
+
         var uiData = new ConfirmUIData();
         uiData.confirmType = ConfirmType.OK_CANCEL;
         uiData.descTxt = "하루를 끝내시겠습니까?";
