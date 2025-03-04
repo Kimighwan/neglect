@@ -10,7 +10,7 @@ public class ScriptDialogHandler : MonoBehaviour
     private GameInfo info;
     private int scriptIndex = 0;
     private List<int> startScript = new List<int> { 100001, 100018, 100101, 100201, 100301 };
-    private List<int> endScript = new List<int> { 100017, 100035, 100120, 100219, 100315 };
+    private List<int> endScript = new List<int> { 100017, 100036, 100120, 100219, 100315 };
     private List<int> scriptStartDay = new List<int> { 1, 1, 5, 10, 15}; // 8시에
     private List<bool> illExist = new List<bool> { true, false, false, false, false };
 
@@ -28,7 +28,7 @@ public class ScriptDialogHandler : MonoBehaviour
     }
     private void Update() {
         
-        if (info.Day >= scriptStartDay[scriptIndex] && info.Timer >= 80f && !script.isScriptMode) 
+        if (scriptIndex <= 4 && info.Day >= scriptStartDay[scriptIndex] && info.Timer >= 80f && !script.isScriptMode) 
         {
             // 12시에 스토리 스크립트 재생하기 위한 조건 문
             if (startScript[scriptIndex] == 100101 || startScript[scriptIndex] == 100201 || startScript[scriptIndex] == 100301)
@@ -38,7 +38,7 @@ public class ScriptDialogHandler : MonoBehaviour
             // 스크립트 재생
             scriptIndex++;
         }
-        if (info.Day >= dialogStartDay[dialogIndex] && info.Timer >= 80f) {
+        if (dialogIndex <= 2 && info.Day >= dialogStartDay[dialogIndex] && info.Timer >= 80f) {
             PlayDialog(startDialog[dialogIndex], endDialog[dialogIndex]);
             // 대화 재생
             dialogIndex++;
@@ -54,7 +54,8 @@ public class ScriptDialogHandler : MonoBehaviour
             break;
         case 139999: // 3챕터
             PlayScript(100351, 100377, false);
-            //GameManager.gameManager.EndTheGame();
+            PlayScript(109101, 109124, false);
+            
             break;
         }
     }
