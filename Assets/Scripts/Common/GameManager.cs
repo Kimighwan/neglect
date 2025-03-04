@@ -132,9 +132,10 @@ public class GameManager : MonoBehaviour
         Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
         {
             var uiData = new ConfirmUIData();
-            uiData.confirmType = ConfirmType.OK;
+            uiData.confirmType = ConfirmType.OK_CANCEL;
             uiData.descTxt = "종료하시겠습니까?";
             uiData.okBtnTxt = "종료";
+            uiData.cancelBtnTxt = "취소";
             uiData.onClickOKBtn = () =>
             {
                 Application.Quit();

@@ -217,11 +217,21 @@ public class UIManager : SingletonBehaviour<UIManager>
 
             if (frontUI != null) // UI가 띄워져 있다면
             {
+                if (GetActiveUI<ReportUI>())
+                {
+                    return;
+                }
+
                 if (GetActiveUI<DetachAdventureListUI>())
                 {
                     var ui = GetActiveUI<DetachAdventureListUI>() as DetachAdventureListUI;
                     if(ui.adventureIndex < 10) // 일반 의뢰 진행 중
                         PoolManager.Instance.questManagers[ui.adventureIndex - 1].adventureDatas.Clear();
+                    else
+                    {
+                        var tmp = UIManager.Instance.GetActiveUI<EmergencyQuestUI>() as EmergencyQuestUI;
+                        tmp.GetComponent<QuestManager>().adventureDatas.Clear();
+                    }
                 }
                 frontUI.CloseUI(); // 띄워져있는 UI 닫기
             }

@@ -45,6 +45,11 @@ public class ScriptMode : MonoBehaviour
             {
                 scriptList.Add(scriptData);
             }
+
+            if(i == 109124)
+            {
+                GameManager.gameManager.EndTheGame();
+            }
         }
         illExist = b;
         if (!b) AudioManager.Instance.PlayBGM(BGM.ScriptDefault); 
@@ -90,6 +95,8 @@ public class ScriptMode : MonoBehaviour
             if (!insideTag)
             {
                 data.scr.text = richText;
+                data.scr.text = data.scr.text.Replace("\\n", "\n");
+
                 yield return new WaitForSeconds(typingSpeed);
             }
         }
