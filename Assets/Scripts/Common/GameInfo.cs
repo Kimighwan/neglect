@@ -24,6 +24,8 @@ public class GameInfo : MonoBehaviour
 
 
     public float gameSpeed = 1f;
+    public int addGold;
+
     private bool alarmOnce = false;
     private int playerScore;
     private int todayScore;
@@ -37,6 +39,7 @@ public class GameInfo : MonoBehaviour
     public void StartGameInfo() {
         gold = 2000;
         day = 1;
+        addGold = 0;
         timer = 80.0f;
         level = 1;
         requests = 2;
@@ -283,6 +286,7 @@ public class GameInfo : MonoBehaviour
             }
         }
         plusGold = sum;
+        GameInfo.gameInfo.addGold += sum;
     }
     // 최대 모험가수 계산해줌
     

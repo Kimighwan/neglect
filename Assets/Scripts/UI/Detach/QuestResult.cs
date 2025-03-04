@@ -49,6 +49,7 @@ public class QuestResult : BaseUI
         // 골드 추가하고
         GameInfo.gameInfo.ChangeGold(reward);
         GameInfo.gameInfo.CalculateTodayGold(reward);
+        GameInfo.gameInfo.addGold += reward;
 
         SetCommon();
 
