@@ -27,9 +27,7 @@ public class ScriptDialogHandler : MonoBehaviour
         info = GameInfo.gameInfo;
     }
     private void Update() {
-        if (dialogIndex > 2) return;
-        if (scriptIndex > 4) return;
-
+        
         if (info.Day >= scriptStartDay[scriptIndex] && info.Timer >= 80f && !script.isScriptMode) 
         {
             // 12시에 스토리 스크립트 재생하기 위한 조건 문
