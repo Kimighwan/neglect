@@ -27,8 +27,8 @@ public class ScriptDialogHandler : MonoBehaviour
         info = GameInfo.gameInfo;
     }
     private void Update() {
-        if (dialogIndex > 3) return;
-        if (scriptIndex > 5) return;
+        if (dialogIndex > 2) return;
+        if (scriptIndex > 4) return;
 
         if (info.Day >= scriptStartDay[scriptIndex] && info.Timer >= 80f && !script.isScriptMode) 
         {
@@ -56,7 +56,7 @@ public class ScriptDialogHandler : MonoBehaviour
             break;
         case 139999: // 3챕터
             PlayScript(100351, 100377, false);
-            GameManager.gameManager.EndTheGame();
+            //GameManager.gameManager.EndTheGame();
             break;
         }
     }
