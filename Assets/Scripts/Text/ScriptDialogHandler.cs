@@ -27,10 +27,15 @@ public class ScriptDialogHandler : MonoBehaviour
         info = GameInfo.gameInfo;
     }
     private void Update() {
+        if (dialogIndex > 3) return;
+        if (scriptIndex > 5) return;
+
         if (info.Day >= scriptStartDay[scriptIndex] && info.Timer >= 80f && !script.isScriptMode) 
         {
+            // 12시에 스토리 스크립트 재생하기 위한 조건 문
             if (startScript[scriptIndex] == 100101 || startScript[scriptIndex] == 100201 || startScript[scriptIndex] == 100301)
                 if (info.Timer < 120f) return;
+
             PlayScript(startScript[scriptIndex], endScript[scriptIndex], illExist[scriptIndex]);
             // 스크립트 재생
             scriptIndex++;
