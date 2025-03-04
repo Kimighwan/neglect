@@ -166,6 +166,7 @@ public class EmergencyQuestUI : BaseUI
         // 성공이면 골드 추가
         GameInfo.gameInfo.ChangeGold(reward);
         GameInfo.gameInfo.CalculateTodayGold(reward);
+        GameInfo.gameInfo.addGold += reward;
 
         // UI 닫기
         UIManager.Instance.CloseUI(this);

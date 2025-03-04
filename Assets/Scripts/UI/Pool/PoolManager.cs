@@ -74,6 +74,7 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     // true 이면 객실 같은 오브젝트 클릭 금지
     public bool isNotTouch = false;
     public bool isNotTouchUI = false;
+    public bool isNotTutorialTouch = false;
     protected override void Init()
     {
         base.Init();
@@ -255,5 +256,10 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
         // 다이아
         PlayerPrefs.SetInt("diaAd", diaAd);
+    }
+
+    public void SetFalseIsNotTutorialTouch()
+    {
+        isNotTutorialTouch = false;
     }
 }

@@ -26,6 +26,7 @@ public class Room : MonoBehaviour
     void OnMouseDown() {
         if (PoolManager.Instance.isNotTouch) return;
         if (PoolManager.Instance.isNotTouchUI) return;
+        if (PoolManager.Instance.isNotTutorialTouch) return;
 
         if (!GameInfo.gameInfo.roomTutorial) {
             GameInfo.gameInfo.roomTutorial = true;

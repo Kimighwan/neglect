@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class ScriptMode : MonoBehaviour
 {
+    public GameObject tutorialImg;
+
     public float typingSpeed = 0.05f;
     public bool isScriptMode;
 
@@ -44,11 +46,6 @@ public class ScriptMode : MonoBehaviour
             if (data != null)
             {
                 scriptList.Add(scriptData);
-            }
-
-            if(i == 109124)
-            {
-                GameManager.gameManager.EndTheGame();
             }
         }
         illExist = b;
@@ -94,8 +91,7 @@ public class ScriptMode : MonoBehaviour
             if (letter == '>') insideTag = false;
             if (!insideTag)
             {
-                data.scr.text = richText;
-                data.scr.text = data.scr.text.Replace("\\n", "\n");
+                data.scr.text = richText.Replace("\\n", "\n");
 
                 yield return new WaitForSeconds(typingSpeed);
             }
@@ -138,6 +134,19 @@ public class ScriptMode : MonoBehaviour
     private void EndScripts() {
         GameManager.gameManager.PauseGame();
         int id = scriptList[currentLine - 1].scriptId;
+
+        if (id == 109124)
+        {
+            GameManager.gameManager.EndTheGame();
+        }
+
+        if(id == 100036)
+        {
+            PoolManager.Instance.isNotTutorialTouch = true;
+            GameManager.gameManager.PauseGame();
+            tutorialImg.SetActive(true);
+        }
+
         Debug.Log(id);
         data.scr.text = "";
         ActiveObjects(false);
@@ -160,5 +169,13 @@ public class ScriptMode : MonoBehaviour
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(uiData);
                 break;
         }
+    }
+
+    public void OnClickTutorialBtn()
+    {
+        tutorialImg.SetActive(true);
+        PoolManager.Instance.isNotTutorialTouch = true;
+
+        if (!GameManager.gameManager.Pause) GameManager.gameManager.PauseGame();
     }
 }

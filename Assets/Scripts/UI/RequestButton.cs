@@ -6,14 +6,22 @@ using TMPro;
 
 public class RequestButton : MouseDrag
 {
+    public Animator anim;       // 삼각형 Animator
+    private bool isDown = false;
+
     public override void OnPointerDown(PointerEventData eventData)
     {
         if (PoolManager.Instance.isNotTouch) return;
         if (PoolManager.Instance.isNotTouchUI) return;
+        if (PoolManager.Instance.isNotTutorialTouch) return;
+
+        isDown = !isDown;
+        anim.SetBool("isDown", isDown);
 
         backimage.SetActive(!backimage.activeSelf);
         OnClickBut();
     }
+
     public Transform cameraTransform; // 이동할 카메라
     public RectTransform requestBG;
     public GameObject backimage;        // 검은색 뒷 배경

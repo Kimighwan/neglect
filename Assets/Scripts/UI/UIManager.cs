@@ -13,6 +13,7 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     public Transform fadeCanvasTrs;     // 검정 화면 위에 표시하기 위한 위치
 
+
     private BaseUI frontUI; // 최상단 UI
     private Dictionary<System.Type, GameObject> openUIPool = new Dictionary<System.Type, GameObject>(); // 활성화된 UI 저장소
     private Dictionary<System.Type, GameObject> closeUIPool = new Dictionary<System.Type, GameObject>(); // 비활성화된 UI 저장소

@@ -12,6 +12,7 @@ public class Counter : MouseDrag
     {
         if (PoolManager.Instance.isNotTouch) return;
         if (PoolManager.Instance.isNotTouchUI) return;
+        if (PoolManager.Instance.isNotTutorialTouch) return;
 
         UIManager.Instance.OnClickCounter();
         if (!tutorialOnce) {

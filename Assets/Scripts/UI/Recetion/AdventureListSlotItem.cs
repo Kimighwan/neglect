@@ -164,29 +164,34 @@ public class AdventureListSlotItem : InfiniteScrollItem
             PoolManager.Instance.bronzAd--;
             GameInfo.gameInfo.ChangeGold(40);
             GameInfo.gameInfo.CalculateTodayGold(40);
+            GameInfo.gameInfo.addGold += 40;
         }
         else if (adventureTier == "실버")
         {
             PoolManager.Instance.silverAd--;
             GameInfo.gameInfo.ChangeGold(100);
             GameInfo.gameInfo.CalculateTodayGold(100);
+            GameInfo.gameInfo.addGold += 100;
         }
         else if (adventureTier == "골드")
         {
             PoolManager.Instance.goldAd--;
             GameInfo.gameInfo.ChangeGold(200);
             GameInfo.gameInfo.CalculateTodayGold(200);
+            GameInfo.gameInfo.addGold += 200;
         }
         else if (adventureTier == "플래티넘")
         {
             GameInfo.gameInfo.ChangeGold(400);
             GameInfo.gameInfo.CalculateTodayGold(400);
+            GameInfo.gameInfo.addGold += 400;
             PoolManager.Instance.platinumAd--;
         }
         else
         {
             GameInfo.gameInfo.ChangeGold(1000);
             GameInfo.gameInfo.CalculateTodayGold(1000);
+            GameInfo.gameInfo.addGold += 1000;
             PoolManager.Instance.diaAd--;
         }
 
