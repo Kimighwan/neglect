@@ -217,6 +217,11 @@ public class UIManager : SingletonBehaviour<UIManager>
 
             if (frontUI != null) // UI가 띄워져 있다면
             {
+                if (GetActiveUI<ReportUI>())
+                {
+                    return;
+                }
+
                 if (GetActiveUI<DetachAdventureListUI>())
                 {
                     var ui = GetActiveUI<DetachAdventureListUI>() as DetachAdventureListUI;
