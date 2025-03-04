@@ -51,6 +51,12 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     // SFX AudioSource 컨테이너
     private Dictionary<SFX, AudioSource> m_SFXPlayer = new Dictionary<SFX, AudioSource>();
 
+    private void Awake()
+    {
+        ChangeBGMVolume(0.6f);
+        ChangeSFXVolume(0.6f);
+    }
+
     protected override void Init()
     {
         base.Init();
