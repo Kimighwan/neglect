@@ -10,6 +10,7 @@ public class RequestButton : MouseDrag
     {
         if (PoolManager.Instance.isNotTouch) return;
         if (PoolManager.Instance.isNotTouchUI) return;
+        if (PoolManager.Instance.isNotTutorialTouch) return;
 
         backimage.SetActive(!backimage.activeSelf);
         OnClickBut();

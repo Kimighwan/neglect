@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class ScriptMode : MonoBehaviour
 {
+    public GameObject tutorialImg;
+
     public float typingSpeed = 0.05f;
     public bool isScriptMode;
 
@@ -138,6 +140,13 @@ public class ScriptMode : MonoBehaviour
             GameManager.gameManager.EndTheGame();
         }
 
+        if(id == 100036)
+        {
+            PoolManager.Instance.isNotTutorialTouch = true;
+            GameManager.gameManager.PauseGame();
+            tutorialImg.SetActive(true);
+        }
+
         Debug.Log(id);
         data.scr.text = "";
         ActiveObjects(false);
@@ -160,5 +169,13 @@ public class ScriptMode : MonoBehaviour
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(uiData);
                 break;
         }
+    }
+
+    public void OnClickTutorialBtn()
+    {
+        tutorialImg.SetActive(true);
+        PoolManager.Instance.isNotTutorialTouch = true;
+
+        if (!GameManager.gameManager.Pause) GameManager.gameManager.PauseGame();
     }
 }
