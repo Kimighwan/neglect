@@ -39,9 +39,18 @@ public class DetachAdventureListUI : BaseUI
 
     private void Update()
     {
-        countTxt.text 
-            = PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Count.ToString()
-            + "/4";
+        if(adventureIndex < 10)
+        {
+            countTxt.text
+                        = PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Count.ToString()
+                        + "/4";
+        }
+        else
+        {
+            var tmp = UIManager.Instance.GetActiveUI<EmergencyQuestUI>() as EmergencyQuestUI;
+            countTxt.text = tmp.GetComponent<QuestManager>().adventureDatas.Count.ToString() + "/4";
+        }
+        
     }
 
     private void SetScroll()

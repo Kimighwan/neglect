@@ -49,6 +49,8 @@ public class EmergencyQuestUI : BaseUI
         result.SetActive(false);
 
         GameManager.gameManager.PauseGame();
+
+        questManager.adventureDatas.Clear();
     }
 
     private void OnDisable()
