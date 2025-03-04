@@ -26,6 +26,7 @@ public class ScriptDialogObjectData : MonoBehaviour
     public GameObject backPanel;
     public GameObject panel;
     public GameObject skipBtn;
+    [TextArea]
     public TextMeshProUGUI scr;
     public TextMeshProUGUI scrSpeaker;
 
