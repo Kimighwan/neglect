@@ -6,11 +6,11 @@ using UnityEngine;
 public class DialogMode : MonoBehaviour
 {
     private ScriptDialogObjectData data;
-    private float minTypingSpeed = 0.05f;
-    private float maxTypingSpeed = 0.15f;
+    private float minTypingSpeed = 0.02f;
+    private float maxTypingSpeed = 0.06f;
     private float holdTime = 1.5f;
-    private float changeMinTypingSpeed = 0.05f;
-    private float changeMaxTypingSpeed = 0.15f;
+    private float changeMinTypingSpeed = 0.02f;
+    private float changeMaxTypingSpeed = 0.06f;
     private float changeHoldTime = 1.5f;
     private bool killDialog = false;
 

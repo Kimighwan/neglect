@@ -146,8 +146,6 @@ public class ScriptMode : MonoBehaviour
             GameManager.gameManager.PauseGame();
             tutorialImg.SetActive(true);
         }
-
-        Debug.Log(id);
         data.scr.text = "";
         ActiveObjects(false);
         scriptList.Clear();

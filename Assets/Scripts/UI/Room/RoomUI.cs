@@ -85,6 +85,7 @@ public class RoomUI : MonoBehaviour {
         other.text = "";
         neededGold.text = "";
         isUINow = false;
+        button.interactable = true;
         this.gameObject.SetActive(false);
     }
 

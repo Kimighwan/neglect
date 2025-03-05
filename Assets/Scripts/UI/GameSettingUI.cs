@@ -1,10 +1,10 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameSettingUI : BaseUI
 {
+    private bool wasPause = true;
     private bool wasFastMode = false;
     public Slider masterVolume;
     public Slider BGMVolume;
@@ -24,11 +24,12 @@ public class GameSettingUI : BaseUI
     void OnEnable()
     {
         if (!GameManager.gameManager.Pause) {
-            
-            if (GameManager.gameManager.FastMode) wasFastMode = true;
+            wasPause = false;
+            if (GameManager.gameManager.FastMode) {
+                wasFastMode = true;
+            }
             GameManager.gameManager.PauseGame();
         }
-        
     }
 
     void UpdateVolumes()
@@ -68,9 +69,10 @@ public class GameSettingUI : BaseUI
 
     public override void OnClickCloseButton()
     {
-        GameManager.gameManager.PauseGame();
+        if (!wasPause) GameManager.gameManager.PauseGame();
         if (wasFastMode) GameManager.gameManager.QuickGame();
         wasFastMode = false;
+        wasPause = true;
         base.OnClickCloseButton();
     }
 }
