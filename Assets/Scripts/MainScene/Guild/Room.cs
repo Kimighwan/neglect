@@ -30,7 +30,7 @@ public class Room : MonoBehaviour
 
         if (!GameInfo.gameInfo.roomTutorial) {
             GameInfo.gameInfo.roomTutorial = true;
-            GameManager.gameManager.OpenTutorial(590008);
+            GameManager.gameManager.OpenTutorial(590007);
         }
         if (!roomUI.GetComponent<RoomUI>().isUINow) {
             roomUI.gameObject.SetActive(true);
