@@ -80,7 +80,7 @@ public class AdventureListSlotItem : InfiniteScrollItem
         // Class Image
         if (adventureClass == "공격")
             classImg.texture = Resources.Load("Arts/Icon/Class/AttackIcon") as Texture2D;
-        else if (adventurePosition == "방어")
+        else if (adventureClass == "방어")
             classImg.texture = Resources.Load("Arts/Icon/Class/DefenceIcon") as Texture2D;
         else
             classImg.texture = Resources.Load("Arts/Icon/Class/SupportIcon") as Texture2D;

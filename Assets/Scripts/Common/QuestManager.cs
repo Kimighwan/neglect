@@ -12,6 +12,12 @@ public class QuestManager : MonoBehaviour
 
     public RawImage stateIcons;         // 상태 아이콘
 
+    public TextMeshProUGUI nameTxt;
+    public TextMeshProUGUI rankTxt;
+    public TextMeshProUGUI timeTxt;
+    public TextMeshProUGUI rewardTxt;
+    public RawImage rankImg;
+
     [SerializeField] public int detachIndex;
 
     const string ICON_PATH = "Arts/Icon";
