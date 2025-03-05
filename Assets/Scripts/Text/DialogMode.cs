@@ -5,13 +5,10 @@ using UnityEngine;
 
 public class DialogMode : MonoBehaviour
 {
+    private bool onSpeaking = false;
     private ScriptDialogObjectData data;
-    private float minTypingSpeed = 0.02f;
-    private float maxTypingSpeed = 0.06f;
-    private float holdTime = 1.5f;
-    private float changeMinTypingSpeed = 0.02f;
-    private float changeMaxTypingSpeed = 0.06f;
-    private float changeHoldTime = 1.5f;
+    private float holdTime = 2f;
+    private float changeHoldTime = 2f;
     private bool killDialog = false;
 
     private Queue<ScriptData> scriptQueue = new Queue<ScriptData>();
@@ -20,14 +17,14 @@ public class DialogMode : MonoBehaviour
     void Start() {
         data = ScriptDialogObjectData.data;
     }
+    
     public void ChangeDialogSpeed(float f) {
-        minTypingSpeed = changeMinTypingSpeed / f;
-        maxTypingSpeed = changeMaxTypingSpeed / f;
         holdTime = changeHoldTime / f;
     }
 
     public void PrepareDialogText(int startId, int endId)
     {
+        onSpeaking = false;
         killDialog = false;
         scriptQueue.Clear();
         for (int i = startId; i <= endId; i++)
@@ -38,6 +35,7 @@ public class DialogMode : MonoBehaviour
                 scriptQueue.Enqueue(scriptData);
             }
         }
+        onSpeaking = true;
         StartCoroutine(StartDialogue());
     }
 
@@ -48,7 +46,8 @@ public class DialogMode : MonoBehaviour
         while (scriptQueue.Count > 0)
         {
             ScriptData scriptData = scriptQueue.Dequeue();
-            yield return StartCoroutine(TypeSentence(scriptData));
+
+            StartCoroutine(TypeSentence(scriptData));
 
             yield return new WaitForSeconds(holdTime);
 
@@ -63,6 +62,7 @@ public class DialogMode : MonoBehaviour
         }
 
         data.ActiveAllDialogObject(false, false);
+        onSpeaking = false;
     }
 
     private IEnumerator TypeSentence(ScriptData scriptData)
@@ -72,50 +72,63 @@ public class DialogMode : MonoBehaviour
             data.ActiveAllDialogObject(true, false);
             data.malpungseon1Text.text = "";
             data.speaker1Text.text = scriptData.scriptSpeaker;
-            yield return StartCoroutine(TypeEffect(data.malpungseon1Text, scriptData.scriptLine));
+            yield return StartCoroutine(TypeEffect(data.malpungseon1Text, scriptData.scriptLine, data.malpungseonUI1, data.malpungseon1));
         }
         else
         {
             data.ActiveAllDialogObject(false, true);
             data.malpungseon2Text.text = "";
             data.speaker2Text.text = scriptData.scriptSpeaker;
-            yield return StartCoroutine(TypeEffect(data.malpungseon2Text, scriptData.scriptLine));
+            yield return StartCoroutine(TypeEffect(data.malpungseon2Text, scriptData.scriptLine, data.malpungseonUI2, data.malpungseon2));
         }
         isSpeakerA = !isSpeakerA;
     }
 
-    private IEnumerator TypeEffect(TextMeshProUGUI targetText, string sentence) {
-        
-        float typingSpeed = Mathf.Lerp(maxTypingSpeed, minTypingSpeed, Mathf.Clamp01(sentence.Length / 100f));
-        Debug.Log(typingSpeed);
-        targetText.text = "";
+    // 수정된 부분: 전체 문장을 즉시 출력
+    private IEnumerator TypeEffect(TextMeshProUGUI targetText, string sentence, GameObject targetUI, GameObject targetMalpungseon) {
+        targetText.text = sentence;
 
-        string richText = "";
-        bool insideTag = false; // < > 태그 내부인지 체크
+        Vector3 originalUIPos = targetUI.transform.localPosition;
+        Vector3 originalPosMal = targetMalpungseon.transform.position;
 
-        foreach (char letter in sentence)
+        int shakeCount = 3;
+        float period = 0.5f;
+        float uiOffsetY = 5f;
+        float offsetY = 0.0741f;
+
+        for (int i = 0; i < shakeCount; i++)
         {
-            if (letter == '<') insideTag = true;
-            richText += letter;
-
-            if (letter == '>') insideTag = false;
-
-            if (!insideTag)
+            float elapsed = 0f;
+            
+            while (elapsed < period)
             {
-                targetText.text = richText;
-                yield return new WaitForSeconds(typingSpeed);
-            }
+                float t = elapsed / period;
 
-            if (GameManager.gameManager.FastMode) {
-                typingSpeed = Mathf.Lerp(maxTypingSpeed, minTypingSpeed, Mathf.Clamp01(sentence.Length / 100f));
+                // UI는 local position에 오프셋을 더해 업데이트
+                targetUI.transform.localPosition = originalUIPos + new Vector3(0, uiOffsetY, 0);
+
+                // UI offset을 world space로 변환하여 말풍선에도 적용
+                Vector3 worldOffset = targetUI.transform.TransformVector(new Vector3(0, offsetY, 0));
+                targetMalpungseon.transform.position = originalPosMal + worldOffset;
+
+                elapsed += Time.deltaTime;
+                yield return null;
             }
-            if (killDialog) {
-                break;
-            }
+            uiOffsetY *= -1;
+            offsetY *= -1;
         }
+
+        // 움직임 종료 후 원래 위치로 복원
+        targetUI.transform.localPosition = originalUIPos;
+        targetMalpungseon.transform.position = originalPosMal;
+
+        yield return null;
     }
 
     public void KillDialog() {
         killDialog = true;
+    }
+    public bool IsSpeaking() {
+        return onSpeaking;
     }
 }

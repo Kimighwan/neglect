@@ -62,12 +62,12 @@ public class ScriptDialogObjectData : MonoBehaviour
     private void PlaceDialog() {
         Vector3 screenPos;
         screenPos = mainCamera.WorldToScreenPoint(background1.position);
-        screenPos += new Vector3(0, 5f, 0f);
+        screenPos += new Vector3(0, 7.5f, 0f);
         malpungseon1RT.position = screenPos;
         screenPos = mainCamera.WorldToScreenPoint(speaker1.position);
         speaker1RT.position = screenPos;
         screenPos = mainCamera.WorldToScreenPoint(background2.position);
-        screenPos += new Vector3(0, 5f, 0f);
+        screenPos += new Vector3(0, 7.5f, 0f);
         malpungseon2RT.position = screenPos;
         screenPos = mainCamera.WorldToScreenPoint(speaker2.position);
         speaker2RT.position = screenPos;
