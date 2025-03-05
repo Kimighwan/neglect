@@ -199,13 +199,11 @@ public class RandomQuestSelectUI : MonoBehaviour
         }
 
         if (!PoolManager.Instance.userQuestIndex.Contains(resultId) && !CheckHaveRandomIndex(resultId))
-        {
-            Debug.Log($"{resultId} 의뢰 뽑음"); 
+        { 
             PoolManager.Instance.userQuestIndex.Add(resultId);
         }
         else
         {
-            Debug.Log($"{resultId} 이미 있어서 뺑뺑이 돌림");
             // 길드레벨 1, 2
             // 의뢰가 부족해서 다른 티어 의뢰 보여줄 일이 없음
             if (GameInfo.gameInfo.Level == 1 || GameInfo.gameInfo.Level == 2)
@@ -558,7 +556,6 @@ public class RandomQuestSelectUI : MonoBehaviour
                 }
                 else if (j == 4) // 다이아 의뢰 줘야했다면 남는 다이아 또는 플래 또는 골드
                 {
-                    Debug.Log($"{resultId}가 다이아라서 남은 다이아 또는 플래 또는 골드 선택");
                     if (PoolManager.Instance.diaQ < 3)
                     {
                         for (int i = 38; i < 41; i++)
@@ -566,7 +563,6 @@ public class RandomQuestSelectUI : MonoBehaviour
                             tmp = i;
                             if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
                             {
-                                Debug.Log($"{tmp} 뺑뻉이로 다이아 의뢰가 선택됨");
                                 break;
                             }
                         }
