@@ -120,11 +120,7 @@ public class QuestResult : BaseUI
     {
         txt.text = "의뢰 확인 중...";
 
-        yield return new WaitForSeconds(1.5f);
-
-        rewardTxt.text = "+G " + PoolManager.Instance.questData[resultIndex].questReward.ToString();
-
-        
+        yield return new WaitForSeconds(1.5f);      
 
         // 의뢰 종료시 모험가 다시 사용하게 Test
         foreach (var i in PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas)
@@ -136,6 +132,7 @@ public class QuestResult : BaseUI
         {
             AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 성공";
+            rewardTxt.text = "+G " + PoolManager.Instance.questData[resultIndex].questReward.ToString();
             receiptBtn.SetActive(true);
             diaOKBtn.SetActive(false);
             SetMonsterPlayerPrefs();
@@ -148,6 +145,7 @@ public class QuestResult : BaseUI
         {
             AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 대성공!!!";
+            rewardTxt.text = "+G " + (PoolManager.Instance.questData[resultIndex].questReward * 2).ToString();
             receiptBtn.SetActive(true);
             diaOKBtn.SetActive(false);
             SetMonsterPlayerPrefs();
