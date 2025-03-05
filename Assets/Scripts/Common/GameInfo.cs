@@ -296,7 +296,7 @@ public class GameInfo : MonoBehaviour
     #region GuildInfo
     private int level;
     public int Level { get { return level; } set { level = value; } }
-    private List<int> neededGold = new List<int> { 500, 3000, 10000, 100000 }; // 필요 골드
+    private List<int> neededGold = new List<int> { 500, 3000, 10000, 50000 }; // 필요 골드
     public int GetNeededGold() {
         if (level == 5) return 0;
         return neededGold[level - 1];

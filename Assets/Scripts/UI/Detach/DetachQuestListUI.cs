@@ -169,7 +169,16 @@ public class DetachQuestListUI : BaseUI
             PoolManager.Instance.questTxt[qusetIndex - 1].text = tmp;
         }
 
-        PoolManager.Instance.questManagers[qusetIndex - 1].nameTxt.text = PoolManager.Instance.questData[qusetIndex].questName;
+        if(PoolManager.Instance.questData[qusetIndex].questName.Length > 6)
+        {
+            string tmp = PoolManager.Instance.questData[qusetIndex].questName.Substring(0, 5) + "...";
+            PoolManager.Instance.questManagers[qusetIndex - 1].nameTxt.text = tmp;
+        }
+        else
+        {
+            PoolManager.Instance.questManagers[qusetIndex - 1].nameTxt.text = PoolManager.Instance.questData[qusetIndex].questName;
+        }
+        
         PoolManager.Instance.questManagers[qusetIndex - 1].rankTxt.text = PoolManager.Instance.questData[qusetIndex].questLevel;
         PoolManager.Instance.questManagers[qusetIndex - 1].timeTxt.text = PoolManager.Instance.questData[qusetIndex].questTime.ToString();
         PoolManager.Instance.questManagers[qusetIndex - 1].rewardTxt.text = PoolManager.Instance.questData[qusetIndex].questReward.ToString();
