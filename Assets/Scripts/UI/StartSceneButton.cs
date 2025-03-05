@@ -1,8 +1,16 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartSceneButton : MonoBehaviour
 {
+    public TextMeshProUGUI gameVersionTxt;
+
+    private void Awake()
+    {
+        gameVersionTxt.text = $"Version : {Application.version}";
+    }
+
     public void OnClickStartButton()
     {
         AudioManager.Instance.ChangeBGMVolume(0.1f);
