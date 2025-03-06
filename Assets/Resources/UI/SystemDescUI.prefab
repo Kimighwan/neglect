@@ -315,8 +315,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5190774287995995750}
-        m_TargetAssemblyTypeName: SystemUI, Assembly-CSharp
-        m_MethodName: BackBtn
+        m_TargetAssemblyTypeName: SystemDescUI, Assembly-CSharp
+        m_MethodName: BackBtnOfSystemDescUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
