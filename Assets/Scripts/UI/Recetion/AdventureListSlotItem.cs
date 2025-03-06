@@ -80,7 +80,7 @@ public class AdventureListSlotItem : InfiniteScrollItem
         // Class Image
         if (adventureClass == "공격")
             classImg.texture = Resources.Load("Arts/Icon/Class/AttackIcon") as Texture2D;
-        else if (adventurePosition == "방어")
+        else if (adventureClass == "방어")
             classImg.texture = Resources.Load("Arts/Icon/Class/DefenceIcon") as Texture2D;
         else
             classImg.texture = Resources.Load("Arts/Icon/Class/SupportIcon") as Texture2D;
@@ -109,11 +109,11 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
         SetStateText();
 
-        if (adventureTier == "브론즈") exportGold.text = "+G 40";
-        else if(adventureTier == "실버") exportGold.text = "+G 100";
-        else if (adventureTier == "골드") exportGold.text = "+G 200";
-        else if (adventureTier == "플래티넘") exportGold.text = "+G 400";
-        else if (adventureTier == "다이아") exportGold.text = "+G 1000";
+        if (adventureTier == "브론즈") exportGold.text = "+G 50";
+        else if(adventureTier == "실버") exportGold.text = "+G 250";
+        else if (adventureTier == "골드") exportGold.text = "+G 500";
+        else if (adventureTier == "플래티넘") exportGold.text = "+G 1000";
+        else if (adventureTier == "다이아") exportGold.text = "+G 2500";
     }
 
     private void SetStateText()
@@ -162,36 +162,36 @@ public class AdventureListSlotItem : InfiniteScrollItem
         if (adventureTier == "브론즈")
         {
             PoolManager.Instance.bronzAd--;
-            GameInfo.gameInfo.ChangeGold(40);
-            GameInfo.gameInfo.CalculateTodayGold(40);
-            GameInfo.gameInfo.addGold += 40;
+            GameInfo.gameInfo.ChangeGold(50);
+            GameInfo.gameInfo.CalculateTodayGold(50);
+            GameInfo.gameInfo.addGold += 50;
         }
         else if (adventureTier == "실버")
         {
             PoolManager.Instance.silverAd--;
-            GameInfo.gameInfo.ChangeGold(100);
-            GameInfo.gameInfo.CalculateTodayGold(100);
-            GameInfo.gameInfo.addGold += 100;
+            GameInfo.gameInfo.ChangeGold(250);
+            GameInfo.gameInfo.CalculateTodayGold(250);
+            GameInfo.gameInfo.addGold += 250;
         }
         else if (adventureTier == "골드")
         {
             PoolManager.Instance.goldAd--;
-            GameInfo.gameInfo.ChangeGold(200);
-            GameInfo.gameInfo.CalculateTodayGold(200);
-            GameInfo.gameInfo.addGold += 200;
+            GameInfo.gameInfo.ChangeGold(500);
+            GameInfo.gameInfo.CalculateTodayGold(500);
+            GameInfo.gameInfo.addGold += 500;
         }
         else if (adventureTier == "플래티넘")
-        {
-            GameInfo.gameInfo.ChangeGold(400);
-            GameInfo.gameInfo.CalculateTodayGold(400);
-            GameInfo.gameInfo.addGold += 400;
-            PoolManager.Instance.platinumAd--;
-        }
-        else
         {
             GameInfo.gameInfo.ChangeGold(1000);
             GameInfo.gameInfo.CalculateTodayGold(1000);
             GameInfo.gameInfo.addGold += 1000;
+            PoolManager.Instance.platinumAd--;
+        }
+        else
+        {
+            GameInfo.gameInfo.ChangeGold(2500);
+            GameInfo.gameInfo.CalculateTodayGold(2500);
+            GameInfo.gameInfo.addGold += 2500;
             PoolManager.Instance.diaAd--;
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 
 
@@ -167,6 +168,31 @@ public class DetachQuestListUI : BaseUI
             string tmp = PoolManager.Instance.questTxt[qusetIndex - 1].text.Substring(0, 5) + "...";
             PoolManager.Instance.questTxt[qusetIndex - 1].text = tmp;
         }
+
+        if(PoolManager.Instance.questData[qusetIndex].questName.Length > 6)
+        {
+            string tmp = PoolManager.Instance.questData[qusetIndex].questName.Substring(0, 5) + "...";
+            PoolManager.Instance.questManagers[qusetIndex - 1].nameTxt.text = tmp;
+        }
+        else
+        {
+            PoolManager.Instance.questManagers[qusetIndex - 1].nameTxt.text = PoolManager.Instance.questData[qusetIndex].questName;
+        }
+        
+        PoolManager.Instance.questManagers[qusetIndex - 1].rankTxt.text = PoolManager.Instance.questData[qusetIndex].questLevel;
+        PoolManager.Instance.questManagers[qusetIndex - 1].timeTxt.text = PoolManager.Instance.questData[qusetIndex].questTime.ToString();
+        PoolManager.Instance.questManagers[qusetIndex - 1].rewardTxt.text = PoolManager.Instance.questData[qusetIndex].questReward.ToString();
+
+        if (PoolManager.Instance.questData[qusetIndex].questLevel == "브론즈")
+            PoolManager.Instance.questManagers[qusetIndex - 1].rankImg.texture = Resources.Load("Arts/QuestRank/bronze_quest") as Texture2D;
+        else if (PoolManager.Instance.questData[qusetIndex].questLevel == "실버")
+            PoolManager.Instance.questManagers[qusetIndex - 1].rankImg.texture = Resources.Load("Arts/QuestRank/silver_quest") as Texture2D;
+        else if (PoolManager.Instance.questData[qusetIndex].questLevel == "골드")
+            PoolManager.Instance.questManagers[qusetIndex - 1].rankImg.texture = Resources.Load("Arts/QuestRank/gold_quest") as Texture2D;
+        else if (PoolManager.Instance.questData[qusetIndex].questLevel == "플래티넘")
+            PoolManager.Instance.questManagers[qusetIndex - 1].rankImg.texture = Resources.Load("Arts/QuestRank/platinum_quest") as Texture2D;
+        else if (PoolManager.Instance.questData[qusetIndex].questLevel == "다이아")
+            PoolManager.Instance.questManagers[qusetIndex - 1].rankImg.texture = Resources.Load("Arts/QuestRank/diamond_quest") as Texture2D;
 
         PoolManager.Instance.UsingQuestData();
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<DetachQuestListUI>());

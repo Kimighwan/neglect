@@ -12,6 +12,12 @@ public class QuestManager : MonoBehaviour
 
     public RawImage stateIcons;         // 상태 아이콘
 
+    public TextMeshProUGUI nameTxt;
+    public TextMeshProUGUI rankTxt;
+    public TextMeshProUGUI timeTxt;
+    public TextMeshProUGUI rewardTxt;
+    public RawImage rankImg;
+
     [SerializeField] public int detachIndex;
 
     const string ICON_PATH = "Arts/Icon";
@@ -289,23 +295,18 @@ public class QuestManager : MonoBehaviour
             {
                 case "브론즈":
                     tierScore += 100;
-                    Debug.Log($"{tier}이라서 +100");
                     break;
                 case "실버":
                     tierScore += 200;
-                    Debug.Log($"{tier}이라서 +200");
                     break;
                 case "골드":
                     tierScore += 300;
-                    Debug.Log($"{tier}이라서 +300");
                     break;
                 case "플래티넘":
                     tierScore += 400;
-                    Debug.Log($"{tier}이라서 +400");
                     break;
                 case "다이아":
                     tierScore += 600;
-                    Debug.Log($"{tier}이라서 +600");
                     break;
             }
         }

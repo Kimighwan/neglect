@@ -199,14 +199,14 @@ public class RandomQuestSelectUI : MonoBehaviour
         }
 
         if (!PoolManager.Instance.userQuestIndex.Contains(resultId) && !CheckHaveRandomIndex(resultId))
-        {
+        { 
             PoolManager.Instance.userQuestIndex.Add(resultId);
         }
         else
         {
             // 길드레벨 1, 2
             // 의뢰가 부족해서 다른 티어 의뢰 보여줄 일이 없음
-            if(GameInfo.gameInfo.Level == 1 || GameInfo.gameInfo.Level == 2)
+            if (GameInfo.gameInfo.Level == 1 || GameInfo.gameInfo.Level == 2)
             {
                 int tmp = resultId;
                 // 브론즈 의뢰 보여줄 예정이였다면
@@ -554,15 +554,17 @@ public class RandomQuestSelectUI : MonoBehaviour
                         PoolManager.Instance.userQuestIndex.Add(tmp);
                     }
                 }
-                else if (j == 3) // 다이아 의뢰 줘야했다면 남는 다이아 또는 플래 또는 골드
+                else if (j == 4) // 다이아 의뢰 줘야했다면 남는 다이아 또는 플래 또는 골드
                 {
-                    if(PoolManager.Instance.diaQ < 3)
+                    if (PoolManager.Instance.diaQ < 3)
                     {
                         for (int i = 38; i < 41; i++)
                         {
                             tmp = i;
                             if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
+                            {
                                 break;
+                            }
                         }
 
                         resultId = tmp;

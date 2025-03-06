@@ -14,6 +14,9 @@ public class QuestListItemSlot : InfiniteScrollItem
 
     private QuestData questData;
 
+    public GameObject ingQuest;
+    private bool onIngQuest = false;
+
     private int questMonsterDescId;
     private int questId;
 
@@ -64,6 +67,20 @@ public class QuestListItemSlot : InfiniteScrollItem
 
     public void OnClickDetailBtn()  // 의뢰 세부사항 UI 열기
     {
+        // 의뢰 수행 중임으로 삭제 금지 그로인해 디테일 창 이동 금지
+        if (PoolManager.Instance.usingQuestList.Contains(questId) && !onIngQuest)
+        {
+            onIngQuest = true;
+            ingQuest.SetActive(true);
+            return;
+        }
+        else if (PoolManager.Instance.usingQuestList.Contains(questId) && onIngQuest)
+        {
+            onIngQuest = false;
+            ingQuest.SetActive(false);
+            return;
+        }
+
         SetMonsterDescID();
 
         UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<QuestListUI>());
