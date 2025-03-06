@@ -63,6 +63,11 @@ public class QuestListItemSlot : InfiniteScrollItem
 
         if((questId / 100) % 10 == 8)
             rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
+
+        if(PoolManager.Instance.usingQuestList.Contains(questId))
+            ingQuest.SetActive(true);
+        else
+            ingQuest.SetActive(false);
     }
 
     public void OnClickDetailBtn()  // 의뢰 세부사항 UI 열기
