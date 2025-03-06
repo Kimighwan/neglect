@@ -13,13 +13,15 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     // Scale Change Animation
     private Vector3 originalScale;
+    public GameObject setImage;
     public float scaleFactor = 1.1f;
     
 
     private void Start()
     {
         // 초기 스케일 저장
-        originalScale = transform.localScale;
+        if (setImage == null) originalScale = transform.localScale;
+        else originalScale = setImage.transform.localScale;
     }
 
     // 마우스가 버튼 위로 들어왔을 때 호출
@@ -47,14 +49,21 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
     // 스케일을 부드럽게 변경하는 코루틴
     private System.Collections.IEnumerator ScaleTo(Vector3 targetScale)
     {
-        Vector3 currentScale = transform.localScale;
+        Vector3 currentScale;
+        if (setImage == null) currentScale = transform.localScale;
+        else currentScale = setImage.transform.localScale;
+
         float timer = 0f;
         while (timer < transitionDuration)
         {
             timer += Time.deltaTime;
-            transform.localScale = Vector3.Lerp(currentScale, targetScale, timer / transitionDuration);
+            if (setImage == null) transform.localScale = Vector3.Lerp(currentScale, targetScale, timer / transitionDuration);
+            else setImage.transform.localScale = Vector3.Lerp(currentScale, targetScale, timer / transitionDuration);
             yield return null;
         }
-        transform.localScale = targetScale;
+
+        if (setImage == null) transform.localScale = targetScale;
+        else setImage.transform.localScale = targetScale;
+        
     }
 }

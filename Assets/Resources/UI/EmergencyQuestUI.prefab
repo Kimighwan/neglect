@@ -84,6 +84,11 @@ MonoBehaviour:
   questBtn: {fileID: 6618551985863382328}
   adventureBtn: {fileID: 5115960077139298943}
   stateIcons: {fileID: 4355702107389435490}
+  nameTxt: {fileID: 0}
+  rankTxt: {fileID: 0}
+  timeTxt: {fileID: 0}
+  rewardTxt: {fileID: 0}
+  rankImg: {fileID: 0}
   detachIndex: 0
 --- !u!222 &1904522654496541934
 CanvasRenderer:
@@ -743,6 +748,7 @@ GameObject:
   - component: {fileID: 3004521741419979842}
   - component: {fileID: 6506651020657909544}
   - component: {fileID: 1410093021439818405}
+  - component: {fileID: 5183241328719766451}
   m_Layer: 5
   m_Name: GiveUpBtn
   m_TagString: Untagged
@@ -864,6 +870,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5183241328719766451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2975246135265783259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307a6e487110f8249bb0b0ab1bc84df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAnim: 0
+  transitionDuration: 0.1
+  scaleFactor: 1.1
 --- !u!1 &3114273862306028500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,6 +1075,7 @@ GameObject:
   - component: {fileID: 9091073675030451413}
   - component: {fileID: 5543290922383844650}
   - component: {fileID: 6527009250196836655}
+  - component: {fileID: 319678854074086940}
   m_Layer: 5
   m_Name: AdventureBtn
   m_TagString: Untagged
@@ -1175,6 +1197,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &319678854074086940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709127217245844715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307a6e487110f8249bb0b0ab1bc84df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAnim: 0
+  transitionDuration: 0.1
+  scaleFactor: 1.1
 --- !u!1 &4527197392508852146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1516,7 @@ GameObject:
   - component: {fileID: 3678026049353308687}
   - component: {fileID: 7901548463678104757}
   - component: {fileID: 5599852277145802337}
+  - component: {fileID: 5070085336339086871}
   m_Layer: 5
   m_Name: ResultBtn
   m_TagString: Untagged
@@ -1600,6 +1638,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5070085336339086871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835411588919503074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307a6e487110f8249bb0b0ab1bc84df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAnim: 0
+  transitionDuration: 0.1
+  scaleFactor: 1.1
 --- !u!1 &5090379243862588943
 GameObject:
   m_ObjectHideFlags: 0
