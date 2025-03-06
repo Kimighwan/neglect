@@ -107,6 +107,8 @@ public class DetachQuestListUI : BaseUI
             default:
                 break;
         }
+
+        OrderTextUpdate();
     }
 
     // 정렬 버튼
@@ -131,15 +133,32 @@ public class DetachQuestListUI : BaseUI
         {
             case QuestOrderType.DOWN:
                 questOrderType = QuestOrderType.UP;
+                orderBtnText.text = "UP";
                 break;
             case QuestOrderType.UP:
                 questOrderType = QuestOrderType.DOWN;
+                orderBtnText.text = "DOWN";
                 break;
             default:
                 break;
         }
 
         SortQuest();
+    }
+
+    private void OrderTextUpdate()
+    {
+        switch (questOrderType)
+        {
+            case QuestOrderType.DOWN:
+                orderBtnText.text = "DOWN";
+                break;
+            case QuestOrderType.UP:
+                orderBtnText.text = "UP";
+                break;
+            default:
+                break;
+        }
     }
 
 
