@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 8125001829352569319}
   - component: {fileID: 8850308369377487460}
   - component: {fileID: 5991750076373571888}
+  - component: {fileID: 1809307235523525889}
   m_Layer: 5
   m_Name: BackBtn
   m_TagString: Untagged
@@ -325,6 +326,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1809307235523525889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586386121059295250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307a6e487110f8249bb0b0ab1bc84df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAnim: 0
+  transitionDuration: 0.1
+  scaleFactor: 1.1
 --- !u!1 &3156564016424567065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,6 +1441,7 @@ GameObject:
   - component: {fileID: 8389281091534985294}
   - component: {fileID: 4038746943134305528}
   - component: {fileID: 4791769789556106069}
+  - component: {fileID: 6587153036323716430}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -1545,3 +1562,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6587153036323716430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151951843758912978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307a6e487110f8249bb0b0ab1bc84df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAnim: 0
+  transitionDuration: 0.1
+  scaleFactor: 1.1

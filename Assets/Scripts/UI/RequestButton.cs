@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using TMPro;
 
 public class RequestButton : MouseDrag
 {
@@ -41,6 +39,7 @@ public class RequestButton : MouseDrag
 
     private bool tutorialOnce = false;
     private bool isMoved = false; // 이동 여부 체크
+    private bool isMoving = false;
     private bool inRequest = false;
 
     void Start()
@@ -60,8 +59,9 @@ public class RequestButton : MouseDrag
 
     public void OnClickBut()
     {
+        if (isMoving) return;
         inRequest = isMoved ? false : true;
-        this.GetComponent<Image>().raycastTarget = false;
+        isMoving = true;
         StartCoroutine(MoveCameraAndUI(isMoved ? originalCamPos : targetCamPos, isMoved ? originalUIPos : targetUIPos, isMoved ? originalTxt1Pos : targetTxt1Pos, isMoved ? originalTxt2Pos : targetTxt2Pos));
         isMoved = !isMoved;
         if (!tutorialOnce) {
@@ -102,6 +102,6 @@ public class RequestButton : MouseDrag
         requestBG.anchoredPosition = uiDestination;
         txt1.anchoredPosition = txt1Des;
         txt2.anchoredPosition = txt2Des;
-        this.GetComponent<Image>().raycastTarget = true;
+        isMoving = false;
     }
 }

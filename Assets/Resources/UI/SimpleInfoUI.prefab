@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6519919598161867859}
   - component: {fileID: 6338304485983714964}
   - component: {fileID: 1252443910313111866}
+  - component: {fileID: 9188242316796247758}
   m_Layer: 5
   m_Name: OKBtn
   m_TagString: Untagged
@@ -149,6 +150,21 @@ MonoBehaviour:
   defaultImg: {fileID: 21300000, guid: 01c8fb3e5184e7a43a236c5008cd1f1a, type: 3}
   onImg: {fileID: 21300000, guid: bd27a744c7ad9ac47b7b650b5f09ebe1, type: 3}
   pressedImg: {fileID: 21300000, guid: c046ab97f199ada4ea78ee8585b6ba6a, type: 3}
+--- !u!114 &9188242316796247758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924819759690011497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307a6e487110f8249bb0b0ab1bc84df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAnim: 0
+  transitionDuration: 0.1
+  scaleFactor: 1.1
 --- !u!1 &2006350566847869867
 GameObject:
   m_ObjectHideFlags: 0

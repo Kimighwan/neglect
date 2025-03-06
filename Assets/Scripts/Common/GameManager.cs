@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        AudioManager.Instance.ChangeBGMVolume(1f);
+        AudioManager.Instance.ChangeBGMVolume(AudioManager.Instance.BGMTMP);
         info = GameInfo.gameInfo;
         info.StartGameInfo();
         info.PrepareShowIll(2f, 0f, true);
@@ -83,13 +84,15 @@ public class GameManager : MonoBehaviour
     public void PauseGame() {
         pause = !pause;
         if (pause) {
-            info.pauseButton.gameObject.GetComponent<UIPressed>().defaultImg = info.pauseAndGo[2];
-            info.pauseButton.gameObject.GetComponent<UIPressed>().pressedImg = info.pauseAndGo[3];
+            SpriteState spriteState = info.pauseButton.gameObject.GetComponent<Button>().spriteState;
+            spriteState.pressedSprite = info.pauseAndGo[3];
+            info.pauseButton.gameObject.GetComponent<Button>().spriteState = spriteState;
             info.pauseButton.sprite = info.pauseAndGo[2];
             info.ChangeAniObjSpeed(0f);
         } else {
-            info.pauseButton.gameObject.GetComponent<UIPressed>().defaultImg = info.pauseAndGo[0];
-            info.pauseButton.gameObject.GetComponent<UIPressed>().pressedImg = info.pauseAndGo[1];
+            SpriteState spriteState = info.pauseButton.gameObject.GetComponent<Button>().spriteState;
+            spriteState.pressedSprite = info.pauseAndGo[1];
+            info.pauseButton.gameObject.GetComponent<Button>().spriteState = spriteState;
             info.pauseButton.sprite = info.pauseAndGo[0];
             info.ChangeAniObjSpeed(1f);
         }

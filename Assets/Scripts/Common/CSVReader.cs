@@ -27,13 +27,11 @@ public class CSVReader
             for (var j = 0; j < header.Length && j < values.Length; j++)
             {
                 string value = values[j];
-                value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS);
-                value = value.Replace("\\n", "\n").Replace("\\\"", "\"");
-                //if (file != "DataTable/scr_list") value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
-                //else {
-                //    value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS);
-                //    value = value.Replace("\\n", "\n").Replace("\\\"", "\"");
-                //}
+                if (file == "DataTable/scr_list" || file == "DataTable/mob_list" || file == "DataTable/quest_list" || file == "DataTable/ds_list") {
+                    value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS);
+                    value = value.Replace("\\n", "\n").Replace("\\\"", "\"");
+                }
+                else value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
                 object finalvalue = value;
                 int n;
                 float f;
