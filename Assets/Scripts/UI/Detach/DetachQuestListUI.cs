@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 
 
 
@@ -160,6 +159,7 @@ public class DetachQuestListUI : BaseUI
         }
 
         PoolManager.Instance.questBtn[qusetIndex - 1].interactable = false;
+        PoolManager.Instance.questBtn[qusetIndex - 1].GetComponent<UIButtonAnimator>().SetUnActiveAnim(true);
 
         // 버튼 Text 업데이트
         PoolManager.Instance.questTxt[qusetIndex - 1].text = PoolManager.Instance.questData[qusetIndex].questName;
