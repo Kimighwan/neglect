@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,23 +56,52 @@ public class ScriptDialogHandler : MonoBehaviour
         case 139999: // 3챕터
             PlayScript(100351, 100377, false);
             PlayScript(109101, 109124, false);
-            
             break;
         }
     }
+
     public void ConditionalDialogPlay(int q_id) {
-        switch (q_id) {
-        case 132801: // 얼음 마녀 조사
-            PlayDialog(101811, 101816);
-            break;
-        case 133801: // 호문클루스 연구시설 조사
-            PlayDialog(101821, 101827);
-            break;
-        case 134801: // 새끼용 포획
-            PlayDialog(101831, 101835);
-            break;
+        if (dialog.IsSpeaking())
+        {
+            dialog.KillDialog();
+            StartCoroutine(WaitForDialogAndPlay(q_id));
+        }
+        else
+        {
+            PlayDialogById(q_id);
         }
     }
+
+    private IEnumerator WaitForDialogAndPlay(int q_id)
+    {
+        // dialog가 완전히 종료될 때까지 기다림.
+        while (dialog.IsSpeaking())
+        {
+            yield return null; // 매 프레임 상태 체크
+        }
+        
+        PlayDialogById(q_id);
+    }
+
+    private void PlayDialogById(int q_id)
+    {
+        switch (q_id)
+        {
+            case 132801: // 얼음 마녀 조사
+                PlayDialog(101811, 101816);
+                break;
+            case 133801: // 호문클루스 연구시설 조사
+                PlayDialog(101821, 101827);
+                break;
+            case 134801: // 새끼용 포획
+                PlayDialog(101831, 101835);
+                break;
+            default:
+                Debug.LogWarning("알 수 없는 대화 ID: " + q_id);
+                break;
+        }
+    }
+
     private void PlayScript(int s, int e, bool i) {
         GameManager.gameManager.PauseGame();
         script.PrepareScriptText(s, e, i);

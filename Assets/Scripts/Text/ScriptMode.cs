@@ -77,29 +77,29 @@ public class ScriptMode : MonoBehaviour
         }
     }
 
-    IEnumerator TypeText(string line) {
+    public IEnumerator TypeText(string line)
+    {
         isTyping = true;
         data.scr.text = ""; // 초기화
-
-        string richText = "";
-        bool insideTag = false; // 현재 < > 태그 안에 있는지 체크
-
+        
+        bool insideTag = false;
+        
         foreach (char letter in line)
         {
             if (letter == '<') insideTag = true;
-            richText += letter;
+
+            data.scr.text += letter;
+
             if (letter == '>') insideTag = false;
+
             if (!insideTag)
             {
-                data.scr.text = richText.Replace("\\n", "\n");
-
                 yield return new WaitForSeconds(typingSpeed);
             }
         }
 
         isTyping = false;
     }
-
     
     public void OnClickSkip()
     {
@@ -146,8 +146,6 @@ public class ScriptMode : MonoBehaviour
             GameManager.gameManager.PauseGame();
             tutorialImg.SetActive(true);
         }
-
-        Debug.Log(id);
         data.scr.text = "";
         ActiveObjects(false);
         scriptList.Clear();
