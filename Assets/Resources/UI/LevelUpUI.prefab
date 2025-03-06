@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3201388814974879371}
   - component: {fileID: 1044535322698750038}
   - component: {fileID: 4616992997137863932}
+  - component: {fileID: 4650847240563343508}
   m_Layer: 5
   m_Name: CloseBtn
   m_TagString: Untagged
@@ -35,9 +36,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 309, y: 265.5}
+  m_AnchoredPosition: {x: 263, y: 221.5}
   m_SizeDelta: {x: 46, y: 44}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3201388814974879371
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -132,6 +133,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4650847240563343508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016664701110460524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307a6e487110f8249bb0b0ab1bc84df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAnim: 0
+  transitionDuration: 0.1
+  scaleFactor: 1.1
 --- !u!1 &2632282198727133173
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +332,7 @@ GameObject:
   - component: {fileID: 7500850854157323658}
   - component: {fileID: 4057528409454518729}
   - component: {fileID: 229621716788882364}
-  - component: {fileID: 7197997302247331799}
+  - component: {fileID: 6878374808957851318}
   m_Layer: 5
   m_Name: LevelUp
   m_TagString: Untagged
@@ -371,7 +387,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -381,8 +397,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: bd27a744c7ad9ac47b7b650b5f09ebe1, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: c046ab97f199ada4ea78ee8585b6ba6a, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -438,7 +454,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7197997302247331799
+--- !u!114 &6878374808957851318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -447,12 +463,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4052646260268564733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73db02b4b37f7874494f0fe6a006e8e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 307a6e487110f8249bb0b0ab1bc84df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultImg: {fileID: 21300000, guid: 01c8fb3e5184e7a43a236c5008cd1f1a, type: 3}
-  onImg: {fileID: 21300000, guid: bd27a744c7ad9ac47b7b650b5f09ebe1, type: 3}
-  pressedImg: {fileID: 21300000, guid: c046ab97f199ada4ea78ee8585b6ba6a, type: 3}
+  currentAnim: 0
+  transitionDuration: 0.1
+  scaleFactor: 1.1
 --- !u!1 &4117021924436584926
 GameObject:
   m_ObjectHideFlags: 0

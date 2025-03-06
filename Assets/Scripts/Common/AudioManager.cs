@@ -51,11 +51,10 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     // SFX AudioSource 컨테이너
     private Dictionary<SFX, AudioSource> m_SFXPlayer = new Dictionary<SFX, AudioSource>();
 
-    //private void Awake()
-    //{
-    //    ChangeBGMVolume(0.6f);
-    //    ChangeSFXVolume(0.6f);
-    //}
+    private float bgmTmp;
+    public float BGMTMP { get { return bgmTmp; } set { bgmTmp = value; } }
+    private float sfxTmp;
+    public float SFXTMP { get { return sfxTmp; } set { sfxTmp = value; } }
 
     protected override void Init()
     {
@@ -183,15 +182,36 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     }
 
     public void ChangeBGMVolume(float f) { // BGM 소리 조절
+        bgmTmp = GetCurrentBGMVol();
         foreach (var audioSourceItem in m_BGMPlayer)
         {
             audioSourceItem.Value.volume = f;
         }
     }
     public void ChangeSFXVolume(float f) { // SFX 소리 조절
+        sfxTmp = GetCurrentSFXVol();
         foreach (var audioSourceItem in m_SFXPlayer)
         {
             audioSourceItem.Value.volume = f;
         }
+    }
+
+    public float GetCurrentBGMVol() {
+        float f = -1f;
+        foreach (var audioSourceItem in m_BGMPlayer)
+        {
+            f = audioSourceItem.Value.volume;
+            break;
+        }
+        return f;
+    }
+    public float GetCurrentSFXVol() {
+        float f = -1f;
+        foreach (var audioSourceItem in m_SFXPlayer)
+        {
+            f = audioSourceItem.Value.volume;
+            break;
+        }
+        return f;
     }
 }
