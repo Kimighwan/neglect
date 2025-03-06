@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EncyclopediaUI : BaseUI
 {
     void OnEnable()
@@ -7,6 +9,10 @@ public class EncyclopediaUI : BaseUI
     public override void SetInfo(BaseUIData uiData)
     {
         base.SetInfo(uiData);
+
+        var rectTransform = GetComponent<RectTransform>();
+
+        rectTransform.localScale = new Vector2(1.2f, 1.2f);
     }
 
     public void OnClickMonsterBtn()
