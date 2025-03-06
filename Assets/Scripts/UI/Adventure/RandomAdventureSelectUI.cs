@@ -206,7 +206,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
         int randomIndexB = UnityEngine.Random.Range(19, 44);    // 실버     25개
         int randomIndexC = UnityEngine.Random.Range(44, 73);    // 골드     29개
         int randomIndexD = UnityEngine.Random.Range(73, 88);    // 플래티넘 15개
-        int randomIndexE = UnityEngine.Random.Range(88, 91);    // 다이아   3개
+        int randomIndexE = UnityEngine.Random.Range(88, 92);    // 다이아   4개
 
         int resultValue = UnityEngine.Random.Range(1, 101);
 
