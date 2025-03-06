@@ -87,13 +87,13 @@ public class DetachAdventureListUI : BaseUI
                     var itemB = b.data as AdventureData;
 
                     // 내림차순
-                    if (adventureOrderType == AdventureOrderType.DOWN)
+                    if (adventureOrderType == AdventureOrderType.UP)
                     {
                         compareResult = ((itemB.adventureId / 1000) % 10).CompareTo((itemA.adventureId / 1000) % 10);
                     }
 
                     // 오름차순
-                    if (adventureOrderType == AdventureOrderType.UP)
+                    if (adventureOrderType == AdventureOrderType.DOWN)
                     {
                         compareResult = ((itemA.adventureId / 1000) % 10).CompareTo((itemB.adventureId / 1000) % 10);
                     }
@@ -121,13 +121,13 @@ public class DetachAdventureListUI : BaseUI
                     var itemB = b.data as AdventureData;
 
                     // 내림차순
-                    if (adventureOrderType == AdventureOrderType.DOWN)
+                    if (adventureOrderType == AdventureOrderType.UP)
                     {
                         compareResult = ((itemB.adventureId / 100) % 10).CompareTo((itemA.adventureId / 100) % 10);
                     }
 
                     // 오름차순
-                    if (adventureOrderType == AdventureOrderType.UP)
+                    if (adventureOrderType == AdventureOrderType.DOWN)
                     {
                         compareResult = ((itemA.adventureId / 100) % 10).CompareTo((itemB.adventureId / 100) % 10);
                     }
@@ -155,13 +155,13 @@ public class DetachAdventureListUI : BaseUI
                     var itemB = b.data as AdventureData;
 
                     // 내림차순
-                    if (adventureOrderType == AdventureOrderType.DOWN)
+                    if (adventureOrderType == AdventureOrderType.UP)
                     {
                         compareResult = ((itemB.adventureId / 10) % 10).CompareTo((itemA.adventureId / 10) % 10);
                     }
 
                     // 오름차순
-                    if (adventureOrderType == AdventureOrderType.UP)
+                    if (adventureOrderType == AdventureOrderType.DOWN)
                     {
                         compareResult = ((itemA.adventureId / 10) % 10).CompareTo((itemB.adventureId / 10) % 10);
                     }
@@ -189,13 +189,13 @@ public class DetachAdventureListUI : BaseUI
                     var itemB = b.data as AdventureData;
 
                     // 내림차순
-                    if (adventureOrderType == AdventureOrderType.DOWN)
+                    if (adventureOrderType == AdventureOrderType.UP)
                     {
                         compareResult = (itemB.adventureId % 10).CompareTo(itemA.adventureId % 10);
                     }
 
                     // 오름차순
-                    if (adventureOrderType == AdventureOrderType.UP)
+                    if (adventureOrderType == AdventureOrderType.DOWN)
                     {
                         compareResult = (itemA.adventureId % 10).CompareTo(itemB.adventureId % 10);
                     }
