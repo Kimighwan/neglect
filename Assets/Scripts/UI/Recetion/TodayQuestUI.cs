@@ -10,6 +10,7 @@ public class TodayQuestUI : BaseUI
     public TextMeshProUGUI platinumTxt;
     public TextMeshProUGUI diaTxt;
     public TextMeshProUGUI countText;
+    public TextMeshProUGUI rerollTxt;
 
     private List<GameObject> uiListPool = new List<GameObject>();   // 의뢰 종이 3장 Pool
 
@@ -39,6 +40,8 @@ public class TodayQuestUI : BaseUI
         }
 
         SetCountText();
+
+        rerollTxt.text = GameInfo.gameInfo.QuestReroll + "/5";
 
         if (GameInfo.gameInfo.Level == 1)
         {

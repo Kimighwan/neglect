@@ -10,7 +10,7 @@ public class AdventurerUI : BaseUI
     public TextMeshProUGUI platinumTxt;
     public TextMeshProUGUI diaTxt;
     public TextMeshProUGUI coundTxt;
-
+    public TextMeshProUGUI rerollTxt;
 
     private List<GameObject> uiListPool = new List<GameObject>();   // 모험가 카드 3장 Pool
     private Desk desk;
@@ -58,6 +58,8 @@ public class AdventurerUI : BaseUI
         }
 
         CountUpdate();
+
+        rerollTxt.text = GameInfo.gameInfo.AdventureReroll + "/5";
 
         if (GameInfo.gameInfo.Level == 1)
         {
