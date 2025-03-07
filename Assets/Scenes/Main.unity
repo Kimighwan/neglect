@@ -3038,6 +3038,7 @@ GameObject:
   - component: {fileID: 344702401}
   - component: {fileID: 344702400}
   - component: {fileID: 344702403}
+  - component: {fileID: 344702404}
   m_Layer: 5
   m_Name: Quest
   m_TagString: Untagged
@@ -3175,6 +3176,19 @@ MonoBehaviour:
   transitionDuration: 0.1
   setImage: {fileID: 0}
   scaleFactor: 1.1
+--- !u!114 &344702404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344702397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1919d05fc66ecaf44adcb7b17967d919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 1473292303}
 --- !u!1 &364885236
 GameObject:
   m_ObjectHideFlags: 0
@@ -14268,6 +14282,7 @@ GameObject:
   - component: {fileID: 1287854711}
   - component: {fileID: 1287854710}
   - component: {fileID: 1287854713}
+  - component: {fileID: 1287854714}
   m_Layer: 5
   m_Name: Quest
   m_TagString: Untagged
@@ -14405,6 +14420,19 @@ MonoBehaviour:
   transitionDuration: 0.1
   setImage: {fileID: 0}
   scaleFactor: 1.1
+--- !u!114 &1287854714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287854707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1919d05fc66ecaf44adcb7b17967d919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 79038798}
 --- !u!1 &1289518518
 GameObject:
   m_ObjectHideFlags: 0
@@ -16680,6 +16708,7 @@ GameObject:
   - component: {fileID: 1509672103}
   - component: {fileID: 1509672102}
   - component: {fileID: 1509672105}
+  - component: {fileID: 1509672106}
   m_Layer: 5
   m_Name: Quest
   m_TagString: Untagged
@@ -16817,6 +16846,19 @@ MonoBehaviour:
   transitionDuration: 0.1
   setImage: {fileID: 0}
   scaleFactor: 1.1
+--- !u!114 &1509672106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509672099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1919d05fc66ecaf44adcb7b17967d919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 324178626}
 --- !u!1 &1520311360
 GameObject:
   m_ObjectHideFlags: 0
@@ -23710,6 +23752,7 @@ GameObject:
   - component: {fileID: 2011603937}
   - component: {fileID: 2011603936}
   - component: {fileID: 2011603939}
+  - component: {fileID: 2011603940}
   m_Layer: 5
   m_Name: Quest
   m_TagString: Untagged
@@ -23847,6 +23890,19 @@ MonoBehaviour:
   transitionDuration: 0.1
   setImage: {fileID: 0}
   scaleFactor: 1.1
+--- !u!114 &2011603940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011603933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1919d05fc66ecaf44adcb7b17967d919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 527737786}
 --- !u!1 &2013190780
 GameObject:
   m_ObjectHideFlags: 0
