@@ -75,7 +75,6 @@ public class RequestButton : MouseDrag
 
     private IEnumerator MoveCameraAndUI(Vector3 camDestination, Vector3 uiDestination, Vector3 txt1Des, Vector3 txt2Des)
     {
-        
         float elapsedTime = 0f;
         float duration = 0.6f; // 이동 시간 (1초)
         Vector3 camStartPos = cameraTransform.position;

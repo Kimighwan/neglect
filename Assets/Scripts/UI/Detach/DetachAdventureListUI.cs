@@ -1,6 +1,7 @@
 using Gpm.Ui;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DetachAdventureListUI : BaseUI
 {
@@ -297,7 +298,9 @@ public class DetachAdventureListUI : BaseUI
 
         if (adventureIndex < 10)
         {
+            
             PoolManager.Instance.adventureBtn[adventureIndex - 1].interactable = false;
+            PoolManager.Instance.adventureBtn[adventureIndex - 1].GetComponent<UIButtonAnimator>().SetUnActiveAnim(true);
 
             PoolManager.Instance.adventureTxt[adventureIndex - 1].text = "선택 완료";
 

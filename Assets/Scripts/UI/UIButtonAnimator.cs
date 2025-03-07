@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,6 +9,7 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     public ButtonAnim currentAnim;
     public float transitionDuration = 0.1f;
+    private bool unActiveAnim = false;
 
     // Scale Change Animation
     private Vector3 originalScale;
@@ -27,6 +27,7 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
     // 마우스가 버튼 위로 들어왔을 때 호출
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (unActiveAnim) return;
         // 즉시 스케일을 변경하는 경우
         // transform.localScale = originalScale * scaleFactor;
 
@@ -38,6 +39,7 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
     // 마우스가 버튼에서 나갔을 때 호출
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (unActiveAnim) return;
         // 즉시 원래 스케일로 복원
         // transform.localScale = originalScale;
 
@@ -65,5 +67,9 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (setImage == null) transform.localScale = targetScale;
         else setImage.transform.localScale = targetScale;
         
+    }
+
+    public void SetUnActiveAnim(bool b) {
+        unActiveAnim = b;
     }
 }
