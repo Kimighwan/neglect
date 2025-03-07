@@ -1481,7 +1481,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2000, y: 2000}
+  m_SizeDelta: {x: 6000, y: 4000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4967818880656669379
 CanvasRenderer:
@@ -1807,6 +1807,7 @@ MonoBehaviour:
   platinumTxt: {fileID: 1930282580570434681}
   diaTxt: {fileID: 7553678535787662113}
   coundTxt: {fileID: 7896476133011633563}
+  rerollTxt: {fileID: 6092523398516115748}
 --- !u!222 &7596901276221551370
 CanvasRenderer:
   m_ObjectHideFlags: 0

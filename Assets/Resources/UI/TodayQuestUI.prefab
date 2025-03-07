@@ -1825,6 +1825,7 @@ MonoBehaviour:
   platinumTxt: {fileID: 5967083776735979981}
   diaTxt: {fileID: 3082312161678300802}
   countText: {fileID: 8177776855824973160}
+  rerollTxt: {fileID: 6993085504363986022}
 --- !u!1 &6191775579082516501
 GameObject:
   m_ObjectHideFlags: 0
