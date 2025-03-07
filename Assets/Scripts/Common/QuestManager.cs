@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
-    public Button questBtn;             // 의뢰 선택 버튼
-    public Button adventureBtn;         // 파모험가 선택 버튼
+    public Button questBtn;                 // 의뢰 선택 버튼
+    public Button adventureBtn;             // 파모험가 선택 버튼
 
-    public RawImage stateIcons;         // 상태 아이콘
+    public GameObject iconObject;           // 아이콘 오브젝트
+    public RawImage stateIcons;             // 상태 아이콘
+    public TextMeshProUGUI stateIconText;   // 상태 아이콘 확률 표시
 
     public TextMeshProUGUI nameTxt;
     public TextMeshProUGUI rankTxt;
@@ -22,33 +24,33 @@ public class QuestManager : MonoBehaviour
 
     const string ICON_PATH = "Arts/Icon";
 
-    private int targetScore;            // 목표 점수
-    private int monsterId;              // 몬스터 Id
-    private int monsterStrongSize;      // 몬스터 강점 퍼센트
-    private int monsterWeakSize;        // 몬스터 약점 퍼센트
-    private int tierScore;              // 모험가 등급 점수
-    private int resultScore;            // 결과 점수
+    private int targetScore;                // 목표 점수
+    private int monsterId;                  // 몬스터 Id
+    private int monsterStrongSize;          // 몬스터 강점 퍼센트
+    private int monsterWeakSize;            // 몬스터 약점 퍼센트
+    private int tierScore;                  // 모험가 등급 점수
+    private int resultScore;                // 결과 점수
 
-    private int frontCount = 0;         // 전위 수
-    private int midCount = 0;           // 중위 수
-    private int backCount = 0;          // 후위 수
-    private int A = 0;                  // 공격 수
-    private int B = 0;                  // 방어 수
-    private int C = 0;                  // 지원 수
-    private int resultRateIcon;         // 1 : 빨 / 2 : 주 / 3 : 노 / 4 : 초
+    private int frontCount = 0;             // 전위 수
+    private int midCount = 0;               // 중위 수
+    private int backCount = 0;              // 후위 수
+    private int A = 0;                      // 공격 수
+    private int B = 0;                      // 방어 수
+    private int C = 0;                      // 지원 수
+    private int resultRateIcon;             // 1 : 빨 / 2 : 주 / 3 : 노 / 4 : 초
 
-    private string monsterStrong;       // 몬스터 강점
-    private string monsterWeak;         // 몬스터 약점
+    private string monsterStrong;           // 몬스터 강점
+    private string monsterWeak;             // 몬스터 약점
 
-    private float leftTime;             // 의뢰 완성까지 남은 시간
-    private float samePositionRate;     // 포지션 중복 비율
-    private float sameClassRate;        // 클래스 중복 비율
-    private float mixPositionRate;      // 포지션 조합 비율
-    private float misClassRate;         // 클래스 조합 비율
-    private float weakRate;             // 약점 비율
-    private float strongRate;           // 강점 비율(마이너스 적용)
-    private float dieRate = 0;          // 전멸 확률
-    private float bigRate = 0;          // 대성공 확률
+    private float leftTime;                 // 의뢰 완성까지 남은 시간
+    private float samePositionRate;         // 포지션 중복 비율
+    private float sameClassRate;            // 클래스 중복 비율
+    private float mixPositionRate;          // 포지션 조합 비율
+    private float misClassRate;             // 클래스 조합 비율
+    private float weakRate;                 // 약점 비율
+    private float strongRate;               // 강점 비율(마이너스 적용)
+    private float dieRate = 0;              // 전멸 확률
+    private float bigRate = 0;              // 대성공 확률
     
 
     public List<AdventureData> adventureDatas = new List<AdventureData>();
@@ -86,15 +88,37 @@ public class QuestManager : MonoBehaviour
                 stateIcons.color = new Color(1, 1, 1, 1);
 
                 if (resultRateIcon == 1)        // 전멸 확률 20% 이상
+                {
                     stateIcons.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
+                    stateIconText.text = "성공확률 90% 미만";
+                    stateIconText.color = Color.red;
+                }
                 else if (resultRateIcon == 2)   // 전멸 확률 0~20%
+                {
                     stateIcons.texture = Resources.Load("Arts/Icon/IconAdd") as Texture2D;
+                    stateIconText.text = "성공확률 90% ~ 100%";
+                    stateIconText.color = new Color(1f, 0.6f, 0f);
+                }
                 else if (resultRateIcon == 3)   // 대성공 확률 0~20%
+                {
                     stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+                    stateIconText.text = "대성공확률 0% ~ 10%";
+                    stateIconText.color = Color.yellow;
+                }
                 else if(resultRateIcon == 4)    // 대성공 확률 20% 이상
+                {
                     stateIcons.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+                    stateIconText.text = "대성공확률 10% 초과";
+                    stateIconText.color = Color.green;
+                }
                 else                            // 아무 확률도 없음
+                {
                     stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+                    stateIconText.text = "성공확률 90% ~ 100%";
+                    stateIconText.color = new Color(1f, 0.6f, 0f);
+                }
+
+                iconObject.SetActive(true);
             }       
         }
         else
@@ -106,6 +130,7 @@ public class QuestManager : MonoBehaviour
 
             stateIcons.texture = null;
             stateIcons.color = new Color(0, 0, 0, 0);
+            iconObject.SetActive(false);
         }
     }
 
@@ -362,7 +387,7 @@ public class QuestManager : MonoBehaviour
 
         if (check == 1)  // 대성공 확률 존재
         {
-            if (bigRate >= 20) resultRateIcon = 4;                  // 초록
+            if (bigRate >= 10) resultRateIcon = 4;                  // 초록
             else resultRateIcon = 3;                                // 노랑
 
             if (bigRate > randomValue)
@@ -378,8 +403,8 @@ public class QuestManager : MonoBehaviour
         }
         else
         {
-            if(dieRate >= 20) resultRateIcon = 1;                   // 주황
-            else resultRateIcon = 2;                                // 빨강
+            if(dieRate >= 90) resultRateIcon = 1;                   // 빨강
+            else resultRateIcon = 2;                                // 주황
 
             if (dieRate > randomValue)
             {
