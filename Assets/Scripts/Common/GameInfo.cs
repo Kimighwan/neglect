@@ -30,6 +30,11 @@ public class GameInfo : MonoBehaviour
     private int playerScore;
     private int todayScore;
     private int todayGold;
+    private int questReroll;
+    private int adventureReroll;
+
+    public int QuestReroll { get { return questReroll; } set { } }
+    public int AdventureReroll { get { return adventureReroll; } set { } }
     public int PlayerScore { get {return playerScore; } set {} }
     public int TodayScore { get { return todayScore; } set { } }
     public int TodayGold { get { return todayGold; } set { } }
@@ -165,6 +170,8 @@ public class GameInfo : MonoBehaviour
         StartCoroutine(FadeBlack(1.2f, 0f, 1f, 0f));
         Invoke("ActiveDayButtons", 1.2f);
         todayGold = 0;
+        questReroll = 0;
+        adventureReroll = 0;
     }
     private void ActiveDayButtons() {
         closeButton.interactable = true;
@@ -394,4 +401,14 @@ public class GameInfo : MonoBehaviour
     }
 
     #endregion
+
+    public void AddQuestReroll()
+    {
+        questReroll++;
+    }
+
+    public void AddAdventureReroll()
+    {
+        adventureReroll++;
+    }
 }
