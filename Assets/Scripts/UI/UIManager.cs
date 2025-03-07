@@ -209,7 +209,7 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))
         {
             // AudioManager.Instance.PlaySFX(SFX.ui_button_click);
 

@@ -282,6 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAnim: 0
   transitionDuration: 0.1
+  setImage: {fileID: 0}
   scaleFactor: 1.1
 --- !u!1 &2006350566847869867
 GameObject:
@@ -525,6 +526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAnim: 0
   transitionDuration: 0.1
+  setImage: {fileID: 0}
   scaleFactor: 1.1
 --- !u!1 &2623922527159847504
 GameObject:
@@ -947,11 +949,11 @@ RectTransform:
   - {fileID: 5597618478484931973}
   m_Father: {fileID: 957075667457379109}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -160}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 51}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &4981734559763889405
 MonoBehaviour:
   m_ObjectHideFlags: 0

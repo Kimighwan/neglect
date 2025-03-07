@@ -83,7 +83,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questBtn: {fileID: 6618551985863382328}
   adventureBtn: {fileID: 5115960077139298943}
+  iconObject: {fileID: 0}
   stateIcons: {fileID: 4355702107389435490}
+  stateIconText: {fileID: 0}
   nameTxt: {fileID: 0}
   rankTxt: {fileID: 0}
   timeTxt: {fileID: 0}
@@ -884,6 +886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAnim: 0
   transitionDuration: 0.1
+  setImage: {fileID: 0}
   scaleFactor: 1.1
 --- !u!1 &3114273862306028500
 GameObject:
@@ -1211,6 +1214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAnim: 0
   transitionDuration: 0.1
+  setImage: {fileID: 0}
   scaleFactor: 1.1
 --- !u!1 &4527197392508852146
 GameObject:
@@ -1652,6 +1656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAnim: 0
   transitionDuration: 0.1
+  setImage: {fileID: 0}
   scaleFactor: 1.1
 --- !u!1 &5090379243862588943
 GameObject:
