@@ -367,6 +367,10 @@ public class QuestManager : MonoBehaviour
             int tmp = targetScore - resultScore;
             dieRate = (tmp / 10) * 1f;
         }
+        else if(resultScore == 0)
+        {
+            dieRate = 100;
+        }
 
         float nomalRate = 100f - (bigRate + dieRate);
         Debug.Log($"전멸 : {dieRate} / 성공 : {nomalRate} / 대 : {bigRate}");
