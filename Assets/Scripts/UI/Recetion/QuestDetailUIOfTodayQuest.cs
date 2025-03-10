@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class QuestDetailUIOfTodayQuest : BaseUI
 {
+    public RawImage rankImg;
+
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI m_level;
     public TextMeshProUGUI m_time;
@@ -12,9 +14,9 @@ public class QuestDetailUIOfTodayQuest : BaseUI
     public TextMeshProUGUI m_reward;
 
     public TextMeshProUGUI paperName;
-    public TextMeshProUGUI paperLevel;
     public TextMeshProUGUI paperTime;
     public TextMeshProUGUI paperReward;
+    public TextMeshProUGUI rankTxt;
 
     public Button monsterDetailBtn;
     public Button lockBtn;
@@ -47,9 +49,41 @@ public class QuestDetailUIOfTodayQuest : BaseUI
         m_reward.text = "의로보상 : " + data.questReward.ToString();
 
         paperName.text = data.questName;
-        paperLevel.text = data.questLevel;
-        paperTime.text = data.questTime.ToString();
-        paperReward.text = data.questReward.ToString();
+        paperTime.text = data.questTime.ToString() +"일";
+        paperReward.text = data.questReward.ToString()+"골드";
+        rankTxt.text = data.questLevel;
+
+        if (data.questLevel == "브론즈")
+            rankImg.texture = Resources.Load("Arts/QuestRank/bronze_quest") as Texture2D;
+        else if (data.questLevel == "실버")
+        {
+            rankImg.texture = Resources.Load("Arts/QuestRank/silver_quest") as Texture2D;
+            if ((data.questId / 100) % 10 == 8)
+            {
+                rankImg.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
+                rankTxt.text += "(특수)";
+            }
+        }
+        else if (data.questLevel == "골드")
+        {
+            rankImg.texture = Resources.Load("Arts/QuestRank/gold_quest") as Texture2D;
+            if ((data.questId / 100) % 10 == 8)
+            {
+                rankImg.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
+                rankTxt.text += "(특수)";
+            }
+        }
+        else if (data.questLevel == "플래티넘")
+        {
+            rankImg.texture = Resources.Load("Arts/QuestRank/platinum_quest") as Texture2D;
+            if ((data.questId / 100) % 10 == 8)
+            {
+                rankImg.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
+                rankTxt.text += "(특수)";
+            }
+        }
+        else if (data.questLevel == "다이아")
+            rankImg.texture = Resources.Load("Arts/QuestRank/diamond_quest") as Texture2D;
 
         if (data.questActive == 1)
             active = true;

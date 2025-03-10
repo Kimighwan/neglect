@@ -4,7 +4,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"D:/BuildNeglect/20250308_1125;D:/BuildNeglect/20250308_1113;D:/BuildNeglect/20250307_1722;D:/BuildNeglect/UITest5;D:/BuildNeglect/UITest4;D:/BuildNeglect/UITest3;D:/BuildNeglect/UITest2;D:/BuildNeglect/UITest;C:/GitRepos/UGJ;D:/바탕화면/2025 10분 방치편/webGL_Build_test\"}"
+                "value": "{\"m_Value\":\"D:/BuildNeglect/20250311_0014;D:/BuildNeglect/20250311_0006;D:/BuildNeglect/20250310_1722;D:/BuildNeglect/20250308_1125;D:/BuildNeglect/20250308_1113;D:/BuildNeglect/20250307_1722;D:/BuildNeglect/UITest5;D:/BuildNeglect/UITest4;D:/BuildNeglect/UITest3;D:/BuildNeglect/UITest2\"}"
             }
         ]
     }
