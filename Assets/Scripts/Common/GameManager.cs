@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        AudioManager.Instance.ChangeBGMVolume(AudioManager.Instance.BGMTMP);
+        AudioManager.Instance.BgmVol = AudioManager.Instance.BgmVol * 10.0f;
+        AudioManager.Instance.UpdateVolume();
         info = GameInfo.gameInfo;
         info.StartGameInfo();
         info.PrepareShowIll(2f, 0f, true);

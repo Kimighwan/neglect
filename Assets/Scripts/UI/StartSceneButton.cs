@@ -13,7 +13,8 @@ public class StartSceneButton : MonoBehaviour
 
     public void OnClickStartButton()
     {
-        AudioManager.Instance.ChangeBGMVolume(0.1f * AudioManager.Instance.GetCurrentBGMVol());
+        AudioManager.Instance.BgmVol = AudioManager.Instance.BgmVol / 10.0f;
+        AudioManager.Instance.UpdateVolume();
         AudioManager.Instance.PlaySFX(SFX.GameStart);
         Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
         {

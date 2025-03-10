@@ -51,16 +51,24 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     // SFX AudioSource 컨테이너
     private Dictionary<SFX, AudioSource> m_SFXPlayer = new Dictionary<SFX, AudioSource>();
 
-    private float bgmTmp;
-    public float BGMTMP { get { return bgmTmp; } set { bgmTmp = value; } }
-    private float sfxTmp;
-    public float SFXTMP { get { return sfxTmp; } set { sfxTmp = value; } }
+    private float masterVol;
+    public float MasterVol { get { return masterVol; } set { masterVol = value; } }
+    private float bgmVol;
+    public float BgmVol { get { return bgmVol; } set { bgmVol = value; } }
+    private float sfxVol;
+    public float SfxVol { get { return sfxVol; } set { sfxVol = value; } }
+
+    public float bgmTmp;
+    public float sfxTmp;
 
     protected override void Init()
     {
         base.Init();
         LoadBGMPlayer();
         LoadSFXPlayer();
+        masterVol = 1f;
+        bgmVol = 0.5f;
+        sfxVol = 0.5f;
     }
 
     private void LoadBGMPlayer()    // 모든 BGM 불러와서 컨테이너에 저장
@@ -181,37 +189,16 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         }
     }
 
-    public void ChangeBGMVolume(float f) { // BGM 소리 조절
-        bgmTmp = GetCurrentBGMVol();
+    public void UpdateVolume() {
+        float a = masterVol * bgmVol;
+        float b = masterVol * sfxVol;
         foreach (var audioSourceItem in m_BGMPlayer)
         {
-            audioSourceItem.Value.volume = f;
+            audioSourceItem.Value.volume = a;
         }
-    }
-    public void ChangeSFXVolume(float f) { // SFX 소리 조절
-        sfxTmp = GetCurrentSFXVol();
         foreach (var audioSourceItem in m_SFXPlayer)
         {
-            audioSourceItem.Value.volume = f;
+            audioSourceItem.Value.volume = b;
         }
-    }
-
-    public float GetCurrentBGMVol() {
-        float f = -1f;
-        foreach (var audioSourceItem in m_BGMPlayer)
-        {
-            f = audioSourceItem.Value.volume;
-            break;
-        }
-        return f;
-    }
-    public float GetCurrentSFXVol() {
-        float f = -1f;
-        foreach (var audioSourceItem in m_SFXPlayer)
-        {
-            f = audioSourceItem.Value.volume;
-            break;
-        }
-        return f;
     }
 }

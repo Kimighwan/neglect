@@ -413,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAnim: 0
   transitionDuration: 0.1
+  setImage: {fileID: 0}
   scaleFactor: 1.1
 --- !u!114 &76676087
 MonoBehaviour:
@@ -428,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAnim: 0
   transitionDuration: 0.1
+  setImage: {fileID: 0}
   scaleFactor: 1.1
 --- !u!1 &113749685
 GameObject:
@@ -531,7 +533,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184fec928be241448a084b9d7c281a63, type: 2}
   m_sharedMaterial: {fileID: 5145352664846468154, guid: 184fec928be241448a084b9d7c281a63, type: 2}
@@ -755,6 +757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAnim: 0
   transitionDuration: 0.1
+  setImage: {fileID: 0}
   scaleFactor: 1.1
 --- !u!1 &306224092
 GameObject:
@@ -1666,7 +1669,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2478,7 +2481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184fec928be241448a084b9d7c281a63, type: 2}
   m_sharedMaterial: {fileID: 5145352664846468154, guid: 184fec928be241448a084b9d7c281a63, type: 2}
@@ -4041,7 +4044,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
