@@ -23,6 +23,7 @@ public class GameSettingUI : BaseUI
 
     void OnEnable()
     {
+        GetUpdateAudioManager();
         if (!GameManager.gameManager.Pause) {
             wasPause = false;
             if (GameManager.gameManager.FastMode) {
@@ -34,16 +35,13 @@ public class GameSettingUI : BaseUI
 
     void UpdateVolumes()
     {
-        // 최종 볼륨은 마스터 볼륨과 개별 볼륨의 곱으로 계산
-        float finalBGMVolume = masterVolume.value * BGMVolume.value / 100.0f;
-        float finalSFXVolume = masterVolume.value * SFXVolume.value / 100.0f;
-
+        AudioManager.Instance.MasterVol = masterVolume.value / 10.0f;
+        AudioManager.Instance.BgmVol = BGMVolume.value / 10.0f;
+        AudioManager.Instance.SfxVol = SFXVolume.value / 10.0f;
+        AudioManager.Instance.UpdateVolume();
         master.text = ((int)masterVolume.value).ToString();
         bgm.text = ((int)BGMVolume.value).ToString();
         sfx.text = ((int)SFXVolume.value).ToString();
-
-        AudioManager.Instance.ChangeBGMVolume(finalBGMVolume);
-        AudioManager.Instance.ChangeSFXVolume(finalSFXVolume);
     }
 
     //public void GoToTitle() {
@@ -74,5 +72,14 @@ public class GameSettingUI : BaseUI
         wasFastMode = false;
         wasPause = true;
         base.OnClickCloseButton();
+    }
+
+    private void GetUpdateAudioManager() {
+        masterVolume.value = AudioManager.Instance.MasterVol * 10f;
+        BGMVolume.value = AudioManager.Instance.BgmVol * 10f;
+        SFXVolume.value = AudioManager.Instance.SfxVol * 10f;
+        master.text = ((int)masterVolume.value).ToString();
+        bgm.text = ((int)BGMVolume.value).ToString();
+        sfx.text = ((int)SFXVolume.value).ToString();
     }
 }

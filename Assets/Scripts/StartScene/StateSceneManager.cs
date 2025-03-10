@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -56,7 +57,7 @@ public class StateSceneManager : MonoBehaviour
     void OnEnable()
     {
         PlayerPrefs.DeleteAll();
-        Invoke("PlayTitleBGM", 0.1f);
+        StartCoroutine(PlayTitleBGM());
         GameEnd.interactable = false;
     }
 
@@ -65,11 +66,16 @@ public class StateSceneManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) AudioManager.Instance.PlaySFX(SFX.Click1);
     }
 
-    private void PlayTitleBGM() {
+    private IEnumerator PlayTitleBGM() {
+        yield return new WaitForSeconds(0.1f);
         if (AudioManager.Instance != null) {
             AudioManager.Instance.UnMute();
+            AudioManager.Instance.UpdateVolume();
             AudioManager.Instance.PlayBGM(BGM.Start);
         }
-        else Invoke("PlayTitleBGM", 0.1f);
+        else {
+            StartCoroutine(PlayTitleBGM());
+        }
+        yield return null;
     }
 }
