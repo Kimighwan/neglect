@@ -14,9 +14,7 @@ public class RequestButton : MouseDrag
         if (PoolManager.Instance.isNotTutorialTouch) return;
 
         isDown = !isDown;
-        anim.SetBool("isDown", isDown);
 
-        backimage.SetActive(!backimage.activeSelf);
         OnClickBut();
     }
 
@@ -62,6 +60,13 @@ public class RequestButton : MouseDrag
         if (isMoving) return;
         inRequest = isMoved ? false : true;
         isMoving = true;
+
+        // 검은 색 뒷 배경
+        backimage.SetActive(!isMoved);
+
+        // 삼격형 애니메이션
+        anim.SetBool("isDown", !isMoved);
+
         StartCoroutine(MoveCameraAndUI(isMoved ? originalCamPos : targetCamPos, isMoved ? originalUIPos : targetUIPos, isMoved ? originalTxt1Pos : targetTxt1Pos, isMoved ? originalTxt2Pos : targetTxt2Pos));
         isMoved = !isMoved;
         if (!tutorialOnce) {
