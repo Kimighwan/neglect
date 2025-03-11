@@ -42,7 +42,7 @@ public class QuestDetailUIOfTodayQuest : BaseUI
     {
         QuestData data = DataTableManager.Instance.GetQuestData(DataTableManager.Instance.questDetailId);
 
-        m_name.text = "의뢰명 : " + data.questName;
+        m_name.text = "의뢰명 : " + data.questName.Replace("\n", "");
         m_level.text = "의뢰난이도 : " + data.questLevel;
         m_time.text = "의뢰시간 : " + data.questTime.ToString();
         m_target.text = data.questMonster;
