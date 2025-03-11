@@ -8,9 +8,9 @@ public class QuestListItemSlot : InfiniteScrollItem
     public RawImage rankImage;
 
     public TextMeshProUGUI m_name;
-    public TextMeshProUGUI level;
     public TextMeshProUGUI time;
     public TextMeshProUGUI reward;
+    public TextMeshProUGUI rankTxt;
 
     private QuestData questData;
 
@@ -46,25 +46,43 @@ public class QuestListItemSlot : InfiniteScrollItem
         questMonsterDescId = questData.questMonsterDescId;
 
         m_name.text = questName;
-        level.text = questLevel;
-        time.text = questTime.ToString();
-        reward.text = questReward.ToString();
+        time.text = questTime.ToString() + "일";
+        reward.text = questReward.ToString() + "골드";
+        rankTxt.text = questLevel;
 
         if (questLevel == "브론즈")
             rankImage.texture = Resources.Load("Arts/QuestRank/bronze_quest") as Texture2D;
         else if (questLevel == "실버")
+        {
             rankImage.texture = Resources.Load("Arts/QuestRank/silver_quest") as Texture2D;
+            if ((questId / 100) % 10 == 8)
+            {
+                rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
+                rankTxt.text += "(특수)";
+            }
+        }
         else if (questLevel == "골드")
+        {
             rankImage.texture = Resources.Load("Arts/QuestRank/gold_quest") as Texture2D;
+            if ((questId / 100) % 10 == 8)
+            {
+                rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
+                rankTxt.text += "(특수)";
+            }
+        }
         else if (questLevel == "플래티넘")
+        {
             rankImage.texture = Resources.Load("Arts/QuestRank/platinum_quest") as Texture2D;
+            if ((questId / 100) % 10 == 8)
+            {
+                rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
+                rankTxt.text += "(특수)";
+            }
+        }
         else if (questLevel == "다이아")
             rankImage.texture = Resources.Load("Arts/QuestRank/diamond_quest") as Texture2D;
 
-        if((questId / 100) % 10 == 8)
-            rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
-
-        if(PoolManager.Instance.usingQuestList.Contains(questId))
+        if (PoolManager.Instance.usingQuestList.Contains(questId))
             ingQuest.SetActive(true);
         else
             ingQuest.SetActive(false);
