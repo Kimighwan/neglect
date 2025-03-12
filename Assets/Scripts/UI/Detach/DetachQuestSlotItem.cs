@@ -9,7 +9,6 @@ public class DetachQuestSlotItem : InfiniteScrollItem
     public RawImage rankImage;
 
     public TextMeshProUGUI txtName;
-    public TextMeshProUGUI txtLevel;
     public TextMeshProUGUI txtTime;
     public TextMeshProUGUI txtReward;
 
@@ -41,9 +40,8 @@ public class DetachQuestSlotItem : InfiniteScrollItem
         questMonsterDescId = questData.questMonsterDescId;
 
         txtName.text = questName;
-        txtLevel.text = questLevel;
-        txtTime.text = questTime.ToString();
-        txtReward.text = questReward.ToString();
+        txtTime.text = questTime.ToString() + "일";
+        txtReward.text = questReward.ToString() + "G";
 
         if (questLevel == "브론즈")
             rankImage.texture = Resources.Load("Arts/QuestRank/bronze_quest") as Texture2D;
