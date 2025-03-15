@@ -126,6 +126,12 @@ public class Test : MonoBehaviour
                     UIManager.Instance.OpenUI<QuestResult>(questResult);
                 }
             }
+            else
+            {
+                PoolManager.Instance.specialAdventureAdd = false;    // 의뢰 실패로 모험가 도망
+                var questResult = new QuestResultIndex(index);
+                UIManager.Instance.OpenUI<QuestResult>(questResult);
+            }
         }
         else
         {
