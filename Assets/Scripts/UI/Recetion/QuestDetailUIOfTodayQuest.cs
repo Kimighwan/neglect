@@ -46,7 +46,7 @@ public class QuestDetailUIOfTodayQuest : BaseUI
         m_level.text = "의뢰난이도 : " + data.questLevel;
         m_time.text = "의뢰시간 : " + data.questTime.ToString();
         m_target.text = data.questMonster;
-        m_reward.text = "의로보상 : " + data.questReward.ToString();
+        m_reward.text = "의뢰보상 : " + data.questReward.ToString();
 
         paperName.text = data.questName;
         paperTime.text = data.questTime.ToString() +"일";
