@@ -15,6 +15,7 @@ public class ScriptMode : MonoBehaviour
     private bool isTyping = false;
     private bool illExist = true;
     private Coroutine typingCoroutine;
+    private int outSpeaker = -1;
 
     private void Start()
     {
@@ -64,9 +65,19 @@ public class ScriptMode : MonoBehaviour
             }
             ScriptData scriptData = scriptList[currentLine];
             if (scriptData.scriptExp != "") {
-                ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos);
+                ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptPos);
             }
             else if (scriptData.scriptIll != "") ShowIllImage(scriptData.scriptIll);
+
+            if (outSpeaker != -1) {
+                this.GetComponent<ScriptImageHandler>().OutSpeaker(outSpeaker);
+                outSpeaker = -1;
+            }
+            if (scriptData.scriptInOut == "out") {
+                if (scriptData.scriptPos == "left") outSpeaker = 0;
+                else if (scriptData.scriptPos == "middle") outSpeaker = 1;
+                else if (scriptData.scriptPos == "right") outSpeaker = 2;
+            }
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
             currentLine++;
@@ -107,11 +118,11 @@ public class ScriptMode : MonoBehaviour
         ShowNextScript();
     }
 
-    private void ShowCharWithExp(string name, string exp, string inout, string pos) {
+    private void ShowCharWithExp(string name, string exp, string pos) {
         string charName = "";
         if (name == "데이지") charName = "Daisy";
         else if (name == "멜링" || name == "???") charName = "Melling";
-        this.GetComponent<ScriptImageHandler>().SetCharacter(charName, exp, inout, pos);
+        this.GetComponent<ScriptImageHandler>().SetCharacter(charName, exp, pos);
     }
     private void ShowIllImage(string fileName) {
         this.GetComponent<ScriptImageHandler>().SetIllImage(fileName);
@@ -137,10 +148,13 @@ public class ScriptMode : MonoBehaviour
 
         if (id == 109124)
         {
+            ScriptDialogHandler.handler.EndingIll();
+        }
+        if (id == 109125)
+        {
             GameManager.gameManager.EndTheGame();
         }
-
-        if(id == 100036)
+        if (id == 100036)
         {
             PoolManager.Instance.isNotTutorialTouch = true;
             GameManager.gameManager.PauseGame();
@@ -175,5 +189,19 @@ public class ScriptMode : MonoBehaviour
         PoolManager.Instance.isNotTutorialTouch = true;
 
         if (!GameManager.gameManager.Pause) GameManager.gameManager.PauseGame();
+    }
+
+    public void EndingScript(int i) {
+        GameInfo.gameInfo.PrepareShowIll(1f, 0f, true);
+        ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
+        if (data != null)
+        {
+            scriptList.Add(scriptData);
+        }
+        illExist = true;
+        ActiveObjects(true);
+        data.panel.SetActive(false);
+        data.skipBtn.SetActive(false);
+        ShowIllImage(scriptData.scriptIll);
     }
 }
