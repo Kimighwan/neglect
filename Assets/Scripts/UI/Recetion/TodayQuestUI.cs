@@ -109,16 +109,17 @@ public class TodayQuestUI : BaseUI
             return;
         }
 
-        if(GameInfo.gameInfo.QuestReroll >= 5)
-        {
-            var uiData = new ConfirmUIData();
-            uiData.confirmType = ConfirmType.OK;
-            uiData.descTxt = "새로고침 횟수 소진";
-            uiData.okBtnTxt = "확인";
-            AudioManager.Instance.PlaySFX(SFX.Denied);
-            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-            return;
-        }
+        //if(GameInfo.gameInfo.QuestReroll >= 5)
+        //{
+        //    var uiData = new ConfirmUIData();
+        //    uiData.confirmType = ConfirmType.OK;
+        //    uiData.descTxt = "새로고침 횟수 소진";
+        //    uiData.okBtnTxt = "확인";
+        //    AudioManager.Instance.PlaySFX(SFX.Denied);
+        //    UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+        //    return;
+        //}
+
         GameInfo.gameInfo.AddQuestReroll();
         RemoveList();
         SetQuestList();

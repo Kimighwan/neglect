@@ -1,5 +1,6 @@
 using Gpm.Ui;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -338,5 +339,10 @@ public class DetachAdventureListUI : BaseUI
 
         if (adventureIndex < 10)
             PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Clear();
+        else
+        {
+            var tmp = UIManager.Instance.GetActiveUI<EmergencyQuestUI>() as EmergencyQuestUI;
+            tmp.GetComponent<QuestManager>().adventureDatas.Clear();
+        }
     }
 }
