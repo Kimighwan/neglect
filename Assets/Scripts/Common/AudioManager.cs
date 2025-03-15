@@ -66,7 +66,7 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         base.Init();
         LoadBGMPlayer();
         LoadSFXPlayer();
-        masterVol = 1f;
+        masterVol = 0.5f;
         bgmVol = 0.5f;
         sfxVol = 0.5f;
     }
