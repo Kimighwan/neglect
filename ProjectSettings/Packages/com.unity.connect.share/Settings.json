@@ -4,7 +4,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"D:/BuildNeglect/20250312_2243;D:/BuildNeglect/20250312_0043;D:/BuildNeglect/20250311_0022;D:/BuildNeglect/20250311_0014;D:/BuildNeglect/20250311_0006;D:/BuildNeglect/20250310_1722;D:/BuildNeglect/20250308_1125;D:/BuildNeglect/20250308_1113;D:/BuildNeglect/20250307_1722;D:/BuildNeglect/UITest5\"}"
+                "value": "{\"m_Value\":\"D:/BuildNeglect/20250315_1801;D:/BuildNeglect/20250312_2243;D:/BuildNeglect/20250312_0043;D:/BuildNeglect/20250311_0022;D:/BuildNeglect/20250311_0014;D:/BuildNeglect/20250311_0006;D:/BuildNeglect/20250310_1722;D:/BuildNeglect/20250308_1125;D:/BuildNeglect/20250308_1113;D:/BuildNeglect/20250307_1722\"}"
             }
         ]
     }
