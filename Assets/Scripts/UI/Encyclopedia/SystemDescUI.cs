@@ -1,21 +1,30 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 public class SystemDescUI : SystemUI
 {
     public SystemDescData systemDescData;
 
-    //public TextMeshProUGUI title;
+    public RawImage image;
+    
     public TextMeshProUGUI txtDesc;
 
     public GameObject beforeObj;
     public GameObject nextObj;
 
+    private const string PATH = "Arts/Encyclopedia/System";
 
     private string script1;
     private string script2;
     private string script3;
     private string script4;
     private string script5;
+
+    private string page1;
+    private string page2;
+    private string page3;
+    private string page4;
+    private string page5;
 
     private int pageIndex = 1;
     private int endPage;
@@ -44,6 +53,12 @@ public class SystemDescUI : SystemUI
 
         endPage = systemDescData.endPage;
 
+        page1 = systemDescData.page1;
+        page2 = systemDescData.page2;
+        page3 = systemDescData.page3;
+        page4 = systemDescData.page4;
+        page5 = systemDescData.page5;
+
         //title.text = systemDescData.systemName;
     }
 
@@ -62,18 +77,23 @@ public class SystemDescUI : SystemUI
         {
             case 1:
                 txtDesc.text = script1;
+                image.texture = Resources.Load($"{PATH}/{page1}") as Texture2D;
                 break;
             case 2:
                 txtDesc.text = script2;
+                image.texture = Resources.Load($"{PATH}/{page2}") as Texture2D;
                 break;
             case 3:
                 txtDesc.text = script3;
+                image.texture = Resources.Load($"{PATH}/{page3}") as Texture2D;
                 break;
             case 4:
                 txtDesc.text = script4;
+                image.texture = Resources.Load($"{PATH}/{page4}") as Texture2D;
                 break;
             case 5:
                 txtDesc.text = script5;
+                image.texture = Resources.Load($"{PATH}/{page5}") as Texture2D;
                 break;
         }
 
