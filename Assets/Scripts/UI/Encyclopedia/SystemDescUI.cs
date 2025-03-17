@@ -5,8 +5,10 @@ public class SystemDescUI : SystemUI
 {
     public SystemDescData systemDescData;
 
+    public RectTransform imageObject;
     public RawImage image;
-    
+
+    public RectTransform descGameOject;
     public TextMeshProUGUI txtDesc;
 
     public GameObject beforeObj;
@@ -73,28 +75,61 @@ public class SystemDescUI : SystemUI
 
     public void SetScriptOfPage()
     {
+        image.color = new Color(1, 1, 1, 1);
+        descGameOject.anchoredPosition = new Vector3(0f, -241f, 0f);
+        imageObject.sizeDelta = new Vector2(1920f, 1080f);
         switch (pageIndex)
         {
             case 1:
                 txtDesc.text = script1;
                 image.texture = Resources.Load($"{PATH}/{page1}") as Texture2D;
+                if (page1 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
             case 2:
                 txtDesc.text = script2;
                 image.texture = Resources.Load($"{PATH}/{page2}") as Texture2D;
+                if (page2 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
             case 3:
                 txtDesc.text = script3;
                 image.texture = Resources.Load($"{PATH}/{page3}") as Texture2D;
+                if (page3 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
             case 4:
                 txtDesc.text = script4;
                 image.texture = Resources.Load($"{PATH}/{page4}") as Texture2D;
+                if (page4 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
             case 5:
                 txtDesc.text = script5;
                 image.texture = Resources.Load($"{PATH}/{page5}") as Texture2D;
+                if (page5 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
+        }
+
+        if(DataTableManager.Instance.systemDescId == 590001)
+        {
+            imageObject.sizeDelta = new Vector2(2048f, 1437f);
         }
 
         if(pageIndex == 1)
