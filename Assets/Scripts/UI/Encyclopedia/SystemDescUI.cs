@@ -5,6 +5,7 @@ public class SystemDescUI : SystemUI
 {
     public SystemDescData systemDescData;
 
+    public RectTransform imageObject;
     public RawImage image;
 
     public RectTransform descGameOject;
@@ -75,7 +76,8 @@ public class SystemDescUI : SystemUI
     public void SetScriptOfPage()
     {
         image.color = new Color(1, 1, 1, 1);
-        descGameOject.anchoredPosition = new Vector3(0f, -213f, 0f);
+        descGameOject.anchoredPosition = new Vector3(0f, -241f, 0f);
+        imageObject.sizeDelta = new Vector2(1920f, 1080f);
         switch (pageIndex)
         {
             case 1:
@@ -123,6 +125,11 @@ public class SystemDescUI : SystemUI
                     descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
                 }
                 break;
+        }
+
+        if(DataTableManager.Instance.systemDescId == 590001)
+        {
+            imageObject.sizeDelta = new Vector2(2048f, 1437f);
         }
 
         if(pageIndex == 1)
