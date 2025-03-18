@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +10,13 @@ public class Test : MonoBehaviour
 {
     public QuestManager questManagers;
 
-    private bool adTutorialOnce = false;
+    public TextMeshProUGUI leftTime; 
+
     public GameObject image;                // 파견 진행 중 가린막 이미지
     public GameObject resultBtn;
-
     public GameObject gaugeObject;
     public GameObject awakeBtnObject;
+
     public RawImage gaugeImage;
 
     private int startDay;
@@ -22,6 +24,7 @@ public class Test : MonoBehaviour
     private int totalDay;
 
     private bool questStart;        // 파견 시작 : true
+    private bool adTutorialOnce = false;
 
     private void Update()
     {
@@ -32,6 +35,7 @@ public class Test : MonoBehaviour
             if(totalDay == 0)
             {
                 Debug.Log("0일 짜리 퀘스트 바로 종료");
+                leftTime.text = "파견 완료";
                 gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
                 questStart = false;
                 image.SetActive(false);
@@ -39,8 +43,11 @@ public class Test : MonoBehaviour
             }
             else if(totalDay == 1)           // 하루 짜리 의뢰
             {
+                leftTime.text = "남은 일 : 1일";
+
                 if (GameInfo.gameInfo.Day == endDay)    // 꽉참
                 {
+                    leftTime.text = "파견 완료";
                     gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
                     questStart = false;
                     image.SetActive(false);
@@ -49,12 +56,16 @@ public class Test : MonoBehaviour
             }
             else if (totalDay == 2)     // 이틀 짜리 의뢰
             {
+                leftTime.text = "남은 일 : 2일";
+
                 if (GameInfo.gameInfo.Day == startDay + 1)    // OneOfTwo
                 {
+                    leftTime.text = "남은 일 : 1일";
                     gaugeImage.texture = Resources.Load("Arts/Guage/OneOfTwo") as Texture2D;
                 }
                 else if (GameInfo.gameInfo.Day == endDay)    // 꽉참
                 {
+                    leftTime.text = "파견 완료";
                     gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
                     questStart = false;
                     image.SetActive(false);
@@ -63,16 +74,21 @@ public class Test : MonoBehaviour
             }
             else if (totalDay == 3)     // 삼일 짜리 의뢰
             {
+                leftTime.text = "남은 일 : 3일";
+
                 if (GameInfo.gameInfo.Day == startDay + 1)    // TwoOfTree
                 {
+                    leftTime.text = "남은 일 : 2일";
                     gaugeImage.texture = Resources.Load("Arts/Guage/TwoOfTree") as Texture2D;
                 }
                 else if (GameInfo.gameInfo.Day == startDay + 2)    // OneOfThree
                 {
+                    leftTime.text = "남은 일 : 1일";
                     gaugeImage.texture = Resources.Load("Arts/Guage/OneOfThree") as Texture2D;
                 }
                 else if (GameInfo.gameInfo.Day == endDay)    // 꽉참
                 {
+                    leftTime.text = "파견 완료";
                     gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
                     questStart = false;
                     image.SetActive(false);
