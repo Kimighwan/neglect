@@ -129,7 +129,7 @@ public class SystemDescUI : SystemUI
 
         if(DataTableManager.Instance.systemDescId == 590001)
         {
-            imageObject.sizeDelta = new Vector2(2048f, 1437f);
+            imageObject.sizeDelta = new Vector2(2048f, 1134f);
         }
 
         if(pageIndex == 1)
