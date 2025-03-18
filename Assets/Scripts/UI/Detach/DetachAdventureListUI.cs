@@ -345,4 +345,5 @@ public class DetachAdventureListUI : BaseUI
             tmp.GetComponent<QuestManager>().adventureDatas.Clear();
         }
     }
+
 }
