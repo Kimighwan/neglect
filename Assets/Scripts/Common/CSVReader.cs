@@ -29,7 +29,7 @@ public class CSVReader
                 string value = values[j];
                 if (file == "DataTable/scr_list" || file == "DataTable/mob_list" || file == "DataTable/quest_list" || file == "DataTable/ds_list") {
                     value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS);
-                    value = value.Replace("\\n", "\n").Replace("\\\"", "\"");
+                    value = value.Replace("\\n", "\n").Replace("\"\"", "\"");
                 }
                 else value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
                 object finalvalue = value;

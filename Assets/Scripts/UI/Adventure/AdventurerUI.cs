@@ -42,11 +42,6 @@ public class AdventurerUI : BaseUI
         desk = deskData.desk;
     }
 
-    void OnEnable()
-    {
-        GameManager.gameManager.cameraTransform.position = new Vector3(-12, 0, -10f);
-    }
-
     private void Update()
     {
         if(GameInfo.gameInfo.nextDayAdventure)
@@ -151,12 +146,6 @@ public class AdventurerUI : BaseUI
         }
 
         uiListPool.Clear();
-    }
-
-    public override void OnClickCloseButton()
-    {
-        GameManager.gameManager.cameraTransform.position = new Vector3(0f, 0f, -10f);
-        base.OnClickCloseButton();
     }
 
     private void CountUpdate()
