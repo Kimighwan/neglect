@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScriptDialogObjectData : MonoBehaviour
 {
@@ -22,19 +23,46 @@ public class ScriptDialogObjectData : MonoBehaviour
     #region ScriptMode
 
     [Header("ScriptMode")]
-    public GameObject background;
+    public Image background;
     public GameObject backPanel;
     public GameObject panel;
     public GameObject skipBtn;
-    [TextArea]
     public TextMeshProUGUI scr;
     public TextMeshProUGUI scrSpeaker;
+    private List<int> scrStartId = new List<int> { 100001, 100018, 100101, 100201, 100301 };
+    private List<int> scrEndId = new List<int> { 100017, 100036, 100120, 100219, 100315 };
+    private List<int> scrStartDay = new List<int> { 1, 1, 5, 10, 15};
+    private List<int> scrStartTime = new List<int> { 8, 8, 12, 12, 12};
+    public int GetScrStartId(int i) { return scrStartId[i]; }
+    public int GetScrEndId(int i) { return scrEndId[i]; }
+    public int GetScrStartDay(int i) { return scrStartDay[i]; }
+    public int GetScrStartTime(int i) { return scrStartTime[i]; }
+    public void SetScriptOnly() {
+        background.sprite = null;
+        background.color = new Color(0.75f, 0.75f, 0.75f, 0.75f);
+    }
+    public void SetScriptWithIll(string fileName) {
+        if (fileName == "0") {
+            AudioManager.Instance.StopBGM();
+            background.sprite = null;
+            background.color = new Color(0f, 0f, 0f, 1f);
+            return;
+        }
+    }
 
     #endregion ScriptMode
 
     #region DialogMode
 
     [Header("DialogMode")]
+    private List<int> diaStartId = new List<int> { 101911, 101921, 101931 };
+    private List<int> diaEndId = new List<int> { 101915, 101927, 101938 };
+    private List<int> diaStartDay = new List<int> { 4, 9, 14 };
+    private List<int> diaStartTime = new List<int> { 9, 9, 9 };
+    public int GetDiaStartId(int i) { return diaStartId[i]; }
+    public int GetDiaEndId(int i) { return diaEndId[i]; }
+    public int GetDiaStartDay(int i) { return diaStartDay[i]; }
+    public int GetDiaStartTime(int i) { return diaStartTime[i]; }
     public GameObject malpungseon1;
     public GameObject malpungseon2;
     public Transform speaker1;

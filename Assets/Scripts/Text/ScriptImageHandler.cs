@@ -11,8 +11,7 @@ public class ScriptImageHandler : MonoBehaviour
     public Image RightSpeaker;
     private Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
 
-    public void SetCharacter(string name, string exp, string inout, string pos)
-    {
+    public void SetCharacter(string name, string exp, string inout, string pos) {
         LeftSpeaker.color = new Color(1f, 1f, 1f);
         MiddleSpeaker.color = new Color(1f, 1f, 1f);
         RightSpeaker.color = new Color(1f, 1f, 1f);
@@ -20,9 +19,9 @@ public class ScriptImageHandler : MonoBehaviour
         MiddleSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         RightSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         string fileName = name + '_' + exp;
+
         // 캐시된 이미지가 있는지 확인
-        if (!spriteCache.TryGetValue(fileName, out Sprite sprite))
-        { // 캐시에 없으면 Resources 폴더에서 로드
+        if (!spriteCache.TryGetValue(fileName, out Sprite sprite)) { // 캐시에 없으면 Resources 폴더에서 로드
             string path = $"Arts/Characters/{name}/{fileName}";
             sprite = Resources.Load<Sprite>(path);
             if (sprite != null) spriteCache[name] = sprite;
@@ -37,12 +36,12 @@ public class ScriptImageHandler : MonoBehaviour
         if (fileName == "0") {
             AudioManager.Instance.StopBGM();
             BackGround.sprite = null;
-            BackGround.color = new Color(0f, 0f, 0f);
+            BackGround.color = new Color(0f, 0f, 0f, 1f);
             return;
         }
-        else BackGround.color = new Color(1f, 1f, 1f);
-        if (!spriteCache.TryGetValue(fileName, out Sprite sprite))
-        { // 캐시에 없으면 Resources 폴더에서 로드
+        else BackGround.color = new Color(1f, 1f, 1f, 1f);
+
+        if (!spriteCache.TryGetValue(fileName, out Sprite sprite)) { // 캐시에 없으면 Resources 폴더에서 로드
             string path = $"Arts/Illustration/{fileName}";
             sprite = Resources.Load<Sprite>(path);
             if (sprite != null) spriteCache[fileName] = sprite;
@@ -50,14 +49,6 @@ public class ScriptImageHandler : MonoBehaviour
                 Debug.LogWarning($"[SetCharacter] {path} 경로에서 스프라이트를 찾을 수 없음!");
                 return;
             }
-        }
-        switch (fileName) {
-            case "0_1":
-                AudioManager.Instance.PlayBGM(BGM.ScriptIntro);
-                break;
-            case "0_2":
-                AudioManager.Instance.PlayBGM(BGM.Script0_2);
-                break;
         }
         BackGround.sprite = sprite;
     }

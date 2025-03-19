@@ -16661,7 +16661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3bdedc1ba5dbb543a20ab0844787ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 1329940512}
+  background: {fileID: 1329940513}
   backPanel: {fileID: 341523249}
   panel: {fileID: 1763580951}
   skipBtn: {fileID: 871973160}

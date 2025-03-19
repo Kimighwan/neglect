@@ -22,8 +22,9 @@ public class DialogMode : MonoBehaviour
         holdTime = changeHoldTime / f;
     }
 
-    public void PrepareDialogText(int startId, int endId)
+    public void PlayDialogText(int startId, int endId)
     {
+        //Load
         onSpeaking = false;
         killDialog = false;
         scriptQueue.Clear();
@@ -36,6 +37,7 @@ public class DialogMode : MonoBehaviour
             }
         }
         onSpeaking = true;
+        //Play
         StartCoroutine(StartDialogue());
     }
 

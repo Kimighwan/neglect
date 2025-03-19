@@ -47,6 +47,7 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     // BGM AudioSource 컨테이너
     private Dictionary<BGM, AudioSource> m_BGMPlayer = new Dictionary<BGM, AudioSource>();
     private AudioSource m_CurrBGMSource;    // 현재 BGM AudioSource
+    private AudioSource m_CurrSFXSource;
 
     // SFX AudioSource 컨테이너
     private Dictionary<SFX, AudioSource> m_SFXPlayer = new Dictionary<SFX, AudioSource>();
@@ -123,17 +124,16 @@ public class AudioManager : SingletonBehaviour<AudioManager>
 
     public void PlayBGM(BGM bgm)
     {
+        if (!m_BGMPlayer.ContainsKey(bgm) || m_CurrBGMSource == m_BGMPlayer[bgm])
+        {
+            return;
+        }
+
         if (m_CurrBGMSource)
         {
             m_CurrBGMSource.Stop();
             m_CurrBGMSource = null;
         }
-
-        if (!m_BGMPlayer.ContainsKey(bgm))
-        {
-            return;
-        }
-
         m_CurrBGMSource = m_BGMPlayer[bgm];
         m_CurrBGMSource.Play();
     }
@@ -155,12 +155,17 @@ public class AudioManager : SingletonBehaviour<AudioManager>
 
     public void PlaySFX(SFX sfx)
     {
-        if (!m_SFXPlayer.ContainsKey(sfx))
+        if (!m_SFXPlayer.ContainsKey(sfx) || m_CurrSFXSource == m_SFXPlayer[sfx])
         {
             return;
         }
 
-        m_SFXPlayer[sfx].Play();
+        if (m_CurrSFXSource) {
+            m_CurrSFXSource.Stop();
+            m_CurrSFXSource = null;
+        }
+        m_CurrSFXSource = m_SFXPlayer[sfx];
+        m_CurrSFXSource.Play();
     }
 
     public void Mute()  // 소리 끄기

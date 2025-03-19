@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ScriptMode : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class ScriptMode : MonoBehaviour
     private List<ScriptData> scriptList;
     private int currentLine = 0;
     private bool isTyping = false;
-    private bool illExist = true;
     private Coroutine typingCoroutine;
 
     private void Start()
@@ -39,7 +39,7 @@ public class ScriptMode : MonoBehaviour
         }
     }
 
-    public void PrepareScriptText(int startId, int endId, bool b) {
+    public void PlayScriptText(int startId, int endId) {
         for (int i = startId; i <= endId; i++)
         {
             ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
@@ -48,33 +48,31 @@ public class ScriptMode : MonoBehaviour
                 scriptList.Add(scriptData);
             }
         }
-        illExist = b;
-        if (!b) AudioManager.Instance.PlayBGM(BGM.ScriptDefault); 
         ActiveObjects(true);
+        ShowNextScript();
     }
 
     public void ShowNextScript()
     {
-        if (currentLine < scriptList.Count)
-        {
+        if (currentLine < scriptList.Count) {
             // 일러스트 설정
-            if (typingCoroutine != null)
-            {
-                StopCoroutine(typingCoroutine);
-            }
+            if (typingCoroutine != null) StopCoroutine(typingCoroutine);
             ScriptData scriptData = scriptList[currentLine];
-            if (scriptData.scriptExp != "") {
+
+            if (scriptList[currentLine].scriptIll == "") {
+                data.SetScriptOnly();
                 ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos);
+                AudioManager.Instance.PlayBGM(BGM.ScriptDefault);
+            } else {
+                data.SetScriptWithIll(scriptList[currentLine].scriptIll);
+                PlayIllBGM(scriptList[currentLine].scriptIll);
             }
-            else if (scriptData.scriptIll != "") ShowIllImage(scriptData.scriptIll);
+
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
             currentLine++;
         }
-        else
-        {
-            EndScripts();
-        }
+        else EndScripts();
     }
 
     public IEnumerator TypeText(string line)
@@ -118,15 +116,8 @@ public class ScriptMode : MonoBehaviour
     }
 
     private void ActiveObjects(bool b) {
-        if (b) {
-            if (illExist) data.background.SetActive(b);
-            else data.backPanel.SetActive(b);
-        }
-        else {
-            data.background.SetActive(b);
-            data.backPanel.SetActive(b);
-        }
         PoolManager.Instance.isNotTouch = b;
+        data.background.gameObject.SetActive(b);
         data.panel.SetActive(b);
         data.skipBtn.SetActive(b);
     }
@@ -175,5 +166,21 @@ public class ScriptMode : MonoBehaviour
         PoolManager.Instance.isNotTutorialTouch = true;
 
         if (!GameManager.gameManager.Pause) GameManager.gameManager.PauseGame();
+    }
+
+    private void PlayIllBGM(string fileName) {
+        switch (fileName) {
+            case "0":
+                AudioManager.Instance.StopBGM();
+                break;
+            case "0_1":
+                AudioManager.Instance.PlayBGM(BGM.ScriptIntro);
+                break;
+            case "0_2":
+                AudioManager.Instance.PlayBGM(BGM.Script0_2);
+                break;
+            default:
+                break;
+        }
     }
 }
