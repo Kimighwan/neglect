@@ -175,13 +175,18 @@ public class Test : MonoBehaviour
         if (GameInfo.gameInfo.Day % 5 == 0)
         {
             var uiData = new ConfirmUIData();
-            uiData.confirmType = ConfirmType.OK;
+            uiData.confirmType = ConfirmType.OK_CANCEL;
             uiData.descTxt = "오늘은 무슨 일이\n일어날지 모릅니다...\n\n정말로 의뢰를\n수행하시겠습니까?";
-            uiData.okBtnTxt = "확인";
+            uiData.okBtnTxt = "네";
+            uiData.cancelBtnTxt = "취소";
+            uiData.onClickOKBtn = () => { QuestStart(index); };
+            uiData.onClickCancelBtn = () => { return; };
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-            return;
         }
+    }
 
+    private void QuestStart(int index)
+    {
         if (questManagers.adventureBtn.interactable)
         {
             var uiData = new ConfirmUIData();
@@ -192,7 +197,7 @@ public class Test : MonoBehaviour
             return;
         }
 
-        if(questManagers.questBtn.interactable)
+        if (questManagers.questBtn.interactable)
         {
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK;
