@@ -11,7 +11,7 @@ public class ScriptImageHandler : MonoBehaviour
     public Image RightSpeaker;
     private Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
 
-    public void SetCharacter(string name, string exp, string pos)
+    public void SetCharacter(string name, string exp, string inout, string pos)
     {
         LeftSpeaker.color = new Color(1f, 1f, 1f);
         MiddleSpeaker.color = new Color(1f, 1f, 1f);
@@ -167,9 +167,5 @@ public class ScriptImageHandler : MonoBehaviour
                 }
                 break;
         }
-    }
-
-    public void OutSpeaker(int i) {
-        UnActiveImage(i);
     }
 }

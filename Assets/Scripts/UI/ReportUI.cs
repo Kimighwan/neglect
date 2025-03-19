@@ -21,11 +21,7 @@ public class ReportUI : BaseUI
     private Color startColor = new Color(0f, 0f, 0f, 0f);
     private Color endColor = new Color(0f, 0f, 0f, 0.9f);
     private bool stampOn = false;
-    private bool inputLock = true; // 기본적으로 입력 잠금
-
-    // 새 플래그 추가
-    private bool isTyping = false;
-    private bool skipTyping = false;
+    private bool inputLock = false;
 
     private void OnEnable() {
         RandomizeStamp();
@@ -48,12 +44,7 @@ public class ReportUI : BaseUI
 
     void Update()
     {
-        // 타이핑 중이라면 입력을 감지해 skipTyping 플래그 설정
-        if (isTyping && (Input.anyKeyDown || Input.GetMouseButtonDown(0))) {
-            skipTyping = true;
-        }
-        // 타이핑이 끝난 후의 입력 처리 (스탬프 애니메이션 또는 닫기)
-        else if (!isTyping && !inputLock && (Input.anyKeyDown || Input.GetMouseButtonDown(0))) {
+        if (!inputLock && (Input.anyKeyDown || Input.GetMouseButtonDown(0))) {
             inputLock = true;
             if (!stampOn) StartCoroutine(AnimateStampShadow());
             else OnClickCloseBut();
@@ -98,83 +89,52 @@ public class ReportUI : BaseUI
         GameInfo.gameInfo.ComeMorning();
         CloseUI();
     }
-
     private void StartTyping()
     {
-        // 타이핑 시작 전에 플래그 초기화
-        isTyping = true;
-        skipTyping = false;
-        inputLock = false; // 타이핑 중엔 입력을 받아서 건너뛰기 가능
         AudioManager.Instance.PlayBGM(BGM.TypeWriter);
-        StartCoroutine(TypeDialog($"{GameInfo.gameInfo.Day}일차", 
-            $"\n\n금일 점수 {GameInfo.gameInfo.TodayScore}점" +
-            $"\n금일 번 골드 {GameInfo.gameInfo.TodayGold}G\n금일 객실 수입 {GameInfo.gameInfo.plusGold}G",
-            $"현재 점수 {GameInfo.gameInfo.addGold}점", 
-            $"\n현재 골드 {GameInfo.gameInfo.Gold}G"));
+        StartCoroutine(TypeDialog($"{GameInfo.gameInfo.Day}일차", $"\n\n금일 점수 {GameInfo.gameInfo.TodayScore}점" +
+            $"\n금일 번 골드 {GameInfo.gameInfo.TodayGold}G\n금일 객실 수입 {GameInfo.gameInfo.plusGold}G"
+        , $"현재 점수 {GameInfo.gameInfo.addGold}점", $"\n현재 골드 {GameInfo.gameInfo.Gold}G"   /*$"?차 목표까지 ?점\n기한까지 ?일"*/));
     }
-
     private IEnumerator TypeDialog(string s1, string s2, string s3, string s4)
     {
-        // day 텍스트 타이핑
         day.text = "";
         foreach (char letter in s1)
         {
-            if (skipTyping)
-            {
-                day.text = s1;
-                break;
-            }
             day.text += letter;
             yield return new WaitForSeconds(0.025f);
         }
-        if (!skipTyping) yield return new WaitForSeconds(0.2f);
 
-        // quest 텍스트 타이핑
+        yield return new WaitForSeconds(0.2f);
+
         quest.text = "";
         foreach (char letter in s2)
         {
-            if (skipTyping)
-            {
-                quest.text = s2;
-                break;
-            }
             quest.text += letter;
             yield return new WaitForSeconds(0.025f);
         }
-        if (!skipTyping) yield return new WaitForSeconds(0.2f);
 
-        // NowScore 텍스트 타이핑
+        yield return new WaitForSeconds(0.2f);
+
         NowScore.text = "";
         foreach (char letter in s3)
         {
-            if (skipTyping)
-            {
-                NowScore.text = s3;
-                break;
-            }
             NowScore.text += letter;
             yield return new WaitForSeconds(0.025f);
         }
-        if (!skipTyping) yield return new WaitForSeconds(0.2f);
 
-        // NextScore 텍스트 타이핑
+        yield return new WaitForSeconds(0.2f);
+
         NextScore.text = "";
         foreach (char letter in s4)
         {
-            if (skipTyping)
-            {
-                NextScore.text = s4;
-                break;
-            }
             NextScore.text += letter;
             yield return new WaitForSeconds(0.025f);
         }
 
-        // 타이핑이 모두 끝났으므로 타이핑 플래그 해제 및 효과음 처리
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlaySFX(SFX.CoinDrop1);
         AudioManager.Instance.PlaySFX(SFX.CoinDrop2);
-        isTyping = false;
         inputLock = false;
 
         clickNextTxt.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -440f, 0);
