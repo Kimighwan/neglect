@@ -183,6 +183,10 @@ public class Test : MonoBehaviour
             uiData.onClickCancelBtn = () => { return; };
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
         }
+        else
+        {
+            QuestStart(index);
+        }
     }
 
     private void QuestStart(int index)
