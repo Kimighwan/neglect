@@ -51,6 +51,15 @@ public class EmergencyQuestUI : BaseUI
         GameManager.gameManager.PauseGame();
 
         questManager.adventureDatas.Clear();
+
+        for (int idx = 0; idx < 5; idx++)
+        {
+            if (!PoolManager.Instance.adventureBtn[idx].interactable && !PoolManager.Instance.gaugeObject[idx].activeSelf)
+            {
+                PoolManager.Instance.testScripts[idx].AdventureAwake(idx + 1);
+            }
+        }
+
     }
 
     private void OnDisable()

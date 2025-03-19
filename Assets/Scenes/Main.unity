@@ -27971,6 +27971,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 423586736}
     - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: testScripts.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: adventrueBtn.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -28046,6 +28050,26 @@ PrefabInstance:
       propertyPath: gaugeObject.Array.data[4]
       value: 
       objectReference: {fileID: 931915968}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: testScripts.Array.data[0]
+      value: 
+      objectReference: {fileID: 675045286}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: testScripts.Array.data[1]
+      value: 
+      objectReference: {fileID: 370210823}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: testScripts.Array.data[2]
+      value: 
+      objectReference: {fileID: 819719517}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: testScripts.Array.data[3]
+      value: 
+      objectReference: {fileID: 1918976135}
+    - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
+      propertyPath: testScripts.Array.data[4]
+      value: 
+      objectReference: {fileID: 172250425}
     - target: {fileID: 6659950687289831366, guid: a534696f5ab718f43a4f268a11033385, type: 3}
       propertyPath: adventrueBtn.Array.data[0]
       value: 

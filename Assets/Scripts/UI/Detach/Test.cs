@@ -30,14 +30,12 @@ public class Test : MonoBehaviour
     {
         if (questStart)
         {
-            gaugeImage.texture = Resources.Load("Arts/Guage/Empty") as Texture2D;   // 빈칸
-
             if(totalDay == 0)
             {
                 Debug.Log("0일 짜리 퀘스트 바로 종료");
                 leftTime.text = "파견 완료";
                 gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
-                questStart = false;
+                //questStart = false;
                 image.SetActive(false);
                 resultBtn.SetActive(true);
             }
@@ -49,7 +47,7 @@ public class Test : MonoBehaviour
                 {
                     leftTime.text = "파견 완료";
                     gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
-                    questStart = false;
+                    //questStart = false;
                     image.SetActive(false);
                     resultBtn.SetActive(true);
                 }
@@ -67,7 +65,7 @@ public class Test : MonoBehaviour
                 {
                     leftTime.text = "파견 완료";
                     gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
-                    questStart = false;
+                    //questStart = false;
                     image.SetActive(false);
                     resultBtn.SetActive(true);
                 }
@@ -90,7 +88,7 @@ public class Test : MonoBehaviour
                 {
                     leftTime.text = "파견 완료";
                     gaugeImage.texture = Resources.Load("Arts/Guage/Pull") as Texture2D;
-                    questStart = false;
+                    //questStart = false;
                     image.SetActive(false);
                     resultBtn.SetActive(true);
                 }
@@ -120,6 +118,8 @@ public class Test : MonoBehaviour
 
     public void OnClickQuestResultTestBtn(int index)    // 결과 창 띄우기
     {
+        questStart = false;
+
         if (((PoolManager.Instance.questData[index].questId / 100) % 10) == 8)    // 특수 의뢰라면...
         {
             // 근데 성공시에만 체크
@@ -172,7 +172,7 @@ public class Test : MonoBehaviour
 
     public void OnClickQuestStart(int index)    // 파견 시작 버튼
     {
-        if (GameInfo.gameInfo.Day % 5 == 0)
+        if (GameInfo.gameInfo.Day % 5 == 0 && GameInfo.gameInfo.Timer < 120f)
         {
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK_CANCEL;
@@ -180,7 +180,10 @@ public class Test : MonoBehaviour
             uiData.okBtnTxt = "네";
             uiData.cancelBtnTxt = "취소";
             uiData.onClickOKBtn = () => { QuestStart(index); };
-            uiData.onClickCancelBtn = () => { return; };
+            uiData.onClickCancelBtn = () => {
+                OnClickAwakeBtn(index);
+                return; 
+            };
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
         }
         else
@@ -191,6 +194,8 @@ public class Test : MonoBehaviour
 
     private void QuestStart(int index)
     {
+
+
         if (questManagers.adventureBtn.interactable)
         {
             var uiData = new ConfirmUIData();
@@ -213,6 +218,8 @@ public class Test : MonoBehaviour
 
         image.SetActive(true);
         StartCoroutine(testt());
+
+        gaugeImage.texture = Resources.Load("Arts/Guage/Empty") as Texture2D;   // 빈칸
 
         questStart = true;
 
@@ -240,9 +247,16 @@ public class Test : MonoBehaviour
             PoolManager.Instance.questData.Remove(index);
 
             PoolManager.Instance.questTxt[index - 1].text = "의뢰 선택";
+
+            PoolManager.Instance.questBtn[index - 1].interactable = true;
         }
 
         // Adventure Awake
+        AdventureAwake(index);
+    }
+
+    public void AdventureAwake(int index)
+    {
         if (PoolManager.Instance.usingAdventureList.Count != 0)
         {
             // 의뢰 종료시 모험가 다시 사용하게 Test
@@ -257,9 +271,12 @@ public class Test : MonoBehaviour
             questManagers.adventureDatas.Clear();
 
             PoolManager.Instance.adventureTxt[index - 1].text = "모험가 선택";
-        } 
+
+            PoolManager.Instance.adventureBtn[index - 1].interactable = true;
+        }
     }
 }
+
 
 public class AdventureIndexClass : BaseUIData
 {

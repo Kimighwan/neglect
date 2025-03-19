@@ -48,6 +48,7 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public bool[] checkUpdate = new bool[8];         // Update 함수 한 번만 실행하기 위해서
 
     public QuestManager[] questManagers;
+    public Test[] testScripts;
 
     [SerializeField] public bool specialAdventureAdd = false;    // 특수 모험가 합류 하는가?
 
