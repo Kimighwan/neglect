@@ -1,21 +1,32 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 public class SystemDescUI : SystemUI
 {
     public SystemDescData systemDescData;
 
-    //public TextMeshProUGUI title;
+    public RectTransform imageObject;
+    public RawImage image;
+
+    public RectTransform descGameOject;
     public TextMeshProUGUI txtDesc;
 
     public GameObject beforeObj;
     public GameObject nextObj;
 
+    private const string PATH = "Arts/Encyclopedia/System";
 
     private string script1;
     private string script2;
     private string script3;
     private string script4;
     private string script5;
+
+    private string page1;
+    private string page2;
+    private string page3;
+    private string page4;
+    private string page5;
 
     private int pageIndex = 1;
     private int endPage;
@@ -44,6 +55,12 @@ public class SystemDescUI : SystemUI
 
         endPage = systemDescData.endPage;
 
+        page1 = systemDescData.page1;
+        page2 = systemDescData.page2;
+        page3 = systemDescData.page3;
+        page4 = systemDescData.page4;
+        page5 = systemDescData.page5;
+
         //title.text = systemDescData.systemName;
     }
 
@@ -58,23 +75,61 @@ public class SystemDescUI : SystemUI
 
     public void SetScriptOfPage()
     {
+        image.color = new Color(1, 1, 1, 1);
+        descGameOject.anchoredPosition = new Vector3(0f, -241f, 0f);
+        imageObject.sizeDelta = new Vector2(1920f, 1080f);
         switch (pageIndex)
         {
             case 1:
                 txtDesc.text = script1;
+                image.texture = Resources.Load($"{PATH}/{page1}") as Texture2D;
+                if (page1 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
             case 2:
                 txtDesc.text = script2;
+                image.texture = Resources.Load($"{PATH}/{page2}") as Texture2D;
+                if (page2 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
             case 3:
                 txtDesc.text = script3;
+                image.texture = Resources.Load($"{PATH}/{page3}") as Texture2D;
+                if (page3 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
             case 4:
                 txtDesc.text = script4;
+                image.texture = Resources.Load($"{PATH}/{page4}") as Texture2D;
+                if (page4 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
             case 5:
                 txtDesc.text = script5;
+                image.texture = Resources.Load($"{PATH}/{page5}") as Texture2D;
+                if (page5 == "")
+                {
+                    image.color = new Color(0, 0, 0, 0);
+                    descGameOject.anchoredPosition = new Vector3(0f, 0f, 0f);
+                }
                 break;
+        }
+
+        if(DataTableManager.Instance.systemDescId == 590001)
+        {
+            imageObject.sizeDelta = new Vector2(2048f, 1134f);
         }
 
         if(pageIndex == 1)

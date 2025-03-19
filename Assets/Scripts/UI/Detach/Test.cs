@@ -156,7 +156,17 @@ public class Test : MonoBehaviour
 
     public void OnClickQuestStart(int index)    // 파견 시작 버튼
     {
-        if(questManagers.adventureBtn.interactable)
+        if (GameInfo.gameInfo.Day % 5 == 0)
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "오늘은 무슨 일이\n일어날지 모릅니다...\n\n정말로 의뢰를\n수행하시겠습니까?";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
+
+        if (questManagers.adventureBtn.interactable)
         {
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK;
