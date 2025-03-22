@@ -52,7 +52,6 @@ public class DetachAdventureListUI : BaseUI
             var tmp = UIManager.Instance.GetActiveUI<EmergencyQuestUI>() as EmergencyQuestUI;
             countTxt.text = tmp.GetComponent<QuestManager>().adventureDatas.Count.ToString() + "/4";
         }
-        
     }
 
     private void SetScroll()
@@ -287,15 +286,15 @@ public class DetachAdventureListUI : BaseUI
         // 의뢰 처리 하는 곳에서 의뢰도 받게 될 것인데
         // 위 두 개의 정보를 가지고 의뢰 시스템이 작동한다
 
-        //if(AdventureData.adventureSelectId.Count != 4)
-        //{
-        //    var uiData = new ConfirmUIData();
-        //    uiData.confirmType = ConfirmType.OK;
-        //    uiData.descTxt = "모험가 4명을 선택하십시오.";
-        //    uiData.okBtnTxt = "확인";
-        //    UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-        //    return;
-        //}
+        if (AdventureData.adventureSelectId.Count == 0)
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "모험가 한 명 이상\n선택하십시오.";
+            uiData.okBtnTxt = "확인";
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            return;
+        }
 
         if (adventureIndex < 10)
         {
