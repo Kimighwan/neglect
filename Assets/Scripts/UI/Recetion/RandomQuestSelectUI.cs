@@ -51,7 +51,15 @@ public class RandomQuestSelectUI : MonoBehaviour
     public void OnClickSelected()
     {
         if (CheckHaveAdventureID(questId))  // 선택된 의뢰가 이미 있음
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK;
+            uiData.descTxt = "이미 있는 의뢰입니다.";
+            uiData.okBtnTxt = "확인";
+            AudioManager.Instance.PlaySFX(SFX.Denied);
+            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
+        }
 
         if(CheckMaxQuest())
         {
