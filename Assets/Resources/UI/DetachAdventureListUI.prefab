@@ -932,6 +932,7 @@ MonoBehaviour:
   sortBtnText: {fileID: 2951272414853235061}
   orderBtnText: {fileID: 378894408271012895}
   countTxt: {fileID: 8540456084309049728}
+  selectBtn: {fileID: 2241854386969810727}
   adventureIndex: 0
 --- !u!1 &3291426075311067480
 GameObject:

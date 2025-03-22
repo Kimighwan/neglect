@@ -44,25 +44,25 @@ public class DetachQuestSlotItem : InfiniteScrollItem
         txtReward.text = questReward.ToString() + "G";
 
         if (questLevel == "브론즈")
-            rankImage.texture = Resources.Load("Arts/QuestRank/bronze_quest") as Texture2D;
+            rankImage.texture = Resources.Load("Arts/QuestRank/D_bronze_quest") as Texture2D;
         else if (questLevel == "실버")
         {
-            rankImage.texture = Resources.Load("Arts/QuestRank/silver_quest") as Texture2D;
+            rankImage.texture = Resources.Load("Arts/QuestRank/D_silver_quest") as Texture2D;
         }
         else if (questLevel == "골드")
         {
-            rankImage.texture = Resources.Load("Arts/QuestRank/gold_quest") as Texture2D;
+            rankImage.texture = Resources.Load("Arts/QuestRank/D_gold_quest") as Texture2D;
         }
         else if (questLevel == "플래티넘")
         {
-            rankImage.texture = Resources.Load("Arts/QuestRank/platinum_quest") as Texture2D;
+            rankImage.texture = Resources.Load("Arts/QuestRank/D_platinum_quest") as Texture2D;
         }
         else if (questLevel == "다이아")
-            rankImage.texture = Resources.Load("Arts/QuestRank/diamond_quest") as Texture2D;
+            rankImage.texture = Resources.Load("Arts/QuestRank/D_diamond_quest") as Texture2D;
 
         if ((questid / 100) % 10 == 8)
         {
-            rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
+            rankImage.texture = Resources.Load("Arts/QuestRank/D_special_quest") as Texture2D;
         }
     }
 
