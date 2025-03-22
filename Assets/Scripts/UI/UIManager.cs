@@ -223,6 +223,11 @@ public class UIManager : SingletonBehaviour<UIManager>
                     return;
                 }
 
+                if (GetActiveUI<QuestResult>())
+                {
+                    return;
+                }
+
                 if (GetActiveUI<DetachAdventureListUI>())
                 {
                     var ui = GetActiveUI<DetachAdventureListUI>() as DetachAdventureListUI;
