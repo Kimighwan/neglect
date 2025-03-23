@@ -32,7 +32,6 @@ public class AdventurerListUI : BaseUI
     public TextMeshProUGUI orderBtnText;
     public TextMeshProUGUI adventureCount;
 
-
     private AdventureSortType adventureSortType = AdventureSortType.GRADE;
     private AdventureOrderType adventureOrderType = AdventureOrderType.UP;
 
