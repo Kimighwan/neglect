@@ -122,21 +122,56 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         }
     }
 
+    // 기존의 PlayBGM 메서드를 수정하여 BGM 전환 시 fade out 효과를 추가함.
     public void PlayBGM(BGM bgm)
     {
-        if (m_CurrBGMSource)
+        StartCoroutine(SwitchBGM(bgm, 0.5f));
+    }
+
+    // 현재 재생 중인 BGM을 fade out한 후 새로운 BGM을 재생하는 코루틴
+    private IEnumerator SwitchBGM(BGM bgm, float fadeTime)
+    {
+        if (m_CurrBGMSource != null && m_CurrBGMSource.isPlaying)
         {
+            yield return StartCoroutine(FadeOut(m_CurrBGMSource, fadeTime));
             m_CurrBGMSource.Stop();
-            m_CurrBGMSource = null;
         }
 
         if (!m_BGMPlayer.ContainsKey(bgm))
         {
-            return;
+            yield break;
         }
 
         m_CurrBGMSource = m_BGMPlayer[bgm];
         m_CurrBGMSource.Play();
+        StartCoroutine(FadeIn(m_CurrBGMSource, masterVol * bgmVol));
+    }
+
+    // 지정된 AudioSource의 볼륨을 fadeTime 동안 서서히 줄이는 코루틴
+    private IEnumerator FadeOut(AudioSource audioSource, float fadeTime)
+    {
+        float startVolume = audioSource.volume;
+        float elapsed = 0f;
+        while (elapsed < fadeTime)
+        {
+            elapsed += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / fadeTime);
+            yield return null;
+        }
+        audioSource.volume = 0f;
+    }
+    // 지정된 AudioSource의 볼륨을 fadeTime 동안 서서히 키우는 코루틴
+    private IEnumerator FadeIn(AudioSource audioSource, float fadeTime)
+    {
+        float endVolume = audioSource.volume;
+        float elapsed = 0f;
+        while (elapsed < fadeTime)
+        {
+            elapsed += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(0f, endVolume, elapsed / fadeTime);
+            yield return null;
+        }
+        audioSource.volume = endVolume;
     }
 
     public void PauseBGM()  // 일시정지
@@ -151,7 +186,12 @@ public class AudioManager : SingletonBehaviour<AudioManager>
 
     public void StopBGM()
     {
-        if (m_CurrBGMSource) m_CurrBGMSource.Stop();
+        if (m_CurrBGMSource) StartCoroutine(StopBGMFadeOut(0.5f));
+    }
+
+    private IEnumerator StopBGMFadeOut(float fadeTime) {
+        yield return StartCoroutine(FadeOut(m_CurrBGMSource, fadeTime));
+        m_CurrBGMSource.Stop();
     }
 
     public void PlaySFX(SFX sfx)
@@ -190,7 +230,8 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         }
     }
 
-    public void UpdateVolume() {
+    public void UpdateVolume()
+    {
         float a = masterVol * bgmVol;
         float b = masterVol * sfxVol;
         foreach (var audioSourceItem in m_BGMPlayer)
