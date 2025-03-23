@@ -15,6 +15,7 @@ public class ScriptMode : MonoBehaviour
     private bool isTyping = false;
     private bool illExist = true;
     private Coroutine typingCoroutine;
+    private int outSpeaker = -1;
 
     private void Start()
     {
@@ -39,8 +40,7 @@ public class ScriptMode : MonoBehaviour
         }
     }
 
-    public void PrepareScriptText(int startId, int endId) {
-        this.GetComponent<ScriptImageHandler>().speakerNum = 0;
+    public void PrepareScriptText(int startId, int endId, bool b) {
         for (int i = startId; i <= endId; i++)
         {
             ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
@@ -49,6 +49,9 @@ public class ScriptMode : MonoBehaviour
                 scriptList.Add(scriptData);
             }
         }
+        illExist = b;
+        if (!b && endId != 109124) AudioManager.Instance.PlayBGM(BGM.ScriptDefault);
+        else if (endId == 109124) AudioManager.Instance.PlayBGM(BGM.ED1);
         ActiveObjects(true);
     }
 
@@ -56,19 +59,26 @@ public class ScriptMode : MonoBehaviour
     {
         if (currentLine < scriptList.Count)
         {
+            // 일러스트 설정
             if (typingCoroutine != null)
             {
                 StopCoroutine(typingCoroutine);
             }
-
             ScriptData scriptData = scriptList[currentLine];
-            if (scriptData.scriptIll != "") ShowIllImage(scriptData.scriptIll); // 일러스트 있는 스크립트 라인
-            else {
-                AudioManager.Instance.PlayBGM(BGM.ScriptDefault);
-                if (scriptData.scriptInOut == "in") this.GetComponent<ScriptImageHandler>().speakerNum++;
-                if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos); // 캐릭터 있는 스크립트 라인
+            if (scriptData.scriptExp != "") {
+                ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptPos);
             }
+            else if (scriptData.scriptIll != "") ShowIllImage(scriptData.scriptIll);
 
+            if (outSpeaker != -1) {
+                this.GetComponent<ScriptImageHandler>().OutSpeaker(outSpeaker);
+                outSpeaker = -1;
+            }
+            if (scriptData.scriptInOut == "out") {
+                if (scriptData.scriptPos == "left") outSpeaker = 0;
+                else if (scriptData.scriptPos == "middle") outSpeaker = 1;
+                else if (scriptData.scriptPos == "right") outSpeaker = 2;
+            }
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
             currentLine++;
@@ -105,44 +115,51 @@ public class ScriptMode : MonoBehaviour
     
     public void OnClickSkip()
     {
-        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
         currentLine = scriptList.Count;
         ShowNextScript();
     }
 
-    private void ShowCharWithExp(string name, string exp, string inout, string pos) {
+    private void ShowCharWithExp(string name, string exp, string pos) {
         string charName = "";
         if (name == "데이지") charName = "Daisy";
         else if (name == "멜링" || name == "???") charName = "Melling";
-        this.GetComponent<ScriptImageHandler>().SetCharacter(charName, exp, inout, pos);
+        this.GetComponent<ScriptImageHandler>().SetCharacter(charName, exp, pos);
     }
     private void ShowIllImage(string fileName) {
         this.GetComponent<ScriptImageHandler>().SetIllImage(fileName);
     }
 
     private void ActiveObjects(bool b) {
-        data.background.SetActive(b);
+        if (b) {
+            if (illExist) data.background.SetActive(b);
+            else data.backPanel.SetActive(b);
+        }
+        else {
+            data.background.SetActive(b);
+            data.backPanel.SetActive(b);
+        }
         PoolManager.Instance.isNotTouch = b;
         data.panel.SetActive(b);
         data.skipBtn.SetActive(b);
     }
 
     private void EndScripts() {
+        GameManager.gameManager.PauseGame();
         int id = scriptList[currentLine - 1].scriptId;
         data.scr.text = "";
-        currentLine = 0;
         ActiveObjects(false);
         scriptList.Clear();
         this.GetComponent<ScriptImageHandler>().EndTheScripts();
-
-        GameManager.gameManager.PauseGame();
+        currentLine = 0;
         isScriptMode = false;
-        ScriptEndAct(id);
-        AudioManager.Instance.PlayBGM(BGM.Main6);
-    }
+        if (id != 109124)AudioManager.Instance.PlayBGM(BGM.Main6);
 
-    private void ScriptEndAct(int id) {
         switch (id) {
+            case 100036:
+                PoolManager.Instance.isNotTutorialTouch = true;
+                GameManager.gameManager.PauseGame();
+                tutorialImg.SetActive(true);
+                break;
             case 100120: // 슬라임 홍수 시작
                 var slimeUiData = new EmergencyQuestUIData(11);
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(slimeUiData);
@@ -155,10 +172,8 @@ public class ScriptMode : MonoBehaviour
                 var uiData = new EmergencyQuestUIData(13);
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(uiData);
                 break;
-            case 100036:
-                PoolManager.Instance.isNotTutorialTouch = true;
-                GameManager.gameManager.PauseGame();
-                tutorialImg.SetActive(true);
+            case 100377:
+                ScriptDialogHandler.handler.EndingScriptPlay(109101, 109124, false);
                 break;
             case 109124:
                 GameManager.gameManager.EndTheGame();
@@ -173,4 +188,19 @@ public class ScriptMode : MonoBehaviour
 
         if (!GameManager.gameManager.Pause) GameManager.gameManager.PauseGame();
     }
+
+    public void EndingScript(int i) {
+        GameInfo.gameInfo.PrepareShowIll(1f, 0f, true);
+        ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
+        if (data != null)
+        {
+            scriptList.Add(scriptData);
+        }
+        illExist = true;
+        ActiveObjects(true);
+        data.panel.SetActive(false);
+        data.skipBtn.SetActive(false);
+        ShowIllImage(scriptData.scriptIll);
+    }
 }
+

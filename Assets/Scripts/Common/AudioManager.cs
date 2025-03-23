@@ -11,7 +11,8 @@ public enum BGM
     ScriptIntro,    // 0_1 스크립트
     Script0_2,      // 0_2 스크립트
     TypeWriter,     // 타자기 소리
-    COUNT           
+    ED1,            // ED1
+    COUNT,
 }
 
 public enum SFX

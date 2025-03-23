@@ -4,17 +4,21 @@ using UnityEngine.UI;
 
 public class ScriptImageHandler : MonoBehaviour
 {
-    public int speakerNum = 0;
+    private List<string> preName = new List<string> { "", "", "" };
     public Image BackGround;
     public Image LeftSpeaker;  // UI에서 캐릭터를 표시할 Image 컴포넌트
     public Image MiddleSpeaker;
     public Image RightSpeaker;
-    private List<string> preName = new List<string> { "", "", "" };
     private Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
 
-    public void SetCharacter(string name, string exp, string inout, string pos)
+    public void SetCharacter(string name, string exp, string pos)
     {
-        if (inout == "in") speakerNum++;
+        LeftSpeaker.color = new Color(1f, 1f, 1f);
+        MiddleSpeaker.color = new Color(1f, 1f, 1f);
+        RightSpeaker.color = new Color(1f, 1f, 1f);
+        LeftSpeaker.rectTransform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+        MiddleSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        RightSpeaker.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         string fileName = name + '_' + exp;
         // 캐시된 이미지가 있는지 확인
         if (!spriteCache.TryGetValue(fileName, out Sprite sprite))
@@ -163,5 +167,9 @@ public class ScriptImageHandler : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void OutSpeaker(int i) {
+        UnActiveImage(i);
     }
 }
