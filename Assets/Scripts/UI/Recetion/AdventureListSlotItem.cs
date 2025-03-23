@@ -29,9 +29,12 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
     // Export
     public TextMeshProUGUI curStateTxt;
-    public TextMeshProUGUI exportGold;
+    public TextMeshProUGUI exportGoldTxt;
 
     private int adventureId;
+
+    private int exportGold;
+
     private string adventurePosition;
     private string adventureType;
     private string adventureClass;
@@ -109,11 +112,11 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
         SetStateText();
 
-        if (adventureTier == "브론즈") exportGold.text = "+G 50";
-        else if(adventureTier == "실버") exportGold.text = "+G 250";
-        else if (adventureTier == "골드") exportGold.text = "+G 500";
-        else if (adventureTier == "플래티넘") exportGold.text = "+G 1000";
-        else if (adventureTier == "다이아") exportGold.text = "+G 2500";
+        if (adventureTier == "브론즈") {exportGoldTxt.text = "+G 50"; exportGold = 50; }
+        else if(adventureTier == "실버") {exportGoldTxt.text = "+G 250"; exportGold = 250; }
+        else if (adventureTier == "골드") {exportGoldTxt.text = "+G 500"; exportGold = 500; }
+        else if (adventureTier == "플래티넘") {exportGoldTxt.text = "+G 1000"; exportGold = 1000; }
+        else if (adventureTier == "다이아") {exportGoldTxt.text = "+G 2500"; exportGold = 2500; }
     }
 
     private void SetStateText()
@@ -146,7 +149,7 @@ public class AdventureListSlotItem : InfiniteScrollItem
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK_CANCEL;
             uiData.descTxt = "정말로 방출 하시겠습니까?";
-            uiData.okBtnTxt = "삭제";
+            uiData.okBtnTxt = "+G" + exportGold.ToString();
             uiData.cancelBtnTxt = "아니요";
             uiData.onClickOKBtn = () =>
             {
