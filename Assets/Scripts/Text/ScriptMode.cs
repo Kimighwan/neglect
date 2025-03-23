@@ -160,7 +160,7 @@ public class ScriptMode : MonoBehaviour
                 GameManager.gameManager.PauseGame();
                 tutorialImg.SetActive(true);
                 break;
-            case 100120: // 슬라임 홍수 시작
+            case 100121: // 슬라임 홍수 시작
                 var slimeUiData = new EmergencyQuestUIData(11);
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(slimeUiData);
                 break;
