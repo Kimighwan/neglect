@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
     public void EndTheGame() {
         ScriptDialogObjectData data = ScriptDialogObjectData.data;
         data.background.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Arts/Illustration/ED1");
-        Fade.Instance.DoFade(Color.black, 1f, 0f, 2f, 0f, false);
+        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, false);
         data.background.SetActive(true);
         Invoke("ReadyForEndGame", 2f);
     }

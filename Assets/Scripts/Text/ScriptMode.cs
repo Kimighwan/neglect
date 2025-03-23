@@ -176,9 +176,14 @@ public class ScriptMode : MonoBehaviour
                 ScriptDialogHandler.handler.EndingScriptPlay(109101, 109124, false);
                 break;
             case 109124:
-                GameManager.gameManager.EndTheGame();
+                Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false);
+                Invoke("EndTheGame", 1f);
                 break;
         }
+    }
+
+    private void EndTheGame() {
+        GameManager.gameManager.EndTheGame();
     }
 
     public void OnClickTutorialBtn()
