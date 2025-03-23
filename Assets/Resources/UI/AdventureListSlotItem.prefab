@@ -1036,7 +1036,7 @@ GameObject:
   - component: {fileID: 7395433407059177917}
   - component: {fileID: 3017865496269803017}
   m_Layer: 5
-  m_Name: ExportGold
+  m_Name: ExportGoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2299,7 +2299,7 @@ MonoBehaviour:
   stateTxt: {fileID: 6065274547052856734}
   exportGameObject: {fileID: 7694865849185507326}
   curStateTxt: {fileID: 8040124810124061377}
-  exportGold: {fileID: 3017865496269803017}
+  exportGoldTxt: {fileID: 3017865496269803017}
 --- !u!1 &8652272611766739965
 GameObject:
   m_ObjectHideFlags: 0
