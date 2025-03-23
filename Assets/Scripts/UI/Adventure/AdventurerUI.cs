@@ -42,11 +42,6 @@ public class AdventurerUI : BaseUI
         desk = deskData.desk;
     }
 
-    void OnEnable()
-    {
-        GameManager.gameManager.cameraTransform.position = new Vector3(-12, 0, -10f);
-    }
-
     private void Update()
     {
         if(GameInfo.gameInfo.nextDayAdventure)
