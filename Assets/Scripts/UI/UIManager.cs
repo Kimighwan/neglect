@@ -206,10 +206,14 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     #endregion
 
-
+    private float coolTimerESC = 0f;
+    private float coolTimeESC = 0.2f;
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))
+        if (coolTimerESC < coolTimeESC) {
+            coolTimerESC += Time.deltaTime;
+        }
+        if ((coolTimerESC > coolTimeESC) && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X)))
         {
             // AudioManager.Instance.PlaySFX(SFX.ui_button_click);
 
@@ -240,6 +244,16 @@ public class UIManager : SingletonBehaviour<UIManager>
                     }
                 }
                 frontUI.CloseUI(); // 띄워져있는 UI 닫기
+                coolTimerESC = 0f;
+
+            }
+            else if (GameInfo.gameInfo.roomUI.isUINow) {
+                GameInfo.gameInfo.roomUI.OnClickCloseButton();
+                coolTimerESC = 0f;
+            }
+            else if (GameInfo.gameInfo.requestButton.GetIsMoved()) {
+                GameInfo.gameInfo.requestButton.OnClickBut();
+                coolTimerESC = 0f;
             }
             else // 아무 UI도 없다면 게임 종료 팝업UI 띄우기
             {
@@ -253,6 +267,7 @@ public class UIManager : SingletonBehaviour<UIManager>
                     Application.Quit();
                 };
                 UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+                coolTimerESC = 0f;
             }
         }
     }
