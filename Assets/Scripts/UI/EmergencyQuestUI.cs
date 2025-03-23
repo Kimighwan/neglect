@@ -144,25 +144,29 @@ public class EmergencyQuestUI : BaseUI
 
         if (resultValue == -1)
         {
-            resultTxt.text = "긴급 의뢰 실패";
+            resultTxt.text = "긴급 의뢰 실패"; 
             resultBtnTxt.text = "확인";
+            AudioManager.Instance.PlaySFX(SFX.QuestFail);
             reward = 0;
         }
         else if (resultValue == 0)
         {
             resultTxt.text = "긴급 의뢰 성공!";
             resultBtnTxt.text = "+" + reward.ToString() + "G";
+            AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
         }
         else if(resultValue == 1)
         {
             resultTxt.text = "긴급 의뢰 대성공!!!";
             resultBtnTxt.text = "+" + (reward * 2).ToString() + "G";
+            AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             reward *= 2;
         }
 
         Temp.SetActive(false);
         main.SetActive(false);
         result.SetActive(true);
+
 
         PoolManager.Instance.ready = false;
 
