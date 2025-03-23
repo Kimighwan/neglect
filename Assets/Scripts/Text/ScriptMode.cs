@@ -39,7 +39,8 @@ public class ScriptMode : MonoBehaviour
         }
     }
 
-    public void PrepareScriptText(int startId, int endId, bool b) {
+    public void PrepareScriptText(int startId, int endId) {
+        this.GetComponent<ScriptImageHandler>().speakerNum = 0;
         for (int i = startId; i <= endId; i++)
         {
             ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
@@ -48,8 +49,6 @@ public class ScriptMode : MonoBehaviour
                 scriptList.Add(scriptData);
             }
         }
-        illExist = b;
-        if (!b) AudioManager.Instance.PlayBGM(BGM.ScriptDefault); 
         ActiveObjects(true);
     }
 
@@ -57,16 +56,19 @@ public class ScriptMode : MonoBehaviour
     {
         if (currentLine < scriptList.Count)
         {
-            // 일러스트 설정
             if (typingCoroutine != null)
             {
                 StopCoroutine(typingCoroutine);
             }
+
             ScriptData scriptData = scriptList[currentLine];
-            if (scriptData.scriptExp != "") {
-                ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos);
+            if (scriptData.scriptIll != "") ShowIllImage(scriptData.scriptIll); // 일러스트 있는 스크립트 라인
+            else {
+                AudioManager.Instance.PlayBGM(BGM.ScriptDefault);
+                if (scriptData.scriptInOut == "in") this.GetComponent<ScriptImageHandler>().speakerNum++;
+                if (scriptData.scriptExp != "") ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos); // 캐릭터 있는 스크립트 라인
             }
-            else if (scriptData.scriptIll != "") ShowIllImage(scriptData.scriptIll);
+
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
             currentLine++;
@@ -103,6 +105,7 @@ public class ScriptMode : MonoBehaviour
     
     public void OnClickSkip()
     {
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
         currentLine = scriptList.Count;
         ShowNextScript();
     }
@@ -118,41 +121,27 @@ public class ScriptMode : MonoBehaviour
     }
 
     private void ActiveObjects(bool b) {
-        if (b) {
-            if (illExist) data.background.SetActive(b);
-            else data.backPanel.SetActive(b);
-        }
-        else {
-            data.background.SetActive(b);
-            data.backPanel.SetActive(b);
-        }
+        data.background.SetActive(b);
         PoolManager.Instance.isNotTouch = b;
         data.panel.SetActive(b);
         data.skipBtn.SetActive(b);
     }
 
     private void EndScripts() {
-        GameManager.gameManager.PauseGame();
         int id = scriptList[currentLine - 1].scriptId;
-
-        if (id == 109124)
-        {
-            GameManager.gameManager.EndTheGame();
-        }
-
-        if(id == 100036)
-        {
-            PoolManager.Instance.isNotTutorialTouch = true;
-            GameManager.gameManager.PauseGame();
-            tutorialImg.SetActive(true);
-        }
         data.scr.text = "";
+        currentLine = 0;
         ActiveObjects(false);
         scriptList.Clear();
         this.GetComponent<ScriptImageHandler>().EndTheScripts();
-        currentLine = 0;
+
+        GameManager.gameManager.PauseGame();
         isScriptMode = false;
+        ScriptEndAct(id);
         AudioManager.Instance.PlayBGM(BGM.Main6);
+    }
+
+    private void ScriptEndAct(int id) {
         switch (id) {
             case 100120: // 슬라임 홍수 시작
                 var slimeUiData = new EmergencyQuestUIData(11);
@@ -165,6 +154,14 @@ public class ScriptMode : MonoBehaviour
             case 100315: // 모험가 구함 시작
                 var uiData = new EmergencyQuestUIData(13);
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(uiData);
+                break;
+            case 100036:
+                PoolManager.Instance.isNotTutorialTouch = true;
+                GameManager.gameManager.PauseGame();
+                tutorialImg.SetActive(true);
+                break;
+            case 109124:
+                GameManager.gameManager.EndTheGame();
                 break;
         }
     }

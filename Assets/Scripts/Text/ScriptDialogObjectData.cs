@@ -23,7 +23,6 @@ public class ScriptDialogObjectData : MonoBehaviour
 
     [Header("ScriptMode")]
     public GameObject background;
-    public GameObject backPanel;
     public GameObject panel;
     public GameObject skipBtn;
     [TextArea]
