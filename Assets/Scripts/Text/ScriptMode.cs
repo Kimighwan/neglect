@@ -15,6 +15,7 @@ public class ScriptMode : MonoBehaviour
     private bool isTyping = false;
     private bool illExist = true;
     private Coroutine typingCoroutine;
+    private int outSpeaker = -1;
 
     private void Start()
     {
@@ -49,7 +50,8 @@ public class ScriptMode : MonoBehaviour
             }
         }
         illExist = b;
-        if (!b) AudioManager.Instance.PlayBGM(BGM.ScriptDefault); 
+        if (!b && endId != 109124) AudioManager.Instance.PlayBGM(BGM.ScriptDefault);
+        else if (endId == 109124) AudioManager.Instance.PlayBGM(BGM.ED1);
         ActiveObjects(true);
     }
 
@@ -64,9 +66,19 @@ public class ScriptMode : MonoBehaviour
             }
             ScriptData scriptData = scriptList[currentLine];
             if (scriptData.scriptExp != "") {
-                ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptInOut, scriptData.scriptPos);
+                ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptPos);
             }
             else if (scriptData.scriptIll != "") ShowIllImage(scriptData.scriptIll);
+
+            if (outSpeaker != -1) {
+                this.GetComponent<ScriptImageHandler>().OutSpeaker(outSpeaker);
+                outSpeaker = -1;
+            }
+            if (scriptData.scriptInOut == "out") {
+                if (scriptData.scriptPos == "left") outSpeaker = 0;
+                else if (scriptData.scriptPos == "middle") outSpeaker = 1;
+                else if (scriptData.scriptPos == "right") outSpeaker = 2;
+            }
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
             typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
             currentLine++;
@@ -107,11 +119,11 @@ public class ScriptMode : MonoBehaviour
         ShowNextScript();
     }
 
-    private void ShowCharWithExp(string name, string exp, string inout, string pos) {
+    private void ShowCharWithExp(string name, string exp, string pos) {
         string charName = "";
         if (name == "데이지") charName = "Daisy";
         else if (name == "멜링" || name == "???") charName = "Melling";
-        this.GetComponent<ScriptImageHandler>().SetCharacter(charName, exp, inout, pos);
+        this.GetComponent<ScriptImageHandler>().SetCharacter(charName, exp, pos);
     }
     private void ShowIllImage(string fileName) {
         this.GetComponent<ScriptImageHandler>().SetIllImage(fileName);
@@ -134,26 +146,20 @@ public class ScriptMode : MonoBehaviour
     private void EndScripts() {
         GameManager.gameManager.PauseGame();
         int id = scriptList[currentLine - 1].scriptId;
-
-        if (id == 109124)
-        {
-            GameManager.gameManager.EndTheGame();
-        }
-
-        if(id == 100036)
-        {
-            PoolManager.Instance.isNotTutorialTouch = true;
-            GameManager.gameManager.PauseGame();
-            tutorialImg.SetActive(true);
-        }
         data.scr.text = "";
         ActiveObjects(false);
         scriptList.Clear();
         this.GetComponent<ScriptImageHandler>().EndTheScripts();
         currentLine = 0;
         isScriptMode = false;
-        AudioManager.Instance.PlayBGM(BGM.Main6);
+        if (id != 109124)AudioManager.Instance.PlayBGM(BGM.Main6);
+
         switch (id) {
+            case 100036:
+                PoolManager.Instance.isNotTutorialTouch = true;
+                GameManager.gameManager.PauseGame();
+                tutorialImg.SetActive(true);
+                break;
             case 100120: // 슬라임 홍수 시작
                 var slimeUiData = new EmergencyQuestUIData(11);
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(slimeUiData);
@@ -166,7 +172,18 @@ public class ScriptMode : MonoBehaviour
                 var uiData = new EmergencyQuestUIData(13);
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(uiData);
                 break;
+            case 100377:
+                ScriptDialogHandler.handler.EndingScriptPlay(109101, 109124, false);
+                break;
+            case 109124:
+                Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false);
+                Invoke("EndTheGame", 1f);
+                break;
         }
+    }
+
+    private void EndTheGame() {
+        GameManager.gameManager.EndTheGame();
     }
 
     public void OnClickTutorialBtn()
@@ -176,4 +193,19 @@ public class ScriptMode : MonoBehaviour
 
         if (!GameManager.gameManager.Pause) GameManager.gameManager.PauseGame();
     }
+
+    public void EndingScript(int i) {
+        GameInfo.gameInfo.PrepareShowIll(1f, 0f, true);
+        ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
+        if (data != null)
+        {
+            scriptList.Add(scriptData);
+        }
+        illExist = true;
+        ActiveObjects(true);
+        data.panel.SetActive(false);
+        data.skipBtn.SetActive(false);
+        ShowIllImage(scriptData.scriptIll);
+    }
 }
+

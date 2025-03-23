@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool Pause { get { return pause; } set { } }
     private bool fastMode = false;
     public bool FastMode { get { return fastMode; } set { } }
+    private bool endGame = false;
     void Awake()
     {
         gameManager = this;
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         if (!pause && !scriptMode.isScriptMode) {
             info.UpdateGameInfo();
         }
+
         UITextHandler.textHandler.UpdateTexts();
         if (Input.anyKeyDown)
         {
@@ -79,7 +81,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        if (Input.GetMouseButtonDown(0)) AudioManager.Instance.PlaySFX(SFX.Click2);
+
+        if (Input.GetMouseButtonDown(0)) {
+            AudioManager.Instance.PlaySFX(SFX.Click2);
+            if (endGame) Invoke("GoToTitle", 2f);
+        }
     }
 
     public void PauseGame() {
@@ -128,7 +134,14 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.OpenUI<SystemDescUI>(systemDescUI);
     }
     public void EndTheGame() {
-        Invoke("GoToTitle", 2f);
+        ScriptDialogObjectData data = ScriptDialogObjectData.data;
+        data.background.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Arts/Illustration/ED1");
+        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, false);
+        data.background.SetActive(true);
+        Invoke("ReadyForEndGame", 2f);
+    }
+    private void ReadyForEndGame() {
+        endGame = true;
     }
     public void GoToTitle() {
         UIManager.Instance.CloseAllOpenUI();
