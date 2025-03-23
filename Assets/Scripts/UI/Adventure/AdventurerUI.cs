@@ -59,7 +59,7 @@ public class AdventurerUI : BaseUI
 
         CountUpdate();
 
-        rerollTxt.text = GameInfo.gameInfo.AdventureReroll + "/5";
+        rerollTxt.text = GameInfo.gameInfo.AdventureReroll + "/3";
 
         if (GameInfo.gameInfo.Level == 1)
         {
@@ -125,7 +125,7 @@ public class AdventurerUI : BaseUI
             return;
         }
 
-        if(GameInfo.gameInfo.AdventureReroll >= 5)
+        if(GameInfo.gameInfo.AdventureReroll >= 3)
         {
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK;

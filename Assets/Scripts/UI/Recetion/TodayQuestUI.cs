@@ -41,7 +41,7 @@ public class TodayQuestUI : BaseUI
 
         SetCountText();
 
-        rerollTxt.text = GameInfo.gameInfo.QuestReroll + "/5";
+        rerollTxt.text = GameInfo.gameInfo.QuestReroll + "/3";
 
         if (GameInfo.gameInfo.Level == 1)
         {
@@ -109,7 +109,7 @@ public class TodayQuestUI : BaseUI
             return;
         }
 
-        if (GameInfo.gameInfo.QuestReroll >= 5)
+        if (GameInfo.gameInfo.QuestReroll >= 3)
         {
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK;
