@@ -5,16 +5,9 @@ using UnityEngine.EventSystems;
 public class RequestButton : MouseDrag
 {
     public Animator anim;       // 삼각형 Animator
-    private bool isDown = false;
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if (PoolManager.Instance.isNotTouch) return;
-        if (PoolManager.Instance.isNotTouchUI) return;
-        if (PoolManager.Instance.isNotTutorialTouch) return;
-
-        isDown = !isDown;
-
         OnClickBut();
     }
 
@@ -58,8 +51,12 @@ public class RequestButton : MouseDrag
     public void OnClickBut()
     {
         if (isMoving) return;
-        inRequest = isMoved ? false : true;
+        if (PoolManager.Instance.isNotTouch) return;
+        if (PoolManager.Instance.isNotTouchUI) return;
+        if (PoolManager.Instance.isNotTutorialTouch) return;
         isMoving = true;
+
+        inRequest = isMoved ? false : true;
 
         // 검은 색 뒷 배경
         backimage.SetActive(!isMoved);
@@ -73,6 +70,7 @@ public class RequestButton : MouseDrag
             tutorialOnce = true;
             GameManager.gameManager.OpenTutorial(590006);
         }
+        return;
     }
     public bool GetInRequest() {
         return inRequest;
@@ -107,5 +105,9 @@ public class RequestButton : MouseDrag
         txt1.anchoredPosition = txt1Des;
         txt2.anchoredPosition = txt2Des;
         isMoving = false;
+    }
+
+    public bool GetIsMoved() {
+        return isMoved;
     }
 }

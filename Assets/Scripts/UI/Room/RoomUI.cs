@@ -19,11 +19,11 @@ public class RoomUI : MonoBehaviour {
     void Start()
     {
         button.interactable = true;
-        isUINow = true;
     }
 
     void OnEnable()
     {
+        isUINow = true;
         StartCoroutine(ScaleChange(Vector3.zero, Vector3.one, 0.5f));
     }
 
