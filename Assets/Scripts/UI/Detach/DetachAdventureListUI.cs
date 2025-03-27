@@ -11,8 +11,11 @@ public class DetachAdventureListUI : BaseUI
     public TextMeshProUGUI sortBtnText;
     public TextMeshProUGUI orderBtnText;
     public TextMeshProUGUI countTxt;
+    public TextMeshProUGUI iconRate;                // 성공 확률
 
-    [SerializeField] public int adventureIndex;      // 파견에서 몇번째 파견창인지
+    public RawImage iconImage;                      // 아이콘 이미지
+
+    [SerializeField] public int adventureIndex;     // 파견에서 몇번째 파견창인지
 
     private AdventureSortType adventureSortType = AdventureSortType.GRADE;
     private AdventureOrderType adventureOrderType = AdventureOrderType.DOWN;

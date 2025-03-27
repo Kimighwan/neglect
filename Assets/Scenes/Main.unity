@@ -1524,6 +1524,7 @@ MonoBehaviour:
   timeTxt: {fileID: 1651675458}
   rewardTxt: {fileID: 1141841286}
   rankImg: {fileID: 1701215559}
+  nomalRate: 0
   detachIndex: 5
 --- !u!1 &191832812
 GameObject:
@@ -3620,6 +3621,7 @@ MonoBehaviour:
   timeTxt: {fileID: 1730787709}
   rewardTxt: {fileID: 144937400}
   rankImg: {fileID: 257798525}
+  nomalRate: 0
   detachIndex: 2
 --- !u!1 &380880414
 GameObject:
@@ -7612,6 +7614,7 @@ MonoBehaviour:
   timeTxt: {fileID: 448940153}
   rewardTxt: {fileID: 1344850319}
   rankImg: {fileID: 2083304849}
+  nomalRate: 0
   detachIndex: 1
 --- !u!1 &681565840
 GameObject:
@@ -9308,6 +9311,7 @@ MonoBehaviour:
   timeTxt: {fileID: 626743016}
   rewardTxt: {fileID: 1482216843}
   rankImg: {fileID: 1172929485}
+  nomalRate: 0
   detachIndex: 3
 --- !u!1 &847892234
 GameObject:
@@ -16629,7 +16633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1445696795
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23122,6 +23126,7 @@ MonoBehaviour:
   timeTxt: {fileID: 735465552}
   rewardTxt: {fileID: 1688390868}
   rankImg: {fileID: 503943120}
+  nomalRate: 0
   detachIndex: 4
 --- !u!1 &1926899898
 GameObject:
