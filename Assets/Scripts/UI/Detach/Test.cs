@@ -195,7 +195,7 @@ public class Test : MonoBehaviour
             uiData.cancelBtnTxt = "아니오";
             uiData.onClickOKBtn = () => { OnClickAwakeBtn(index); return; };
             uiData.onClickCancelBtn = () => { QuestStart(index); };
-            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+            UIManager.Instance.OpenUI<ConfirmUIVerson2>(uiData);
         }
         else
         {
