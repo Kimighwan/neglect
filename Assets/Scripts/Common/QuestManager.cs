@@ -20,6 +20,8 @@ public class QuestManager : MonoBehaviour
     public TextMeshProUGUI rewardTxt;
     public RawImage rankImg;
 
+    public float nomalRate;                 // 성공 확률
+
     [SerializeField] public int detachIndex;
 
     const string ICON_PATH = "Arts/Icon";
@@ -372,7 +374,7 @@ public class QuestManager : MonoBehaviour
             dieRate = 100;
         }
 
-        float nomalRate = 100f - (bigRate + dieRate);
+        nomalRate = 100f - (bigRate + dieRate);
         Debug.Log($"전멸 : {dieRate} / 성공 : {nomalRate} / 대 : {bigRate}");
 
         int check = dieRate > bigRate ? -1 : 1;         // 1 : 대성공 확률 존재 / -1 : 전멸 확률 존재
