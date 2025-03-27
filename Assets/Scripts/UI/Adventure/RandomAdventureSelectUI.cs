@@ -203,9 +203,9 @@ public class RandomAdventureSelectUI : MonoBehaviour
     {
         int randomIndexA = UnityEngine.Random.Range(101, 129);     // 브론즈   28개
         int randomIndexB = UnityEngine.Random.Range(201, 242);    // 실버     41개
-        int randomIndexC = UnityEngine.Random.Range(300, 344);    // 골드     44개
-        int randomIndexD = UnityEngine.Random.Range(400, 424);    // 플래티넘 24개
-        int randomIndexE = UnityEngine.Random.Range(500, 507);    // 다이아   6개
+        int randomIndexC = UnityEngine.Random.Range(301, 344);    // 골드     43개
+        int randomIndexD = UnityEngine.Random.Range(401, 424);    // 플래티넘 23개
+        int randomIndexE = UnityEngine.Random.Range(501, 507);    // 다이아   6개
 
         int resultValue = UnityEngine.Random.Range(1, 101);
 
@@ -406,11 +406,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 브론즈도 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -422,7 +422,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -441,11 +441,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 {
                     // 남은 골드 확인
                     int tmp = resultId;
-                    if (PoolManager.Instance.goldAd < 44)
+                    if (PoolManager.Instance.goldAd < 43)
                     {
                         if (PoolManager.Instance.goldAd > 40)
                         {
-                            for (int i = 300; i < 344; i++)
+                            for (int i = 301; i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -457,7 +457,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                            for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -672,11 +672,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 브론즈도 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -688,7 +688,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -707,11 +707,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 {
                     // 남은 골드 모험가 주기
                     int tmp = resultId;
-                    if (PoolManager.Instance.goldAd < 44)
+                    if (PoolManager.Instance.goldAd < 43)
                     {
                         if (PoolManager.Instance.goldAd > 40)
                         {
-                            for (int i = 300; i < 344; i++)
+                            for (int i = 301; i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -723,7 +723,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                            for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -805,11 +805,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 {
                     // 남은 플래티넘 주기
                     int tmp = resultId;
-                    if (PoolManager.Instance.platinumAd < 24)
+                    if (PoolManager.Instance.platinumAd < 23)
                     {
                         if (PoolManager.Instance.platinumAd > 20)
                         {
-                            for (int i = 400; i < 424; i++)
+                            for (int i = 401; i < 424; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -821,7 +821,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                            for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -836,11 +836,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 플래티넘 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -852,7 +852,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1067,11 +1067,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 브론즈도 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1083,7 +1083,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1102,11 +1102,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 {
                     // 남은 골드 모험가 주기
                     int tmp = resultId;
-                    if (PoolManager.Instance.goldAd < 44)
+                    if (PoolManager.Instance.goldAd < 43)
                     {
                         if (PoolManager.Instance.goldAd > 40)
                         {
-                            for (int i = 300; i < 344; i++)
+                            for (int i = 301; i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1118,7 +1118,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                            for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1200,11 +1200,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 {
                     // 남은 플래티넘 확인
                     int tmp = resultId;
-                    if (PoolManager.Instance.platinumAd < 24)
+                    if (PoolManager.Instance.platinumAd < 23)
                     {
                         if (PoolManager.Instance.platinumAd > 20)
                         {
-                            for (int i = 400; i < 424; i++)
+                            for (int i = 401; i < 424; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1216,7 +1216,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                            for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1231,11 +1231,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 플래티넘 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1247,7 +1247,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1332,7 +1332,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     int tmp = resultId;
                     if (PoolManager.Instance.diaAd < 6)
                     {
-                        for (int i = UnityEngine.Random.Range(500, 507); i < 507; i++)
+                        for (int i = UnityEngine.Random.Range(501, 507); i < 507; i++)
                         {
                             if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                             {
@@ -1346,11 +1346,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 다이아없다면 플래티넘 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.platinumAd < 24)
+                        if (PoolManager.Instance.platinumAd < 23)
                         {
                             if (PoolManager.Instance.platinumAd > 20)
                             {
-                                for (int i = 400; i < 424; i++)
+                                for (int i = 401; i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1362,7 +1362,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                                for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1378,11 +1378,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 플래티넘 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1394,7 +1394,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1479,11 +1479,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 실버도 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1495,7 +1495,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1511,11 +1511,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 골드도 없다면 플래 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))  
                     {
-                        if (PoolManager.Instance.platinumAd < 24)
+                        if (PoolManager.Instance.platinumAd < 23)
                         {
                             if (PoolManager.Instance.platinumAd > 20)
                             {
-                                for (int i = 400; i < 424; i++)
+                                for (int i = 401; i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1527,7 +1527,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                                for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1546,11 +1546,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 {
                     // 남은 골드 모험가 주기
                     int tmp = resultId;
-                    if (PoolManager.Instance.goldAd < 44)
+                    if (PoolManager.Instance.goldAd < 43)
                     {
                         if (PoolManager.Instance.goldAd > 40)
                         {
-                            for (int i = 300; i < 344; i++)
+                            for (int i = 301; i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1562,7 +1562,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                            for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1609,11 +1609,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 실버도 없다면 플래 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.platinumAd < 24)
+                        if (PoolManager.Instance.platinumAd < 23)
                         {
                             if (PoolManager.Instance.platinumAd > 20)
                             {
-                                for (int i = 400; i < 424; i++)
+                                for (int i = 401; i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1625,7 +1625,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                                for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1644,11 +1644,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 {
                     // 남은 플래티넘 확인
                     int tmp = resultId;
-                    if (PoolManager.Instance.platinumAd < 24)
+                    if (PoolManager.Instance.platinumAd < 23)
                     {
                         if (PoolManager.Instance.platinumAd > 20)
                         {
-                            for (int i = 400; i < 424; i++)
+                            for (int i = 401; i < 424; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1660,7 +1660,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                            for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1675,11 +1675,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 플래티넘 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1691,7 +1691,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1744,7 +1744,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     int tmp = resultId;
                     if (PoolManager.Instance.diaAd < 6)
                     {
-                        for (int i = UnityEngine.Random.Range(500, 507); i < 507; i++)
+                        for (int i = UnityEngine.Random.Range(501, 507); i < 507; i++)
                         {
                             if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                             {
@@ -1758,11 +1758,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 다이아 없다면 플래 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.platinumAd < 24)
+                        if (PoolManager.Instance.platinumAd < 23)
                         {
                             if (PoolManager.Instance.platinumAd > 20)
                             {
-                                for (int i = 400; i < 424; i++)
+                                for (int i = 401; i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1774,7 +1774,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                                for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1790,11 +1790,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 플래티넘 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1806,7 +1806,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1860,11 +1860,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 {
                     // 남은 골드 모험가 주기
                     int tmp = resultId;
-                    if (PoolManager.Instance.goldAd < 44)
+                    if (PoolManager.Instance.goldAd < 43)
                     {
                         if (PoolManager.Instance.goldAd > 40)
                         {
-                            for (int i = 300; i < 344; i++)
+                            for (int i = 301; i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1876,7 +1876,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                            for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1891,11 +1891,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 골드도 없다면 플래 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.platinumAd < 24)
+                        if (PoolManager.Instance.platinumAd < 23)
                         {
                             if (PoolManager.Instance.platinumAd > 20)
                             {
-                                for (int i = 400; i < 424; i++)
+                                for (int i = 401; i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1907,7 +1907,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                                for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1926,11 +1926,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                 {
                     // 남은 플래티넘 확인
                     int tmp = resultId;
-                    if (PoolManager.Instance.platinumAd < 24)
+                    if (PoolManager.Instance.platinumAd < 23)
                     {
                         if (PoolManager.Instance.platinumAd > 20)
                         {
-                            for (int i = 400; i < 424; i++)
+                            for (int i = 401; i < 424; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1942,7 +1942,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                            for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                             {
                                 if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                 {
@@ -1957,11 +1957,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 플래티넘 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1973,7 +1973,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -1994,7 +1994,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     int tmp = resultId;
                     if (PoolManager.Instance.diaAd < 6)
                     {
-                        for (int i = UnityEngine.Random.Range(500, 507); i < 507; i++)
+                        for (int i = UnityEngine.Random.Range(501, 507); i < 507; i++)
                         {
                             if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                             {
@@ -2008,11 +2008,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 다이아 없다면 플래 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.platinumAd < 24)
+                        if (PoolManager.Instance.platinumAd < 23)
                         {
                             if (PoolManager.Instance.platinumAd > 20)
                             {
-                                for (int i = 400; i < 424; i++)
+                                for (int i = 401; i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -2024,7 +2024,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(400, 424); i < 424; i++)
+                                for (int i = UnityEngine.Random.Range(401, 424); i < 424; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -2040,11 +2040,11 @@ public class RandomAdventureSelectUI : MonoBehaviour
                     // 플래티넘 없다면 골드 주기
                     if (PoolManager.Instance.userAdventureIndex.Contains(tmp) || CheckHaveRandomIndex(tmp))
                     {
-                        if (PoolManager.Instance.goldAd < 44)
+                        if (PoolManager.Instance.goldAd < 43)
                         {
                             if (PoolManager.Instance.goldAd > 40)
                             {
-                                for (int i = 300; i < 344; i++)
+                                for (int i = 301; i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -2056,7 +2056,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
                             }
                             else
                             {
-                                for (int i = UnityEngine.Random.Range(300, 344); i < 344; i++)
+                                for (int i = UnityEngine.Random.Range(301, 344); i < 344; i++)
                                 {
                                     if (!PoolManager.Instance.userAdventureIndex.Contains(i) && !CheckHaveRandomIndex(i))
                                     {
@@ -2133,7 +2133,7 @@ public class RandomAdventureSelectUI : MonoBehaviour
         switch (tier)
         {
             case Tier.Platinum:
-                for (int i = 400; i < 424; i++)
+                for (int i = 401; i < 424; i++)
                 {
                     if (!PoolManager.Instance.userAdventureIndex.Contains(i))
                     {
