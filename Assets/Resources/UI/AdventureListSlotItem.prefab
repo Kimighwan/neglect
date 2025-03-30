@@ -323,7 +323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29, y: 0}
+  m_AnchoredPosition: {x: 26, y: 0}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1013596099673498942
@@ -381,8 +381,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 9
-  m_fontSizeBase: 9
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2473,13 +2473,13 @@ MonoBehaviour:
   typeImg: {fileID: 202099578482164824}
   rankImg: {fileID: 7949080792782951781}
   stateImg: {fileID: 7833712597423190843}
-  nameTxt: {fileID: 2964285982646381152}
+  nameTxt: {fileID: 3926000949576523632}
   positionTxt: {fileID: 5179589543116533084}
   classTxt: {fileID: 5960344675937123425}
   typeTxt: {fileID: 7708920197744892276}
   stateTxt: {fileID: 6065274547052856734}
   exportGameObject: {fileID: 7694865849185507326}
-  rankTxt: {fileID: 0}
+  rankTxt: {fileID: 2964285982646381152}
   curStateTxt: {fileID: 8040124810124061377}
   exportGoldTxt: {fileID: 3017865496269803017}
 --- !u!1 &8652272611766739965
