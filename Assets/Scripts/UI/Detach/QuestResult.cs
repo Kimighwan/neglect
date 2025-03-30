@@ -67,17 +67,17 @@ public class QuestResult : BaseUI
             switch (PoolManager.Instance.questData[resultIndex].questMonster)
             {
                 case "설녀":
-                    tmpId = 128013232;
+                    tmpId = 123003232;
                     name = "설녀";
                     PlayerPrefs.SetInt("설녀", 1);
                     break;
                 case "호문쿨루스":
-                    tmpId = 128022121;
+                    tmpId = 124002121;
                     name = "호문쿨루스";
                     PlayerPrefs.SetInt("호문쿨루스", 1);
                     break;
                 case "헤츨링":
-                    tmpId = 128031313;
+                    tmpId = 125001313;
                     name = "헤츨링";
                     PlayerPrefs.SetInt("헤츨링", 1);
                     break;

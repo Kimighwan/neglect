@@ -53,6 +53,9 @@ public class StateSceneManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("헤츨링"))
             PlayerPrefs.SetInt("헤츨링", 0);
+
+        if (!PlayerPrefs.HasKey("ReSelectConfirm"))
+            PlayerPrefs.SetInt("ReSelectConfirm", 0);
     }
     void OnEnable()
     {

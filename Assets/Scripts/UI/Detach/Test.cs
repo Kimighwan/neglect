@@ -186,6 +186,17 @@ public class Test : MonoBehaviour
             };
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
         }
+        else if (questManagers.nomalRate < 100f && PlayerPrefs.GetInt("ReSelectConfirm") == 0)
+        {
+            var uiData = new ConfirmUIData();
+            uiData.confirmType = ConfirmType.OK_CANCEL;
+            uiData.descTxt = "성공 확률이\n100% 미만입니다.\n다시 선택하시겠습니까?";
+            uiData.okBtnTxt = "재선택";
+            uiData.cancelBtnTxt = "아니오";
+            uiData.onClickOKBtn = () => { OnClickAwakeBtn(index); return; };
+            uiData.onClickCancelBtn = () => { QuestStart(index); };
+            UIManager.Instance.OpenUI<ConfirmUIVerson2>(uiData);
+        }
         else
         {
             QuestStart(index);
@@ -215,6 +226,8 @@ public class Test : MonoBehaviour
             UIManager.Instance.OpenUI<ConfirmUI>(uiData);
             return;
         }
+
+        
 
         image.SetActive(true);
         StartCoroutine(testt());

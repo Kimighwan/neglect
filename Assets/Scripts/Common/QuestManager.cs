@@ -20,6 +20,9 @@ public class QuestManager : MonoBehaviour
     public TextMeshProUGUI rewardTxt;
     public RawImage rankImg;
 
+    public float nomalRate;                 // 성공 확률
+    public int iconColor;                   // 1(빨강) 2(주황) 3(노랑) 4(초록)
+
     [SerializeField] public int detachIndex;
 
     const string ICON_PATH = "Arts/Icon";
@@ -57,13 +60,13 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        if (detachIndex > 10 || (questBtn.interactable == false && adventureBtn.interactable == false))
+        if (detachIndex > 10 /*|| (questBtn.interactable == false && adventureBtn.interactable == false)*/)
         {
             if(detachIndex < 10)
             {
-                if (PoolManager.Instance.checkUpdate[detachIndex - 1]) return;
+                //if (PoolManager.Instance.checkUpdate[detachIndex - 1]) return;
 
-                PoolManager.Instance.checkUpdate[detachIndex - 1] = true;
+                //PoolManager.Instance.checkUpdate[detachIndex - 1] = true;
             }
             else
             {
@@ -372,7 +375,7 @@ public class QuestManager : MonoBehaviour
             dieRate = 100;
         }
 
-        float nomalRate = 100f - (bigRate + dieRate);
+        nomalRate = 100f - (bigRate + dieRate);
         Debug.Log($"전멸 : {dieRate} / 성공 : {nomalRate} / 대 : {bigRate}");
 
         int check = dieRate > bigRate ? -1 : 1;         // 1 : 대성공 확률 존재 / -1 : 전멸 확률 존재
@@ -391,8 +394,16 @@ public class QuestManager : MonoBehaviour
 
         if (check == 1)  // 대성공 확률 존재
         {
-            if (bigRate >= 10) resultRateIcon = 4;                  // 초록
-            else resultRateIcon = 3;                                // 노랑
+            if (bigRate >= 10)  // 초록
+            {
+                resultRateIcon = 4;                  
+                iconColor = 4;
+            }
+            else                // 노랑
+            {
+                resultRateIcon = 3;
+                iconColor = 3;
+            }
 
             if (bigRate > randomValue)
             {
@@ -405,10 +416,16 @@ public class QuestManager : MonoBehaviour
                 return;
             }
         }
-        else
+        else if(check == -1)
         {
-            if(dieRate >= 90) resultRateIcon = 1;                   // 빨강
-            else resultRateIcon = 2;                                // 주황
+            if(dieRate >= 90)   // 빨강
+            {
+                resultRateIcon = 1; iconColor = 1;                   
+            }
+            else    // 주황
+            {
+                resultRateIcon = 2; iconColor = 2;
+            }
 
             if (dieRate > randomValue)
             {
