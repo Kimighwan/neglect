@@ -47,6 +47,7 @@ public class EmergencyQuestUI : BaseUI
         main.SetActive(true);
         Temp.SetActive(false);
         result.SetActive(false);
+        PoolManager.Instance.ready = true;
 
         GameManager.gameManager.PauseGame();
 

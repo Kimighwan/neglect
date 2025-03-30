@@ -351,7 +351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 98adebe804724304c98eb1bb792c60e6, type: 3}
+  m_Texture: {fileID: 2800000, guid: 29d57fff73a8a954bb9196687e74ec46, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC131\uACF5\uD655\uB960 90% ~ 100%"
+  m_text: ????? 90% ~ 100%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
   m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
