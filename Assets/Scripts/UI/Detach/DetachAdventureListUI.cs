@@ -13,6 +13,7 @@ public class DetachAdventureListUI : BaseUI
     public TextMeshProUGUI countTxt;
     public TextMeshProUGUI iconRate;                // 성공 확률
 
+    public GameObject iconOB;
     public RawImage iconImage;                      // 아이콘 이미지
 
     [SerializeField] public int adventureIndex;     // 파견에서 몇번째 파견창인지
@@ -49,6 +50,42 @@ public class DetachAdventureListUI : BaseUI
             countTxt.text
                         = PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Count.ToString()
                         + "/4";
+
+            if(PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Count == 0)
+            {
+                iconOB.SetActive(false);
+                iconRate.text = "";
+            }
+            else
+            {
+                if (PoolManager.Instance.questManagers[adventureIndex - 1].iconColor == 1)
+                {
+                    iconImage.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
+                    iconRate.text = "성공확률 90% 미만";
+                }
+                else if (PoolManager.Instance.questManagers[adventureIndex - 1].iconColor == 2)
+                {
+                    iconImage.texture = Resources.Load("Arts/Icon/IconAdd") as Texture2D;
+                    iconRate.text = "성공확률 90% ~ 100%";
+                }
+                else if (PoolManager.Instance.questManagers[adventureIndex - 1].iconColor == 3)
+                {
+                    iconImage.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+                    iconRate.text = "대성공확률 0% ~ 10%";
+                }
+                else if (PoolManager.Instance.questManagers[adventureIndex - 1].iconColor == 4)
+                {
+                    iconImage.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+                    iconRate.text = "대성공확률 10% 초과";
+                }
+                else
+                {
+                    iconImage.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+                    iconRate.text = "성공확률 90% ~ 100%";
+                }
+
+                iconOB.SetActive(true);
+            }
         }
         else
         {

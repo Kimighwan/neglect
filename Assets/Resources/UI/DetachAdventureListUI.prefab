@@ -1042,6 +1042,7 @@ MonoBehaviour:
   orderBtnText: {fileID: 378894408271012895}
   countTxt: {fileID: 8540456084309049728}
   iconRate: {fileID: 1969946919702796167}
+  iconOB: {fileID: 2035994905236841856}
   iconImage: {fileID: 8878077790894131156}
   adventureIndex: 0
 --- !u!1 &3291426075311067480
