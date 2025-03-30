@@ -26,6 +26,8 @@ public class AdventureListSlotItem : InfiniteScrollItem
     public GameObject exportGameObject;
 
     private AdventureData adventureData;
+    [SerializeField]
+    private TextMeshProUGUI rankTxt;
 
     // Export
     public TextMeshProUGUI curStateTxt;
@@ -112,11 +114,11 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
         SetStateText();
 
-        if (adventureTier == "브론즈") {exportGoldTxt.text = "+G 50"; exportGold = 50; }
-        else if(adventureTier == "실버") {exportGoldTxt.text = "+G 250"; exportGold = 250; }
-        else if (adventureTier == "골드") {exportGoldTxt.text = "+G 500"; exportGold = 500; }
-        else if (adventureTier == "플래티넘") {exportGoldTxt.text = "+G 1000"; exportGold = 1000; }
-        else if (adventureTier == "다이아") {exportGoldTxt.text = "+G 2500"; exportGold = 2500; }
+        if (adventureTier == "브론즈") {exportGoldTxt.text = "+G 50"; exportGold = 50; rankTxt.text = "브론즈"; }
+        else if(adventureTier == "실버") {exportGoldTxt.text = "+G 250"; exportGold = 250; rankTxt.text = "실버"; }
+        else if (adventureTier == "골드") {exportGoldTxt.text = "+G 500"; exportGold = 500; rankTxt.text = "골드"; }
+        else if (adventureTier == "플래티넘") {exportGoldTxt.text = "+G 1000"; exportGold = 1000; rankTxt.text = "플래티넘"; }
+        else if (adventureTier == "다이아") {exportGoldTxt.text = "+G 2500"; exportGold = 2500; rankTxt.text = "다이아"; }
     }
 
     private void SetStateText()

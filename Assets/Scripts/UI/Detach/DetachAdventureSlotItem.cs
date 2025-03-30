@@ -21,6 +21,9 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
 
     private AdventureData adventureData;
 
+    [SerializeField]
+    private TextMeshProUGUI rankTxt;
+
     private int adventureid;
     private static List<AdventureData> adList = new List<AdventureData>();
 
@@ -74,15 +77,30 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
 
         // Rank Image
         if (adventureTier == "브론즈")
+        {
             rankImg.texture = Resources.Load("Arts/Rank/RankBronze") as Texture2D;
+            rankTxt.text = "브론즈";
+        }
         else if (adventureTier == "실버")
+        {
             rankImg.texture = Resources.Load("Arts/Rank/RankSilver") as Texture2D;
+            rankTxt.text = "실버";
+        }
         else if (adventureTier == "골드")
+        {
             rankImg.texture = Resources.Load("Arts/Rank/RankGold") as Texture2D;
+            rankTxt.text = "골드";
+        }
         else if (adventureTier == "플래티넘")
+        {
             rankImg.texture = Resources.Load("Arts/Rank/RankPlatinum") as Texture2D;
+            rankTxt.text = "플래티넘";
+        }
         else
+        {
             rankImg.texture = Resources.Load("Arts/Rank/RankDiamond") as Texture2D;
+            rankTxt.text = "다이아";
+        }
     }
 
     private void Update()

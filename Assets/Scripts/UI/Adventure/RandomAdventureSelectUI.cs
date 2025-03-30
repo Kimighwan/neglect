@@ -7,12 +7,6 @@ public class RandomAdventureSelectUI : MonoBehaviour
 {
     public RawImage rankImage;
 
-    public TextMeshProUGUI c_name;
-    public TextMeshProUGUI position;
-    public TextMeshProUGUI m_class;
-    public TextMeshProUGUI type;
-    public TextMeshProUGUI needGoldText;
-
     public RawImage posImg;
     public RawImage classImg;
     public RawImage typeImg;
@@ -32,6 +26,19 @@ public class RandomAdventureSelectUI : MonoBehaviour
     private string adventureClass;      // 계열
     private string adventureType;       // 타입
     private string adventureTier;       // 테두리 표현
+
+    [SerializeField]
+    private TextMeshProUGUI c_name;
+    [SerializeField]
+    private TextMeshProUGUI position;
+    [SerializeField]
+    private TextMeshProUGUI m_class;
+    [SerializeField]
+    private TextMeshProUGUI type;
+    [SerializeField]
+    private TextMeshProUGUI needGoldText;
+    [SerializeField]
+    private TextMeshProUGUI rankTxt;
 
     private Transform pos;              // 모험가 종이 위치
 
@@ -197,6 +204,27 @@ public class RandomAdventureSelectUI : MonoBehaviour
             typeImg.texture = Resources.Load("Arts/Icon/Type/MagicIcon") as Texture2D;
         else
             typeImg.texture = Resources.Load("Arts/Icon/Type/HolyIcon") as Texture2D;
+
+        if (adventureTier == "브론즈")
+        {
+            rankTxt.text = "브론즈";
+        }
+        else if (adventureTier == "실버")
+        {
+            rankTxt.text = "실버";
+        }
+        else if (adventureTier == "골드")
+        {
+            rankTxt.text = "골드";
+        }
+        else if (adventureTier == "플래티넘")
+        {
+            rankTxt.text = "플래티넘";
+        }
+        else if (adventureTier == "다이아")
+        {
+            rankTxt.text = "다이아";
+        }
     }
 
     private int RandomIndexMake()

@@ -131,6 +131,7 @@ public class UIManager : SingletonBehaviour<UIManager>
 
         if (!ExistOpenUI()) Invoke("UnLockRoomClick", 0.01f);
     }
+
     private void UnLockRoomClick() { // 객실 클릭 활성화
         GameInfo.gameInfo.UnLockRoomClick();
     }
