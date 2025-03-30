@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class BaseUIData
@@ -9,7 +10,7 @@ public class BaseUIData
 
 public class BaseUI : MonoBehaviour
 {
-    public Animation uiAnim;
+    public Animator anim;
 
     public Action uiOnShow;
     public Action uiOnClose;
@@ -36,9 +37,9 @@ public class BaseUI : MonoBehaviour
 
     public virtual void ShowUI()
     {
-        if (uiAnim != null)
+        if (anim != null)
         {
-            uiAnim.Play();
+            anim.SetTrigger("Open");
         }
 
         uiOnShow?.Invoke();
@@ -51,8 +52,23 @@ public class BaseUI : MonoBehaviour
         {
             uiOnClose?.Invoke();
         }
+
         uiOnClose = null;
 
+        if (anim != null)
+        {
+            anim.SetTrigger("Close");
+            StartCoroutine(Wait());
+        }
+        else
+        {
+            UIManager.Instance.CloseUI(this);
+        }
+    }
+
+    private IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.2f);
         UIManager.Instance.CloseUI(this);
     }
 

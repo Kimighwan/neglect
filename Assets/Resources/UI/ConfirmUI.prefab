@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 957075667457379109}
   - component: {fileID: 715498376917290182}
   - component: {fileID: 7906955380071343671}
-  - component: {fileID: 1918610823883885007}
+  - component: {fileID: 7845433970505311790}
   m_Layer: 5
   m_Name: BackGround
   m_TagString: Untagged
@@ -362,22 +362,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!111 &1918610823883885007
-Animation:
+--- !u!95 &7845433970505311790
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006350566847869867}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 8b1548f51115f8a41914e3c8c3fced9f, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 8b1548f51115f8a41914e3c8c3fced9f, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2391d51c51d2a94ba9b201c5e9fede1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2200089769444497906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4892ccf9dea4804482180d929395d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiAnim: {fileID: 1918610823883885007}
+  anim: {fileID: 7845433970505311790}
   descTxt: {fileID: 8421532766731013653}
   okBtn: {fileID: 6338304485983714964}
   cancelBtn: {fileID: 1589663604120372099}
