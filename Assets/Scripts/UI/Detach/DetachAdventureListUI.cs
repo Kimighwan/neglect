@@ -51,7 +51,7 @@ public class DetachAdventureListUI : BaseUI
                         = PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Count.ToString()
                         + "/4";
 
-            if(PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Count == 0)
+            if(PoolManager.Instance.questManagers[adventureIndex - 1].adventureDatas.Count == 0 || !PoolManager.Instance.questData.ContainsKey(adventureIndex))
             {
                 iconOB.SetActive(false);
                 iconRate.text = "";
@@ -78,11 +78,6 @@ public class DetachAdventureListUI : BaseUI
                     iconImage.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
                     iconRate.text = "대성공확률 10% 초과";
                 }
-                else
-                {
-                    iconImage.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
-                    iconRate.text = "성공확률 90% ~ 100%";
-                }
 
                 iconOB.SetActive(true);
             }
@@ -90,7 +85,39 @@ public class DetachAdventureListUI : BaseUI
         else
         {
             var tmp = UIManager.Instance.GetActiveUI<EmergencyQuestUI>() as EmergencyQuestUI;
-            countTxt.text = tmp.GetComponent<QuestManager>().adventureDatas.Count.ToString() + "/4";
+            var questManagetOfCurEmergency = tmp.GetComponent<QuestManager>();
+            countTxt.text = questManagetOfCurEmergency.adventureDatas.Count.ToString() + "/4";
+
+            if (questManagetOfCurEmergency.adventureDatas.Count == 0)
+            {
+                iconOB.SetActive(false);
+                iconRate.text = "";
+            }
+            else 
+            {
+                if (questManagetOfCurEmergency.iconColor == 1)
+                {
+                    iconImage.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
+                    iconRate.text = "성공확률 90% 미만";
+                }
+                else if (questManagetOfCurEmergency.iconColor == 2)
+                {
+                    iconImage.texture = Resources.Load("Arts/Icon/IconAdd") as Texture2D;
+                    iconRate.text = "성공확률 90% ~ 100%";
+                }
+                else if (questManagetOfCurEmergency.iconColor == 3)
+                {
+                    iconImage.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+                    iconRate.text = "대성공확률 0% ~ 10%";
+                }
+                else if (questManagetOfCurEmergency.iconColor == 4)
+                {
+                    iconImage.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+                    iconRate.text = "대성공확률 10% 초과";
+                }
+
+                iconOB.SetActive(true);
+            }
         }
     }
 
@@ -356,7 +383,6 @@ public class DetachAdventureListUI : BaseUI
             uiData.cancelBtnTxt = "재선택";
             uiData.onClickOKBtn = () =>
             {
-                PoolManager.Instance.ready = true;
                 Common();
 
                 var ui = UIManager.Instance.GetActiveUI<EmergencyQuestUI>() as EmergencyQuestUI;

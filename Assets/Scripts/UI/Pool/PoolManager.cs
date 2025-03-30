@@ -45,8 +45,6 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public GameObject[] gaugeObject;    // 각 파견창의 게이지 오브젝트
     public GameObject[] awakeBtn;       // 파견창의 초기화 버튼 오브젝트
 
-    public bool[] checkUpdate = new bool[8];         // Update 함수 한 번만 실행하기 위해서
-
     public QuestManager[] questManagers;
     public Test[] testScripts;
 
@@ -67,7 +65,7 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public int diaQ = 0;       // 다이아 의뢰 수
 
     // 긴급 의뢰
-    public bool ready = false;  // 모험가 선택이 완료되었는가?
+    public bool ready = true;  // 모험가 선택이 완료되었는가?
 
     // 특수 의뢰를 받았는가? // 0 = 안 받음
     public int checkHavesSpecialQuest = 0;

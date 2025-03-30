@@ -60,80 +60,61 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        if (detachIndex > 10 /*|| (questBtn.interactable == false && adventureBtn.interactable == false)*/)
+        if (detachIndex < 10)
         {
-            if(detachIndex < 10)
+            if (!PoolManager.Instance.questData.ContainsKey(detachIndex) || adventureDatas.Count == 0)
             {
-                //if (PoolManager.Instance.checkUpdate[detachIndex - 1]) return;
-
-                //PoolManager.Instance.checkUpdate[detachIndex - 1] = true;
+                targetScore = 0;
+                stateIcons.texture = null;
+                stateIcons.color = new Color(0, 0, 0, 0);
+                iconObject.SetActive(false);
+                return;
             }
-            else
-            {
-                if (!PoolManager.Instance.ready) return;
-
-                if (PoolManager.Instance.checkUpdate[detachIndex - 6]) return;
-
-                PoolManager.Instance.checkUpdate[detachIndex - 6] = true;
-            }
-            
-
-            SetQuest(detachIndex);
-
-            SetTier(detachIndex);                 // 등급 점수
-            SetSameScore(detachIndex);            // 중복 비율
-            SetMixScore(detachIndex);             // 조합 비율
-            SetStrongAndWeak(detachIndex);        // 약점 & 강점 비율
-            Calculation(detachIndex);             // 점수 계산
-
-            if (detachIndex < 10)
-            {
-                stateIcons.color = new Color(1, 1, 1, 1);
-
-                if (resultRateIcon == 1)        // 전멸 확률 20% 이상
-                {
-                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
-                    stateIconText.text = "성공확률 90% 미만";
-                    stateIconText.color = Color.red;
-                }
-                else if (resultRateIcon == 2)   // 전멸 확률 0~20%
-                {
-                    stateIcons.texture = Resources.Load("Arts/Icon/IconAdd") as Texture2D;
-                    stateIconText.text = "성공확률 90% ~ 100%";
-                    stateIconText.color = new Color(1f, 0.6f, 0f);
-                }
-                else if (resultRateIcon == 3)   // 대성공 확률 0~20%
-                {
-                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
-                    stateIconText.text = "대성공확률 0% ~ 10%";
-                    stateIconText.color = Color.yellow;
-                }
-                else if(resultRateIcon == 4)    // 대성공 확률 20% 이상
-                {
-                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
-                    stateIconText.text = "대성공확률 10% 초과";
-                    stateIconText.color = Color.green;
-                }
-                else                            // 아무 확률도 없음
-                {
-                    stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
-                    stateIconText.text = "성공확률 90% ~ 100%";
-                    stateIconText.color = new Color(1f, 0.6f, 0f);
-                }
-
-                iconObject.SetActive(true);
-            }       
         }
         else
         {
-            if (detachIndex < 10)
-                PoolManager.Instance.checkUpdate[detachIndex - 1] = false;
-            else
-                PoolManager.Instance.checkUpdate[detachIndex - 6] = false;
+            if (!PoolManager.Instance.ready) return;
+        }
 
-            stateIcons.texture = null;
-            stateIcons.color = new Color(0, 0, 0, 0);
-            iconObject.SetActive(false);
+
+        SetQuest(detachIndex);
+
+        SetTier(detachIndex);                 // 등급 점수
+        SetSameScore(detachIndex);            // 중복 비율
+        SetMixScore(detachIndex);             // 조합 비율
+        SetStrongAndWeak(detachIndex);        // 약점 & 강점 비율
+        Calculation(detachIndex);             // 점수 계산
+
+        if (detachIndex < 10)
+        {
+            stateIcons.color = new Color(1, 1, 1, 1);
+
+            if (resultRateIcon == 1)        // 전멸 확률 20% 이상
+            {
+                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceHard") as Texture2D;
+                stateIconText.text = "성공확률 90% 미만";
+                stateIconText.color = Color.red;
+            }
+            else if (resultRateIcon == 2)   // 전멸 확률 0~20%
+            {
+                stateIcons.texture = Resources.Load("Arts/Icon/IconAdd") as Texture2D;
+                stateIconText.text = "성공확률 90% ~ 100%";
+                stateIconText.color = new Color(1f, 0.6f, 0f);
+            }
+            else if (resultRateIcon == 3)   // 대성공 확률 0~20%
+            {
+                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceNormal") as Texture2D;
+                stateIconText.text = "대성공확률 0% ~ 10%";
+                stateIconText.color = Color.yellow;
+            }
+            else if (resultRateIcon == 4)    // 대성공 확률 20% 이상
+            {
+                stateIcons.texture = Resources.Load("Arts/Icon/IconFaceEasy") as Texture2D;
+                stateIconText.text = "대성공확률 10% 초과";
+                stateIconText.color = Color.green;
+            }
+
+            iconObject.SetActive(true);
         }
     }
 
@@ -390,7 +371,8 @@ public class QuestManager : MonoBehaviour
         float randomValue = UnityEngine.Random.Range(0f, 100f);
         randomValue = Mathf.Floor(randomValue * 10f) / 10f;
 
-        resultRateIcon = 0;
+        resultRateIcon = 3;
+        iconColor = 3;
 
         if (check == 1)  // 대성공 확률 존재
         {
