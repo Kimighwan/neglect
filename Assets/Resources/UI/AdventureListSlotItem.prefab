@@ -2473,12 +2473,13 @@ MonoBehaviour:
   typeImg: {fileID: 202099578482164824}
   rankImg: {fileID: 7949080792782951781}
   stateImg: {fileID: 7833712597423190843}
-  nameTxt: {fileID: 3926000949576523632}
+  nameTxt: {fileID: 2964285982646381152}
   positionTxt: {fileID: 5179589543116533084}
   classTxt: {fileID: 5960344675937123425}
   typeTxt: {fileID: 7708920197744892276}
   stateTxt: {fileID: 6065274547052856734}
   exportGameObject: {fileID: 7694865849185507326}
+  rankTxt: {fileID: 0}
   curStateTxt: {fileID: 8040124810124061377}
   exportGoldTxt: {fileID: 3017865496269803017}
 --- !u!1 &8652272611766739965
