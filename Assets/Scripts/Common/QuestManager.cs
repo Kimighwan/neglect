@@ -400,7 +400,7 @@ public class QuestManager : MonoBehaviour
         }
         else if(check == -1)
         {
-            if(dieRate >= 90)   // 빨강
+            if(nomalRate < 90)   // 빨강
             {
                 resultRateIcon = 1; iconColor = 1;                   
             }
