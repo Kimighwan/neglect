@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameSettingUI : BaseUI
@@ -44,9 +45,24 @@ public class GameSettingUI : BaseUI
         sfx.text = ((int)SFXVolume.value).ToString();
     }
 
-    //public void GoToTitle() {
-    //    GameManager.gameManager.GoToTitle();
-    //}
+    public void OnClickReStart()
+    {
+        var uiData = new ConfirmUIData();
+        uiData.confirmType = ConfirmType.OK_CANCEL;
+        uiData.descTxt = "재시작하시겠습니까?";
+        uiData.okBtnTxt = "재시작";
+        uiData.cancelBtnTxt = "취소";
+        uiData.onClickOKBtn = () =>
+        {
+            SceneManager.LoadScene(0);
+            //Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false, () =>
+            //{
+            //    // 재시작
+            //    SceneManager.LoadScene(0);
+            //});
+        };
+        UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+    }
 
     public void OnClickGameQuit()
     {

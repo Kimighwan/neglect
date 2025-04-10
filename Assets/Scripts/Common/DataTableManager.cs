@@ -16,6 +16,8 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
 
     protected override void Init()
     {
+        isDestroyOnLoad = true;
+
         base.Init();
 
         LoadMonsterDataTable();

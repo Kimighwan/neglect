@@ -8,6 +8,11 @@ public class StateSceneManager : MonoBehaviour
     public Button GameEnd;
     void Start()
     {
+        Debug.Log($"{GetType()} 시작");
+        PlayerPrefs.DeleteAll();
+        StartCoroutine(PlayTitleBGM());
+        GameEnd.interactable = false;
+
         if (!PlayerPrefs.HasKey("고블린"))
             PlayerPrefs.SetInt("고블린", 0);
 
@@ -56,12 +61,8 @@ public class StateSceneManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("ReSelectConfirm"))
             PlayerPrefs.SetInt("ReSelectConfirm", 0);
-    }
-    void OnEnable()
-    {
-        PlayerPrefs.DeleteAll();
-        StartCoroutine(PlayTitleBGM());
-        GameEnd.interactable = false;
+
+        
     }
 
     void Update()
@@ -72,11 +73,13 @@ public class StateSceneManager : MonoBehaviour
     private IEnumerator PlayTitleBGM() {
         yield return new WaitForSeconds(0.1f);
         if (AudioManager.Instance != null) {
+            Debug.Log("AudioManager Instance 존재");
             AudioManager.Instance.UnMute();
             AudioManager.Instance.UpdateVolume();
             AudioManager.Instance.PlayBGM(BGM.Start);
         }
         else {
+            Debug.Log("AudioManager Instance 없음...");
             StartCoroutine(PlayTitleBGM());
         }
         yield return null;
