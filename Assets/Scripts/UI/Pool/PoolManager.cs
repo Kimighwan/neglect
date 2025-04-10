@@ -76,6 +76,8 @@ public class PoolManager : SingletonBehaviour<PoolManager>
     public bool isNotTutorialTouch = false;
     protected override void Init()
     {
+        isDestroyOnLoad = true;
+
         base.Init();
 
         // 모험가 수

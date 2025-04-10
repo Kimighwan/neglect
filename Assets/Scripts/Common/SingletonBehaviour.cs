@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<T>
 {
-    // ¾À ÀüÈ¯ ½Ã »èÁ¦ÇÒÁö ¿©ºÎ
-    protected bool isDestroyOnLoad = false; // false¸é À¯ÁöÇÏ°Ú´Ù
+    // ì”¬ ì „í™˜ ì‹œ ì‚­ì œí• ì§€ ì—¬ë¶€
+    protected bool isDestroyOnLoad = false; // falseë©´ ìœ ì§€í•˜ê² ë‹¤
 
-    // ÀÌ Å¬·¡½ºÀÇ ½ºÅÂÆ½ ÀÎ½ºÅÏ½º º¯¼ö
+    // ì´ í´ë˜ìŠ¤ì˜ ìŠ¤íƒœí‹± ì¸ìŠ¤í„´ìŠ¤ ë³€ìˆ˜
     protected static T instance;
 
     public static T Instance
@@ -34,7 +34,7 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<
 
     protected virtual void OnDestroy()
     {
-        Dispose();
+        //Dispose();
     }
 
     protected virtual void Dispose()

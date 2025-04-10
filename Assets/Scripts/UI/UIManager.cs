@@ -52,6 +52,8 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     protected override void Init()
     {
+        isDestroyOnLoad = true;
+
         base.Init();
         fadeCanvasTrs = GameObject.FindGameObjectWithTag("Fade").transform;
     }

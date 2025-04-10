@@ -388,7 +388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC885\uB8CC"
+  m_text: "\uB2E4\uC2DC\uC2DC\uC791"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184fec928be241448a084b9d7c281a63, type: 2}
   m_sharedMaterial: {fileID: 5145352664846468154, guid: 184fec928be241448a084b9d7c281a63, type: 2}
@@ -716,7 +716,7 @@ GameObject:
   - component: {fileID: 201459206318096888}
   - component: {fileID: 5097732586487334372}
   m_Layer: 5
-  m_Name: StartScene
+  m_Name: ReStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -826,7 +826,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 537868580261392189}
         m_TargetAssemblyTypeName: GameSettingUI, Assembly-CSharp
-        m_MethodName: OnClickGameQuit
+        m_MethodName: OnClickReStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
