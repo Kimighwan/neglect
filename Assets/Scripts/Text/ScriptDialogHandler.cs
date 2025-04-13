@@ -113,4 +113,8 @@ public class ScriptDialogHandler : MonoBehaviour
     private void PlayDialog(int s, int e) {
         dialog.PrepareDialogText(s, e);
     }
+
+    public int GetToStoryDay() {
+        return scriptStartDay[scriptIndex];
+    }
 }
