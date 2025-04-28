@@ -55,20 +55,26 @@ public class BaseUI : MonoBehaviour
 
         uiOnClose = null;
 
+        //if (anim != null)
+        //{
+        //    anim.SetTrigger("Close");
+        //    StartCoroutine(Wait());
+        //}
+        //else
+        //{
+        //    UIManager.Instance.CloseUI(this);
+        //}
+
         if (anim != null)
         {
             anim.SetTrigger("Close");
-            StartCoroutine(Wait());
         }
-        else
-        {
-            UIManager.Instance.CloseUI(this);
-        }
+
+        UIManager.Instance.CloseUI(this);
     }
 
-    private IEnumerator Wait()
+    private void WaitAndClose()
     {
-        yield return new WaitForSeconds(0.2f);
         UIManager.Instance.CloseUI(this);
     }
 
