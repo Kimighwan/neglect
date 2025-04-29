@@ -616,7 +616,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4282405238
   m_fontColor: {r: 0.4627451, g: 0.31764707, b: 0.2509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1483,6 +1483,7 @@ GameObject:
   - component: {fileID: 5462501757926521501}
   - component: {fileID: 202099578482164824}
   - component: {fileID: 8191026162422032360}
+  - component: {fileID: 8156391130625647626}
   m_Layer: 5
   m_Name: Type
   m_TagString: Untagged
@@ -1590,6 +1591,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &8156391130625647626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6757097380336126180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a58568e656f5d439bea0f6c0ff0b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: 
+  m_class: 
+  type: 
 --- !u!1 &6995682056555521961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,6 +2073,8 @@ GameObject:
   - component: {fileID: 5856684336698220166}
   - component: {fileID: 4756395045727597154}
   - component: {fileID: 5058005081046526821}
+  - component: {fileID: 3274066160926722514}
+  - component: {fileID: 5090612592299056741}
   m_Layer: 5
   m_Name: Pos
   m_TagString: Untagged
@@ -2164,6 +2182,66 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &3274066160926722514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7934776222833554075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a58568e656f5d439bea0f6c0ff0b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: 
+  m_class: 
+  type: 
+--- !u!61 &5090612592299056741
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7934776222833554075}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16, y: 16}
+  m_EdgeRadius: 0
 --- !u!1 &7944680256322468971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,6 +2254,7 @@ GameObject:
   - component: {fileID: 7933399874372987691}
   - component: {fileID: 1978362025171920481}
   - component: {fileID: 4859502239194878716}
+  - component: {fileID: 5019526818632323956}
   m_Layer: 5
   m_Name: Class
   m_TagString: Untagged
@@ -2283,6 +2362,21 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &5019526818632323956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7944680256322468971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a58568e656f5d439bea0f6c0ff0b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: 
+  m_class: 
+  type: 
 --- !u!1 &8048373817626390250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2479,6 +2573,9 @@ MonoBehaviour:
   typeTxt: {fileID: 7708920197744892276}
   stateTxt: {fileID: 6065274547052856734}
   exportGameObject: {fileID: 7694865849185507326}
+  pos: {fileID: 3274066160926722514}
+  m_class: {fileID: 5019526818632323956}
+  type: {fileID: 8156391130625647626}
   rankTxt: {fileID: 2964285982646381152}
   curStateTxt: {fileID: 8040124810124061377}
   exportGoldTxt: {fileID: 3017865496269803017}

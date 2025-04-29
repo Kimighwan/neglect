@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class AdventureListSlotItem : InfiniteScrollItem
 {
@@ -24,6 +25,13 @@ public class AdventureListSlotItem : InfiniteScrollItem
     public TextMeshProUGUI stateTxt;
 
     public GameObject exportGameObject;
+
+    [SerializeField]
+    private AdventureListSlotItemPosOverRay pos;
+    [SerializeField]
+    private AdventureListSlotItemPosOverRay m_class;
+    [SerializeField]
+    private AdventureListSlotItemPosOverRay type;
 
     private AdventureData adventureData;
     [SerializeField]
@@ -59,8 +67,11 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
         nameTxt.text = adventureName;
         positionTxt.text = adventurePosition;
+        pos.pos = adventurePosition;        // 오버레이 Position Text 초기화
         classTxt.text = adventureClass;
+        m_class.m_class = adventureClass;   // 오버레이 Class Text 초기화
         typeTxt.text = adventureType;
+        type.type = adventureType;          // 오버레이 Type Text 초기화
 
         if (PoolManager.Instance.usingAdventureList.Contains(adventureId))
         {

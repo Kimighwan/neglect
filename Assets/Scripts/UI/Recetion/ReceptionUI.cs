@@ -4,7 +4,7 @@ public class ReceptionUI : BaseUI
 {
     private bool adTutorial = false;
     private bool qTutorial = false;
-    public override void Init(Transform anchor)
+    public override void Init(Transform anchor, RectTransform canvasRT = null)
     {
         base.Init(anchor);
 

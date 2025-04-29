@@ -15,7 +15,7 @@ public class BaseUI : MonoBehaviour
     public Action uiOnShow;
     public Action uiOnClose;
 
-    public virtual void Init(Transform anchor)
+    public virtual void Init(Transform anchor, RectTransform canvasRT = null)
     {
         uiOnShow = null;
         uiOnClose = null;
