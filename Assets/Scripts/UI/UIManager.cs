@@ -8,6 +8,7 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     public int exportAdventureId;
 
+    public RectTransform canvasTR;      // 캔버스 RectTransfrom
     public Transform UICanvasTrs;       // 컨버스 위치
     public Transform ClosedUITrs;       // 비활성 UI 저장소 위치
 
@@ -103,7 +104,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         }
 
         var siblingIndex = UICanvasTrs.childCount - 1;
-        ui.Init(UICanvasTrs);
+        ui.Init(UICanvasTrs, canvasTR);
         ui.transform.SetSiblingIndex(siblingIndex);
         ui.gameObject.SetActive(true);
         ui.SetInfo(uiData);

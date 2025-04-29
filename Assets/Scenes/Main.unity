@@ -12231,6 +12231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   advemtureDetailDescText: 
   exportAdventureId: 0
+  canvasTR: {fileID: 1028127990}
   UICanvasTrs: {fileID: 1028127990}
   ClosedUITrs: {fileID: 2054220090}
   fadeCanvasTrs: {fileID: 0}

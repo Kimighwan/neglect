@@ -54,7 +54,7 @@ public class AdventurerListUI : BaseUI
         SortAdventure();
     }
 
-    public override void Init(Transform anchor)
+    public override void Init(Transform anchor, RectTransform canvasRT = null)
     {
         base.Init(anchor);
 

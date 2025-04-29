@@ -15,4 +15,7 @@ public class MouseDrag : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
     public virtual void OnDrop(PointerEventData eventData) { return; }
     public virtual void OnPointerEnter(PointerEventData eventData) { return; }
     public virtual void OnPointerExit(PointerEventData eventData) { return; }
+
+    public virtual void PointerEnter(BaseEventData eventData) { return; }
+    public virtual void PointerExit(BaseEventData eventData) { return; }
 }
