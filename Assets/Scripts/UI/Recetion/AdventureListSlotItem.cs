@@ -23,11 +23,15 @@ public class AdventureListSlotItem : InfiniteScrollItem
     public GameObject exportGameObject;
 
     [SerializeField]
-    private AdventureListSlotItemPosOverRay pos;
+    private AdventureListSlotItemOverRay pos;
     [SerializeField]
-    private AdventureListSlotItemPosOverRay m_class;
+    private AdventureListSlotItemOverRay m_class;
     [SerializeField]
-    private AdventureListSlotItemPosOverRay type;
+    private AdventureListSlotItemOverRay type;
+    [SerializeField]
+    private AdventureListSlotItemOverRay state;
+    [SerializeField]
+    private AdventureListSlotItemOverRay rank;
 
     private AdventureData adventureData;
     [SerializeField]
@@ -72,11 +76,13 @@ public class AdventureListSlotItem : InfiniteScrollItem
         if (PoolManager.Instance.usingAdventureList.Contains(adventureId))
         {
             stateTxt.text = "파견 중";
+            state.state = "파견 중";
             stateImg.texture = Resources.Load("Arts/Icon/arrived") as Texture2D;
         }
         else
         {
             stateTxt.text = "대기 중";
+            state.state = "대기 중";
             stateImg.texture = Resources.Load("Arts/Icon/waiting") as Texture2D;
         }
             
@@ -121,11 +127,11 @@ public class AdventureListSlotItem : InfiniteScrollItem
 
         SetStateText();
 
-        if (adventureTier == "브론즈") {exportGoldTxt.text = "+G 50"; exportGold = 50; rankTxt.text = "브론즈"; }
-        else if(adventureTier == "실버") {exportGoldTxt.text = "+G 250"; exportGold = 250; rankTxt.text = "실버"; }
-        else if (adventureTier == "골드") {exportGoldTxt.text = "+G 500"; exportGold = 500; rankTxt.text = "골드"; }
-        else if (adventureTier == "플래티넘") {exportGoldTxt.text = "+G 1000"; exportGold = 1000; rankTxt.text = "플래티넘"; }
-        else if (adventureTier == "다이아") {exportGoldTxt.text = "+G 2500"; exportGold = 2500; rankTxt.text = "다이아"; }
+        if (adventureTier == "브론즈") {exportGoldTxt.text = "+G 50"; exportGold = 50; rankTxt.text = "브론즈"; rank.rank = "브론즈"; }
+        else if(adventureTier == "실버") {exportGoldTxt.text = "+G 250"; exportGold = 250; rankTxt.text = "실버"; rank.rank = "실버"; }
+        else if (adventureTier == "골드") {exportGoldTxt.text = "+G 500"; exportGold = 500; rankTxt.text = "골드"; rank.rank = "골드"; }
+        else if (adventureTier == "플래티넘") {exportGoldTxt.text = "+G 1000"; exportGold = 1000; rankTxt.text = "플래티넘"; rank.rank = "플래티넘"; }
+        else if (adventureTier == "다이아") {exportGoldTxt.text = "+G 2500"; exportGold = 2500; rankTxt.text = "다이아"; rank.rank = "다이아"; }
     }
 
     private void SetStateText()
