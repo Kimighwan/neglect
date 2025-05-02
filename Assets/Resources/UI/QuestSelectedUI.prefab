@@ -519,6 +519,7 @@ MonoBehaviour:
   reward: {fileID: 2271123969759427921}
   rankTxt: {fileID: 3172069810308713310}
   ingQuest: {fileID: 6353652049173452214}
+  rank: {fileID: 143229833544682489}
 --- !u!222 &7973704562369580364
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1436,6 +1437,7 @@ GameObject:
   - component: {fileID: 8693105724186443383}
   - component: {fileID: 6288472292295848294}
   - component: {fileID: 2607984936148261980}
+  - component: {fileID: 143229833544682489}
   m_Layer: 5
   m_Name: Rank
   m_TagString: Untagged
@@ -1542,3 +1544,16 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &143229833544682489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9083434417103382923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb98ce682f00e40489fcd859676796f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rank: 

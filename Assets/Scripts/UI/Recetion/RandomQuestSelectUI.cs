@@ -17,6 +17,9 @@ public class RandomQuestSelectUI : MonoBehaviour
     public Button btn;
     public TextMeshProUGUI btnTxt;
 
+    [SerializeField]
+    private QuestListItemOverRay rank;
+
     private QuestData questData;
 
     private int questId;
@@ -123,7 +126,9 @@ public class RandomQuestSelectUI : MonoBehaviour
         m_name.text = questName;
         time.text = questTime.ToString() + "일";
         reward.text = questReward.ToString() + "골드";
+
         rankTxt.text = questLevel;
+        rank.rank = questLevel;
 
         if (questLevel == "브론즈")
             rankImage.texture = Resources.Load("Arts/QuestRank/bronze_quest") as Texture2D;
@@ -134,6 +139,7 @@ public class RandomQuestSelectUI : MonoBehaviour
             {
                 rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
                 rankTxt.text += "(특수)";
+                rank.rank += "(특수)";
             }
         }
         else if (questLevel == "골드")
@@ -143,6 +149,7 @@ public class RandomQuestSelectUI : MonoBehaviour
             {
                 rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
                 rankTxt.text += "(특수)";
+                rank.rank += "(특수)";
             }
         }
         else if (questLevel == "플래티넘")
@@ -152,6 +159,7 @@ public class RandomQuestSelectUI : MonoBehaviour
             {
                 rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
                 rankTxt.text += "(특수)";
+                rank.rank += "(특수)";
             }
         }
         else if (questLevel == "다이아")

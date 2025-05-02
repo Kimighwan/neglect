@@ -219,9 +219,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3466051452355327167}
-  - component: {fileID: 4072543500917498922}
+  - component: {fileID: 4649036710485553690}
   m_Layer: 5
-  m_Name: MouseOverRayTest
+  m_Name: MouseOverRayUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,7 +247,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4072543500917498922
+--- !u!114 &4649036710485553690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,9 +256,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8294414032721152126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43a03925f729e514a80bce16285bf381, type: 3}
+  m_Script: {fileID: 11500000, guid: 759cce1e7cbac82478afb87f42382eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  posText: {fileID: 7358413330990996693}
+  text: {fileID: 7358413330990996693}
   imageRT: {fileID: 4053397567014772362}

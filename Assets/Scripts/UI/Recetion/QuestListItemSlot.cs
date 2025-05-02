@@ -15,6 +15,10 @@ public class QuestListItemSlot : InfiniteScrollItem
     private QuestData questData;
 
     public GameObject ingQuest;
+
+    [SerializeField]
+    private QuestListItemOverRay rank;
+
     private bool onIngQuest = false;
 
     private int questMonsterDescId;
@@ -48,7 +52,9 @@ public class QuestListItemSlot : InfiniteScrollItem
         m_name.text = questName;
         time.text = questTime.ToString() + "일";
         reward.text = questReward.ToString() + "골드";
+
         rankTxt.text = questLevel;
+        rank.rank = questLevel;
 
         if (questLevel == "브론즈")
             rankImage.texture = Resources.Load("Arts/QuestRank/bronze_quest") as Texture2D;
@@ -59,6 +65,7 @@ public class QuestListItemSlot : InfiniteScrollItem
             {
                 rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
                 rankTxt.text += "(특수)";
+                rank.rank += "(특수)";
             }
         }
         else if (questLevel == "골드")
@@ -68,6 +75,7 @@ public class QuestListItemSlot : InfiniteScrollItem
             {
                 rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
                 rankTxt.text += "(특수)";
+                rank.rank += "(특수)";
             }
         }
         else if (questLevel == "플래티넘")
@@ -77,6 +85,7 @@ public class QuestListItemSlot : InfiniteScrollItem
             {
                 rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
                 rankTxt.text += "(특수)";
+                rank.rank += "(특수)";
             }
         }
         else if (questLevel == "다이아")

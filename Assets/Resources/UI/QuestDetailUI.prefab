@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fc8fda4b1225343a4158fe874f0596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiAnim: {fileID: 0}
+  anim: {fileID: 0}
   rankImg: {fileID: 1190914675391396667}
   m_name: {fileID: 2467179002435062977}
   m_level: {fileID: 6650710418965399929}
@@ -1251,6 +1251,7 @@ MonoBehaviour:
   rankTxt: {fileID: 1644681154476813886}
   monsterDetailBtn: {fileID: 2219362900787871959}
   lockBtn: {fileID: 7923184758104296713}
+  rank: {fileID: 8302535376737223801}
 --- !u!1 &5305387088065402771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,6 +2029,7 @@ GameObject:
   - component: {fileID: 8133483614535509699}
   - component: {fileID: 1190914675391396667}
   - component: {fileID: 9064592954882493671}
+  - component: {fileID: 8302535376737223801}
   m_Layer: 5
   m_Name: Rank
   m_TagString: Untagged
@@ -2134,6 +2136,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &8302535376737223801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462095139047188729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb98ce682f00e40489fcd859676796f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rank: 
 --- !u!1 &6466301079277139033
 GameObject:
   m_ObjectHideFlags: 0
