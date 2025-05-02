@@ -13,9 +13,9 @@ public class AdventureListSlotItemPosOverRay : MouseDrag
     {
         base.OnPointerEnter(eventData);
 
-        var uiData = new MouseOverRayTestData();
+        var uiData = new MouseOverRayUIData();
         uiData.str = pos + m_class + type;
-        UIManager.Instance.OpenUI<MouseOverRayTest>(uiData);
+        UIManager.Instance.OpenUI<MouseOverRayUI>(uiData);
 
         Debug.Log("오버레이 띄우기");
     }
@@ -24,7 +24,7 @@ public class AdventureListSlotItemPosOverRay : MouseDrag
     {
         base.OnPointerExit(eventData);
 
-        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<MouseOverRayTest>());
+        UIManager.Instance.CloseUI(UIManager.Instance.GetActiveUI<MouseOverRayUI>());
         Debug.Log("오버레이 닫기");
     }
 }
