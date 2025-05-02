@@ -21,6 +21,9 @@ public class QuestDetailUI : BaseUI
     public Button monsterDetailBtn;
     public Button lockBtn;
 
+    [SerializeField]
+    private QuestListItemOverRay rank;
+
     private int monsterId;
 
     private bool active;
@@ -51,7 +54,9 @@ public class QuestDetailUI : BaseUI
         paperName.text = data.questName;
         paperTime.text = data.questTime.ToString() +"일";
         paperReward.text = data.questReward.ToString() +"골드";
+
         rankTxt.text = data.questLevel;
+        rank.rank = data.questLevel;
 
         if (data.questLevel == "브론즈")
             rankImg.texture = Resources.Load("Arts/QuestRank/bronze_quest") as Texture2D;
@@ -62,6 +67,7 @@ public class QuestDetailUI : BaseUI
             {
                 rankImg.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
                 rankTxt.text += "(특수)";
+                rank.rank += "(특수)";
             }
         }
         else if (data.questLevel == "골드")
@@ -71,6 +77,7 @@ public class QuestDetailUI : BaseUI
             {
                 rankImg.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
                 rankTxt.text += "(특수)";
+                rank.rank += "(특수)";
             }
         }
         else if (data.questLevel == "플래티넘")
@@ -80,6 +87,7 @@ public class QuestDetailUI : BaseUI
             {
                 rankImg.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
                 rankTxt.text += "(특수)";
+                rank.rank += "(특수)";
             }
         }
         else if (data.questLevel == "다이아")
