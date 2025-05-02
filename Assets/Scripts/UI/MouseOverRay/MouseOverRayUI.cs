@@ -36,6 +36,6 @@ public class MouseOverRayUI : BaseUI
         rectTransform.localPosition = localPos;                 // 오버레이 위치 설정
 
         float size = 100 + text.text.Length * 25;            // 오버레이 크기 조절
-        imageRT.sizeDelta = new Vector2(150, 150);              // 오버레이 크기 설정 # 일단은 고정 수치로 설정
+        imageRT.sizeDelta = new Vector2(size, 150);              // 오버레이 크기 설정 # 일단은 고정 수치로 설정
     }
 }
