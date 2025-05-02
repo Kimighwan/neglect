@@ -24,6 +24,15 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
     [SerializeField]
     private TextMeshProUGUI rankTxt;
 
+    [SerializeField]
+    private AdventureListSlotItemOverRay pos;
+    [SerializeField]
+    private AdventureListSlotItemOverRay m_class;
+    [SerializeField]
+    private AdventureListSlotItemOverRay type;
+    [SerializeField]
+    private AdventureListSlotItemOverRay rank;
+
     private int adventureid;
     private static List<AdventureData> adList = new List<AdventureData>();
 
@@ -48,8 +57,13 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
 
         txtName.text = adventureName;
         posTxt.text = adventurePosition;
+        pos.pos = adventurePosition;
+
         classTxt.text = adventureClass;
+        m_class.m_class = adventureClass;
+
         typeTxt.text = adventureType;
+        type.type = adventureType;
 
         // Postion Image
         if (adventurePosition == "전위")
@@ -80,26 +94,31 @@ public class DetachAdventureSlotItem : InfiniteScrollItem
         {
             rankImg.texture = Resources.Load("Arts/Rank/RankBronze") as Texture2D;
             rankTxt.text = "브론즈";
+            rank.rank = "브론즈";
         }
         else if (adventureTier == "실버")
         {
             rankImg.texture = Resources.Load("Arts/Rank/RankSilver") as Texture2D;
             rankTxt.text = "실버";
+            rank.rank = "실버";
         }
         else if (adventureTier == "골드")
         {
             rankImg.texture = Resources.Load("Arts/Rank/RankGold") as Texture2D;
             rankTxt.text = "골드";
+            rank.rank = "골드";
         }
         else if (adventureTier == "플래티넘")
         {
             rankImg.texture = Resources.Load("Arts/Rank/RankPlatinum") as Texture2D;
             rankTxt.text = "플래티넘";
+            rank.rank = "플래티넘";
         }
         else
         {
             rankImg.texture = Resources.Load("Arts/Rank/RankDiamond") as Texture2D;
             rankTxt.text = "다이아";
+            rank.rank = "다이아";
         }
     }
 
