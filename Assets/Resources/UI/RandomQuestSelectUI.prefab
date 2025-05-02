@@ -369,6 +369,7 @@ MonoBehaviour:
   rankTxt: {fileID: 2379637682029190181}
   btn: {fileID: 3420182879060861309}
   btnTxt: {fileID: 5090017118059963985}
+  rank: {fileID: 6897423016688411251}
 --- !u!1 &3483959067812906653
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +664,7 @@ GameObject:
   - component: {fileID: 8142924141864814436}
   - component: {fileID: 3994877854155813874}
   - component: {fileID: 6962971277288582955}
+  - component: {fileID: 7232388924900034162}
   m_Layer: 5
   m_Name: RankDescBackGround
   m_TagString: Untagged
@@ -728,6 +730,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7232388924900034162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4673451963404425450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb98ce682f00e40489fcd859676796f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rank: 
 --- !u!1 &4887355755806016797
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +830,7 @@ GameObject:
   - component: {fileID: 360294451214063911}
   - component: {fileID: 1400873950874358950}
   - component: {fileID: 6018555810370596614}
+  - component: {fileID: 6897423016688411251}
   m_Layer: 5
   m_Name: Rank
   m_TagString: Untagged
@@ -921,6 +937,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6897423016688411251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760864601296273961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb98ce682f00e40489fcd859676796f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rank: 
 --- !u!1 &6783673003937382221
 GameObject:
   m_ObjectHideFlags: 0
