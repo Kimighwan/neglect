@@ -96,12 +96,14 @@ public class GameManager : MonoBehaviour
             info.pauseButton.gameObject.GetComponent<Button>().spriteState = spriteState;
             info.pauseButton.sprite = info.pauseAndGo[2];
             info.ChangeAniObjSpeed(0f);
+            if (dialogMode.IsSpeaking()) dialogMode.StopTypingAnimation(true);
         } else {
             SpriteState spriteState = info.pauseButton.gameObject.GetComponent<Button>().spriteState;
             spriteState.pressedSprite = info.pauseAndGo[1];
             info.pauseButton.gameObject.GetComponent<Button>().spriteState = spriteState;
             info.pauseButton.sprite = info.pauseAndGo[0];
             info.ChangeAniObjSpeed(1f);
+            if (dialogMode.IsSpeaking()) dialogMode.StopTypingAnimation(false);
         }
         fastMode = false;
         info.fastButton.sprite = info.pauseAndGo[4];

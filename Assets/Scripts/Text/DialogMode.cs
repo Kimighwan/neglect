@@ -21,7 +21,6 @@ public class DialogMode : MonoBehaviour
     public void ChangeDialogSpeed(float f) {
         holdTime = changeHoldTime / f;
     }
-
     public void PrepareDialogText(int startId, int endId)
     {
         onSpeaking = false;
@@ -38,23 +37,12 @@ public class DialogMode : MonoBehaviour
         data.ActiveAllDialogObject(false, false);
         PlayDialogLine();
     }
-
     public void PlayDialogLine()
     {
         if (scriptQueue.Count > 0) {
             ScriptData scriptData = scriptQueue.Dequeue();
             TypeSentence(scriptData);
-            // 출력하고 HoldTime 추가
-            // 퍼즈하면 재생되다가 멈추도록
-            // killDialog뜨면 그 상태로 끝내야함
         }
-        // while (scriptQueue.Count > 0)
-        // {
-        //     yield return new WaitForSeconds(holdTime);
-        //     while (GameManager.gameManager.Pause) {
-        //         yield return null;
-        //     }
-        // }
         else {
             onSpeaking = false;
             data.ActiveAllDialogObject(false, false);
@@ -79,23 +67,32 @@ public class DialogMode : MonoBehaviour
             data.speaker2Text.text = scriptData.scriptSpeaker;
         }
     }
-
-    public void SkipTypingAnimation() {
-        if (isSpeakerA)
-        {
-            data.malpungseon1Text.GetComponent<TypewriterByCharacter>().StartDisappearingText();
-            data.malpungseon1Text.GetComponent<TypewriterByCharacter>().SkipTypewriter();
-        }
-        else
-        {
-            data.malpungseon2Text.GetComponent<TypewriterByCharacter>().StartDisappearingText();
-            data.malpungseon2Text.GetComponent<TypewriterByCharacter>().SkipTypewriter();
-        }
+    private IEnumerator HoldText() {
+        yield return new WaitForSeconds(holdTime);
+        SkipTypeWriter();
         PlayDialogLine();
     }
 
+    public void SkipTypeWriter() {
+        if (isSpeakerA) data.malpungseon1Text.GetComponent<TypewriterByCharacter>().SkipTypewriter();
+        else data.malpungseon2Text.GetComponent<TypewriterByCharacter>().SkipTypewriter();
+    }
+    public void SkipTypingAnimation() {
+        StartCoroutine(HoldText());
+    }
     public void KillDialog() {
         scriptQueue.Clear();
+        SkipTypeWriter();
+    }
+    public void StopTypingAnimation(bool b) {
+        if (b) {
+            if (isSpeakerA) data.malpungseon1Text.GetComponent<TypewriterByCharacter>().StopShowingText();
+            else data.malpungseon2Text.GetComponent<TypewriterByCharacter>().StopShowingText();
+        }
+        else {
+            if (isSpeakerA) data.malpungseon1Text.GetComponent<TypewriterByCharacter>().StartShowingText(false);
+            else data.malpungseon2Text.GetComponent<TypewriterByCharacter>().StartShowingText(false);
+        }
     }
     public bool IsSpeaking() {
         return onSpeaking;
