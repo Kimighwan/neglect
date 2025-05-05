@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Febucci.UI;
 
 public class ScriptMode : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class ScriptMode : MonoBehaviour
     private int currentLine = 0;
     private bool isTyping = false;
     private bool illExist = true;
-    private Coroutine typingCoroutine;
     private int outSpeaker = -1;
 
     private void Start()
@@ -29,9 +29,7 @@ public class ScriptMode : MonoBehaviour
         {
             if (isTyping)
             {
-                StopCoroutine(typingCoroutine);
-                data.scr.text = scriptList[currentLine - 1].scriptLine;
-                isTyping = false;
+                SkipTypingAnimator();
             }
             else
             {
@@ -60,10 +58,6 @@ public class ScriptMode : MonoBehaviour
         if (currentLine < scriptList.Count)
         {
             // 일러스트 설정
-            if (typingCoroutine != null)
-            {
-                StopCoroutine(typingCoroutine);
-            }
             ScriptData scriptData = scriptList[currentLine];
             if (scriptData.scriptExp != "") {
                 ShowCharWithExp(scriptData.scriptSpeaker, scriptData.scriptExp, scriptData.scriptPos);
@@ -80,7 +74,7 @@ public class ScriptMode : MonoBehaviour
                 else if (scriptData.scriptPos == "right") outSpeaker = 2;
             }
             data.scrSpeaker.text = string.IsNullOrEmpty(scriptData.scriptSpeaker) ? "" : "「" + scriptData.scriptSpeaker + "」";
-            typingCoroutine = StartCoroutine(TypeText(scriptData.scriptLine));
+            TypeText(scriptData.scriptLine);
             currentLine++;
         }
         else
@@ -89,30 +83,15 @@ public class ScriptMode : MonoBehaviour
         }
     }
 
-    public IEnumerator TypeText(string line)
+    private void TypeText(string line)
     {
         isTyping = true;
-        data.scr.text = ""; // 초기화
-        
-        bool insideTag = false;
-        
-        foreach (char letter in line)
-        {
-            if (letter == '<') insideTag = true;
-
-            data.scr.text += letter;
-
-            if (letter == '>') insideTag = false;
-
-            if (!insideTag)
-            {
-                yield return new WaitForSeconds(typingSpeed);
-            }
-        }
-
-        isTyping = false;
+        data.scr.GetComponent<TypewriterByCharacter>().ShowText(line); // 초기화
     }
-    
+    public void SkipTypingAnimator() {
+        isTyping = false;
+        data.scr.GetComponent<TypewriterByCharacter>().SkipTypewriter();
+    }
     public void OnClickSkip()
     {
         currentLine = scriptList.Count;
