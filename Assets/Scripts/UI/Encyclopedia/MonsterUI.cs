@@ -6,18 +6,18 @@ public class MonsterUI : BaseUI
 {
     private enum monsterOrder
     {
-        goblin = 110011,
-        slime = 110012,
-        pixie = 110021,
-        soul = 110022,
-        oak = 110031,
-        undead = 110032,
-        golem = 110033,
-        cupid = 110041,
-        gargoyle = 110042,
-        ogre = 110051,
-        devil = 110052,
-        angel = 110053,
+        고블린 = 110011,
+        슬라임 = 110012,
+        픽시 = 110021,
+        정령 = 110022,
+        오크 = 110031,
+        언데드 = 110032,
+        골렘 = 110033,
+        큐피트 = 110041,
+        가고일 = 110042,
+        오우거 = 110051,
+        악마 = 110052,
+        천사 = 110053,
     };
 
     public GameObject goblin;
