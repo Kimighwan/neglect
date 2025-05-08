@@ -197,7 +197,10 @@ public class QuestResult : BaseUI
 
     private void SetMonsterPlayerPrefs()
     {
-        PlayerPrefs.SetInt($"{PoolManager.Instance.questData[resultIndex].questMonster}", 1);
+        if(PlayerPrefs.GetInt($"{PoolManager.Instance.questData[resultIndex].questMonster}") == 0)
+            PlayerPrefs.SetInt($"{PoolManager.Instance.questData[resultIndex].questMonster}", -1);
+        else
+            PlayerPrefs.SetInt($"{PoolManager.Instance.questData[resultIndex].questMonster}", 1);
     }
 
     private void SetCommon()

@@ -4,6 +4,22 @@ using UnityEngine.UI;
 
 public class MonsterUI : BaseUI
 {
+    private enum monsterOrder
+    {
+        goblin = 110011,
+        slime = 110012,
+        pixie = 110021,
+        soul = 110022,
+        oak = 110031,
+        undead = 110032,
+        golem = 110033,
+        cupid = 110041,
+        gargoyle = 110042,
+        ogre = 110051,
+        devil = 110052,
+        angel = 110053,
+    };
+
     public GameObject goblin;
     public GameObject slime;
     public GameObject pixie;
@@ -16,6 +32,31 @@ public class MonsterUI : BaseUI
     public GameObject ogre;
     public GameObject devil;
     public GameObject angel;
+
+    [SerializeField]
+    GameObject goblinRedDot;
+    [SerializeField]
+    GameObject slimeRedDot;
+    [SerializeField]
+    GameObject pixieRedDot;
+    [SerializeField]
+    GameObject soulRedDot;
+    [SerializeField]
+    GameObject oakRedDot;
+    [SerializeField]
+    GameObject undeadRedDot;
+    [SerializeField]
+    GameObject golemRedDot;
+    [SerializeField]
+    GameObject cupidRedDot;
+    [SerializeField]
+    GameObject gargoyleRedDot;
+    [SerializeField]
+    GameObject ogreRedDot;
+    [SerializeField]
+    GameObject devilRedDot;
+    [SerializeField]
+    GameObject angelRedDot;
 
     [SerializeField]
     private Sprite pressedImg;
@@ -55,6 +96,7 @@ public class MonsterUI : BaseUI
         AudioManager.Instance.PlaySFX(SFX.BookFlip3);
         UIManager.Instance.CloseUI(this);
         UIManager.Instance.OpenUI<MonsterDescUI>(monsterDescUI);
+        PlayerPrefs.SetInt($"{((monsterOrder)id)}", 1);
     }
 
     public void BackBtn()
@@ -71,11 +113,14 @@ public class MonsterUI : BaseUI
         // 안 깼으면 버튼 비활성화
         // 안 깼으면 Text ???? 표시
 
-        if (PlayerPrefs.GetInt("고블린") == 1)
+        if (PlayerPrefs.GetInt("고블린") != 0)
         {
             goblin.GetComponent<Button>().interactable = true;
             goblin.GetComponentInChildren<TextMeshProUGUI>().text = "고블린";
             goblin.GetComponent<Image>().sprite = pressedImg;
+
+            if(PlayerPrefs.GetInt("고블린") == -1) goblinRedDot.SetActive(true);
+            else goblinRedDot.SetActive(false);
         }
         else
         {
@@ -84,11 +129,14 @@ public class MonsterUI : BaseUI
             goblin.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("슬라임") == 1)
+        if (PlayerPrefs.GetInt("슬라임") != 0)
         {
             slime.GetComponent<Button>().interactable = true;
             slime.GetComponentInChildren<TextMeshProUGUI>().text = "슬라임";
             slime.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("슬라임") == -1) slimeRedDot.SetActive(true);
+            else slimeRedDot.SetActive(false);
         }
         else
         {
@@ -97,11 +145,14 @@ public class MonsterUI : BaseUI
             slime.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("픽시") == 1)
+        if (PlayerPrefs.GetInt("픽시") != 0)
         {
             pixie.GetComponent<Button>().interactable = true;
             pixie.GetComponentInChildren<TextMeshProUGUI>().text = "픽시";
             pixie.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("픽시") == -1) pixieRedDot.SetActive(true);
+            else pixieRedDot.SetActive(false);
         }
         else
         {
@@ -110,11 +161,14 @@ public class MonsterUI : BaseUI
             pixie.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("정령") == 1)
+        if (PlayerPrefs.GetInt("정령") != 0)
         {
             soul.GetComponent<Button>().interactable = true;
             soul.GetComponentInChildren<TextMeshProUGUI>().text = "정령";
             soul.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("정령") == -1) soulRedDot.SetActive(true);
+            else soulRedDot.SetActive(false);
         }
         else
         {
@@ -123,11 +177,14 @@ public class MonsterUI : BaseUI
             soul.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("오크") == 1)
+        if (PlayerPrefs.GetInt("오크") != 0)
         {
             oak.GetComponent<Button>().interactable = true;
             oak.GetComponentInChildren<TextMeshProUGUI>().text = "오크";
             oak.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("오크") == -1) oakRedDot.SetActive(true);
+            else oakRedDot.SetActive(false);
         }
         else
         {
@@ -136,11 +193,14 @@ public class MonsterUI : BaseUI
             oak.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("언데드") == 1)
+        if (PlayerPrefs.GetInt("언데드") != 0)
         {
             undead.GetComponent<Button>().interactable = true;
             undead.GetComponentInChildren<TextMeshProUGUI>().text = "언데드";
             undead.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("언데드") == -1) undeadRedDot.SetActive(true);
+            else undeadRedDot.SetActive(false);
         }
         else
         {
@@ -149,11 +209,14 @@ public class MonsterUI : BaseUI
             undead.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("골렘") == 1)
+        if (PlayerPrefs.GetInt("골렘") != 0)
         {
             golem.GetComponent<Button>().interactable = true;
             golem.GetComponentInChildren<TextMeshProUGUI>().text = "골렘";
             golem.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("골렘") == -1) golemRedDot.SetActive(true);
+            else golemRedDot.SetActive(false);
         }
         else
         {
@@ -162,11 +225,14 @@ public class MonsterUI : BaseUI
             golem.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("큐피트") == 1)
+        if (PlayerPrefs.GetInt("큐피트") != 0)
         {
             cupid.GetComponent<Button>().interactable = true;
             cupid.GetComponentInChildren<TextMeshProUGUI>().text = "큐피트";
             cupid.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("큐피트") == -1) cupidRedDot.SetActive(true);
+            else cupidRedDot.SetActive(false);
         }
         else
         {
@@ -176,11 +242,14 @@ public class MonsterUI : BaseUI
         }
 
 
-        if (PlayerPrefs.GetInt("가고일") == 1)
+        if (PlayerPrefs.GetInt("가고일") != 0)
         {
             gargoyle.GetComponent<Button>().interactable = true;
             gargoyle.GetComponentInChildren<TextMeshProUGUI>().text = "가고일";
             gargoyle.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("가고일") == -1) gargoyleRedDot.SetActive(true);
+            else gargoyleRedDot.SetActive(false);
         }
         else
         {
@@ -189,11 +258,14 @@ public class MonsterUI : BaseUI
             gargoyle.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("오우거") == 1)
+        if (PlayerPrefs.GetInt("오우거") != 0)
         {
             ogre.GetComponent<Button>().interactable = true;
             ogre.GetComponentInChildren<TextMeshProUGUI>().text = "오우거";
             ogre.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("오우거") == -1) ogreRedDot.SetActive(true);
+            else ogreRedDot.SetActive(false);
         }
         else
         {
@@ -202,11 +274,14 @@ public class MonsterUI : BaseUI
             ogre.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("악마") == 1)
+        if (PlayerPrefs.GetInt("악마") != 0)
         {
             devil.GetComponent<Button>().interactable = true;
             devil.GetComponentInChildren<TextMeshProUGUI>().text = "악마";
             devil.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("악마") == -1) devilRedDot.SetActive(true);
+            else devilRedDot.SetActive(false);
         }
         else
         {
@@ -215,11 +290,14 @@ public class MonsterUI : BaseUI
             devil.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("천사") == 1)
+        if (PlayerPrefs.GetInt("천사") != 0)
         {
             angel.GetComponent<Button>().interactable = true;
             angel.GetComponentInChildren<TextMeshProUGUI>().text = "천사";
             angel.GetComponent<Image>().sprite = pressedImg;
+
+            if (PlayerPrefs.GetInt("천사") == -1) angelRedDot.SetActive(true);
+            else angelRedDot.SetActive(false);
         }
         else
         {
