@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
     [Header("카메라 이동 속도 (units/sec)")]
-    public float cameraSpeed = 5f;
+    private float cameraSpeed = 15f;
 
     [Header("화면 가장자리 임계값 (pixels)")]
     public float edgeThreshold = 50f;
