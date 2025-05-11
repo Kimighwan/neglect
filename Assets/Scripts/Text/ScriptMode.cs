@@ -39,6 +39,7 @@ public class ScriptMode : MonoBehaviour
     }
 
     public void PrepareScriptText(int startId, int endId, bool b) {
+        Camera.main.GetComponent<CameraMove>().SetCameraLock(true);
         for (int i = startId; i <= endId; i++)
         {
             ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
@@ -124,6 +125,7 @@ public class ScriptMode : MonoBehaviour
 
     private void EndScripts() {
         GameManager.gameManager.PauseGame();
+        Camera.main.GetComponent<CameraMove>().SetCameraLock(false);
         int id = scriptList[currentLine - 1].scriptId;
         data.scr.text = "";
         ActiveObjects(false);

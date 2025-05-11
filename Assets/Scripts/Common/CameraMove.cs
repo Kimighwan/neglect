@@ -26,11 +26,14 @@ public class CameraMove : MonoBehaviour
     public float maxOrthoSize = 20f;
 
     private Camera cam;
+    private bool isLocked = false;
+    private Vector3 originCamPosition;
 
     private void Awake()
     {
         cam = GetComponent<Camera>();
         if (cam == null) cam = Camera.main;
+        originCamPosition = cam.transform.position;
     }
 
     /// <summary>
@@ -55,6 +58,7 @@ public class CameraMove : MonoBehaviour
 
     private void Update()
     {
+        if (isLocked) return;
         Vector3 mousePos = Input.mousePosition;
 
         // 좌/우
@@ -103,5 +107,10 @@ public class CameraMove : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         transform.position = pos;
+    }
+
+    public void SetCameraLock(bool b) {
+        isLocked = b;
+        if (b) transform.position = originCamPosition;
     }
 }
