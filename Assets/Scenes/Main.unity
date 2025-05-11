@@ -5632,7 +5632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973911b0dde539043bccccb5325ecb52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 10
   edgeThreshold: 30
   minX: -5
   maxX: 5

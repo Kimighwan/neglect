@@ -51,6 +51,13 @@ public class GameManager : MonoBehaviour
     private int index = 0;
     void Update()
     {
+        if (endGame) {
+            if (Input.anyKeyDown || Input.GetMouseButtonDown(0)) {
+                // 메뉴로 돌아가기
+                SceneManager.LoadScene(0);
+            }
+        }
+
         if (!pause && !scriptMode.isScriptMode) {
             info.UpdateGameInfo();
         }

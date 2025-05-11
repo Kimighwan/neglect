@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Febucci.UI;
+using UnityEngine.SceneManagement;
 
 public class ScriptMode : MonoBehaviour
 {
