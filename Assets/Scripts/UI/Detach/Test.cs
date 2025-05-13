@@ -259,6 +259,8 @@ public class Test : MonoBehaviour
 
             PoolManager.Instance.questData.Remove(index);
 
+            PoolManager.Instance.resultList.Remove(index);  // 의뢰 결과 삭제
+
             PoolManager.Instance.questTxt[index - 1].text = "의뢰 선택";
 
             PoolManager.Instance.questBtn[index - 1].interactable = true;
@@ -287,6 +289,77 @@ public class Test : MonoBehaviour
 
             PoolManager.Instance.adventureBtn[index - 1].interactable = true;
         }
+    }
+
+    public void GiveUpBtn(int index) // 1 ~ 5
+    {
+        var cData = new ConfirmUIData();
+        cData.confirmType = ConfirmType.OK_CANCEL;
+        cData.descTxt = "파견을 포기하겠습니까?";
+        cData.okBtnTxt = "네";
+        cData.cancelBtnTxt = "아니요";
+        cData.onClickOKBtn = () =>
+        {
+            GiveUp(index);
+        };
+        UIManager.Instance.OpenUI<ConfirmUI>(cData);
+    }
+
+    private void GiveUp(int index)
+    {
+        //// 모험가 파견 상태 해제
+        //foreach (var i in PoolManager.Instance.questManagers[index - 1].adventureDatas)
+        //{
+        //    PoolManager.Instance.usingAdventureList.Remove(i.adventureId); 
+        //}
+
+        //// 파견창에 맞는 모험가 데이터 삭제
+        //PoolManager.Instance.questManagers[index - 1].adventureDatas.Clear();
+
+
+        // 의뢰 제거
+        int deleteId = PoolManager.Instance.questData[index].questId;
+
+        var questId = PlayerPrefs.GetString("QuestId");
+        var questIds = questId.Split(',');
+
+        string addId = "";
+
+        foreach (var item in questIds)
+        {
+            int questIdOfInt = Convert.ToInt32(item);
+
+            if (deleteId != questIdOfInt)
+            {
+                if (addId == "")
+                    addId += questIdOfInt.ToString();
+                else
+                    addId += "," + questIdOfInt.ToString();
+            }
+        }
+
+        PlayerPrefs.SetString("QuestId", addId);
+
+
+        OnClickAwakeBtn(index);
+
+        // 각 파견창의 게이지 비활성화
+        PoolManager.Instance.gaugeObject[index - 1].SetActive(false);
+
+        // 초기화 버튼 활성화
+        PoolManager.Instance.awakeBtn[index - 1].SetActive(true);
+
+        // 결과 확인 버튼 비활성화
+        PoolManager.Instance.resultBtn[index - 1].gameObject.SetActive(false);
+
+        // 버튼 다시 활성화
+        PoolManager.Instance.BtnActive(index);
+
+        // 버튼 Text 다시 설정
+        PoolManager.Instance.questTxt[index - 1].text = "의뢰 선택";
+        PoolManager.Instance.adventureTxt[index - 1].text = "모험가 선택";
+
+        image.SetActive(false);
     }
 }
 
