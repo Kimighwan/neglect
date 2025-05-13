@@ -26,9 +26,6 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
     // QuestManager 이전
 
-    //// 파견창 Index에 따른 모험가 리스트
-    //public Dictionary<int, List<AdventureData>> adventureDatas = new Dictionary<int, List<AdventureData>>();
-    public List<AdventureData> ingAdventureDatas = new List<AdventureData>(); // 현재 파견 중인 모험가들
 
     // 파견창 Index에 따른 QuestData
     public Dictionary<int, QuestData> questData = new Dictionary<int, QuestData>();
