@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 
 public class DataTableManager : SingletonBehaviour<DataTableManager>
 {
@@ -117,6 +118,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
             {
                 adventureId = Convert.ToInt32(data["char_id"]),
                 adventureIndex = Convert.ToInt32(data["index"]),
+                adventureSkil = Convert.ToInt32(data["skill"]),
                 adventureName = data["name"].ToString(),
                 adventureTier = data["tier"].ToString(),
                 adventurePosition = data["position"].ToString(),
@@ -246,6 +248,7 @@ public class AdventureData : InfiniteScrollData // BaseUIData
 {
     public int adventureId;
     public int adventureIndex;
+    public int adventureSkil;
     public string adventureName;
     public string adventurePosition;
     public string adventureClass;

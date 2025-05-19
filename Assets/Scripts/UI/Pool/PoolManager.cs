@@ -26,17 +26,12 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
     // QuestManager 이전
 
-    //// 파견창 Index에 따른 모험가 리스트
-    //public Dictionary<int, List<AdventureData>> adventureDatas = new Dictionary<int, List<AdventureData>>();
-    public List<AdventureData> ingAdventureDatas = new List<AdventureData>(); // 현재 파견 중인 모험가들
 
     // 파견창 Index에 따른 QuestData
     public Dictionary<int, QuestData> questData = new Dictionary<int, QuestData>();
 
     public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 전멸, 성공, 대성공 확인
 
-    // 같은 의미인 객체가 존재 public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
-    // 같은 의미인 객체가 존재public Button[] adventureBtn;   // 파견창의 모험가 선택 버튼
     public Button[] resultBtn;      // 파견창의 결과 확인 버튼
 
     public TextMeshProUGUI[] questTxt;

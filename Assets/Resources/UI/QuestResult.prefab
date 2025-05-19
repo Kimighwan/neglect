@@ -681,7 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f5cd539f88b394f8f191b4864157cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiAnim: {fileID: 0}
+  anim: {fileID: 0}
   txt: {fileID: 899107957277340837}
   rewardTxt: {fileID: 785255170311610232}
   receiptBtn: {fileID: 7276011058340976849}
