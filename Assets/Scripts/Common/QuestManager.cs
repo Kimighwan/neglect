@@ -76,7 +76,6 @@ public class QuestManager : MonoBehaviour
             if (!PoolManager.Instance.ready) return;
         }
 
-
         SetQuest(detachIndex);
 
         SetTier(detachIndex);                 // 등급 점수
@@ -138,6 +137,16 @@ public class QuestManager : MonoBehaviour
 
         return false ;
     }
+
+    //private void SetSkil()
+    //{
+    //    skil.Clear();
+
+    //    foreach(var i in adventureDatas)
+    //    {
+    //        skil[i.adventureId] = i.adventureSkil;
+    //    }
+    //}
 
     private void SetQuest(int index)
     {
@@ -275,21 +284,45 @@ public class QuestManager : MonoBehaviour
 
         foreach (var item in adventureDatas)
         {
-            if (monsterWeak != "")
+            var typeWords = item.adventureType.Split(',');
+
+            foreach (var word in typeWords)
             {
-                if (item.adventureType == monsterWeak)
+                if (monsterWeak != "")
                 {
-                    weakRate += ((float)0.1 * monsterWeakSize);
+                    if (word == monsterWeak)
+                    {
+                        weakRate += ((float)0.1 * monsterWeakSize);
+                    }
+                }
+
+                if (monsterStrong != "")
+                {
+                    if (word == monsterStrong)
+                    {
+                        strongRate += ((float)0.1 * monsterStrongSize);
+                    }
                 }
             }
 
-            if (monsterStrong != "")
-            {
-                if (item.adventureType == monsterStrong)
-                {
-                    strongRate += ((float)0.1 * monsterStrongSize);
-                }
-            }
+
+            //if (monsterWeak != "")
+            //{
+               
+
+            //    //if (item.adventureType == monsterWeak)
+            //    //{
+            //    //    weakRate += ((float)0.1 * monsterWeakSize);
+            //    //}
+            //}
+
+            //if (monsterStrong != "")
+            //{
+            //    if (item.adventureType == monsterStrong)
+            //    {
+            //        strongRate += ((float)0.1 * monsterStrongSize);
+            //    }
+            //}
         }
     }
 
@@ -374,6 +407,16 @@ public class QuestManager : MonoBehaviour
         resultRateIcon = 3;
         iconColor = 3;
 
+        //// 100 확률로 성공하지만 보수가 1/2됨
+        //foreach(var i in adventureDatas)
+        //{
+        //    if (skil[i.adventureId] == 6)
+        //    {
+        //        PoolManager.Instance.resultList[index] = 0;      // 일반 성공
+        //        return;
+        //    }
+        //}        
+
         if (check == 1)  // 대성공 확률 존재
         {
             if (bigRate >= 10)  // 초록
@@ -419,7 +462,7 @@ public class QuestManager : MonoBehaviour
                 PoolManager.Instance.resultList[index] = 0;      // 일반 성공
                 return;
             }
-        }        
+        }
     }
 }
 

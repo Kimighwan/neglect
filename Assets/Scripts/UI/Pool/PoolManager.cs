@@ -32,8 +32,6 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
     public Dictionary<int, int> resultList = new Dictionary<int, int>();  // 파견 Index에 따른 전멸, 성공, 대성공 확인
 
-    // 같은 의미인 객체가 존재 public Button[] questBtn;       // 파견창의 의뢰 선택 버튼
-    // 같은 의미인 객체가 존재public Button[] adventureBtn;   // 파견창의 모험가 선택 버튼
     public Button[] resultBtn;      // 파견창의 결과 확인 버튼
 
     public TextMeshProUGUI[] questTxt;

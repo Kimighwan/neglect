@@ -16,6 +16,7 @@ public class QuestResult : BaseUI
     [SerializeField] public int resultIndex;        // 파견창 인덱스
     private int result;             // 결과 / -1 : 전멸 / 0 : 일반 성공 / 1 : 대성공
     private int reward;
+    private Dictionary<int, int> skil = new Dictionary<int, int>();
 
     private void OnEnable()
     {
@@ -23,6 +24,8 @@ public class QuestResult : BaseUI
         receiptBtn.SetActive(false);
         diaOKBtn.SetActive(false);
         StartCoroutine(UpdateResultCo());
+
+        skil.Clear();
     }
 
     public override void SetInfo(BaseUIData uiData)
@@ -120,12 +123,14 @@ public class QuestResult : BaseUI
     {
         txt.text = "의뢰 확인 중...";
 
-        yield return new WaitForSeconds(1.5f);      
+        yield return new WaitForSeconds(1.5f);
 
         // 의뢰 종료시 모험가 다시 사용하게 Test
         foreach (var i in PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas)
         {
+            skil[i.adventureId] = i.adventureSkil;
             PoolManager.Instance.usingAdventureList.Remove(i.adventureId); // 파견 중이였던 걸 해제
+            Debug.Log("i.adventureSkil" + i.adventureSkil);
         }
         
         if (PoolManager.Instance.resultList[resultIndex] == 0)
@@ -138,6 +143,9 @@ public class QuestResult : BaseUI
             SetMonsterPlayerPrefs();
 
             reward = PoolManager.Instance.questData[resultIndex].questReward;
+
+            if (skil.ContainsValue(6)) reward /= 2;
+
             GameInfo.gameInfo.CheckSuccessTier(PoolManager.Instance.questData[resultIndex].questLevel);
             ScriptDialogHandler.handler.ConditionalScriptPlay(PoolManager.Instance.questData[resultIndex].questId);
         }
@@ -163,7 +171,7 @@ public class QuestResult : BaseUI
 
             reward = 0;
 
-            // 전멸 시 모험가 삭제 Test
+            // 전멸 시 모험가 삭제
             foreach (var i in PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas)
             {
                 var adventureId = PlayerPrefs.GetString("AdventureId");
