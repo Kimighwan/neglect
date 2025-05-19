@@ -94,7 +94,7 @@ public class MonsterUI : BaseUI
         DataTableManager.Instance.monsterDescId = id;
         var monsterDescUI = new BaseUIData();
         AudioManager.Instance.PlaySFX(SFX.BookFlip3);
-        UIManager.Instance.CloseUI(this);
+        //UIManager.Instance.CloseUI(this);
         UIManager.Instance.OpenUI<MonsterDescUI>(monsterDescUI);
         PlayerPrefs.SetInt($"{((monsterOrder)id)}", 1);
     }
@@ -125,7 +125,7 @@ public class MonsterUI : BaseUI
         else
         {
             goblin.GetComponent<Button>().interactable = false;
-            goblin.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            goblin.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             goblin.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -141,7 +141,7 @@ public class MonsterUI : BaseUI
         else
         {
             slime.GetComponent<Button>().interactable = false;
-            slime.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            slime.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             slime.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -157,7 +157,7 @@ public class MonsterUI : BaseUI
         else
         {
             pixie.GetComponent<Button>().interactable = false;
-            pixie.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            pixie.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             pixie.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -173,7 +173,7 @@ public class MonsterUI : BaseUI
         else
         {
             soul.GetComponent<Button>().interactable = false;
-            soul.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            soul.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             soul.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -189,7 +189,7 @@ public class MonsterUI : BaseUI
         else
         {
             oak.GetComponent<Button>().interactable = false;
-            oak.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            oak.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             oak.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -205,7 +205,7 @@ public class MonsterUI : BaseUI
         else
         {
             undead.GetComponent<Button>().interactable = false;
-            undead.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            undead.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             undead.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -221,7 +221,7 @@ public class MonsterUI : BaseUI
         else
         {
             golem.GetComponent<Button>().interactable = false;
-            golem.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            golem.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             golem.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -237,7 +237,7 @@ public class MonsterUI : BaseUI
         else
         {
             cupid.GetComponent<Button>().interactable = false;
-            cupid.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            cupid.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             cupid.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -254,7 +254,7 @@ public class MonsterUI : BaseUI
         else
         {
             gargoyle.GetComponent<Button>().interactable = false;
-            gargoyle.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            gargoyle.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             gargoyle.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -270,7 +270,7 @@ public class MonsterUI : BaseUI
         else
         {
             ogre.GetComponent<Button>().interactable = false;
-            ogre.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            ogre.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             ogre.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -286,7 +286,7 @@ public class MonsterUI : BaseUI
         else
         {
             devil.GetComponent<Button>().interactable = false;
-            devil.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            devil.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             devil.GetComponent<Image>().sprite = unpressedImg;
         }
 
@@ -302,7 +302,7 @@ public class MonsterUI : BaseUI
         else
         {
             angel.GetComponent<Button>().interactable = false;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?????";
+            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             angel.GetComponent<Image>().sprite = unpressedImg;
         }
     }
