@@ -70,6 +70,8 @@ public class StateSceneManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("spector"))
             PlayerPrefs.SetInt("spector", 0);
 
+        if (!PlayerPrefs.HasKey("hopGoblin"))
+            PlayerPrefs.SetInt("hopGoblin", 0);
 
 
 
