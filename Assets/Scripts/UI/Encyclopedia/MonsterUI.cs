@@ -18,14 +18,14 @@ public class MonsterUI : BaseUI
         오우거 = 110051,
         악마 = 110052,
         천사 = 110053,
-        bopalrabbit = 110050,
-        durahan = 110043,
-        goblinJusul = 110044,
-        goblinKing = 110054,
-        goblinWarrior = 110034,
-        honrabbit = 110013,
-        spector = 110024,
-        hopGoblin = 110023,
+        보팔래빗 = 110050,
+        듀라한 = 110043,
+        고블린주술사 = 110044,
+        고블린킹 = 110054,
+        고블린워리어 = 110034,
+        혼래빗 = 110013,
+        스펙터 = 110024,
+        홉고블린 = 110023,
     };
 
     [Header("Obj")]
@@ -172,6 +172,7 @@ public class MonsterUI : BaseUI
         //UIManager.Instance.CloseUI(this);
         UIManager.Instance.OpenUI<MonsterDescUI>(monsterDescUI);
         PlayerPrefs.SetInt($"{((monsterOrder)id)}", 1);
+        Debug.Log($"이름 : {(monsterOrder)id}");
     }
 
     public void BackBtn()
@@ -247,7 +248,7 @@ public class MonsterUI : BaseUI
         }
         else
         {
-            race.GetComponent<Button>().interactable = raceImg;
+            race.GetComponent<Button>().interactable = false;
             race.GetComponentInChildren<TextMeshProUGUI>().text = "?";
             race.GetComponent<Image>().sprite = unpressedImg;
         }
@@ -381,132 +382,132 @@ public class MonsterUI : BaseUI
             angel.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("bopalrabbit") != 0)
+        if (PlayerPrefs.GetInt("보팔래빗") != 0)
         {
-            angel.GetComponent<Button>().interactable = true;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "bopalrabbit";
-            angel.GetComponent<Image>().sprite = angelImg;
+            bopalrabbit.GetComponent<Button>().interactable = true;
+            bopalrabbit.GetComponentInChildren<TextMeshProUGUI>().text = "bopalrabbit";
+            bopalrabbit.GetComponent<Image>().sprite = bopalrabbitImg;
 
-            if (PlayerPrefs.GetInt("bopalrabbit") == -1) angelRedDot.SetActive(true);
-            else angelRedDot.SetActive(false);
+            if (PlayerPrefs.GetInt("보팔래빗") == -1) bopalrabbitRedDot.SetActive(true);
+            else bopalrabbitRedDot.SetActive(false);
         }
         else
         {
-            angel.GetComponent<Button>().interactable = false;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?";
-            angel.GetComponent<Image>().sprite = unpressedImg;
+            bopalrabbit.GetComponent<Button>().interactable = false;
+            bopalrabbit.GetComponentInChildren<TextMeshProUGUI>().text = "?";
+            bopalrabbit.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("durahan") != 0)
+        if (PlayerPrefs.GetInt("듀라한") != 0)
         {
-            angel.GetComponent<Button>().interactable = true;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "durahan";
-            angel.GetComponent<Image>().sprite = angelImg;
+            durahan.GetComponent<Button>().interactable = true;
+            durahan.GetComponentInChildren<TextMeshProUGUI>().text = "durahan";
+            durahan.GetComponent<Image>().sprite = durahanImg;
 
-            if (PlayerPrefs.GetInt("durahan") == -1) angelRedDot.SetActive(true);
-            else angelRedDot.SetActive(false);
-        }
-        else
-        {
-            angel.GetComponent<Button>().interactable = false;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?";
-            angel.GetComponent<Image>().sprite = unpressedImg;
-        }
-
-        if (PlayerPrefs.GetInt("durahan") != 0)
-        {
-            angel.GetComponent<Button>().interactable = true;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "durahan";
-            angel.GetComponent<Image>().sprite = angelImg;
-
-            if (PlayerPrefs.GetInt("durahan") == -1) angelRedDot.SetActive(true);
-            else angelRedDot.SetActive(false);
+            if (PlayerPrefs.GetInt("듀라한") == -1) durahanRedDot.SetActive(true);
+            else durahanRedDot.SetActive(false);
         }
         else
         {
-            angel.GetComponent<Button>().interactable = false;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?";
-            angel.GetComponent<Image>().sprite = unpressedImg;
+            durahan.GetComponent<Button>().interactable = false;
+            durahan.GetComponentInChildren<TextMeshProUGUI>().text = "?";
+            durahan.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("goblinKing") != 0)
+        if (PlayerPrefs.GetInt("고블린주술사") != 0)
         {
-            angel.GetComponent<Button>().interactable = true;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "goblinKing";
-            angel.GetComponent<Image>().sprite = angelImg;
+            goblinJusul.GetComponent<Button>().interactable = true;
+            goblinJusul.GetComponentInChildren<TextMeshProUGUI>().text = "goblinJusul";
+            goblinJusul.GetComponent<Image>().sprite = goblinJusulImg;
 
-            if (PlayerPrefs.GetInt("goblinKing") == -1) angelRedDot.SetActive(true);
-            else angelRedDot.SetActive(false);
-        }
-        else
-        {
-            angel.GetComponent<Button>().interactable = false;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?";
-            angel.GetComponent<Image>().sprite = unpressedImg;
-        }
-
-        if (PlayerPrefs.GetInt("goblinWarrior") != 0)
-        {
-            angel.GetComponent<Button>().interactable = true;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "goblinWarrior";
-            angel.GetComponent<Image>().sprite = angelImg;
-
-            if (PlayerPrefs.GetInt("goblinWarrior") == -1) angelRedDot.SetActive(true);
-            else angelRedDot.SetActive(false);
+            if (PlayerPrefs.GetInt("고블린주술사") == -1) goblinJusulRedDot.SetActive(true);
+            else goblinJusulRedDot.SetActive(false);
         }
         else
         {
-            angel.GetComponent<Button>().interactable = false;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?";
-            angel.GetComponent<Image>().sprite = unpressedImg;
+            goblinJusul.GetComponent<Button>().interactable = false;
+            goblinJusul.GetComponentInChildren<TextMeshProUGUI>().text = "?";
+            goblinJusul.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("honrabbit") != 0)
+        if (PlayerPrefs.GetInt("고블린킹") != 0)
         {
-            angel.GetComponent<Button>().interactable = true;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "honrabbit";
-            angel.GetComponent<Image>().sprite = angelImg;
+            goblinKing.GetComponent<Button>().interactable = true;
+            goblinKing.GetComponentInChildren<TextMeshProUGUI>().text = "goblinKing";
+            goblinKing.GetComponent<Image>().sprite = goblinKingImg;
 
-            if (PlayerPrefs.GetInt("honrabbit") == -1) angelRedDot.SetActive(true);
-            else angelRedDot.SetActive(false);
-        }
-        else
-        {
-            angel.GetComponent<Button>().interactable = false;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?";
-            angel.GetComponent<Image>().sprite = unpressedImg;
-        }
-
-        if (PlayerPrefs.GetInt("spector") != 0)
-        {
-            angel.GetComponent<Button>().interactable = true;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "spector";
-            angel.GetComponent<Image>().sprite = angelImg;
-
-            if (PlayerPrefs.GetInt("spector") == -1) angelRedDot.SetActive(true);
-            else angelRedDot.SetActive(false);
+            if (PlayerPrefs.GetInt("고블린킹") == -1) goblinKingRedDot.SetActive(true);
+            else goblinKingRedDot.SetActive(false);
         }
         else
         {
-            angel.GetComponent<Button>().interactable = false;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?";
-            angel.GetComponent<Image>().sprite = unpressedImg;
+            goblinKing.GetComponent<Button>().interactable = false;
+            goblinKing.GetComponentInChildren<TextMeshProUGUI>().text = "?";
+            goblinKing.GetComponent<Image>().sprite = unpressedImg;
         }
 
-        if (PlayerPrefs.GetInt("hopGoblin") != 0)
+        if (PlayerPrefs.GetInt("고블린워리어") != 0)
         {
-            angel.GetComponent<Button>().interactable = true;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "hopGoblin";
-            angel.GetComponent<Image>().sprite = angelImg;
+            goblinWarrior.GetComponent<Button>().interactable = true;
+            goblinWarrior.GetComponentInChildren<TextMeshProUGUI>().text = "goblinWarrior";
+            goblinWarrior.GetComponent<Image>().sprite = goblinWarriorImg;
 
-            if (PlayerPrefs.GetInt("hopGoblin") == -1) angelRedDot.SetActive(true);
-            else angelRedDot.SetActive(false);
+            if (PlayerPrefs.GetInt("고블린워리어") == -1) goblinWarriorRedDot.SetActive(true);
+            else goblinWarriorRedDot.SetActive(false);
         }
         else
         {
-            angel.GetComponent<Button>().interactable = false;
-            angel.GetComponentInChildren<TextMeshProUGUI>().text = "?";
-            angel.GetComponent<Image>().sprite = unpressedImg;
+            goblinWarrior.GetComponent<Button>().interactable = false;
+            goblinWarrior.GetComponentInChildren<TextMeshProUGUI>().text = "?";
+            goblinWarrior.GetComponent<Image>().sprite = unpressedImg;
+        }
+
+        if (PlayerPrefs.GetInt("혼래빗") != 0)
+        {
+            honrabbit.GetComponent<Button>().interactable = true;
+            honrabbit.GetComponentInChildren<TextMeshProUGUI>().text = "honrabbit";
+            honrabbit.GetComponent<Image>().sprite = honrabbitImg;
+
+            if (PlayerPrefs.GetInt("혼래빗") == -1) honrabbitRedDot.SetActive(true);
+            else honrabbitRedDot.SetActive(false);
+        }
+        else
+        {
+            honrabbit.GetComponent<Button>().interactable = false;
+            honrabbit.GetComponentInChildren<TextMeshProUGUI>().text = "?";
+            honrabbit.GetComponent<Image>().sprite = unpressedImg;
+        }
+
+        if (PlayerPrefs.GetInt("스펙터") != 0)
+        {
+            spector.GetComponent<Button>().interactable = true;
+            spector.GetComponentInChildren<TextMeshProUGUI>().text = "spector";
+            spector.GetComponent<Image>().sprite = spectorImg;
+
+            if (PlayerPrefs.GetInt("스펙터") == -1) spectorRedDot.SetActive(true);
+            else spectorRedDot.SetActive(false);
+        }
+        else
+        {
+            spector.GetComponent<Button>().interactable = false;
+            spector.GetComponentInChildren<TextMeshProUGUI>().text = "?";
+            spector.GetComponent<Image>().sprite = unpressedImg;
+        }
+
+        if (PlayerPrefs.GetInt("홉고블린") != 0)
+        {
+            hopGoblin.GetComponent<Button>().interactable = true;
+            hopGoblin.GetComponentInChildren<TextMeshProUGUI>().text = "hopGoblin";
+            hopGoblin.GetComponent<Image>().sprite = hopGoblinImg;
+
+            if (PlayerPrefs.GetInt("홉고블린") == -1) hopGoblinRedDot.SetActive(true);
+            else hopGoblinRedDot.SetActive(false);
+        }
+        else
+        {
+            hopGoblin.GetComponent<Button>().interactable = false;
+            hopGoblin.GetComponentInChildren<TextMeshProUGUI>().text = "?";
+            hopGoblin.GetComponent<Image>().sprite = unpressedImg;
         }
     }
     public override void OnClickCloseButton()

@@ -49,29 +49,29 @@ public class StateSceneManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("천사"))
             PlayerPrefs.SetInt("천사", 0);
 
-        if (!PlayerPrefs.HasKey("bopalrabbit"))
-            PlayerPrefs.SetInt("bopalrabbit", 0);
+        if (!PlayerPrefs.HasKey("보팔래빗"))
+            PlayerPrefs.SetInt("보팔래빗", 0);
 
-        if (!PlayerPrefs.HasKey("durahan"))
-            PlayerPrefs.SetInt("durahan", 0);
+        if (!PlayerPrefs.HasKey("듀라한"))
+            PlayerPrefs.SetInt("듀라한", 0);
 
-        if (!PlayerPrefs.HasKey("goblinJusul"))
-            PlayerPrefs.SetInt("goblinJusul", 0);
+        if (!PlayerPrefs.HasKey("고블린주술사"))
+            PlayerPrefs.SetInt("고블린주술사", 0);
 
-        if (!PlayerPrefs.HasKey("goblinKing"))
-            PlayerPrefs.SetInt("goblinKing", 0);
+        if (!PlayerPrefs.HasKey("고블린킹"))
+            PlayerPrefs.SetInt("고블린킹", 0);
 
-        if (!PlayerPrefs.HasKey("goblinWarrior"))
-            PlayerPrefs.SetInt("goblinWarrior", 0);
+        if (!PlayerPrefs.HasKey("고블린워리어"))
+            PlayerPrefs.SetInt("고블린워리어", 0);
 
-        if (!PlayerPrefs.HasKey("honrabbit"))
-            PlayerPrefs.SetInt("honrabbit", 0);
+        if (!PlayerPrefs.HasKey("혼래빗"))
+            PlayerPrefs.SetInt("혼래빗", 0);
 
-        if (!PlayerPrefs.HasKey("spector"))
-            PlayerPrefs.SetInt("spector", 0);
+        if (!PlayerPrefs.HasKey("스펙터"))
+            PlayerPrefs.SetInt("스펙터", 0);
 
-        if (!PlayerPrefs.HasKey("hopGoblin"))
-            PlayerPrefs.SetInt("hopGoblin", 0);
+        if (!PlayerPrefs.HasKey("홉고블린"))
+            PlayerPrefs.SetInt("홉고블린", 0);
 
 
 
