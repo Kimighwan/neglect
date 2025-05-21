@@ -262,7 +262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -154, y: -75}
+  m_AnchoredPosition: {x: -90, y: -75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4287506774086802879
@@ -295,8 +295,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: (??/??)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
-  m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 560c50a6a6cb844478ecedd8891a1cfd, type: 2}
+  m_sharedMaterial: {fileID: -2651989326294896850, guid: 560c50a6a6cb844478ecedd8891a1cfd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -394,7 +394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0000041417584}
+  m_AnchoredPosition: {x: 0, y: 0.0000047515528}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2192143433498797932
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6898578379922190051}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9998548
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1697,7 +1697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -349, y: -71}
+  m_AnchoredPosition: {x: -320, y: -71}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1529809130142430557
@@ -1730,8 +1730,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBAA8\uD5D8\uAC00 \uBAA9\uB85D"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
-  m_sharedMaterial: {fileID: -3106454931651656948, guid: 26c3eb2ed57234646988953e24522f58, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 560c50a6a6cb844478ecedd8891a1cfd, type: 2}
+  m_sharedMaterial: {fileID: -2651989326294896850, guid: 560c50a6a6cb844478ecedd8891a1cfd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1847,7 +1847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d958e0392cafe8c40997a2c919ea894a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiAnim: {fileID: 0}
+  anim: {fileID: 0}
   infiniteScrollList: {fileID: 2598333605276653140}
   sortBtnText: {fileID: 1001998254581111569}
   orderBtnText: {fileID: 5123792053287365719}

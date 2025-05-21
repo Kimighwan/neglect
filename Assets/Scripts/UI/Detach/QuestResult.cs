@@ -132,7 +132,7 @@ public class QuestResult : BaseUI
         {
             AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 성공";
-            rewardTxt.text = "+G " + PoolManager.Instance.questData[resultIndex].questReward.ToString();
+            rewardTxt.text = '+' + PoolManager.Instance.questData[resultIndex].questReward.ToString();
             receiptBtn.SetActive(true);
             diaOKBtn.SetActive(false);
             SetMonsterPlayerPrefs();
@@ -145,7 +145,7 @@ public class QuestResult : BaseUI
         {
             AudioManager.Instance.PlaySFX(SFX.QuestSuccess);
             txt.text = "의뢰 대성공!!!";
-            rewardTxt.text = "+G " + (PoolManager.Instance.questData[resultIndex].questReward * 2).ToString();
+            rewardTxt.text = '+' + (PoolManager.Instance.questData[resultIndex].questReward * 2).ToString();
             receiptBtn.SetActive(true);
             diaOKBtn.SetActive(false);
             SetMonsterPlayerPrefs();
