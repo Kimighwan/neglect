@@ -8,13 +8,13 @@ public class MonsterDescUI : BaseUI
 
     private int monsterId;
     private string monsterName;
-    private string monsterWeekness;
-    private string monsterStrength;
+    //private string monsterWeekness;
+    //private string monsterStrength;
     private string monsterDesc;
 
     public TextMeshProUGUI txtName;
-    public TextMeshProUGUI txtWeekness;
-    public TextMeshProUGUI txtStrength;
+    //public TextMeshProUGUI txtWeekness;
+    //public TextMeshProUGUI txtStrength;
     public TextMeshProUGUI txtDesc;
     public RawImage backGround;
 
@@ -35,8 +35,8 @@ public class MonsterDescUI : BaseUI
         monsterData = DataTableManager.Instance.GetMonsterData(DataTableManager.Instance.monsterDescId);
 
         this.monsterName = monsterData.monsterName;
-        this.monsterWeekness = monsterData.monsterWeekness;
-        this.monsterStrength = monsterData.monsterStrength;
+        //this.monsterWeekness = monsterData.monsterWeekness;
+        //this.monsterStrength = monsterData.monsterStrength;
         this.monsterDesc = monsterData.monsterDesc;
         this.monsterId = monsterData.monsterId;
     }
@@ -44,8 +44,8 @@ public class MonsterDescUI : BaseUI
     private void InitData()
     {
         txtName.text = monsterName;
-        txtWeekness.text = "약점 : " + monsterWeekness;
-        txtStrength.text = "강점 : " + monsterStrength;
+        //txtWeekness.text = "약점 : " + monsterWeekness;
+        //txtStrength.text = "강점 : " + monsterStrength;
         txtDesc.text = monsterDesc;
        SetMonsterImage(monsterId);
     }

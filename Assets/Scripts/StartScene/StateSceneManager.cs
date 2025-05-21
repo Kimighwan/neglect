@@ -49,6 +49,29 @@ public class StateSceneManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("천사"))
             PlayerPrefs.SetInt("천사", 0);
 
+        if (!PlayerPrefs.HasKey("bopalrabbit"))
+            PlayerPrefs.SetInt("bopalrabbit", 0);
+
+        if (!PlayerPrefs.HasKey("durahan"))
+            PlayerPrefs.SetInt("durahan", 0);
+
+        if (!PlayerPrefs.HasKey("goblinJusul"))
+            PlayerPrefs.SetInt("goblinJusul", 0);
+
+        if (!PlayerPrefs.HasKey("goblinKing"))
+            PlayerPrefs.SetInt("goblinKing", 0);
+
+        if (!PlayerPrefs.HasKey("goblinWarrior"))
+            PlayerPrefs.SetInt("goblinWarrior", 0);
+
+        if (!PlayerPrefs.HasKey("honrabbit"))
+            PlayerPrefs.SetInt("honrabbit", 0);
+
+        if (!PlayerPrefs.HasKey("spector"))
+            PlayerPrefs.SetInt("spector", 0);
+
+
+
 
         if (!PlayerPrefs.HasKey("호문쿨루스"))
             PlayerPrefs.SetInt("호문쿨루스", 0);
