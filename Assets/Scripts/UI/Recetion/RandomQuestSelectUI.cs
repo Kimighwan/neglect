@@ -168,11 +168,11 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     private int RandomIndexMake()   // 무작위 숫자
     {
-        int randomIndexA = UnityEngine.Random.Range(1, 10);     // 브론즈   9개
-        int randomIndexB = GetQuestindex(Tier.Silver);          // 실버     10개
-        int randomIndexC = GetQuestindex(Tier.Gold);            // 골드     10개
-        int randomIndexD = GetQuestindex(Tier.Platinum);        // 플래티넘 7개
-        int randomIndexE = UnityEngine.Random.Range(38, 41);    // 다이아   3개
+        int randomIndexA = UnityEngine.Random.Range(4, 16);     // 브론즈   12개
+        int randomIndexB = GetQuestindex(Tier.Silver);          // 실버     14개
+        int randomIndexC = GetQuestindex(Tier.Gold);            // 골드     14개
+        int randomIndexD = GetQuestindex(Tier.Platinum);        // 플래티넘 9개
+        int randomIndexE = UnityEngine.Random.Range(54, 59);    // 다이아   5개
 
         int resultValue = UnityEngine.Random.Range(1, 101);
         Debug.Log(resultValue);
@@ -247,17 +247,17 @@ public class RandomQuestSelectUI : MonoBehaviour
                 if (j == 0)
                 {
                     // 브론즈 의뢰 중 보여지지 않는 의뢰 선택
-                    if(PoolManager.Instance.bronzQ < 6)
+                    if(PoolManager.Instance.bronzQ < 8)
                     {
                         do
                         {
-                            tmp = UnityEngine.Random.Range(1, 10);
+                            tmp = UnityEngine.Random.Range(4, 16);
                         } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                     }
                     else
                     {
-                        for(int i = 1; i < 10; i++)
+                        for(int i = 4; i < 17; i++)
                         {
                             tmp = i;
                             if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -271,17 +271,17 @@ public class RandomQuestSelectUI : MonoBehaviour
                 else if (j == 1) // 실버 의뢰 보여줄 예정이였다면
                 {
                     // 실버 의뢰 중 보여지지 않는 의뢰 선택
-                    if (PoolManager.Instance.silverQ < 7)
+                    if (PoolManager.Instance.silverQ <10)
                     {
                         do
                         {
-                            tmp = GetQuestindex(Tier.Silver);          // 실버     10개
+                            tmp = GetQuestindex(Tier.Silver);          // 실버
                         } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                     }
                     else
                     {
-                        for (int i = 10; i < 20; i++)
+                        for (int i = 19; i < 32; i++)
                         {
                             tmp = i;
                             if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -295,7 +295,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                 else if (j == 2) // 골드 의뢰 보여줄 예정이였다면
                 {
                     // 골드 의뢰 중 보여지지 않는 의뢰 선택
-                    if (PoolManager.Instance.goldQ < 7)
+                    if (PoolManager.Instance.goldQ < 10)
                     {
                         do
                         {
@@ -305,7 +305,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                     }
                     else
                     {
-                        for (int i = 20; i < 30; i++)
+                        for (int i = 32; i < 45; i++)
                         {
                             tmp = i;
                             if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -325,10 +325,10 @@ public class RandomQuestSelectUI : MonoBehaviour
                 if(j == 0) // 브론즈
                 {
                     // 남는 브론즈 의뢰가 없음
-                    if (PoolManager.Instance.bronzQ >= 9)
+                    if (PoolManager.Instance.bronzQ >= 12)
                     {
                         // 실버 주자
-                        if (PoolManager.Instance.silverQ < 7)
+                        if (PoolManager.Instance.silverQ < 10)
                         {
                             do
                             {
@@ -338,7 +338,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = 10; i < 20; i++)
+                            for (int i = 19; i < 32; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -352,17 +352,17 @@ public class RandomQuestSelectUI : MonoBehaviour
                     else // 남는 브론즈 의뢰가 있음
                     {
                         // 브론즈 의뢰 중 보여지지 않는 의뢰 선택
-                        if (PoolManager.Instance.bronzQ < 6)
+                        if (PoolManager.Instance.bronzQ < 8)
                         {
                             do
                             {
-                                tmp = UnityEngine.Random.Range(1, 10);
+                                tmp = UnityEngine.Random.Range(4, 16);
                             } while (PoolManager.Instance.userQuestIndex.Contains(tmp) || CheckHaveRandomIndex(tmp));
 
                         }
                         else
                         {
-                            for (int i = 1; i < 10; i++)
+                            for (int i = 4; i < 17; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -377,7 +377,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                 else if(j == 1) // 실버 의뢰를 줘야할 예정이라면
                 {
                     // 실버 주자
-                    if (PoolManager.Instance.silverQ < 7)
+                    if (PoolManager.Instance.silverQ < 10)
                     {
                         do
                         {
@@ -387,7 +387,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                     }
                     else
                     {
-                        for (int i = 10; i < 20; i++)
+                        for (int i = 19; i < 32; i++)
                         {
                             tmp = i;
                             if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -402,7 +402,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                 else if (j == 2) // 골드 의뢰를 줘야할 예정이라면
                 {
                     // 골드 주자
-                    if (PoolManager.Instance.goldQ < 7)
+                    if (PoolManager.Instance.goldQ < 10)
                     {
                         do
                         {
@@ -412,7 +412,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                     }
                     else
                     {
-                        for (int i = 20; i < 30; i++)
+                        for (int i = 32; i < 45; i++)
                         {
                             tmp = i;
                             if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -431,11 +431,11 @@ public class RandomQuestSelectUI : MonoBehaviour
 
                 if(j == 1)  // 실버 의뢰 줘야했다면 남는 실버 또는 골드 주기
                 {
-                    if(PoolManager.Instance.silverAd < 10)
+                    if(PoolManager.Instance.silverAd < 14)
                     {
                         // 실버 의뢰 남아서 실버 의뢰 주기
                         // 실버 의뢰 중 보여지지 않는 의뢰 선택
-                        if (PoolManager.Instance.silverAd < 7)
+                        if (PoolManager.Instance.silverAd < 10)
                         {
                             do
                             {
@@ -445,7 +445,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = 10; i < 20; i++)
+                            for (int i = 19; i < 32; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -460,7 +460,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                     {
                         // 실버 의뢰 없어서 골드 의뢰 주기
                         // 골드 의뢰 중 보여지지 않는 의뢰 선택
-                        if (PoolManager.Instance.goldQ < 7)
+                        if (PoolManager.Instance.goldQ < 10)
                         {
                             do
                             {
@@ -470,7 +470,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = 20; i < 30; i++)
+                            for (int i = 32; i < 45; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -484,11 +484,11 @@ public class RandomQuestSelectUI : MonoBehaviour
                 }
                 else if (j == 2) // 골드 의뢰 줘야했다면 남는 골드 또는 실버 주기
                 {
-                    if(PoolManager.Instance.goldQ < 10)
+                    if(PoolManager.Instance.goldQ < 14)
                     {
                         // 골드 의뢰가 남아서 골드 주기
                         // 골드 의뢰 중 보여지지 않는 의뢰 선택
-                        if (PoolManager.Instance.goldQ < 7)
+                        if (PoolManager.Instance.goldQ < 10)
                         {
                             do
                             {
@@ -498,7 +498,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = 20; i < 30; i++)
+                            for (int i = 32; i < 45; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -513,7 +513,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                     {
                         // 골드 의뢰 없어서 실버 주기
                         // 실버 의뢰 중 보여지지 않는 의뢰 선택
-                        if (PoolManager.Instance.silverAd < 7)
+                        if (PoolManager.Instance.silverAd < 10)
                         {
                             do
                             {
@@ -523,7 +523,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = 10; i < 20; i++)
+                            for (int i = 19; i < 32; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -537,7 +537,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                 }
                 else if (j == 3) // 플래 의뢰 줘야했다면 남는 플래 또는 골드
                 {
-                    if (PoolManager.Instance.platinumQ < 7)
+                    if (PoolManager.Instance.platinumQ < 9)
                     {
                         // 플래 의뢰가 남아서 플래 주기
                         // 플래 의뢰 중 보여지지 않는 의뢰 선택
@@ -551,7 +551,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = 31; i < 38; i++)
+                            for (int i = 45; i < 53; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -562,11 +562,11 @@ public class RandomQuestSelectUI : MonoBehaviour
                         resultId = tmp;
                         PoolManager.Instance.userQuestIndex.Add(tmp);
                     }
-                    else if (PoolManager.Instance.goldQ < 10)
+                    else if (PoolManager.Instance.goldQ < 14)
                     {
                         // 플래 의뢰가 없어서 골드 주기
                         // 골드 의뢰 중 보여지지 않는 의뢰 선택
-                        if (PoolManager.Instance.goldQ < 7)
+                        if (PoolManager.Instance.goldQ < 10)
                         {
                             do
                             {
@@ -576,7 +576,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = 20; i < 30; i++)
+                            for (int i = 32; i < 44; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -590,9 +590,9 @@ public class RandomQuestSelectUI : MonoBehaviour
                 }
                 else if (j == 4) // 다이아 의뢰 줘야했다면 남는 다이아 또는 플래 또는 골드
                 {
-                    if (PoolManager.Instance.diaQ < 3)
+                    if (PoolManager.Instance.diaQ < 5)
                     {
-                        for (int i = 38; i < 41; i++)
+                        for (int i = 54; i < 59; i++)
                         {
                             tmp = i;
                             if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -604,7 +604,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         resultId = tmp;
                         PoolManager.Instance.userQuestIndex.Add(tmp);
                     }
-                    else if (PoolManager.Instance.platinumQ < 7)
+                    else if (PoolManager.Instance.platinumQ < 9)
                     {
                         // 플래 의뢰가 남아서 플래 주기
                         // 플래 의뢰 중 보여지지 않는 의뢰 선택
@@ -618,7 +618,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = 31; i < 38; i++)
+                            for (int i = 45; i < 53; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -629,11 +629,11 @@ public class RandomQuestSelectUI : MonoBehaviour
                         resultId = tmp;
                         PoolManager.Instance.userQuestIndex.Add(tmp);
                     }
-                    else if (PoolManager.Instance.goldQ < 10)
+                    else if (PoolManager.Instance.goldQ < 14)
                     {
                         // 플래 의뢰가 없어서 골드 주기
                         // 골드 의뢰 중 보여지지 않는 의뢰 선택
-                        if (PoolManager.Instance.goldQ < 7)
+                        if (PoolManager.Instance.goldQ < 10)
                         {
                             do
                             {
@@ -643,7 +643,7 @@ public class RandomQuestSelectUI : MonoBehaviour
                         }
                         else
                         {
-                            for (int i = 20; i < 30; i++)
+                            for (int i = 32; i < 44; i++)
                             {
                                 tmp = i;
                                 if (!PoolManager.Instance.userQuestIndex.Contains(i) && !CheckHaveRandomIndex(tmp))
@@ -670,30 +670,30 @@ public class RandomQuestSelectUI : MonoBehaviour
             int tmpResultValue = UnityEngine.Random.Range(1, 101);
             if (tmpResultValue <= 90 || PlayerPrefs.GetInt("설녀") == 1)
             {
-                return UnityEngine.Random.Range(10, 19);
+                return UnityEngine.Random.Range(19, 31);
             }
             else
-                return 19;
+                return 31;
         }
         else if(tier == Tier.Gold)
         {
             int tmpResultValue = UnityEngine.Random.Range(1, 101);
             if (tmpResultValue <= 90 || PlayerPrefs.GetInt("호문쿨루스") == 1)
             {
-                return UnityEngine.Random.Range(20, 29);
+                return UnityEngine.Random.Range(32, 44);
             }
             else
-                return 29;
+                return 44;
         }
         else if(tier == Tier.Platinum )
         {
             int tmpResultValue = UnityEngine.Random.Range(1, 101);
             if (tmpResultValue <= 90 || PlayerPrefs.GetInt("헤츨링") == 1)
             {
-                return UnityEngine.Random.Range(31, 37);
+                return UnityEngine.Random.Range(45, 53);
             }
             else
-                return 37;
+                return 53;
         }
 
         return -1;

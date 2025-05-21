@@ -44,8 +44,8 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 monsterId = Convert.ToInt32(data["mob_id"]),
                 monsterName = data["name"].ToString(),
                 monsterTier = data["tier"].ToString(),
-                monsterWeekness = data["weak"].ToString(),
-                monsterStrength = data["strong"].ToString(),
+                monsterWeekness = data["weakness"].ToString(),
+                monsterStrength = data["resist"].ToString(),
                 monsterDesc = data["script1"].ToString(),
             };
 

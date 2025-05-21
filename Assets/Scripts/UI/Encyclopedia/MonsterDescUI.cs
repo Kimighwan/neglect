@@ -8,17 +8,15 @@ public class MonsterDescUI : BaseUI
 
     private int monsterId;
     private string monsterName;
-    private string monsterTier;
-    private string monsterWeekness;
-    private string monsterStrength;
+    //private string monsterWeekness;
+    //private string monsterStrength;
     private string monsterDesc;
 
     public TextMeshProUGUI txtName;
-    public TextMeshProUGUI txtTier;
-    public TextMeshProUGUI txtWeekness;
-    public TextMeshProUGUI txtStrength;
+    //public TextMeshProUGUI txtWeekness;
+    //public TextMeshProUGUI txtStrength;
     public TextMeshProUGUI txtDesc;
-    public RawImage monsterImage;
+    public RawImage backGround;
 
     private void Awake()
     {
@@ -37,9 +35,8 @@ public class MonsterDescUI : BaseUI
         monsterData = DataTableManager.Instance.GetMonsterData(DataTableManager.Instance.monsterDescId);
 
         this.monsterName = monsterData.monsterName;
-        this.monsterTier = monsterData.monsterTier;
-        this.monsterWeekness = monsterData.monsterWeekness;
-        this.monsterStrength = monsterData.monsterStrength;
+        //this.monsterWeekness = monsterData.monsterWeekness;
+        //this.monsterStrength = monsterData.monsterStrength;
         this.monsterDesc = monsterData.monsterDesc;
         this.monsterId = monsterData.monsterId;
     }
@@ -47,25 +44,24 @@ public class MonsterDescUI : BaseUI
     private void InitData()
     {
         txtName.text = monsterName;
-        txtTier.text = "Rank : " + monsterTier;
-        txtWeekness.text = "약점 : " + monsterWeekness;
-        txtStrength.text = "강점 : " + monsterStrength;
+        //txtWeekness.text = "약점 : " + monsterWeekness;
+        //txtStrength.text = "강점 : " + monsterStrength;
         txtDesc.text = monsterDesc;
        SetMonsterImage(monsterId);
     }
 
-    public void BackBtnOfMonsterDescUI()
-    {
-        AudioManager.Instance.PlaySFX(SFX.BookFlip4);
-        UIManager.Instance.CloseUI(this);
+    //public void BackBtnOfMonsterDescUI()
+    //{
+    //    AudioManager.Instance.PlaySFX(SFX.BookFlip4);
+    //    UIManager.Instance.CloseUI(this);
 
-        var monsterUI = new BaseUIData();
-        UIManager.Instance.OpenUI<MonsterUI>(monsterUI);
-    }
+    //    var monsterUI = new BaseUIData();
+    //    UIManager.Instance.OpenUI<MonsterUI>(monsterUI);
+    //}
 
     private void SetMonsterImage(int id)
     {
-        monsterImage.texture = Resources.Load($"Arts/Monsters/{id}") as Texture2D;
+        backGround.texture = Resources.Load($"Arts/Monsters/Paper/{id}") as Texture2D;
     }
 
 
