@@ -10,6 +10,8 @@ using System.Collections;
 
 public class GameInfo : MonoBehaviour
 {
+    public SaveTest saver;
+
     public static GameInfo gameInfo;
     public Image fadeInOut;
     public Image pauseButton;
@@ -41,7 +43,8 @@ public class GameInfo : MonoBehaviour
     private void Awake() {
         gameInfo = this;
     }
-    public void StartGameInfo() {
+    public void StartGameInfo()
+    {
         gold = 2000;
         day = 1;
         addGold = 0;
@@ -122,6 +125,9 @@ public class GameInfo : MonoBehaviour
 
     private void EndToday() // 하루 끝
     {
+        saver.SetInt(Day);
+        ES3AutoSaveMgr.Current.Save(); // 저장??
+
         if (!GameManager.gameManager.Pause) GameManager.gameManager.PauseGame();
         AudioManager.Instance.StopBGM();
         ScriptDialogHandler.handler.dialog.KillDialog();
