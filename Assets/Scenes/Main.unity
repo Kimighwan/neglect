@@ -1628,7 +1628,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 675045286}
+      - m_Target: {fileID: 819719517}
         m_TargetAssemblyTypeName: Test, Assembly-CSharp
         m_MethodName: GiveUpBtn
         m_Mode: 3
@@ -12827,7 +12827,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 675045286}
+      - m_Target: {fileID: 370210823}
         m_TargetAssemblyTypeName: Test, Assembly-CSharp
         m_MethodName: GiveUpBtn
         m_Mode: 3
@@ -16136,7 +16136,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 675045286}
+      - m_Target: {fileID: 1918976135}
         m_TargetAssemblyTypeName: Test, Assembly-CSharp
         m_MethodName: GiveUpBtn
         m_Mode: 3
@@ -25566,7 +25566,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 675045286}
+      - m_Target: {fileID: 172250425}
         m_TargetAssemblyTypeName: Test, Assembly-CSharp
         m_MethodName: GiveUpBtn
         m_Mode: 3
