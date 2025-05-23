@@ -13,7 +13,6 @@ public class UITextHandler : MonoBehaviour
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI toStoryText;
-    public TextMeshProUGUI timeText;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI neededGoldText;
 
@@ -24,7 +23,6 @@ public class UITextHandler : MonoBehaviour
     public void UpdateTexts() {
         UpdateGoldText();
         UpdateDayText();
-        UpdateTimeText();
         UpdateLevelText();
     }
 
@@ -37,25 +35,9 @@ public class UITextHandler : MonoBehaviour
     private void UpdateDayText() {
         int x = GameInfo.gameInfo.Day;
         dayText.text = $"Day {x}";
-        int y = ScriptDialogHandler.handler.GetToStoryDay() - x;
+        int y = ScriptHandler.scriptHandler.GetToStoryDay() - x;
         if (y == 0) toStoryText.text = "D-Day";
         else toStoryText.text = $"Next D-{y}";
-    }
-    
-    // 시간 정보 자동 변환
-    private void UpdateTimeText() {
-        float t = GameInfo.gameInfo.Timer;
-        string s = "";
-        int i = (int)Math.Truncate(t);
-        if (i < 120) {
-            int j = (i >= 0 && i < 10) ? 12 : (i/10 % 12);
-            s = $"AM {j}";
-        }
-        else {
-            int j = (i >= 120 && i < 130) ? 12 : (i/10 % 12);
-            s = $"PM {j}";
-        }
-        timeText.text = s;
     }
 
     private void UpdateLevelText() {

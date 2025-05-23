@@ -6,14 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public Transform cameraTransform;
     public static GameManager gameManager;
-    public ScriptMode scriptMode;
-    public DialogMode dialogMode;
     private GameInfo info;
-    private bool pause = true;
-    public bool Pause { get { return pause; } set { } }
-    private bool fastMode = false;
-    public bool FastMode { get { return fastMode; } set { } }
-    private bool endGame = false;
+
     void Awake()
     {
         gameManager = this;
@@ -22,15 +16,12 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.BgmVol = AudioManager.Instance.BgmVol * 10.0f;
         AudioManager.Instance.UpdateVolume();
-        info = GameInfo.gameInfo;
-        info.StartGameInfo();
-        info.PrepareShowIll(2f, 0f, true);
-        Invoke("PauseGame", 1f);
     }
     void OnEnable()
     {
-        //PlayerPrefs.DeleteAll();
         AudioManager.Instance.PlayBGM(BGM.Main6);
+        info = GameInfo.gameInfo;
+        info.StartGameInfo();
     }
 
 
@@ -51,17 +42,6 @@ public class GameManager : MonoBehaviour
     private int index = 0;
     void Update()
     {
-        if (endGame) {
-            if (Input.anyKeyDown || Input.GetMouseButtonDown(0)) {
-                // 메뉴로 돌아가기
-                SceneManager.LoadScene(0);
-            }
-        }
-
-        if (!pause && !scriptMode.isScriptMode) {
-            info.UpdateGameInfo();
-        }
-
         UITextHandler.textHandler.UpdateTexts();
         if (Input.anyKeyDown)
         {
@@ -88,68 +68,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetMouseButtonDown(0)) {
-            AudioManager.Instance.PlaySFX(SFX.Click2);
-            if (endGame) Invoke("GoToTitle", 2f);
-        }
     }
-
-    public void PauseGame() {
-        pause = !pause;
-        if (pause) {
-            SpriteState spriteState = info.pauseButton.gameObject.GetComponent<Button>().spriteState;
-            spriteState.pressedSprite = info.pauseAndGo[3];
-            info.pauseButton.gameObject.GetComponent<Button>().spriteState = spriteState;
-            info.pauseButton.sprite = info.pauseAndGo[2];
-            info.ChangeAniObjSpeed(0f);
-            if (dialogMode.IsSpeaking()) dialogMode.StopTypingAnimation(true);
-        } else {
-            SpriteState spriteState = info.pauseButton.gameObject.GetComponent<Button>().spriteState;
-            spriteState.pressedSprite = info.pauseAndGo[1];
-            info.pauseButton.gameObject.GetComponent<Button>().spriteState = spriteState;
-            info.pauseButton.sprite = info.pauseAndGo[0];
-            info.ChangeAniObjSpeed(1f);
-            if (dialogMode.IsSpeaking()) dialogMode.StopTypingAnimation(false);
-        }
-        fastMode = false;
-        info.fastButton.sprite = info.pauseAndGo[4];
-        info.gameSpeed = 1f;
-        dialogMode.ChangeDialogSpeed(1f);
-    }
-    public void QuickGame() {
-        if (pause)
-        {
-            PauseGame();
-        }
-
-        fastMode = !fastMode;
-        if (fastMode) {
-            info.fastButton.sprite = info.pauseAndGo[5];
-            info.gameSpeed = 15f;
-            info.ChangeAniObjSpeed(10f);
-            dialogMode.ChangeDialogSpeed(6f);
-        }
-        else {
-            info.fastButton.sprite = info.pauseAndGo[4];
-            info.gameSpeed = 1f;
-            dialogMode.ChangeDialogSpeed(1f);
-            info.ChangeAniObjSpeed(1f);
-        }
-    }
-    public void OpenTutorial(int id) {
-        DataTableManager.Instance.systemDescId = id;
-        var systemDescUI = new BaseUIData();
-        UIManager.Instance.OpenUI<SystemDescUI>(systemDescUI);
-    }
-    public void EndTheGame() {
-        ScriptDialogObjectData data = ScriptDialogObjectData.data;
-        data.background.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Arts/Illustration/ED1");
+    public void EndTheGame()
+    {
+        //data.background.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Arts/Illustration/ED1");
         Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, false);
-        data.background.SetActive(true);
-        Invoke("ReadyForEndGame", 2f);
-    }
-    private void ReadyForEndGame() {
-        endGame = true;
+        //data.background.SetActive(true); 버튼 추가해서 넘어가는 방식이 더 좋을 듯
     }
 }

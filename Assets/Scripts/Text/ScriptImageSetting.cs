@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScriptImageHandler : MonoBehaviour
+public class ScriptImageSetting : MonoBehaviour
 {
     private List<string> preName = new List<string> { "", "", "" };
     public Image BackGround;

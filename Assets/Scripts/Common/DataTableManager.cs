@@ -197,10 +197,10 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
             {
                 scriptId = Convert.ToInt32(data["scr_id"]),
                 scriptSpeaker = data["char"].ToString(),
-                scriptPos = data["pos"].ToString(),
-                scriptExp = data["exp"].ToString(),
+                scriptLeftPos = data["left"].ToString(),
+                scriptMiddlePos = data["middle"].ToString(),
+                scriptRightPos = data["right"].ToString(),
                 scriptLine = data["script"].ToString(),
-                scriptInOut = data["inout"].ToString(),
                 scriptIll = data["ill"].ToString(),
             };
 
@@ -279,9 +279,9 @@ public class QuestData : InfiniteScrollData // BaseUIData
 public class ScriptData : BaseUIData {
     public int scriptId;
     public string scriptSpeaker;
-    public string scriptPos;
-    public string scriptExp;
+    public string scriptLeftPos;
+    public string scriptMiddlePos;
+    public string scriptRightPos;
     public string scriptLine;
-    public string scriptInOut;
     public string scriptIll;
 }
