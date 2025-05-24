@@ -52,7 +52,7 @@ public class GameInfo : MonoBehaviour
         todayGold = 0;
         questReroll = 0;
         adventureReroll = 0;
-
+        if (!ScriptHandler.scriptHandler.ScriptPlayDay(day)) AudioManager.Instance.PlayBGM(BGM.Main6);
     }
 
     #region GoldInfo
@@ -110,24 +110,22 @@ public class GameInfo : MonoBehaviour
         roomUI.OnClickCloseButton();
         closeButton.interactable = false;
         playerScore += CalculateTodayScore();
-        Fade.Instance.DoFade(Color.black, 0f, 1f, 2f, 0f, false, () =>
+        Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, true, () =>
             {
                 UIManager.Instance.OnClickEndToday();
                 nextDayQuest = true;
                 nextDayAdventure = true;
-                ComeMorning();
             }
         );
     }
 
     public void ComeMorning() // 아침이 다시 옴
     {
-        Fade.Instance.DoFade(Color.black, 1f, 0f, 2f, 0f, false, () =>
+        UpdateNewDay();
+        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, true, () =>
             {
-                AudioManager.Instance.PlayBGM(BGM.Main6);
                 GameManager.gameManager.cameraTransform.position = new Vector3(0f, 0f, -10f);
                 closeButton.interactable = true;
-                UpdateNewDay();
             }
         );
     }
@@ -138,7 +136,6 @@ public class GameInfo : MonoBehaviour
 
     public RoomUI roomUI;
     private List<Room> rooms = new List<Room> { null, null, null, null };
-    public bool roomTutorial = false;
     public bool firstPurchase = true;
 
     public void LockRoomClick()
@@ -260,7 +257,7 @@ public class GameInfo : MonoBehaviour
             }
         }
         plusGold = sum;
-        GameInfo.gameInfo.addGold += sum;
+        addGold += sum;
     }
     // 최대 모험가수 계산해줌
 

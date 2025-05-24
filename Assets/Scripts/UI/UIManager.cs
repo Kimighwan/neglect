@@ -36,7 +36,7 @@ public class UIManager : SingletonBehaviour<UIManager>
             if (PoolManager.Instance.checkHavesSpecialQuest != 0)
             {
                 // 특수 의뢰를 받아서 해당 의뢰와 관련된 스크립트를 UI가 안 띄워져 있을 때 재생
-                ScriptDialogHandler.handler.ConditionalDialogPlay(PoolManager.Instance.checkHavesSpecialQuest);
+                ScriptHandler.scriptHandler.ScriptPlayQuestID(PoolManager.Instance.checkHavesSpecialQuest);
 
                 // 혹시 모를 재생되면서 바로 UI 창을 킨다면 닫아버리기
                 CloseAllOpenUI();

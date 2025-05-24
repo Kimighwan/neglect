@@ -16,14 +16,10 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.BgmVol = AudioManager.Instance.BgmVol * 10.0f;
         AudioManager.Instance.UpdateVolume();
-    }
-    void OnEnable()
-    {
-        AudioManager.Instance.PlayBGM(BGM.Main6);
         info = GameInfo.gameInfo;
         info.StartGameInfo();
+        ScriptHandler.scriptHandler.PlayIntroScript();
     }
-
 
     // 코나미 코드에 해당하는 키 시퀀스
     private KeyCode[] konamiCode = new KeyCode[]

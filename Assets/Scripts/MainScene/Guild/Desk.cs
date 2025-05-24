@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Desk : MouseDrag
 {
-    private bool tutorialOnce = false;
+    // private bool tutorialOnce = false;
     void Start()
     {
         original = this.GetComponent<SpriteRenderer>().sprite;
@@ -11,10 +11,10 @@ public class Desk : MouseDrag
     public override void OnPointerDown(PointerEventData eventData)
     {
         UIManager.Instance.OnClickAdventureTable(this);
-        if (!tutorialOnce) {
-            tutorialOnce = true;
-            GameManager.gameManager.OpenTutorial(590004);
-        }
+        // if (!tutorialOnce) {
+        //     tutorialOnce = true;
+        //     GameManager.gameManager.OpenTutorial(590004);
+        // }
     }
 
     private Sprite original;

@@ -49,7 +49,7 @@ public class EmergencyQuestUI : BaseUI
         result.SetActive(false);
         PoolManager.Instance.ready = true;
 
-        GameManager.gameManager.PauseGame();
+        // GameManager.gameManager.PauseGame();
 
         questManager.adventureDatas.Clear();
 
@@ -65,7 +65,7 @@ public class EmergencyQuestUI : BaseUI
 
     private void OnDisable()
     {
-        GameManager.gameManager.PauseGame();
+        // GameManager.gameManager.PauseGame();
     }
 
     // 초기 데이터 초기화
@@ -188,7 +188,7 @@ public class EmergencyQuestUI : BaseUI
         if(resultValue != -1)
         {
             // 긴급 의뢰(스토리 의뢰) 성공 및 대성공일 때 함수 실행
-            ScriptDialogHandler.handler.ConditionalScriptPlay(emergencyQuestId);
+            ScriptHandler.scriptHandler.ScriptPlayQuestID(emergencyQuestId);
         }
 
         // 파견 보냈던 모험가 다시 풀기

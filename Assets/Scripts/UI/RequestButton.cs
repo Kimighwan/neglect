@@ -23,12 +23,7 @@ public class RequestButton : MouseDrag
     private Vector3 originalUIPos; // UI 원래 위치
     private Vector3 targetUIPos;
 
-    private Vector3 originalTxt1Pos;
-    private Vector3 originalTxt2Pos;
-    private Vector3 targetTxt1Pos;
-    private Vector3 targetTxt2Pos;
-
-    private bool tutorialOnce = false;
+    // private bool tutorialOnce = false;
     private bool isMoved = false; // 이동 여부 체크
     private bool isMoving = false;
     private bool inRequest = false;
@@ -40,12 +35,6 @@ public class RequestButton : MouseDrag
 
         originalUIPos = requestBG.anchoredPosition;
         targetUIPos = originalUIPos + new Vector3(0, 320, 0);
-
-        originalTxt1Pos = txt1.anchoredPosition;
-        targetTxt1Pos = originalTxt1Pos + new Vector3(0, 336.225f, 0);
-
-        originalTxt2Pos = txt2.anchoredPosition;
-        targetTxt2Pos = originalTxt2Pos + new Vector3(0, 336.225f, 0);
     }
 
     public void OnClickBut()
@@ -64,26 +53,24 @@ public class RequestButton : MouseDrag
         // 삼격형 애니메이션
         anim.SetBool("isDown", !isMoved);
 
-        StartCoroutine(MoveCameraAndUI(isMoved ? originalCamPos : targetCamPos, isMoved ? originalUIPos : targetUIPos, isMoved ? originalTxt1Pos : targetTxt1Pos, isMoved ? originalTxt2Pos : targetTxt2Pos));
+        StartCoroutine(MoveCameraAndUI(isMoved ? originalCamPos : targetCamPos, isMoved ? originalUIPos : targetUIPos));
         isMoved = !isMoved;
-        if (!tutorialOnce) {
-            tutorialOnce = true;
-            GameManager.gameManager.OpenTutorial(590006);
-        }
+        // if (!tutorialOnce) {
+        //     tutorialOnce = true;
+        //     GameManager.gameManager.OpenTutorial(590006);
+        // }
         return;
     }
     public bool GetInRequest() {
         return inRequest;
     }
 
-    private IEnumerator MoveCameraAndUI(Vector3 camDestination, Vector3 uiDestination, Vector3 txt1Des, Vector3 txt2Des)
+    private IEnumerator MoveCameraAndUI(Vector3 camDestination, Vector3 uiDestination)
     {
         float elapsedTime = 0f;
         float duration = 0.6f; // 이동 시간 (1초)
         Vector3 camStartPos = cameraTransform.position;
         Vector3 uiStartPos = requestBG.anchoredPosition;
-        Vector3 txt1StartPos = txt1.anchoredPosition;
-        Vector3 txt2StartPos = txt2.anchoredPosition;
 
         while (elapsedTime < duration)
         {
@@ -92,8 +79,6 @@ public class RequestButton : MouseDrag
 
             cameraTransform.position = Vector3.Lerp(camStartPos, camDestination, t);
             requestBG.anchoredPosition = Vector3.Lerp(uiStartPos, uiDestination, t);
-            txt1.anchoredPosition = Vector3.Lerp(txt1StartPos, txt1Des, t);
-            txt2.anchoredPosition = Vector3.Lerp(txt2StartPos, txt2Des, t);
 
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -102,8 +87,6 @@ public class RequestButton : MouseDrag
         // 정확한 위치 보정
         cameraTransform.position = camDestination;
         requestBG.anchoredPosition = uiDestination;
-        txt1.anchoredPosition = txt1Des;
-        txt2.anchoredPosition = txt2Des;
         isMoving = false;
     }
 

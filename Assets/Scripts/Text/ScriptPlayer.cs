@@ -22,10 +22,12 @@ public class ScriptPlayer : MonoBehaviour
     private int currentLine = 0;
     private bool isTyping = false;
     private Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
-
-    private void Start()
+    private void Awake()
     {
         scriptList = new List<ScriptData>();
+    }
+    private void Start()
+    {
         leftPos.rectTransform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
     }
 
@@ -51,18 +53,15 @@ public class ScriptPlayer : MonoBehaviour
             ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
             scriptList.Add(scriptData);
         }
-        AudioPlayer(endId);
+        IntroAudioPlay(endId);
         ActiveObjects(true);
     }
-    private void AudioPlayer(int Id)
+    private void IntroAudioPlay(int Id)
     {
         switch (Id)
         {
             case 100017:
-                AudioManager.Instance.StopBGM();
-                break;
-            case 100036:
-                AudioManager.Instance.StopBGM();
+                AudioManager.Instance.PlayBGM(BGM.ScriptIntro);
                 break;
             case 109124:
                 AudioManager.Instance.PlayBGM(BGM.ED1);
@@ -72,6 +71,7 @@ public class ScriptPlayer : MonoBehaviour
                 break;
         }
     }
+    
 
     public void ShowNextScript()
     {
@@ -83,6 +83,7 @@ public class ScriptPlayer : MonoBehaviour
                 backPanel.gameObject.SetActive(false);
                 illustration.gameObject.SetActive(true);
                 SetIll(scriptData.scriptIll);
+                ChangeAudioPlay(scriptData.scriptId);
             }
             else // 일러스트가 존재하지 않는 경우
             {
@@ -112,11 +113,12 @@ public class ScriptPlayer : MonoBehaviour
         }
         else illustration.color = new Color(1f, 1f, 1f);
         illustration.sprite = LoadSprite(fileName, true);
-        switch (fileName) {
-            case "0_1":
-                AudioManager.Instance.PlayBGM(BGM.ScriptIntro);
-                break;
-            case "0_2":
+    }
+    private void ChangeAudioPlay(int Id)
+    {
+        switch (Id)
+        {
+            case 100006:
                 AudioManager.Instance.PlayBGM(BGM.Script0_2);
                 break;
         }
@@ -146,7 +148,7 @@ public class ScriptPlayer : MonoBehaviour
     {
         if (!spriteCache.TryGetValue(fileName, out Sprite sprite))
         { // 캐시에 없으면 Resources 폴더에서 로드
-            string path = ill ? $"Arts/Illustration/{fileName}" : $"Arts/Characters/{fileName}";
+            string path = ill ? $"Arts/Illustration/{fileName}" : $"Arts/Characters/{fileName.Split('_')[0]}/{fileName}";
             sprite = Resources.Load<Sprite>(path);
             if (sprite != null) spriteCache[fileName] = sprite;
             else
@@ -212,67 +214,26 @@ public class ScriptPlayer : MonoBehaviour
         skipButton.gameObject.SetActive(b);
         speaker.gameObject.SetActive(b);
         script.gameObject.SetActive(b);
+
+        if (!b)
+        {
+            leftPos.gameObject.SetActive(false);
+            middlePos.gameObject.SetActive(false);
+            rightPos.gameObject.SetActive(false);
+            backPanel.gameObject.SetActive(false);
+            illustration.gameObject.SetActive(false);
+        }
     }
 
     private void EndScripts() {
         int id = scriptList[currentLine - 1].scriptId;
-        data.scr.text = "";
+        script.text = "";
         ActiveObjects(false);
         scriptList.Clear();
-        this.GetComponent<ScriptImageHandler>().EndTheScripts();
         currentLine = 0;
         isScriptMode = false;
-        if (id != 109124)AudioManager.Instance.PlayBGM(BGM.Main6);
-
-        switch (id) {
-            case 100036:
-                PoolManager.Instance.isNotTutorialTouch = true;
-                tutorialImg.SetActive(true);
-                break;
-            case 100121: // 슬라임 홍수 시작
-                var slimeUiData = new EmergencyQuestUIData(11);
-                UIManager.Instance.OpenUI<EmergencyQuestUI>(slimeUiData);
-                break;
-            case 100219: // 몬스터 웨이브 시작
-                var monsterWaveUiData = new EmergencyQuestUIData(12);
-                UIManager.Instance.OpenUI<EmergencyQuestUI>(monsterWaveUiData);
-                break;
-            case 100315: // 모험가 구함 시작
-                var uiData = new EmergencyQuestUIData(13);
-                UIManager.Instance.OpenUI<EmergencyQuestUI>(uiData);
-                break;
-            case 100377:
-                ScriptHandler.handler.EndingScriptPlay(109101, 109124, false);
-                break;
-            case 109124:
-                Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false);
-                Invoke("EndTheGame", 1f);
-                break;
-        }
-    }
-
-    private void EndTheGame() {
-        GameManager.gameManager.EndTheGame();
-    }
-
-    public void OnClickTutorialBtn()
-    {
-        tutorialImg.SetActive(true);
-        PoolManager.Instance.isNotTutorialTouch = true;
-    }
-
-    public void EndingScript(int i) {
-        GameInfo.gameInfo.PrepareShowIll(1f, 0f, true);
-        ScriptData scriptData = DataTableManager.Instance.GetScriptData(i);
-        if (data != null)
-        {
-            scriptList.Add(scriptData);
-        }
-        illExist = true;
-        ActiveObjects(true);
-        data.panel.SetActive(false);
-        data.skipBtn.SetActive(false);
-        ShowIllImage(scriptData.scriptIll);
+        
+        ScriptHandler.scriptHandler.AfterEndTheScript(id);
     }
 }
 

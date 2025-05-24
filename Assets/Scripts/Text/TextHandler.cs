@@ -37,7 +37,7 @@ public class UITextHandler : MonoBehaviour
         dayText.text = $"Day {x}";
         int y = ScriptHandler.scriptHandler.GetToStoryDay() - x;
         if (y == 0) toStoryText.text = "D-Day";
-        else toStoryText.text = $"Next D-{y}";
+        else toStoryText.text = $"Next\nD-{y}";
     }
 
     private void UpdateLevelText() {

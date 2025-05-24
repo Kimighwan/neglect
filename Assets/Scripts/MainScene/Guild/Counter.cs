@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Counter : MouseDrag
 {
-    private bool tutorialOnce = false;
+    // private bool tutorialOnce = false;
     void Start()
     {
         original = this.GetComponent<SpriteRenderer>().sprite;
@@ -15,10 +15,10 @@ public class Counter : MouseDrag
         if (PoolManager.Instance.isNotTutorialTouch) return;
 
         UIManager.Instance.OnClickCounter();
-        if (!tutorialOnce) {
-            tutorialOnce = true;
-            GameManager.gameManager.OpenTutorial(590002);
-        }
+        // if (!tutorialOnce) {
+        //     tutorialOnce = true;
+        //     GameManager.gameManager.OpenTutorial(590002);
+        // }
     }
 
     private Sprite original;

@@ -147,7 +147,7 @@ public class QuestResult : BaseUI
             if (skil.ContainsValue(6)) reward /= 2;
 
             GameInfo.gameInfo.CheckSuccessTier(PoolManager.Instance.questData[resultIndex].questLevel);
-            ScriptDialogHandler.handler.ConditionalScriptPlay(PoolManager.Instance.questData[resultIndex].questId);
+            ScriptHandler.scriptHandler.ScriptPlayQuestID(PoolManager.Instance.questData[resultIndex].questId);
         }
         else if(PoolManager.Instance.resultList[resultIndex] == 1)
         {
@@ -160,7 +160,7 @@ public class QuestResult : BaseUI
 
             reward = PoolManager.Instance.questData[resultIndex].questReward * 2;
             GameInfo.gameInfo.CheckSuccessTier(PoolManager.Instance.questData[resultIndex].questLevel);
-            ScriptDialogHandler.handler.ConditionalScriptPlay(PoolManager.Instance.questData[resultIndex].questId);
+            ScriptHandler.scriptHandler.ScriptPlayQuestID(PoolManager.Instance.questData[resultIndex].questId);
         }
         else if(PoolManager.Instance.resultList[resultIndex] == -1)
         {

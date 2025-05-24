@@ -109,7 +109,7 @@ public class Test : MonoBehaviour
         if (!adTutorialOnce) {
             adTutorialOnce = true;
             transform.parent.parent.gameObject.GetComponent<Request>().ClearAdTutorial();
-            GameManager.gameManager.OpenTutorial(590007);
+            //GameManager.gameManager.OpenTutorial(590007);
         }
     }
     public void SetAdTutorialOnceTrue() {
@@ -172,21 +172,21 @@ public class Test : MonoBehaviour
 
     public void OnClickQuestStart(int index)    // 파견 시작 버튼
     {
-        if (GameInfo.gameInfo.Day % 5 == 0 && GameInfo.gameInfo.Timer < 120f)
-        {
-            var uiData = new ConfirmUIData();
-            uiData.confirmType = ConfirmType.OK_CANCEL;
-            uiData.descTxt = "오늘은 무슨 일이\n일어날지 모릅니다...\n\n정말로 의뢰를\n수행하시겠습니까?";
-            uiData.okBtnTxt = "네";
-            uiData.cancelBtnTxt = "취소";
-            uiData.onClickOKBtn = () => { QuestStart(index); };
-            uiData.onClickCancelBtn = () => {
-                OnClickAwakeBtn(index);
-                return; 
-            };
-            UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-        }
-        else if (questManagers.nomalRate < 100f && PlayerPrefs.GetInt("ReSelectConfirm") == 0)
+        // if (GameInfo.gameInfo.Day % 5 == 0 && GameInfo.gameInfo.Timer < 120f)
+        // {
+        //     var uiData = new ConfirmUIData();
+        //     uiData.confirmType = ConfirmType.OK_CANCEL;
+        //     uiData.descTxt = "오늘은 무슨 일이\n일어날지 모릅니다...\n\n정말로 의뢰를\n수행하시겠습니까?";
+        //     uiData.okBtnTxt = "네";
+        //     uiData.cancelBtnTxt = "취소";
+        //     uiData.onClickOKBtn = () => { QuestStart(index); };
+        //     uiData.onClickCancelBtn = () => {
+        //         OnClickAwakeBtn(index);
+        //         return; 
+        //     };
+        //     UIManager.Instance.OpenUI<ConfirmUI>(uiData);
+        // }
+        if (questManagers.nomalRate < 100f && PlayerPrefs.GetInt("ReSelectConfirm") == 0)
         {
             var uiData = new ConfirmUIData();
             uiData.confirmType = ConfirmType.OK_CANCEL;

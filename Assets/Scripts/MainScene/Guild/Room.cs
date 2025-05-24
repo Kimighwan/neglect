@@ -28,10 +28,10 @@ public class Room : MonoBehaviour
         if (PoolManager.Instance.isNotTouchUI) return;
         if (PoolManager.Instance.isNotTutorialTouch) return;
 
-        if (!GameInfo.gameInfo.roomTutorial) {
-            GameInfo.gameInfo.roomTutorial = true;
-            GameManager.gameManager.OpenTutorial(590007);
-        }
+        // if (!GameInfo.gameInfo.roomTutorial) {
+        //     GameInfo.gameInfo.roomTutorial = true;
+        //     GameManager.gameManager.OpenTutorial(590007);
+        // }
         if (!roomUI.GetComponent<RoomUI>().isUINow) {
             roomUI.gameObject.SetActive(true);
             roomUI.GetComponent<RoomUI>().SetInfo(index, isActive);

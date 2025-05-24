@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class GameSettingUI : BaseUI
 {
-    private bool wasPause = true;
-    private bool wasFastMode = false;
     public Slider masterVolume;
     public Slider BGMVolume;
     public Slider SFXVolume;
@@ -25,13 +23,6 @@ public class GameSettingUI : BaseUI
     void OnEnable()
     {
         GetUpdateAudioManager();
-        if (!GameManager.gameManager.Pause) {
-            wasPause = false;
-            if (GameManager.gameManager.FastMode) {
-                wasFastMode = true;
-            }
-            GameManager.gameManager.PauseGame();
-        }
     }
 
     void UpdateVolumes()
@@ -79,15 +70,6 @@ public class GameSettingUI : BaseUI
             });
         };
         UIManager.Instance.OpenUI<ConfirmUI>(uiData);
-    }
-
-    public override void OnClickCloseButton()
-    {
-        if (!wasPause) GameManager.gameManager.PauseGame();
-        if (wasFastMode) GameManager.gameManager.QuickGame();
-        wasFastMode = false;
-        wasPause = true;
-        base.OnClickCloseButton();
     }
 
     private void GetUpdateAudioManager() {
