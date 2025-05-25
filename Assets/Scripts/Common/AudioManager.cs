@@ -12,6 +12,7 @@ public enum BGM
     Script0_2,      // 0_2 스크립트
     TypeWriter,     // 타자기 소리
     ED1,            // ED1
+    EmergencyQuest, // 긴급의뢰 브금
     COUNT,
 }
 
@@ -156,6 +157,7 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         {
             elapsed += Time.deltaTime;
             audioSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / fadeTime);
+            UpdateVolume();
             yield return null;
         }
         audioSource.volume = 0f;
@@ -169,6 +171,7 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         {
             elapsed += Time.deltaTime;
             audioSource.volume = Mathf.Lerp(0f, endVolume, elapsed / fadeTime);
+            UpdateVolume();
             yield return null;
         }
         audioSource.volume = endVolume;

@@ -71,7 +71,7 @@ public class ScriptPlayer : MonoBehaviour
                 break;
         }
     }
-    
+
 
     public void ShowNextScript()
     {
@@ -105,7 +105,8 @@ public class ScriptPlayer : MonoBehaviour
     }
     private void SetIll(string fileName)
     {
-        if (fileName == "0") {
+        if (fileName == "0")
+        {
             AudioManager.Instance.StopBGM();
             illustration.sprite = null;
             illustration.color = new Color(0f, 0f, 0f);
@@ -197,13 +198,15 @@ public class ScriptPlayer : MonoBehaviour
         isTyping = true;
         script.GetComponent<TypewriterByCharacter>().ShowText(line);
     }
-    public void SkipTypingAnimator() {
+    public void SkipTypingAnimator()
+    {
         isTyping = false;
         script.GetComponent<TypewriterByCharacter>().SkipTypewriter();
     }
     public void OnClickSkip()
     {
         currentLine = scriptList.Count;
+        AudioManager.Instance.StopBGM();
         ShowNextScript();
     }
 
@@ -225,15 +228,28 @@ public class ScriptPlayer : MonoBehaviour
         }
     }
 
-    private void EndScripts() {
+    private void EndScripts()
+    {
         int id = scriptList[currentLine - 1].scriptId;
         script.text = "";
         ActiveObjects(false);
         scriptList.Clear();
         currentLine = 0;
         isScriptMode = false;
-        
+
         ScriptHandler.scriptHandler.AfterEndTheScript(id);
+    }
+    public void SetIllWithoutScript(Sprite sprite = null)
+    {
+        if (sprite != null)
+        {
+            illustration.sprite = sprite;
+            illustration.gameObject.SetActive(true);
+        }
+        else
+        {
+            illustration.gameObject.SetActive(false);
+        }
     }
 }
 

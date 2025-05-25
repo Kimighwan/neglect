@@ -67,8 +67,10 @@ public class GameManager : MonoBehaviour
     }
     public void EndTheGame()
     {
-        //data.background.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Arts/Illustration/ED1");
-        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, false);
-        //data.background.SetActive(true); 버튼 추가해서 넘어가는 방식이 더 좋을 듯
+        Fade.Instance.DoFade(Color.black, 0f, 1f, 2f, 0f, true, () =>
+        {
+            // 게임 엔딩 로직
+            SceneManager.LoadScene(0);
+        });
     }
 }

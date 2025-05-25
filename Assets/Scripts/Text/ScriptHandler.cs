@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScriptHandler : MonoBehaviour
 {
     public static ScriptHandler scriptHandler;
+    public Button endingTrigger;
     [SerializeField] private ScriptPlayer scriptPlayer;
     private List<int> toStoryDay = new List<int> { 1, 5, 10, 15 };
     private int storyDayIndex = 0;
@@ -12,10 +14,6 @@ public class ScriptHandler : MonoBehaviour
     private void Awake()
     {
         scriptHandler = this;
-    }
-    private void Start()
-    {
-
     }
     public bool ScriptPlayDay(int day)
     {
@@ -72,6 +70,7 @@ public class ScriptHandler : MonoBehaviour
             case 100121: // 슬라임 홍수 시작
                 var slimeUiData = new EmergencyQuestUIData(11);
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(slimeUiData);
+                AudioManager.Instance.PlayBGM(BGM.EmergencyQuest);
                 break;
             case 100171: // 슬라임 홍수 성공
                 storyDayIndex++;
@@ -80,6 +79,7 @@ public class ScriptHandler : MonoBehaviour
             case 100219: // 몬스터 웨이브 시작
                 var monsterWaveUiData = new EmergencyQuestUIData(12);
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(monsterWaveUiData);
+                AudioManager.Instance.PlayBGM(BGM.EmergencyQuest);
                 break;
             case 100260:
                 storyDayIndex++;
@@ -88,6 +88,7 @@ public class ScriptHandler : MonoBehaviour
             case 100315: // 모험가 구함 시작
                 var uiData = new EmergencyQuestUIData(13);
                 UIManager.Instance.OpenUI<EmergencyQuestUI>(uiData);
+                AudioManager.Instance.PlayBGM(BGM.EmergencyQuest);
                 break;
             case 100377: // 엔딩 스크립트 실행
                 PlayScript(100379, 100379);
@@ -95,7 +96,7 @@ public class ScriptHandler : MonoBehaviour
                 break;
             case 109124: // 엔딩 실행
                 Fade.Instance.DoFade(Color.black, 0f, 1f, 1f, 0f, false);
-                GameManager.gameManager.EndTheGame();
+                ShowEndingIll();
                 break;
         }
     }
@@ -106,5 +107,15 @@ public class ScriptHandler : MonoBehaviour
     public void PlayIntroScript()
     {
         PlayScript(100001, 100017);
+    }
+
+
+    public void ShowEndingIll()
+    {
+        scriptPlayer.SetIllWithoutScript(Resources.Load<Sprite>($"Arts/Illustration/ED1"));
+        Fade.Instance.DoFade(Color.black, 1f, 0f, 1f, 0f, true, () =>
+        {
+            endingTrigger.gameObject.SetActive(true);
+        });
     }
 }
