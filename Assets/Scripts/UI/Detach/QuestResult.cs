@@ -24,8 +24,6 @@ public class QuestResult : BaseUI
         receiptBtn.SetActive(false);
         diaOKBtn.SetActive(false);
         StartCoroutine(UpdateResultCo());
-
-        skil.Clear();
     }
 
     public override void SetInfo(BaseUIData uiData)
@@ -45,6 +43,15 @@ public class QuestResult : BaseUI
         rectTransform.localScale = new Vector3(2, 2, 2);
 
         //QuestManager.Instance.Calculation(resultIndex)????????????????
+    }
+
+    private void SetSkil()
+    {
+        foreach (var i in PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas)
+        {
+            skil[i.adventureId] = i.adventureSkil;
+            Debug.Log("skil : " + i.adventureSkil);
+        }
     }
 
     public void OnClickReceiptBtn()     // 파견 결과에 따른 골드 받기 버튼
@@ -125,12 +132,13 @@ public class QuestResult : BaseUI
 
         yield return new WaitForSeconds(1.5f);
 
+        skil.Clear();
+        SetSkil();
+
         // 의뢰 종료시 모험가 다시 사용하게 Test
         foreach (var i in PoolManager.Instance.questManagers[resultIndex - 1].adventureDatas)
         {
-            skil[i.adventureId] = i.adventureSkil;
             PoolManager.Instance.usingAdventureList.Remove(i.adventureId); // 파견 중이였던 걸 해제
-            Debug.Log("i.adventureSkil" + i.adventureSkil);
         }
         
         if (PoolManager.Instance.resultList[resultIndex] == 0)
@@ -144,7 +152,7 @@ public class QuestResult : BaseUI
 
             reward = PoolManager.Instance.questData[resultIndex].questReward;
 
-            if (skil.ContainsValue(6)) reward /= 2;
+            //if (skil.ContainsValue(6)) reward /= 2;
 
             GameInfo.gameInfo.CheckSuccessTier(PoolManager.Instance.questData[resultIndex].questLevel);
             ScriptHandler.scriptHandler.ScriptPlayQuestID(PoolManager.Instance.questData[resultIndex].questId);
