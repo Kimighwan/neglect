@@ -31,7 +31,7 @@ public class AdventurerUI : BaseUI
 
         var rectTransform = GetComponent<RectTransform>();
 
-        rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
+        // rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
         //rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
     }
 

@@ -60,10 +60,10 @@ public class AdventurerListUI : BaseUI
 
         var rectTransform = GetComponent<RectTransform>();
 
-        rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
-        rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
+        // rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
+        // rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
 
-        infiniteScrollList.layout.space = new Vector2(0f, 20f);
+        // infiniteScrollList.layout.space = new Vector2(0f, 20f);
     }
 
     private void OnEnable()

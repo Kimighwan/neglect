@@ -11,10 +11,6 @@ public class Desk : MouseDrag
     public override void OnPointerDown(PointerEventData eventData)
     {
         UIManager.Instance.OnClickAdventureTable(this);
-        // if (!tutorialOnce) {
-        //     tutorialOnce = true;
-        //     GameManager.gameManager.OpenTutorial(590004);
-        // }
     }
 
     private Sprite original;
