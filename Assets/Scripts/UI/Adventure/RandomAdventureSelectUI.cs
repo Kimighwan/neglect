@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class RandomAdventureSelectUI : MonoBehaviour
 {
-    public TextMeshProUGUI test;
-
     public RawImage rankImage;
 
     public RawImage posImg;
@@ -143,7 +141,6 @@ public class RandomAdventureSelectUI : MonoBehaviour
         this.adventureClass = adventureData.adventureClass;
         this.adventureType = adventureData.adventureType;
         this.adventureTier = adventureData.adventureTier;
-        test.text = adventureData.adventureSkil.ToString();
 
         if (adventureTier == "브론즈")
         {

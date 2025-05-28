@@ -64,7 +64,7 @@ public class QuestListItemSlot : InfiniteScrollItem
             if ((questId / 100) % 10 == 8)
             {
                 rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
-                rankTxt.text += "(특수)";
+                rankTxt.text += "\n(특수)";
                 rank.rank += "(특수)";
             }
         }
@@ -74,7 +74,7 @@ public class QuestListItemSlot : InfiniteScrollItem
             if ((questId / 100) % 10 == 8)
             {
                 rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
-                rankTxt.text += "(특수)";
+                rankTxt.text += "\n(특수)";
                 rank.rank += "(특수)";
             }
         }
@@ -84,7 +84,7 @@ public class QuestListItemSlot : InfiniteScrollItem
             if ((questId / 100) % 10 == 8)
             {
                 rankImage.texture = Resources.Load("Arts/QuestRank/special_quest") as Texture2D;
-                rankTxt.text += "(특수)";
+                rankTxt.text += "\n(특수)";
                 rank.rank += "(특수)";
             }
         }
