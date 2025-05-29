@@ -4,9 +4,7 @@ using UnityEngine.UI;
 public class SystemDescUI : SystemUI
 {
     public SystemDescData systemDescData;
-
-    public RectTransform imageObject;
-    public RawImage image;
+    public Image image;
 
     public RectTransform descGameOject;
     public TextMeshProUGUI txtDesc;
@@ -76,13 +74,11 @@ public class SystemDescUI : SystemUI
     public void SetScriptOfPage()
     {
         image.color = new Color(1, 1, 1, 1);
-        descGameOject.anchoredPosition = new Vector3(0f, -241f, 0f);
-        imageObject.sizeDelta = new Vector2(1920f, 1080f);
         switch (pageIndex)
         {
             case 1:
                 txtDesc.text = script1;
-                image.texture = Resources.Load($"{PATH}/{page1}") as Texture2D;
+                image.sprite = Resources.Load<Sprite>($"{PATH}/{page1}");
                 if (page1 == "")
                 {
                     image.color = new Color(0, 0, 0, 0);
@@ -91,7 +87,7 @@ public class SystemDescUI : SystemUI
                 break;
             case 2:
                 txtDesc.text = script2;
-                image.texture = Resources.Load($"{PATH}/{page2}") as Texture2D;
+                image.sprite = Resources.Load<Sprite>($"{PATH}/{page2}");
                 if (page2 == "")
                 {
                     image.color = new Color(0, 0, 0, 0);
@@ -100,7 +96,7 @@ public class SystemDescUI : SystemUI
                 break;
             case 3:
                 txtDesc.text = script3;
-                image.texture = Resources.Load($"{PATH}/{page3}") as Texture2D;
+                image.sprite = Resources.Load<Sprite>($"{PATH}/{page3}");
                 if (page3 == "")
                 {
                     image.color = new Color(0, 0, 0, 0);
@@ -109,7 +105,7 @@ public class SystemDescUI : SystemUI
                 break;
             case 4:
                 txtDesc.text = script4;
-                image.texture = Resources.Load($"{PATH}/{page4}") as Texture2D;
+                image.sprite = Resources.Load<Sprite>($"{PATH}/{page4}");
                 if (page4 == "")
                 {
                     image.color = new Color(0, 0, 0, 0);
@@ -118,7 +114,7 @@ public class SystemDescUI : SystemUI
                 break;
             case 5:
                 txtDesc.text = script5;
-                image.texture = Resources.Load($"{PATH}/{page5}") as Texture2D;
+                image.sprite = Resources.Load<Sprite>($"{PATH}/{page5}");
                 if (page5 == "")
                 {
                     image.color = new Color(0, 0, 0, 0);
@@ -127,10 +123,10 @@ public class SystemDescUI : SystemUI
                 break;
         }
 
-        if(DataTableManager.Instance.systemDescId == 590001)
-        {
-            imageObject.sizeDelta = new Vector2(2048f, 1134f);
-        }
+        //if(DataTableManager.Instance.systemDescId == 590001)
+        //{
+        //    imageObject.sizeDelta = new Vector2(2048f, 1134f);
+        //}
 
         if(pageIndex == 1)
         {
