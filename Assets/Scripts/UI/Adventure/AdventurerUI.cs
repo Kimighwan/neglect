@@ -28,11 +28,6 @@ public class AdventurerUI : BaseUI
     public override void Init(Transform anchor, RectTransform canvasRT = null)
     {
         base.Init(anchor);
-
-        var rectTransform = GetComponent<RectTransform>();
-
-        // rectTransform.anchoredPosition = new Vector3(0f, 0f, 0f);
-        //rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
     }
 
     public override void SetInfo(BaseUIData uiData)

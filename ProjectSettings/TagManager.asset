@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 4022305445
+    locked: 0
   - name: Guild
     uniqueID: 1263662821
     locked: 0

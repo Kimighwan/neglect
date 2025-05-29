@@ -23,10 +23,6 @@ public class DetachQuestSlotItem : InfiniteScrollItem
     {
         base.UpdateData(scrollData);
 
-        var rectTransform = GetComponent<RectTransform>();
-
-        rectTransform.sizeDelta = new Vector2(160f, 160f);
-
         questData = scrollData as QuestData;
 
         if (questData == null) return;

@@ -87,7 +87,7 @@ public class StateSceneManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("ReSelectConfirm"))
             PlayerPrefs.SetInt("ReSelectConfirm", 0);
 
-        
+
     }
 
     void Update()
@@ -95,15 +95,18 @@ public class StateSceneManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) AudioManager.Instance.PlaySFX(SFX.Click1);
     }
 
-    private IEnumerator PlayTitleBGM() {
+    private IEnumerator PlayTitleBGM()
+    {
         yield return new WaitForSeconds(0.1f);
-        if (AudioManager.Instance != null) {
+        if (AudioManager.Instance != null)
+        {
             Debug.Log("AudioManager Instance 존재");
             AudioManager.Instance.UnMute();
             AudioManager.Instance.UpdateVolume();
             AudioManager.Instance.PlayBGM(BGM.Start);
         }
-        else {
+        else
+        {
             Debug.Log("AudioManager Instance 없음...");
             StartCoroutine(PlayTitleBGM());
         }

@@ -14,8 +14,6 @@ public class RequestButton : MouseDrag
     public Transform cameraTransform; // 이동할 카메라
     public RectTransform requestBG;
     public GameObject backimage;        // 검은색 뒷 배경
-    public RectTransform txt1;        // NPC 대화창 1
-    public RectTransform txt2;        // NPC 대화창 2
 
     private Vector3 originalCamPos; // 원래 위치
     private Vector3 targetCamPos; // 목표 위치
@@ -31,10 +29,10 @@ public class RequestButton : MouseDrag
     void Start()
     {
         originalCamPos = cameraTransform.position;
-        targetCamPos = originalCamPos + new Vector3(0, -5, 0);
+        targetCamPos = originalCamPos + new Vector3(0, -3f, 0);
 
         originalUIPos = requestBG.anchoredPosition;
-        targetUIPos = originalUIPos + new Vector3(0, 320, 0);
+        targetUIPos = originalUIPos + new Vector3(0, 432, 0);
     }
 
     public void OnClickBut()

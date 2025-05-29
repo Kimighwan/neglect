@@ -39,13 +39,9 @@ public class RandomQuestSelectUI : MonoBehaviour
 
     private void Awake()
     {
-        var rectTransform = GetComponent<RectTransform>();
-
         pos = GameObject.FindGameObjectWithTag("QeustSelectGroup").transform;
 
         this.transform.SetParent(pos);
-        rectTransform.sizeDelta = new Vector2(300, 400);
-        rectTransform.localScale = new Vector3(1f, 1f, 1f);
 
         GetQuestData();
         InitData();

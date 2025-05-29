@@ -50,8 +50,6 @@ public class RandomAdventureSelectUI : MonoBehaviour
         pos = GameObject.FindGameObjectWithTag("AdventureSelectGroup").transform;
 
         this.transform.SetParent(pos);
-        rectTransform.sizeDelta = new Vector2(311.3f, 515.6f);
-        rectTransform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
         GetAdventureData();
         InitData();

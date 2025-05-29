@@ -36,11 +36,6 @@ public class QuestListUI : BaseUI
     {
         base.Init(anchor);
 
-        var rectTransform = GetComponent<RectTransform>();
-
-        rectTransform.anchoredPosition = new Vector3(0f, -58f, 0f);
-        rectTransform.sizeDelta = new Vector2(1176.5f, 967f);
-
         infiniteScrollList.layout.padding = new Vector2(16f, 700f);
     }
 

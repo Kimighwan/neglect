@@ -37,12 +37,6 @@ public class QuestResult : BaseUI
     public override void Init(Transform anchor, RectTransform canvasRT = null)
     {
         base.Init(anchor);
-
-        var rectTransform = GetComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(300f, 200f);
-        rectTransform.localScale = new Vector3(2, 2, 2);
-
-        //QuestManager.Instance.Calculation(resultIndex)????????????????
     }
 
     private void SetSkil()
